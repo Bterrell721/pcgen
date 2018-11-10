@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2003 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,11 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
- *
- *
  */
 package plugin.pretokens.parser;
 
@@ -32,7 +26,6 @@ import pcgen.persistence.lst.prereq.AbstractPrerequisiteParser;
 
 /**
  * A prerequisite parser class that handles the parsing of pre level tokens.
- *
  */
 public class PreLevelParser extends AbstractPrerequisiteParser
 {
@@ -40,10 +33,10 @@ public class PreLevelParser extends AbstractPrerequisiteParser
 	 * Get the type of prerequisite handled by this token.
 	 * @return the type of prerequisite handled by this token.
 	 */
-    @Override
+	@Override
 	public String[] kindsHandled()
 	{
-		return new String[]{ "LEVEL" };
+		return new String[]{"LEVEL"};
 	}
 
 	/**
@@ -59,10 +52,8 @@ public class PreLevelParser extends AbstractPrerequisiteParser
 	 * @throws PersistenceLayerException
 	 */
 	@Override
-	public Prerequisite parse(String kind,
-	                          String formula,
-	                          boolean invertResult,
-	                          boolean overrideQualify) throws PersistenceLayerException
+	public Prerequisite parse(String kind, String formula, boolean invertResult, boolean overrideQualify)
+		throws PersistenceLayerException
 	{
 		Prerequisite prereq = super.parse(kind, formula, invertResult, overrideQualify);
 
@@ -77,10 +68,8 @@ public class PreLevelParser extends AbstractPrerequisiteParser
 			String[] vals = value.split("=");
 			if (vals.length != 2)
 			{
-				throw new PersistenceLayerException(
-					"PRELEVEL must be either 'MIN=x', 'MAX=y' or "
-						+ "'MIN=x,MAX=y' where 'x' and 'y' are integers. '"
-						+ formula + "' is not valid. ");
+				throw new PersistenceLayerException("PRELEVEL must be either 'MIN=x', 'MAX=y' or "
+					+ "'MIN=x,MAX=y' where 'x' and 'y' are integers. '" + formula + "' is not valid. ");
 			}
 			String token = vals[0];
 			String hdVal = vals[1];
@@ -91,12 +80,8 @@ public class PreLevelParser extends AbstractPrerequisiteParser
 			catch (NumberFormatException nfe)
 			{
 				throw new PersistenceLayerException(
-					"PRELEVEL must be either 'MIN=x', 'MAX=y' or "
-						+ "'MIN=x,MAX=y' where 'x' and 'y' are integers. '"
-						+ formula
-						+ "' is not valid: "
-						+ hdVal
-						+ " is not an integer");
+					"PRELEVEL must be either 'MIN=x', 'MAX=y' or " + "'MIN=x,MAX=y' where 'x' and 'y' are integers. '"
+						+ formula + "' is not valid: " + hdVal + " is not an integer");
 			}
 			if (token.equals("MIN"))
 			{

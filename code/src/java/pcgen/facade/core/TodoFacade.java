@@ -1,5 +1,4 @@
 /**
- * TodoFacade.java
  * Copyright 2010 James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.facade.core;
 
@@ -32,23 +29,23 @@ public interface TodoFacade extends Comparable<TodoFacade>
 {
 	/** Event constant to indicate a request to change tabs. */
 	public static String SWITCH_TABS = "SwitchTabs";
-	
+
 	/**
 	 * @return The message to be displayed. Is normally a key to localised 
 	 * message, starting with in_ but may also be plain text.   
 	 */
 	public String getMessageKey();
-	
+
 	/**
 	 * @return The character tab on which the task can be completed.
 	 */
 	public Tab getTab();
-	
+
 	/**
 	 * @return The internal name of the field where the task can be completed.
 	 */
 	public String getFieldName();
-	
+
 	/**
 	 * @return The internal name of the sub tab where the task can be completed.
 	 */

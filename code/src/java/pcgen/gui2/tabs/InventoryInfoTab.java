@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this library; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.tabs;
 
@@ -26,10 +24,8 @@ import pcgen.system.LanguageBundle;
 import pcgen.util.enumeration.Tab;
 
 /**
- * The Class {@code InventoryInfoTab} is a placeholder for the yet to be
- * implemented Inventory tab.
- * -0800 (Fri, 25 Feb 2011) $
- *
+ * The Class {@code InventoryInfoTab} implements the "Inventory" tab
+ * including both purchasing and equiping items.
  */
 @SuppressWarnings("serial")
 public class InventoryInfoTab extends JTabbedPane implements CharacterInfoTab, TodoHandler

@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens.deprecated;
 
@@ -34,8 +31,6 @@ import pcgen.io.exporttoken.Token;
 /**
  * Handle the GOLD token which outputs the amount of unallocated wealth
  * that the character has.
- *
- *
  */
 public class GoldToken extends Token
 {
@@ -52,8 +47,7 @@ public class GoldToken extends Token
 	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
 	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
 		NumberFormat decimalFormat = new DecimalFormat("#,##0.##", decimalFormatSymbols);

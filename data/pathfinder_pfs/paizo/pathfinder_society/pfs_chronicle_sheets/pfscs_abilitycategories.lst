@@ -9,18 +9,14 @@ ABILITYCATEGORY:PFSChronicle							VISIBLE:YES		EDITABLE:YES								CATEGORY:PFS
 
 ABILITYCATEGORY:Ally of Belhaim Perform Choice				VISIBLE:QUALIFY	EDITABLE:YES	EDITPOOL:NO		FRACTIONALPOOL:NO		CATEGORY:Special Ability	TYPE:AllyOfBelhaimPerformChoice																										DISPLAYLOCATION:Chronicles
 
-# These ability pools hold the chronicle sheet boons
-ABILITYCATEGORY:Chronicle_S07-01						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_S07-01											DISPLAYNAME:PFS Scenario #7-01: Between the Lines									DISPLAYLOCATION:Chronicles
-ABILITYCATEGORY:Chronicle_S07-02						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_S07-02											DISPLAYNAME:PFS Scenario #7-02: Six Seconds to Midnight									DISPLAYLOCATION:Chronicles
-
-ABILITYCATEGORY:Chronicle_S08-01						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_S08-01											DISPLAYNAME:PFS Scenario #8-01: Portent's Peril									DISPLAYLOCATION:Chronicles
-ABILITYCATEGORY:Chronicle_S08-05						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_S08-05											DISPLAYNAME:PFS Scenario #8-05: Ungrounded but Unbroken									DISPLAYLOCATION:Chronicles
-
 ABILITYCATEGORY:Chronicle_PZO9500-4						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9500-4										DISPLAYNAME:Pathfinder Module: Master of the Fallen Fortress							DISPLAYLOCATION:Chronicles
 ABILITYCATEGORY:Chronicle_PZO9500-5						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9500-5										DISPLAYNAME:Pathfinder Module: We be Goblins										DISPLAYLOCATION:Chronicles
 ABILITYCATEGORY:Chronicle_PZO9500-6						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9500-6										DISPLAYNAME:Pathfinder Module: Dawn of the Scarlet Sun								DISPLAYLOCATION:Chronicles
 ABILITYCATEGORY:Chronicle_PZO9500-7						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9500-7										DISPLAYNAME:Pathfinder Module: We Be Goblins Too!									DISPLAYLOCATION:Chronicles
 ABILITYCATEGORY:Chronicle_PZO9500-8						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9500-8										DISPLAYNAME:Pathfinder Module: Risen from the Sands									DISPLAYLOCATION:Chronicles
+#ABILITYCATEGORY:Chronicle_PZO9500-9						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9500-9										DISPLAYNAME:Pathfinder Module: We Be Goblins Free!									DISPLAYLOCATION:Chronicles
+#ABILITYCATEGORY:Chronicle_PZO9500-10						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9500-10										DISPLAYNAME:Pathfinder Module: We B4 Goblins!									DISPLAYLOCATION:Chronicles
+ABILITYCATEGORY:Chronicle_PZO9500-12						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9500-12										DISPLAYNAME:Pathfinder Module: We Be 5uper Goblins!									DISPLAYLOCATION:Chronicles
 ABILITYCATEGORY:Chronicle_PZO9520						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9520											DISPLAYNAME:Pathfinder Module: Crypt of the Everflame									DISPLAYLOCATION:Chronicles
 ABILITYCATEGORY:Chronicle_PZO9521						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9521											DISPLAYNAME:Pathfinder Module: Carrion Hill										DISPLAYLOCATION:Chronicles
 ABILITYCATEGORY:Chronicle_PZO9522						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9522											DISPLAYNAME:Pathfinder Module: Masks of the Living God								DISPLAYLOCATION:Chronicles
@@ -44,8 +40,9 @@ ABILITYCATEGORY:Chronicle_PZO9539						VISIBLE:QUALIFY	EDITABLE:YES								CATEG
 ABILITYCATEGORY:Chronicle_PZO9540						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9540											DISPLAYNAME:Pathfinder Module: Fangwood Keep										DISPLAYLOCATION:Chronicles
 ABILITYCATEGORY:Chronicle_PZO9541						VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PZO9541											DISPLAYNAME:Pathfinder Module: Doom Comes to Dustpawn									DISPLAYLOCATION:Chronicles
 
-ABILITYCATEGORY:Chronicle_PFS_Special_Ascendance_Day			VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PFS_Special_Ascendance_Day								DISPLAYNAME:PFS Special Ascendance Day											DISPLAYLOCATION:Chronicles
-ABILITYCATEGORY:Chronicle_PFS_Special_Year_of_the_Risen_Rune	VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PFS_Special_Year_of_the_Risen_Rune						DISPLAYNAME:PFS Special Year of the Risen Rune										DISPLAYLOCATION:Chronicles
+ABILITYCATEGORY:Chronicle_PFS_Special_Ascendance_Day			VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PFS_Special_Ascendance_Day								DISPLAYNAME:PFS Special: Ascendance Day											DISPLAYLOCATION:Chronicles
+ABILITYCATEGORY:Chronicle_PFS_Special_Year_of_the_Risen_Rune	VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PFS_Special_Year_of_the_Risen_Rune						DISPLAYNAME:PFS Special: Year of the Risen Rune										DISPLAYLOCATION:Chronicles
+ABILITYCATEGORY:Chronicle_PFS_Special_Grand_Melee_4711	VISIBLE:QUALIFY	EDITABLE:YES								CATEGORY:Special Ability	TYPE:Chronicle_PFS_Special_Grand_Melee_4711						DISPLAYNAME:PFS Special: Grand Melee 4711										DISPLAYLOCATION:Chronicles
 
 #
 # DONE

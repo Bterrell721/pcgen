@@ -1,5 +1,4 @@
 /*
- * LanguageChooserDialog.java
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -45,11 +44,11 @@ import javax.swing.WindowConstants;
 
 import pcgen.facade.core.LanguageChooserFacade;
 import pcgen.facade.core.LanguageFacade;
-import pcgen.facade.util.event.ReferenceEvent;
-import pcgen.facade.util.event.ReferenceListener;
 import pcgen.facade.util.DefaultListFacade;
 import pcgen.facade.util.DelegatingListFacade;
 import pcgen.facade.util.ListFacade;
+import pcgen.facade.util.event.ReferenceEvent;
+import pcgen.facade.util.event.ReferenceListener;
 import pcgen.gui2.tools.Icons;
 import pcgen.gui2.tools.Utility;
 import pcgen.gui2.util.FacadeListModel;
@@ -62,9 +61,6 @@ import pcgen.gui2.util.treeview.TreeViewModel;
 import pcgen.gui2.util.treeview.TreeViewPath;
 import pcgen.system.LanguageBundle;
 
-/**
- *
- */
 public class LanguageChooserDialog extends JDialog implements ActionListener, ReferenceListener<Integer>
 {
 
@@ -73,7 +69,7 @@ public class LanguageChooserDialog extends JDialog implements ActionListener, Re
 	private final JLabel remainingLabel;
 	private final LangTreeViewModel treeViewModel;
 	private final FacadeListModel<LanguageFacade> listModel;
-	private final JListEx list;
+	private final JListEx<LanguageFacade> list;
 
 	public LanguageChooserDialog(Frame frame, LanguageChooserFacade chooser)
 	{
@@ -82,7 +78,7 @@ public class LanguageChooserDialog extends JDialog implements ActionListener, Re
 		this.availTable = new JTreeViewTable<>();
 		this.remainingLabel = new JLabel();
 		this.treeViewModel = new LangTreeViewModel();
-		this.list = new JListEx();
+		this.list = new JListEx<>();
 		this.listModel = new FacadeListModel<>();
 
 		treeViewModel.setDelegate(chooser.getAvailableList());
@@ -217,16 +213,16 @@ public class LanguageChooserDialog extends JDialog implements ActionListener, Re
 		dispose();
 	}
 
-	private static class LangTreeViewModel extends DelegatingListFacade<LanguageFacade> implements TreeViewModel<LanguageFacade>,
-			DataView<LanguageFacade>//, TreeView<LanguageFacade>
+	private static class LangTreeViewModel extends DelegatingListFacade<LanguageFacade>
+			implements TreeViewModel<LanguageFacade>, DataView<LanguageFacade>//, TreeView<LanguageFacade>
 	{
-		private static final ListFacade<TreeView<LanguageFacade>> views =
-                new DefaultListFacade<>(Arrays.asList(LanguageTreeView.values()));
+		private static final ListFacade<TreeView<LanguageFacade>> VIEWS =
+				new DefaultListFacade<>(Arrays.asList(LanguageTreeView.values()));
 
 		@Override
 		public ListFacade<? extends TreeView<LanguageFacade>> getTreeViews()
 		{
-			return views;
+			return VIEWS;
 		}
 
 		@Override
@@ -276,7 +272,7 @@ public class LanguageChooserDialog extends JDialog implements ActionListener, Re
 	{
 		NAME("in_nameLabel"), //$NON-NLS-1$
 		TYPE_NAME("in_typeName"); //$NON-NLS-1$
-		
+
 		private final String name;
 
 		private LanguageTreeView(String name)
@@ -299,7 +295,7 @@ public class LanguageChooserDialog extends JDialog implements ActionListener, Re
 				case NAME:
 					return Collections.singletonList(new TreeViewPath<>(pobj));
 				case TYPE_NAME:
-					for(String type : pobj.getTypes())
+					for (String type : pobj.getTypes())
 					{
 						paths.add(new TreeViewPath<>(pobj, type));
 					}
@@ -308,6 +304,6 @@ public class LanguageChooserDialog extends JDialog implements ActionListener, Re
 					throw new InternalError();
 			}
 		}
-		
+
 	}
 }

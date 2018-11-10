@@ -1,5 +1,4 @@
 /*
- * Skill.java
  * Copyright 2002 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.bonustokens;
 
@@ -53,8 +49,7 @@ public final class Skill extends BonusObj
 			}
 		}
 
-		if (token.startsWith("STAT=")
-			|| token.startsWith(Constants.LST_TYPE_EQUAL))
+		if (token.startsWith("STAT=") || token.startsWith(Constants.LST_TYPE_EQUAL))
 		{
 			addBonusInfo(token.replace('=', '.'));
 		}
@@ -63,9 +58,8 @@ public final class Skill extends BonusObj
 			addBonusInfo(token);
 		}
 
-		if (!token.equals("LIST") && !token.startsWith("STAT.")
-			&& !token.equals("%CHOICE") && !token.startsWith("STAT=")
-			&& !token.equals("%LIST") && !token.equals("%VAR") 
+		if (!token.equals("LIST") && !token.startsWith("STAT.") && !token.equals("%CHOICE")
+			&& !token.startsWith("STAT=") && !token.equals("%LIST") && !token.equals("%VAR")
 			&& !token.equals("TYPE=%LIST"))
 		{
 			//This is done entirely for the side effects

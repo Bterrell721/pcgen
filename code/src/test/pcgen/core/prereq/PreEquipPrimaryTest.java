@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.core.prereq;
 
@@ -36,8 +35,6 @@ import pcgen.rules.context.LoadContext;
 /**
  * <code>PreEquipPrimaryTest</code> tests that the PREEQUIPPRIMARY tag is
  * working correctly.
- *
- *
  */
 public class PreEquipPrimaryTest extends AbstractCharacterTestCase
 {
@@ -78,10 +75,9 @@ public class PreEquipPrimaryTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test equipment type tests
-	 * @throws Exception
+	 * Test equipment type tests.
 	 */
-	public void testType() throws Exception
+	public void testType()
 	{
 		final PlayerCharacter character = getCharacter();
 
@@ -114,10 +110,9 @@ public class PreEquipPrimaryTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test wield category tests
-	 * @throws Exception
+	 * Test wield category tests.
 	 */
-	public void testWield() throws Exception
+	public void testWield()
 	{
 		final PlayerCharacter character = getCharacter();
 

@@ -1,5 +1,4 @@
 /*
- *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -14,7 +13,6 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * Current Version: $Revision$
  * Copyright 2005 Andrew Wilson <nuance@sourceforge.net>
  */
 
@@ -44,8 +42,12 @@ import pcgen.core.Skill;
  * 
  */
 
-public class ChooserUtilities
+public final class ChooserUtilities
 {
+	private ChooserUtilities()
+	{
+	}
+
 	/**
 	 * Deal with CHOOSE tags. The actual items the choice will be made from are
 	 * based on the choiceString, as applied to current character. Choices
@@ -68,16 +70,14 @@ public class ChooserUtilities
 	 * @return true if we processed the list of choices, false if we used the
 	 *         routine to build the list of choices without processing them.
 	 */
-	public static boolean modChoices(final ChooseDriver aPObject,
-	                                 List availableList, final List selectedList, final PlayerCharacter aPC,
-	                                 final boolean addIt, final AbilityCategory category)
+	public static boolean modChoices(final ChooseDriver aPObject, List availableList, final List selectedList,
+		final PlayerCharacter aPC, final boolean addIt, final AbilityCategory category)
 	{
 		availableList.clear();
 		selectedList.clear();
 		List reservedList = new ArrayList();
 
-		ChoiceManagerList aMan = getConfiguredController(aPObject, aPC,
-				category, reservedList);
+		ChoiceManagerList aMan = getConfiguredController(aPObject, aPC, category, reservedList);
 		if (aMan == null)
 		{
 			return false;
@@ -89,24 +89,20 @@ public class ChooserUtilities
 		{
 			if (addIt)
 			{
-				final List newSelections =
-						aMan.doChooser(aPC, availableList,
-						selectedList, reservedList);
+				final List newSelections = aMan.doChooser(aPC, availableList, selectedList, reservedList);
 				return aMan.applyChoices(aPC, newSelections);
 			}
 			else
 			{
-				aMan.doChooserRemove(aPC, availableList, selectedList,
-					reservedList);
+				aMan.doChooserRemove(aPC, availableList, selectedList, reservedList);
 			}
 			return true;
 		}
 		return false;
 	}
 
-	public static <T> ChoiceManagerList<T> getConfiguredController(
-			final ChooseDriver aPObject, final PlayerCharacter aPC,
-			final AbilityCategory category, List<String> reservedList)
+	public static <T> ChoiceManagerList<T> getConfiguredController(final ChooseDriver aPObject,
+		final PlayerCharacter aPC, final AbilityCategory category, List<String> reservedList)
 	{
 		ChoiceManagerList aMan = getChoiceManager(aPObject, aPC);
 		if (aMan == null)
@@ -121,9 +117,7 @@ public class ChooserUtilities
 			AbilityCategory cat;
 			if (category == null)
 			{
-				cat =
-						SettingsHandler.getGame().getAbilityCategory(
-							a.getCategory());
+				cat = SettingsHandler.getGame().getAbilityCategory(a.getCategory());
 			}
 			else
 			{
@@ -155,15 +149,13 @@ public class ChooserUtilities
 	 * @param ability
 	 *            The ability the choices are for.
 	 */
-	private static void modifyAvailChoicesForAbilityCategory(
-		List availableList, AbilityCategory category, Ability ability)
+	private static void modifyAvailChoicesForAbilityCategory(List availableList, AbilityCategory category,
+		Ability ability)
 	{
 		AbilityCategory cat;
 		if (category == null)
 		{
-			cat =
-					SettingsHandler.getGame().getAbilityCategory(
-						ability.getCategory());
+			cat = SettingsHandler.getGame().getAbilityCategory(ability.getCategory());
 		}
 		else
 		{
@@ -222,8 +214,7 @@ public class ChooserUtilities
 	 * 
 	 * @return an initialized ChoiceManager
 	 */
-	public static ChoiceManagerList getChoiceManager(ChooseDriver aPObject,
-		PlayerCharacter aPC)
+	public static ChoiceManagerList getChoiceManager(ChooseDriver aPObject, PlayerCharacter aPC)
 	{
 		ChooseInformation<?> chooseInfo = aPObject.getChooseInfo();
 		if (chooseInfo != null)

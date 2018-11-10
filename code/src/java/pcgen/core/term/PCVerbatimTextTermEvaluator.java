@@ -16,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 04-Aug-2008 17:11:19
- *
- *
  */
 
 package pcgen.core.term;
@@ -25,8 +23,7 @@ package pcgen.core.term;
 import pcgen.core.display.CharacterDisplay;
 import pcgen.core.spell.Spell;
 
-public class PCVerbatimTextTermEvaluator
-		extends BasePCDTermEvaluator implements TermEvaluator
+public class PCVerbatimTextTermEvaluator extends BasePCDTermEvaluator implements TermEvaluator
 {
 
 	public PCVerbatimTextTermEvaluator(String originalText)
@@ -35,17 +32,20 @@ public class PCVerbatimTextTermEvaluator
 	}
 
 	@Override
-	public String evaluate(CharacterDisplay display) {
+	public String evaluate(CharacterDisplay display)
+	{
 		return originalText;
 	}
-	
+
 	@Override
-	public String evaluate(CharacterDisplay display,  final Spell aSpell) {
+	public String evaluate(CharacterDisplay display, final Spell aSpell)
+	{
 		return originalText;
 	}
-	
+
 	@Override
-	public Float resolve(CharacterDisplay display) {
+	public Float resolve(CharacterDisplay display)
+	{
 		return 0.0f;
 	}
 

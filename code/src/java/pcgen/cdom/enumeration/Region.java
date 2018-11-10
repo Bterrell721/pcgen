@@ -50,7 +50,7 @@ public final class Region implements TypeSafeConstant, Comparable<Region>
 	/**
 	 * The ordinal of this Constant
 	 */
-	private final transient int ordinal;
+	private final int ordinal;
 
 	private Region(String name)
 	{
@@ -131,8 +131,7 @@ public final class Region implements TypeSafeConstant, Comparable<Region>
 		Region region = typeMap.get(name);
 		if (region == null)
 		{
-			throw new IllegalArgumentException(name
-					+ " is not a previously defined Region");
+			throw new IllegalArgumentException(name + " is not a previously defined Region");
 		}
 		return region;
 	}

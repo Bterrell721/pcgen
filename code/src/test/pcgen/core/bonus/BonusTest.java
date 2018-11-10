@@ -14,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.core.bonus;
 
@@ -31,7 +28,6 @@ import pcgen.cdom.enumeration.StringKey;
 import pcgen.cdom.enumeration.Type;
 import pcgen.cdom.enumeration.VariableKey;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Equipment;
 import pcgen.core.Globals;
 import pcgen.core.PCClass;
@@ -41,21 +37,18 @@ import pcgen.core.analysis.BonusActivation;
 import pcgen.core.character.EquipSet;
 import pcgen.rules.context.LoadContext;
 import plugin.bonustokens.Var;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * <code>BonusTest</code> test that the Bonus class is functioning
  * correctly.
- *
- *
  */
 
 @SuppressWarnings("nls")
 public class BonusTest extends AbstractCharacterTestCase
 {
 
-	/**
-	 *
-	 */
+
 	public BonusTest()
 	{
 	}
@@ -69,10 +62,9 @@ public class BonusTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the skill pre reqs
-	 * @throws Exception
+	 * Test the skill pre reqs.
 	 */
-	public void testSkillPrereq() throws Exception
+	public void testSkillPrereq()
 	{
 		LoadContext context = Globals.getContext();
 
@@ -117,7 +109,7 @@ public class BonusTest extends AbstractCharacterTestCase
 
 		Ability dummyFeat = new Ability();
 		dummyFeat.setName("DummyFeat");
-		dummyFeat.setCDOMCategory(AbilityCategory.FEAT);
+		dummyFeat.setCDOMCategory(BuildUtilities.getFeatCat());
 		final PlayerCharacter pc = getCharacter();
 
 		// Create a variable
@@ -126,7 +118,7 @@ public class BonusTest extends AbstractCharacterTestCase
 		// Create a bonus to it
 		Ability dummyFeat2 = new Ability();
 		dummyFeat2.setName("DummyFeat2");
-		dummyFeat2.setCDOMCategory(AbilityCategory.FEAT);
+		dummyFeat2.setCDOMCategory(BuildUtilities.getFeatCat());
 		BonusObj aBonus = Bonus.newBonus(context, "VAR|NegLevels|7");
 		
 		if (aBonus != null)
@@ -145,14 +137,14 @@ public class BonusTest extends AbstractCharacterTestCase
 
 		assertEquals("Variable value", 0.0, pc
 			.getVariableValue("NegLevels", "").doubleValue(), 0.05);
-		addAbility(AbilityCategory.FEAT, dummyFeat);
+		addAbility(BuildUtilities.getFeatCat(), dummyFeat);
 		assertEquals("Variable value", 0.0, pc
 			.getVariableValue("NegLevels", "").doubleValue(), 0.05);
 		assertEquals("Variable value", -0.0, pc.getVariableValue(
 			"-1*NegLevels", "").doubleValue(), 0.05);
 
 		// Add a bonus to it
-		addAbility(AbilityCategory.FEAT, dummyFeat2);
+		addAbility(BuildUtilities.getFeatCat(), dummyFeat2);
 		assertEquals("Variable value", 7.0, pc
 			.getVariableValue("NegLevels", "").doubleValue(), 0.05);
 		assertEquals("Variable value", -7.0, pc.getVariableValue(
@@ -225,11 +217,12 @@ public class BonusTest extends AbstractCharacterTestCase
 		bonusList.add(bonus);
 		Ability testBonus = new Ability();
 		testBonus.setName("TB1Assoc");
-		testBonus.setCDOMCategory(AbilityCategory.FEAT);
+		testBonus.setCDOMCategory(BuildUtilities.getFeatCat());
 		testBonus.addToListFor(ListKey.BONUS, bonus);
 		Globals.getContext().unconditionallyProcess(testBonus, "CHOOSE", "PCSTAT|ALL");
 		Globals.getContext().unconditionallyProcess(testBonus, "MULT", "YES");
-		CNAbility cna = AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, testBonus, "INT");
+		CNAbility cna = AbstractCharacterTestCase.applyAbility(character,
+			BuildUtilities.getFeatCat(), testBonus, "INT");
 		testBonus = cna.getAbility();
 		character.calcActiveBonuses();
 		bonus = testBonus.getSafeListFor(ListKey.BONUS).get(0);
@@ -253,13 +246,15 @@ public class BonusTest extends AbstractCharacterTestCase
 		bonusList.add(bonus);
 		Ability testBonus = new Ability();
 		testBonus.setName("TB2Assoc");
-		testBonus.setCDOMCategory(AbilityCategory.FEAT);
+		testBonus.setCDOMCategory(BuildUtilities.getFeatCat());
 		testBonus.addToListFor(ListKey.BONUS, bonus);
 		Globals.getContext().unconditionallyProcess(testBonus, "CHOOSE", "PCSTAT|ALL");
 		Globals.getContext().unconditionallyProcess(testBonus, "MULT", "YES");
-		CNAbility cna = AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, testBonus, "INT");
+		CNAbility cna = AbstractCharacterTestCase.applyAbility(character,
+			BuildUtilities.getFeatCat(), testBonus, "INT");
 		testBonus = cna.getAbility();
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, testBonus, "STR");
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(),
+			testBonus, "STR");
 		character.calcActiveBonuses();
 		bonus = testBonus.getSafeListFor(ListKey.BONUS).get(0);
 
@@ -287,13 +282,15 @@ public class BonusTest extends AbstractCharacterTestCase
 		bonusList.add(bonus);
 		Ability testBonus = new Ability();
 		testBonus.setName("TB2AssocList");
-		testBonus.setCDOMCategory(AbilityCategory.FEAT);
+		testBonus.setCDOMCategory(BuildUtilities.getFeatCat());
 		Globals.getContext().unconditionallyProcess(testBonus, "CHOOSE", "PCSTAT|ALL");
 		Globals.getContext().unconditionallyProcess(testBonus, "MULT", "YES");
 		testBonus.addToListFor(ListKey.BONUS, bonus);
-		CNAbility cna = AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, testBonus, "INT");
+		CNAbility cna = AbstractCharacterTestCase.applyAbility(character,
+			BuildUtilities.getFeatCat(), testBonus, "INT");
 		testBonus = cna.getAbility();
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, testBonus, "STR");
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(),
+			testBonus, "STR");
 		character.calcActiveBonuses();
 		bonus = testBonus.getSafeListFor(ListKey.BONUS).get(0);
 
@@ -327,11 +324,12 @@ public class BonusTest extends AbstractCharacterTestCase
 		bonusList.add(bonus);
 		Ability testBonus = new Ability();
 		testBonus.setName("TB1Assoc");
-		testBonus.setCDOMCategory(AbilityCategory.FEAT);
+		testBonus.setCDOMCategory(BuildUtilities.getFeatCat());
 		testBonus.addToListFor(ListKey.BONUS, bonus);
 		Globals.getContext().unconditionallyProcess(testBonus, "CHOOSE", "SPELLLEVEL|Wizard|1|5");
 		Globals.getContext().unconditionallyProcess(testBonus, "MULT", "YES");
-		CNAbility cna = AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, testBonus, "CLASS.Wizard;LEVEL.1");
+		CNAbility cna = AbstractCharacterTestCase.applyAbility(character,
+			BuildUtilities.getFeatCat(), testBonus, "CLASS.Wizard;LEVEL.1");
 		testBonus = cna.getAbility();
 		character.calcActiveBonuses();
 		bonus = testBonus.getSafeListFor(ListKey.BONUS).get(0);

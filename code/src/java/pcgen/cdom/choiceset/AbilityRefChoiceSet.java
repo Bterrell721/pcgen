@@ -16,7 +16,6 @@
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  * 
  * 
- * $Date: 2006-06-22 21:22:44 -0400 (Thu, 22 Jun 2006) $
  */
 package pcgen.cdom.choiceset;
 
@@ -53,8 +52,7 @@ import pcgen.core.WeaponProf;
  * AbilityRefChoiceSet. The contents of a AbilityRefChoiceSet is fixed, and will
  * not vary by the PlayerCharacter used to resolve the AbilityRefChoiceSet.
  */
-public class AbilityRefChoiceSet implements
-		PrimitiveChoiceSet<CNAbilitySelection>
+public class AbilityRefChoiceSet implements PrimitiveChoiceSet<CNAbilitySelection>
 {
 
 	/**
@@ -99,18 +97,15 @@ public class AbilityRefChoiceSet implements
 	 *             if the given Collection is null or empty.
 	 */
 	public AbilityRefChoiceSet(CDOMSingleRef<AbilityCategory> cat,
-			Collection<? extends CDOMReference<Ability>> arCollection, Nature nat)
+		Collection<? extends CDOMReference<Ability>> arCollection, Nature nat)
 	{
-		super();
 		if (arCollection == null)
 		{
-			throw new IllegalArgumentException(
-					"Choice Collection cannot be null");
+			throw new IllegalArgumentException("Choice Collection cannot be null");
 		}
 		if (arCollection.isEmpty())
 		{
-			throw new IllegalArgumentException(
-					"Choice Collection cannot be empty");
+			throw new IllegalArgumentException("Choice Collection cannot be empty");
 		}
 		abilityRefSet = new HashSet<>(arCollection);
 		if (nat == null)
@@ -138,14 +133,12 @@ public class AbilityRefChoiceSet implements
 	@Override
 	public String getLSTformat(boolean useAny)
 	{
-		Set<CDOMReference<?>> sortedSet = new TreeSet<>(
-                ReferenceUtilities.REFERENCE_SORTER);
+		Set<CDOMReference<?>> sortedSet = new TreeSet<>(ReferenceUtilities.REFERENCE_SORTER);
 		for (CDOMReference<Ability> ar : abilityRefSet)
 		{
 			sortedSet.add(ar);
 		}
-		return ReferenceUtilities.joinLstFormat(sortedSet, Constants.COMMA,
-				useAny);
+		return ReferenceUtilities.joinLstFormat(sortedSet, Constants.COMMA, useAny);
 	}
 
 	/**
@@ -193,21 +186,19 @@ public class AbilityRefChoiceSet implements
 			{
 				if (a.getSafe(ObjectKey.MULTIPLE_ALLOWED).booleanValue())
 				{
-					returnSet.addAll(addMultiplySelectableAbility(pc, a, ref
-							.getChoice()));
+					returnSet.addAll(addMultiplySelectableAbility(pc, a, ref.getChoice()));
 				}
 				else
 				{
-					returnSet.add(new CNAbilitySelection(CNAbilityFactory.getCNAbility(
-						category.get(), nature, a)));
+					returnSet.add(new CNAbilitySelection(CNAbilityFactory.getCNAbility(category.get(), nature, a)));
 				}
 			}
 		}
 		return returnSet;
 	}
 
-	private Collection<CNAbilitySelection> addMultiplySelectableAbility(
-			final PlayerCharacter aPC, Ability ability, String subName)
+	private Collection<CNAbilitySelection> addMultiplySelectableAbility(final PlayerCharacter aPC, Ability ability,
+		String subName)
 	{
 		boolean isPattern = false;
 		String nameRoot = null;
@@ -234,10 +225,8 @@ public class AbilityRefChoiceSet implements
 		/*
 		 * TODO Need a general solution for this special assignment in parens
 		 */
-		if ("DEITYWEAPON".equals(nameRoot)
-			&& (chooseInfo != null)
-			&& chooseInfo.getClassIdentity().getChoiceClass()
-				.equals(WeaponProf.class))
+		if ("DEITYWEAPON".equals(nameRoot) && (chooseInfo != null)
+			&& chooseInfo.getReferenceClass().equals(WeaponProf.class))
 		{
 			Deity deity = aPC.getDeity();
 			if (deity == null)
@@ -246,8 +235,7 @@ public class AbilityRefChoiceSet implements
 			}
 			else
 			{
-				List<CDOMReference<WeaponProf>> dwp = deity
-						.getSafeListFor(ListKey.DEITYWEAPON);
+				List<CDOMReference<WeaponProf>> dwp = deity.getSafeListFor(ListKey.DEITYWEAPON);
 				Set<String> set = new HashSet<>();
 				for (CDOMReference<WeaponProf> ref : dwp)
 				{
@@ -259,7 +247,7 @@ public class AbilityRefChoiceSet implements
 				availableList.retainAll(set);
 			}
 		}
-		else if (nameRoot != null && !nameRoot.isEmpty())
+		else if ((nameRoot != null) && !nameRoot.isEmpty())
 		{
 			for (int n = availableList.size() - 1; n >= 0; --n)
 			{
@@ -284,18 +272,15 @@ public class AbilityRefChoiceSet implements
 			}
 		}
 
-		List<CNAbilitySelection> returnList = new ArrayList<>(
-                availableList.size());
+		List<CNAbilitySelection> returnList = new ArrayList<>(availableList.size());
 		for (String s : availableList)
 		{
-			returnList.add(new CNAbilitySelection(CNAbilityFactory.getCNAbility(category.get(),
-				nature, ability), s));
+			returnList.add(new CNAbilitySelection(CNAbilityFactory.getCNAbility(category.get(), nature, ability), s));
 		}
 		return returnList;
 	}
 
-	private <T> List<String> getAvailableList(final PlayerCharacter aPC,
-		ChooseInformation<T> chooseInfo)
+	private <T> List<String> getAvailableList(final PlayerCharacter aPC, ChooseInformation<T> chooseInfo)
 	{
 		final List<String> availableList = new ArrayList<>();
 		Collection<? extends T> tempAvailList = chooseInfo.getSet(aPC);

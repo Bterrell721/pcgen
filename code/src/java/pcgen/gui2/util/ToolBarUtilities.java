@@ -1,5 +1,4 @@
 /*
- * ToolBarUtilities.java
  * Copyright 2008 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -16,7 +15,6 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  * 
- * Created on Aug 17, 2008, 3:21:52 PM
  */
 package pcgen.gui2.util;
 
@@ -27,32 +25,31 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author Connor Petty &lt;cpmeister@users.sourceforge.net&gt;
  */
 public final class ToolBarUtilities
 {
 
-    private ToolBarUtilities()
-    {
-    }
+	private ToolBarUtilities()
+	{
+	}
 
-    public static JToolBar createDefaultToolBar()
-    {
-        JToolBar toolbar = new JToolBar();
-        toolbar.setFloatable(false);
-        toolbar.setRollover(true);
-        return toolbar;
-    }
+	public static JToolBar createDefaultToolBar()
+	{
+		JToolBar toolbar = new JToolBar();
+		toolbar.setFloatable(false);
+		toolbar.setRollover(true);
+		return toolbar;
+	}
 
-    public static JButton createToolBarButton(Action action)
-    {
-        JButton button = new JButton();
-        button.putClientProperty("hideActionText", true);
-        button.setFocusable(false);
-        button.setHorizontalTextPosition(SwingConstants.CENTER);
-        button.setVerticalTextPosition(SwingConstants.BOTTOM);
-        button.setAction(action);
-        return button;
-    }
+	public static JButton createToolBarButton(Action action)
+	{
+		JButton button = new JButton();
+		button.putClientProperty("hideActionText", true);
+		button.setFocusable(false);
+		button.setHorizontalTextPosition(SwingConstants.CENTER);
+		button.setVerticalTextPosition(SwingConstants.BOTTOM);
+		button.setAction(action);
+		return button;
+	}
 
 }

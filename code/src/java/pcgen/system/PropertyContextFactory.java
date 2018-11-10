@@ -1,5 +1,4 @@
 /*
- * PropertyContextFactory.java
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -25,11 +24,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import pcgen.util.Logging;
 
-/**
- *
- */
 public class PropertyContextFactory
 {
 
@@ -66,15 +63,14 @@ public class PropertyContextFactory
 		{
 			if (Logging.isDebugMode())
 			{
-				Logging.debugPrint("No " + name
-					+ " file found, will create one when exiting.");
+				Logging.debugPrint("No " + name + " file found, will create one when exiting.");
 			}
 			return;
 		}
 		else if (!file.canWrite())
 		{
 			Logging.errorPrint("WARNING: The file you specified is not updatable. "
-					+ "Settings changes will not be saved. File is " + file.getAbsolutePath());
+				+ "Settings changes will not be saved. File is " + file.getAbsolutePath());
 		}
 
 		PropertyContext context = contextMap.get(name);
@@ -113,10 +109,8 @@ public class PropertyContextFactory
 		}
 		if (!loaded)
 		{
-			Logging.errorPrint(
-					"Failed to load " + name + ", either the file is unreadable or it "
-					+ "is corrupt. Possible solution is to delete the " + name
-					+ " file and restart PCGen");
+			Logging.errorPrint("Failed to load " + name + ", either the file is unreadable or it "
+				+ "is corrupt. Possible solution is to delete the " + name + " file and restart PCGen");
 		}
 	}
 
@@ -178,8 +172,7 @@ public class PropertyContextFactory
 		File settingsDir = new File((dir == null) ? ConfigurationSettings.getSettingsDir() : dir);
 		if (settingsDir.exists() || settingsDir.mkdirs())
 		{
-			contextMap.values().forEach(context ->
-			{
+			contextMap.values().forEach(context -> {
 				savePropertyContext(settingsDir, context);
 			});
 		}

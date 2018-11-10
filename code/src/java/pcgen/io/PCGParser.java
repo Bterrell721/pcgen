@@ -1,5 +1,4 @@
 /*
- * PCGParser.java
  * Copyright 2002 (C) Thomas Behr <ravenlock@gmx.de>
  *
  * This library is free software; you can redistribute it and/or
@@ -57,7 +56,6 @@ interface PCGParser
 	 * @throws PCGParseException If the lines are invalid 
 	 */
 	public SourceSelectionFacade parcePCGSourceOnly(String[] lines) throws PCGParseException;
-	
 
 	/**
 	 * @return the baseFeatPool

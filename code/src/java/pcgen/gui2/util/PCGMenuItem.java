@@ -1,5 +1,4 @@
 /*
- * PCGMenuItem.java
  * Copyright 2014 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -39,7 +38,7 @@ public class PCGMenuItem extends JMenuItem
 	{
 		super();
 	}
-	
+
 	public PCGMenuItem(Action a)
 	{
 		super(a);

@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.kit;
 
@@ -27,7 +25,6 @@ import pcgen.core.PlayerCharacter;
 
 /**
  * {@code KitSelect}.
- *
  */
 public final class KitSelect extends BaseKit
 {
@@ -58,8 +55,7 @@ public final class KitSelect extends BaseKit
 	}
 
 	@Override
-	public boolean testApply(Kit aKit, PlayerCharacter aPC,
-		List<String> warnings)
+	public boolean testApply(Kit aKit, PlayerCharacter aPC, List<String> warnings)
 	{
 		aKit.setSelectValue(theFormula.resolve(aPC, "").intValue());
 		return true;

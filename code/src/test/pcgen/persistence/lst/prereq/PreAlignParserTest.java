@@ -1,5 +1,4 @@
 /*
- * PreAlignParser.java
  * 
  * Copyright 2004 (C) Frugal <frugal@purplewombat.co.uk>
  * 
@@ -31,6 +30,7 @@ import pcgen.core.SettingsHandler;
 import pcgen.core.SystemCollections;
 import pcgen.core.prereq.Prerequisite;
 import pcgen.persistence.GameModeFileLoader;
+import pcgen.persistence.PersistenceLayerException;
 import plugin.pretokens.parser.PreAlignParser;
 import util.Alignment;
 
@@ -38,11 +38,14 @@ import util.Alignment;
 public class PreAlignParserTest extends EnUsLocaleDependentTestCase
 {
 
+	
 	/**
-	 * @throws Exception
+	 * Test 1.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void test1() throws Exception
+	public void test1() throws PersistenceLayerException
 	{
 
 		PreAlignParser parser = new PreAlignParser();
@@ -54,7 +57,7 @@ public class PreAlignParserTest extends EnUsLocaleDependentTestCase
 				+ "<prereq kind=\"align\" key=\"LE\" operator=\"EQ\" operand=\"1\" >\n"
 				+ "</prereq>\n"
 				+ "<prereq kind=\"align\" key=\"LG\" operator=\"EQ\" operand=\"1\" >\n"
-				+ "</prereq>\n" + "</prereq>\n" + "", prereq.toString());
+				+ "</prereq>\n" + "</prereq>\n", prereq.toString());
 	}
 
 	@Before

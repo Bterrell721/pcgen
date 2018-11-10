@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.utils;
 
@@ -23,11 +21,13 @@ import junit.framework.TestCase;
 import pcgen.base.lang.StringUtil;
 import pcgen.system.PCGenPropBundle;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>CoreUtilityTest</code>.
+ * {@code CoreUtilityTest}.
  *
  * Tests the CoreUtility class.
  *
@@ -37,9 +37,9 @@ import java.util.List;
 public class CoreUtilityTest extends TestCase
 {
 	/**
-	 * Constructs a new <code>CoreUtilityTest</code>.
+	 * Constructs a new {@code CoreUtilityTest}.
 	 *
-	 * @see PCGenTestCase#PCGenTestCase()
+	 * @see pcgen.PCGenTestCase#PCGenTestCase()
 	 */
 	public CoreUtilityTest()
 	{
@@ -47,15 +47,25 @@ public class CoreUtilityTest extends TestCase
 	}
 
 	/**
-	 * Constructs a new <code>CoreUtilityTest</code> with the given <var>name</var>.
+	 * Constructs a new {@code CoreUtilityTest} with the given <var>name</var>.
 	 *
 	 * @param name the test case name
 	 *
-	 * @see PCGenTestCase#PCGenTestCase(String)
+	 * @see pcgen.PCGenTestCase#PCGenTestCase(String)
 	 */
 	public CoreUtilityTest(final String name)
 	{
 		super(name);
+	}
+
+	public void testisNetURL() throws MalformedURLException
+	{
+		URL https = new URL("https://127.0.0.1");
+		URL http = new URL("http://127.0.0.1");
+		URL ftp = new URL("ftp://127.0.0.1");
+		assertTrue(CoreUtility.isNetURL(https));
+		assertTrue(CoreUtility.isNetURL(http));
+		assertTrue(CoreUtility.isNetURL(ftp));
 	}
 
 	/**

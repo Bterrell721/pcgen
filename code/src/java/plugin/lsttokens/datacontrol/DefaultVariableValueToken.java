@@ -17,10 +17,11 @@
  */
 package plugin.lsttokens.datacontrol;
 
-import pcgen.base.solver.Modifier;
+import pcgen.base.calculation.FormulaModifier;
 import pcgen.base.util.FormatManager;
 import pcgen.cdom.base.Constants;
 import pcgen.cdom.content.DefaultVarValue;
+import pcgen.cdom.formula.local.ModifierDecoration;
 import pcgen.rules.context.LoadContext;
 import pcgen.rules.persistence.TokenLibrary;
 import pcgen.rules.persistence.token.AbstractNonEmptyToken;
@@ -31,9 +32,8 @@ import pcgen.rules.persistence.token.ParseResult;
 /**
  * Class deals with DEFAULTVARIABLEVALUE Token
  */
-public class DefaultVariableValueToken extends
-		AbstractNonEmptyToken<DefaultVarValue> implements
-		CDOMPrimaryToken<DefaultVarValue>
+public class DefaultVariableValueToken extends AbstractNonEmptyToken<DefaultVarValue>
+		implements CDOMPrimaryToken<DefaultVarValue>
 {
 
 	@Override
@@ -49,26 +49,22 @@ public class DefaultVariableValueToken extends
 	}
 
 	@Override
-	protected ParseResult parseNonEmptyToken(LoadContext context,
-		DefaultVarValue dvv, String value)
+	protected ParseResult parseNonEmptyToken(LoadContext context, DefaultVarValue dvv, String value)
 	{
 		char separator = '|';
 		int pipeLoc = value.indexOf(separator);
 		if (pipeLoc == 0)
 		{
-			return new ParseResult.Fail(getTokenName()
-				+ " arguments may not start with " + separator + " : " + value);
+			return new ParseResult.Fail(getTokenName() + " arguments may not start with " + separator + " : " + value);
 		}
 		if (value.indexOf(String.valueOf(new char[]{separator, separator})) != -1)
 		{
-			return new ParseResult.Fail(getTokenName()
-				+ " arguments uses double separator " + separator + separator
-				+ " : " + value);
+			return new ParseResult.Fail(
+				getTokenName() + " arguments uses double separator " + separator + separator + " : " + value);
 		}
 		if (value.lastIndexOf(separator) != pipeLoc)
 		{
-			return new ParseResult.Fail(getTokenName()
-				+ " requires only a type and a value, found: " + value, context);
+			return new ParseResult.Fail(getTokenName() + " requires only a type and a value, found: " + value);
 		}
 		String formatName = value.substring(0, pipeLoc);
 		String formatValue;
@@ -83,43 +79,40 @@ public class DefaultVariableValueToken extends
 		FormatManager<?> fmtManager;
 		try
 		{
-			fmtManager =
-					context.getReferenceContext().getFormatManager(formatName);
+			fmtManager = context.getReferenceContext().getFormatManager(formatName);
 		}
-		catch (IllegalArgumentException e)
+		catch (NullPointerException | IllegalArgumentException e)
 		{
-			return new ParseResult.Fail(getTokenName()
-				+ " found an unsupported format: " + formatName, context);
+			return new ParseResult.Fail(getTokenName() + " found an unsupported format: " + formatName);
 		}
 		dvv.setFormatManager(fmtManager);
 		return subProcess(context, dvv, formatValue, fmtManager);
 	}
 
-	private <T> ParseResult subProcess(LoadContext context,
-		DefaultVarValue dvv, String defaultValue, FormatManager<T> fmtManager)
+	private <T> ParseResult subProcess(LoadContext context, DefaultVarValue dvv, String defaultValue,
+		FormatManager<T> fmtManager)
 	{
 		Class<T> cl = fmtManager.getManagedClass();
 		ModifierFactory<T> m = TokenLibrary.getModifier(cl, "SET");
 		if (m == null)
 		{
-			return new ParseResult.Fail("ModifierType "
-				+ fmtManager.getIdentifierType() + " requires a SET modifier",
-				context);
+			return new ParseResult.Fail("ModifierType " + fmtManager.getIdentifierType() + " requires a SET modifier");
 		}
-		Modifier<T> defaultModifier;
+		FormulaModifier<T> defaultModifier;
 		try
 		{
-			defaultModifier = m.getFixedModifier(0, fmtManager, defaultValue);
+			defaultModifier =
+					context.getVariableContext().getModifier("SET", defaultValue, context.getActiveScope(), fmtManager);
 		}
 		catch (IllegalArgumentException e)
 		{
-			return new ParseResult.Fail("ModifierType "
-				+ fmtManager.getIdentifierType()
-				+ " could not be initialized to a default value of: "
-				+ defaultValue, context);
+			return new ParseResult.Fail(
+				"ModifierType " + fmtManager.getIdentifierType() + " could not be initialized to a default value of: "
+					+ defaultValue + " due to " + e.getLocalizedMessage());
 		}
+		defaultModifier.addAssociation("PRIORITY=0");
 		dvv.setModifier(defaultModifier);
-		context.getVariableContext().addDefault(cl, defaultModifier);
+		context.getVariableContext().addDefault(cl, new ModifierDecoration<>(defaultModifier));
 		return ParseResult.SUCCESS;
 	}
 
@@ -132,5 +125,4 @@ public class DefaultVariableValueToken extends
 		sb.append(dvv.getModifier().getInstructions());
 		return new String[]{sb.toString()};
 	}
-
 }

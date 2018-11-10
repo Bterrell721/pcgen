@@ -1,5 +1,4 @@
 /*
- * ACTokenTest.java
  * Copyright 2006 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens;
 
@@ -45,8 +41,6 @@ import pcgen.util.TestHelper;
 /**
  * <code>ACTokenTest</code> tests the function of the AC token and 
  * thus the calculations of armor class.  
- *
- *
  */
 public class ACTokenTest extends AbstractCharacterTestCase
 {
@@ -165,9 +159,8 @@ public class ACTokenTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test the character's AC calcs with no armor.
-	 * @throws Exception
 	 */
-	public void testBase() throws Exception
+	public void testBase()
 	{
 		assertEquals("Total AC no armor", "12", new ACToken().getToken(
 			"AC.Total", getCharacter(), null));
@@ -181,9 +174,8 @@ public class ACTokenTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test the character's AC calcs with armor with no equip mods applied.
-	 * @throws Exception
 	 */
-	public void testNonMagic() throws Exception
+	public void testNonMagic()
 	{
 		PlayerCharacter character = getCharacter();
 		EquipSet es =
@@ -205,9 +197,8 @@ public class ACTokenTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test the character's AC calcs with armor with equipmods applied, including magic.
-	 * @throws Exception
 	 */
-	public void testMagic() throws Exception
+	public void testMagic()
 	{
 		PlayerCharacter character = getCharacter();
 		chainShirt.addEqModifiers("MWORKA.PLUS1A", true);

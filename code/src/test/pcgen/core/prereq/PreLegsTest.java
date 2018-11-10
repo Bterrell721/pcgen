@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -28,13 +25,12 @@ import pcgen.cdom.enumeration.IntegerKey;
 import pcgen.core.PCTemplate;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.Race;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreLegsTest</code> tests that the PRELEGS tag is
  * working correctly.
- *
- *
  */
 public class PreLegsTest extends AbstractCharacterTestCase
 {
@@ -52,10 +48,11 @@ public class PreLegsTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the PRELEGS code
-	 * @throws Exception
+	 * Test the PRELEGS code.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testLegs() throws Exception
+	public void testLegs() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		Race race = new Race();

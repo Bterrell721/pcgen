@@ -1,5 +1,4 @@
 /*
- * InfoPaneLinkAction.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -36,8 +35,7 @@ import pcgen.util.Logging;
  * in an info pane such as the source info pane.
  * 
  */
-public class InfoPaneLinkAction
-		implements HyperlinkListener
+public class InfoPaneLinkAction implements HyperlinkListener
 {
 
 	private InfoPane infoPane;
@@ -74,16 +72,15 @@ public class InfoPaneLinkAction
 		{
 			try
 			{
-				Utility.viewInBrowser(e.getURL());
+				DesktopBrowserLauncher.viewInBrowser(e.getURL());
 			}
 			catch (IOException e1)
 			{
 				Logging.errorPrint("Failed to open URL " //$NON-NLS-1$
 					+ e.getURL() + " due to ", e1); //$NON-NLS-1$
-				ShowMessageDelegate.showMessageDialog(LanguageBundle
-					.getFormattedString("in_Src_browser", e //$NON-NLS-1$
-						.getURL().toString()), Constants.APPLICATION_NAME,
-					MessageType.ERROR);
+				ShowMessageDelegate.showMessageDialog(
+					LanguageBundle.getFormattedString("in_Src_browser", e //$NON-NLS-1$
+					.getURL().toString()), Constants.APPLICATION_NAME, MessageType.ERROR);
 			}
 		}
 	}

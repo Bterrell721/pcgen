@@ -21,25 +21,18 @@ import pcgen.cdom.base.Chooser;
 import pcgen.core.SizeAdjustment;
 
 import actor.testsupport.AbstractPersistentCDOMChoiceActorTestCase;
-import org.junit.Test;
 import plugin.lsttokens.choose.SizeToken;
 
 public class SizeTokenTest extends
 		AbstractPersistentCDOMChoiceActorTestCase<SizeAdjustment>
 {
 
-	static final SizeToken pca = new SizeToken();
-
-	@Test
-	public void testEmpty()
-	{
-		// Just to get Eclipse to recognize this as a JUnit 4.0 Test Case
-	}
+	static final SizeToken PCA = new SizeToken();
 
 	@Override
 	public Chooser<SizeAdjustment> getActor()
 	{
-		return pca;
+		return PCA;
 	}
 
 	@Override

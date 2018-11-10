@@ -1,5 +1,4 @@
 /*
- * CharacterHPDialog.java
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -57,9 +56,6 @@ import pcgen.facade.util.event.ReferenceListener;
 import pcgen.gui2.tools.Utility;
 import pcgen.gui2.util.table.IntegerEditor;
 
-/**
- *
- */
 public final class CharacterHPDialog extends JDialog implements ActionListener
 {
 
@@ -141,7 +137,7 @@ public final class CharacterHPDialog extends JDialog implements ActionListener
 		hpRef.addReferenceListener(hpListener);
 		box.add(totalHp);
 		box.add(Box.createHorizontalStrut(5));
-		
+
 		JButton button = new JButton("Reroll All");
 		button.setActionCommand("Reroll");
 		button.addActionListener(this);
@@ -166,7 +162,7 @@ public final class CharacterHPDialog extends JDialog implements ActionListener
 			}
 
 		});
-		
+
 		Utility.installEscapeCloseOperation(this);
 	}
 
@@ -310,7 +306,8 @@ public final class CharacterHPDialog extends JDialog implements ActionListener
 		}
 
 		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+			int row, int column)
 		{
 			return button;
 		}
@@ -337,7 +334,8 @@ public final class CharacterHPDialog extends JDialog implements ActionListener
 		}
 
 		@Override
-		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column)
+		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
+			int column)
 		{
 			editingRow = row;
 			return button;

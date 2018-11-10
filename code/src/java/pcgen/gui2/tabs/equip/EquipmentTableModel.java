@@ -14,16 +14,15 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.gui2.tabs.equip;
 
 import pcgen.facade.core.CharacterFacade;
 import pcgen.facade.core.EquipmentFacade;
 import pcgen.facade.core.EquipmentListFacade;
-import pcgen.facade.core.EquipmentSetFacade;
 import pcgen.facade.core.EquipmentListFacade.EquipmentListEvent;
 import pcgen.facade.core.EquipmentListFacade.EquipmentListListener;
+import pcgen.facade.core.EquipmentSetFacade;
 import pcgen.facade.util.event.ListEvent;
 import pcgen.gui2.filter.FilteredListFacadeTableModel;
 
@@ -64,7 +63,7 @@ public class EquipmentTableModel extends FilteredListFacadeTableModel<EquipmentF
 	{
 		this.equipmentSet = equipmentSet;
 	}
-	
+
 	@Override
 	public int getColumnCount()
 	{

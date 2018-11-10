@@ -22,9 +22,6 @@ import java.util.List;
 
 import pcgen.facade.util.ListFacade;
 
-/**
- *
- */
 public interface CampaignFacade
 {
 
@@ -49,7 +46,6 @@ public interface CampaignFacade
 	 * @return A list of text descriptions of the type of book the source represents.
 	 */
 	public List<String> getBookTypeList();
-
 
 	/**
 	 * @return The name of the implementation status of the source.

@@ -17,8 +17,6 @@
  */
 package pcgen.util;
 
-import pcgen.rules.context.LoadContext;
-import pcgen.system.LanguageBundle;
 import java.awt.Toolkit;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -39,15 +37,18 @@ import java.util.logging.Logger;
 import org.apache.commons.lang3.SystemUtils;
 
 import pcgen.core.SettingsHandler;
+import pcgen.rules.context.LoadContext;
+import pcgen.system.LanguageBundle;
 
 /**
  * This contains logging functions. It is a proxy for the 
  * Java logging API.
  */
+@SuppressWarnings("PMD.MoreThanOneLogger")
 public final class Logging
 {
 	private static boolean debugMode = false;
-	private static final Toolkit s_TOOLKIT = Toolkit.getDefaultToolkit();
+	private static final Toolkit S_TOOLKIT = Toolkit.getDefaultToolkit();
 
 	/** Log level for error output. */
 	public static final Level ERROR = Level.SEVERE;
@@ -80,15 +81,12 @@ public final class Logging
 	{
 		// Set a default configuration file if none was specified.
 		Properties p = System.getProperties();
-		File propsFile =
-				new File(SystemUtils.USER_DIR + File.separator
-					+ "logging.properties");
+		File propsFile = new File(SystemUtils.USER_DIR + File.separator + "logging.properties");
 		if (!propsFile.exists())
 		{
 			propsFile = new File("logging.properties");
 		}
-		if (propsFile.exists()
-			&& null == p.get("java.util.logging.config.file"))
+		if (propsFile.exists() && null == p.get("java.util.logging.config.file"))
 		{
 			p.put("java.util.logging.config.file", propsFile.getAbsolutePath());
 		}
@@ -101,8 +99,7 @@ public final class Logging
 		}
 		catch (SecurityException | IOException e)
 		{
-			System.err
-				.println("Failed to read logging configuration. Error was:");
+			System.err.println("Failed to read logging configuration. Error was:");
 			e.printStackTrace();
 		}
 	}
@@ -164,7 +161,7 @@ public final class Logging
 		Logger l = getLogger();
 		return l != null && l.isLoggable(level);
 	}
-	
+
 	/**
 	 * Print information message if PCGen is debugging.
 	 *
@@ -205,8 +202,7 @@ public final class Logging
 		Logger l = getLogger();
 		if (l.isLoggable(DEBUG))
 		{
-			String msg =
-					LanguageBundle.getFormattedString(message, params);
+			String msg = LanguageBundle.getFormattedString(message, params);
 			l.log(DEBUG, msg);
 		}
 	}
@@ -237,7 +233,7 @@ public final class Logging
 	{
 		if (debugMode)
 		{
-			s_TOOLKIT.beep();
+			S_TOOLKIT.beep();
 		}
 
 		final String msg = LanguageBundle.getString(aKey);
@@ -260,7 +256,7 @@ public final class Logging
 	{
 		if (debugMode)
 		{
-			s_TOOLKIT.beep();
+			S_TOOLKIT.beep();
 		}
 
 		final String msg = LanguageBundle.getFormattedString(aKey, varargs);
@@ -287,22 +283,19 @@ public final class Logging
 	 * @param s String error message
 	 * @param context the LoadContext containing the deprecated resource 
 	 */
-	public static void deprecationPrint(final String s,
-		final LoadContext context)
+	public static void deprecationPrint(final String s, final LoadContext context)
 	{
 		if (debugMode)
 		{
-			s_TOOLKIT.beep();
+			S_TOOLKIT.beep();
 		}
-		
+
 		Logger l = getLogger();
-		if (l.isLoggable(LST_WARNING)
-			&& SettingsHandler.outputDeprecationMessages())
+		if (l.isLoggable(LST_WARNING) && SettingsHandler.outputDeprecationMessages())
 		{
 			if (context != null && context.getSourceURI() != null)
 			{
-				l.log(LST_WARNING, s + " (Source: " + context.getSourceURI()
-					+ " )");
+				l.log(LST_WARNING, s + " (Source: " + context.getSourceURI() + " )");
 			}
 			else
 			{
@@ -362,7 +355,7 @@ public final class Logging
 	{
 		if (debugMode)
 		{
-			s_TOOLKIT.beep();
+			S_TOOLKIT.beep();
 		}
 
 		Logger l = getLogger();
@@ -383,7 +376,7 @@ public final class Logging
 	{
 		if (debugMode)
 		{
-			s_TOOLKIT.beep();
+			S_TOOLKIT.beep();
 		}
 
 		Logger l = getLogger();
@@ -392,7 +385,7 @@ public final class Logging
 			l.log(ERROR, s, params);
 		}
 	}
-	
+
 	/**
 	 * Beep and print error message if PCGen is debugging.
 	 *
@@ -403,7 +396,7 @@ public final class Logging
 	{
 		if (debugMode)
 		{
-			s_TOOLKIT.beep();
+			S_TOOLKIT.beep();
 		}
 
 		Logger l = getLogger();
@@ -419,7 +412,7 @@ public final class Logging
 			}
 		}
 	}
-	
+
 	/**
 	 * Beep and print error message if PCGen is debugging.
 	 *
@@ -430,7 +423,7 @@ public final class Logging
 	{
 		if (debugMode)
 		{
-			s_TOOLKIT.beep();
+			S_TOOLKIT.beep();
 		}
 
 		Logger l = getLogger();
@@ -486,8 +479,7 @@ public final class Logging
 	 * @param msg String message
 	 * @param thr Throwable stack frame
 	 */
-	public static void log(final Level lvl, final String msg,
-		final Throwable thr)
+	public static void log(final Level lvl, final String msg, final Throwable thr)
 	{
 		Logger l = getLogger();
 		if (l.isLoggable(lvl))
@@ -560,7 +552,6 @@ public final class Logging
 	 * this name should be either the fully qualified class name, 
 	 * or the package name.
 	 * 
-	 * @param name The name of the logger
 	 * @return An instance of Logger that deals with the specified name.
 	 */
 	private static java.util.logging.Logger getLogger()
@@ -576,9 +567,8 @@ public final class Logging
 				break;
 			}
 		}
-
-		String name =
-				(caller == null/*just in case*/) ? "" : caller.getClassName();
+		// name The name of the logger
+		String name = (caller == null/*just in case*/) ? "" : caller.getClassName();
 
 		Logger l = null;
 		final int maxRetries = 15;
@@ -590,8 +580,7 @@ public final class Logging
 		}
 		if (l == null)
 		{
-			System.err.println("Unable to get logger for " + name + " after "
-				+ retries + " atempts.");
+			System.err.println("Unable to get logger for " + name + " after " + retries + " atempts.");
 		}
 		return l;
 	}
@@ -601,8 +590,7 @@ public final class Logging
 	 */
 	public static void reportAllThreads()
 	{
-		Map<Thread, StackTraceElement[]> allThreads =
-				Thread.getAllStackTraces();
+		Map<Thread, StackTraceElement[]> allThreads = Thread.getAllStackTraces();
 		StringBuilder b = new StringBuilder();
 		for (Thread t : allThreads.keySet())
 		{
@@ -679,8 +667,7 @@ public final class Logging
 		Logger.getLogger("plugin").setLevel(level);
 	}
 
-	private static LinkedList<QueuedMessage> queuedMessages =
-            new LinkedList<>();
+	private static LinkedList<QueuedMessage> queuedMessages = new LinkedList<>();
 
 	public static void addParseMessage(Level lvl, String msg)
 	{
@@ -691,23 +678,16 @@ public final class Logging
 	 * Temporary method for use with ParseResult conversion.
 	 * See pcgen.rules.persistence.token.ParseResult for use.
 	 */
-	public static void addParseMessage(Level lvl, String msg,
-		StackTraceElement[] stack)
+	public static void addParseMessage(Level lvl, String msg, StackTraceElement[] stack)
 	{
 		queuedMessages.add(new QueuedMessage(lvl, msg, stack));
 	}
 
 	private static int queuedMessageMark = -1;
 
-	public static void markParseMessages()
-	{
-		queuedMessageMark = queuedMessages.size();
-	}
-
 	public static void rewindParseMessages()
 	{
-		while (queuedMessageMark > -1
-			&& queuedMessages.size() > queuedMessageMark)
+		while (queuedMessageMark > -1 && queuedMessages.size() > queuedMessageMark)
 		{
 			queuedMessages.removeLast();
 		}

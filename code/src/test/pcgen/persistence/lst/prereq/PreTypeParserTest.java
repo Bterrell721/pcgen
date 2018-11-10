@@ -1,5 +1,4 @@
 /*
- * PreText.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  * Copyright 2003 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
@@ -16,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.persistence.lst.prereq;
 
@@ -28,16 +24,20 @@ import org.junit.Test;
 
 import pcgen.EnUsLocaleDependentTestCase;
 import pcgen.core.prereq.Prerequisite;
+import pcgen.persistence.PersistenceLayerException;
 import plugin.pretokens.parser.PreTypeParser;
 
 @SuppressWarnings("nls")
 public class PreTypeParserTest extends EnUsLocaleDependentTestCase
 {
+	
 	/**
-	 * @throws Exception
+	 * Test new style.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void testNewStyle() throws Exception
+	public void testNewStyle() throws PersistenceLayerException
 	{
 		PreTypeParser producer = new PreTypeParser();
 
@@ -56,11 +56,14 @@ public class PreTypeParserTest extends EnUsLocaleDependentTestCase
 				+ "</prereq>\n" + "</prereq>\n", prereq.toString());
 	}
 
+	
 	/**
-	 * @throws Exception
+	 * Test new style 2.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void testNewStyle2() throws Exception
+	public void testNewStyle2() throws PersistenceLayerException
 	{
 		PreTypeParser producer = new PreTypeParser();
 

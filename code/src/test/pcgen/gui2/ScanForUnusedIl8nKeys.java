@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2;
 
@@ -78,7 +76,7 @@ public class ScanForUnusedIl8nKeys
 		Set<String> keys = new TreeSet<>();
 		for (Entry e : p.entrySet())
 		{
-			keys.add((String)e.getKey());
+			keys.add((String) e.getKey());
 		}
 
 		// Grab a list of files to be scanned
@@ -258,8 +256,8 @@ public class ScanForUnusedIl8nKeys
 	}
 
 	/**
-	 * @return
-	 * @throws Exception 
+	 * @return A file list
+	 * @throws IOException 
 	 */
 	private List<File> buildFileList() throws IOException
 	{

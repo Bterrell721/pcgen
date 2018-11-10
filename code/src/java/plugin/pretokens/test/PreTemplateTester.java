@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.pretokens.test;
 
@@ -33,16 +30,12 @@ import pcgen.system.LanguageBundle;
 
 /**
  * Prerequisite tester, tests for the presence of a template.
- *
  */
 public class PreTemplateTester extends AbstractDisplayPrereqTest implements PrerequisiteTest
 {
 
 	private static final Class<PCTemplate> PCTEMPLATE_CLASS = PCTemplate.class;
 
-	/**
-	 * @see pcgen.core.prereq.PrerequisiteTest#passes(pcgen.core.PlayerCharacter)
-	 */
 	@Override
 	public int passes(final Prerequisite prereq, final CharacterDisplay display, CDOMObject source)
 		throws PrerequisiteException
@@ -56,8 +49,8 @@ public class PreTemplateTester extends AbstractDisplayPrereqTest implements Prer
 		}
 		catch (NumberFormatException exceptn)
 		{
-			throw new PrerequisiteException(LanguageBundle.getFormattedString(
-				"PreTemplate.error", prereq.toString())); //$NON-NLS-1$
+			throw new PrerequisiteException(
+				LanguageBundle.getFormattedString("PreTemplate.error", prereq.toString())); //$NON-NLS-1$
 		}
 
 		if (display.hasTemplates())
@@ -70,8 +63,7 @@ public class PreTemplateTester extends AbstractDisplayPrereqTest implements Prer
 				templateKey = templateKey.substring(0, wildCard);
 				for (PCTemplate aTemplate : display.getTemplateSet())
 				{
-					if (aTemplate.getKeyName().toUpperCase().startsWith(
-						templateKey))
+					if (aTemplate.getKeyName().toUpperCase().startsWith(templateKey))
 					{
 						runningTotal++;
 					}
@@ -79,8 +71,8 @@ public class PreTemplateTester extends AbstractDisplayPrereqTest implements Prer
 			}
 			else
 			{
-				PCTemplate template = Globals.getContext().getReferenceContext().silentlyGetConstructedCDOMObject(
-						PCTEMPLATE_CLASS, templateKey);
+				PCTemplate template = Globals.getContext().getReferenceContext()
+					.silentlyGetConstructedCDOMObject(PCTEMPLATE_CLASS, templateKey);
 				if (display.hasTemplate(template))
 				{
 					runningTotal++;
@@ -95,7 +87,7 @@ public class PreTemplateTester extends AbstractDisplayPrereqTest implements Prer
 	 * Get the type of prerequisite handled by this token.
 	 * @return the type of prerequisite handled by this token.
 	 */
-    @Override
+	@Override
 	public String kindHandled()
 	{
 		return "TEMPLATE"; //$NON-NLS-1$

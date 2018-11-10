@@ -16,7 +16,6 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * Created on June 9, 2008
  */
 package pcgen.core.analysis;
 
@@ -34,6 +33,10 @@ import pcgen.core.Skill;
 
 public final class SkillModifier
 {
+
+	private SkillModifier()
+	{
+	}
 
 	public static Integer modifier(Skill sk, PlayerCharacter aPC)
 	{
@@ -80,8 +83,7 @@ public final class SkillModifier
 			bonus += aPC.getTotalBonusTo("CSKILL", "LIST");
 		}
 
-		if (!aPC.isClassSkill(sk)
-				&& !sk.getSafe(ObjectKey.EXCLUSIVE))
+		if (!aPC.isClassSkill(sk) && !sk.getSafe(ObjectKey.EXCLUSIVE))
 		{
 			bonus += aPC.getTotalBonusTo("CCSKILL", keyName);
 
@@ -127,8 +129,7 @@ public final class SkillModifier
 				SkillInfoUtilities.getKeyStatList(pc, sk, typeList);
 				for (int i = 0; i < typeList.size(); ++i)
 				{
-					statMod += pc.getTotalBonusTo("SKILL", "TYPE."
-							+ typeList.get(i));
+					statMod += pc.getTotalBonusTo("SKILL", "TYPE." + typeList.get(i));
 				}
 			}
 			return statMod;

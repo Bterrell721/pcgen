@@ -1,5 +1,4 @@
 /*
- * MapKey.java
  * Copyright 2008 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.cdom.enumeration;
 
@@ -57,8 +54,9 @@ public final class MapKey<K, V>
 	public static final MapKey<String, String> QUALITY = new MapKey<>();
 	public static final MapKey<AttackType, Integer> ATTACK_CYCLE = new MapKey<>();
 	public static final MapKey<String, KitTable> KIT_TABLE = new MapKey<>();
-	
+
 	public static final MapKey<String, Integer> CRMOD = new MapKey<>();
+	//TODO Ugh, using this stinks due to CIS
 	public static final MapKey<CaseInsensitiveString, MessageFormat> INFO = new MapKey<>();
 	public static final MapKey<CaseInsensitiveString, String[]> INFOVARS = new MapKey<>();
 
@@ -77,6 +75,7 @@ public final class MapKey<K, V>
 	 * 
 	 * @return the object as the MapKey's value type
 	 */
+	@SuppressWarnings("unchecked")
 	public V cast(Object obj)
 	{
 		return (V) obj;

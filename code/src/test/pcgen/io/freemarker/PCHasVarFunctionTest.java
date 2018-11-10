@@ -1,5 +1,4 @@
 /*
- * PCBooleanFunctionTest.java
  * Copyright James Dempsey, 2014
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.io.freemarker;
 
@@ -31,13 +28,13 @@ import org.junit.Test;
 
 import pcgen.AbstractJunit4CharacterTestCase;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Campaign;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
 import pcgen.io.ExportHandler;
 import pcgen.persistence.lst.CampaignSourceEntry;
 import pcgen.persistence.lst.FeatLoader;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * The Class <code>PCHasVarFunctionTest</code> verifies the correctness of 
@@ -81,7 +78,7 @@ public class PCHasVarFunctionTest extends AbstractJunit4CharacterTestCase
 		Boolean result = (Boolean) pchv.exec(Collections.singletonList("FooV"));
 		assertFalse("Should not have var", result);
 
-		addAbility(AbilityCategory.FEAT, fooFeat);
+		addAbility(BuildUtilities.getFeatCat(), fooFeat);
 		pc.calcActiveBonuses();
 		assertTrue("Should have var FooV", pc.hasVariable("FooV"));
 		result = (Boolean) pchv.exec(Collections.singletonList("FooV"));

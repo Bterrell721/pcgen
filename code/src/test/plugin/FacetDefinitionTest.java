@@ -1,5 +1,4 @@
 /*
- * FacetDefinitionTest.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin;
 
@@ -40,13 +36,11 @@ import org.junit.Test;
  * 
  * Note: pcgen.cdom.facet.base only contains abstract base classes for facets 
  * so is not itself checked.
- *
- *
  */
 public class FacetDefinitionTest
 {
 	/** The file in which we expect all facets to be defined. */
-	final static String appContextFile = "code/src/java/applicationContext.xml"; 
+	static final String APP_CONTEXT_FILE = "code/src/java/applicationContext.xml"; 
 	/**
 	 * Array of exceptions to normal names. Each entry is a pair of
 	 * Java source file name and JAR file name. 
@@ -193,7 +187,7 @@ public class FacetDefinitionTest
 				sourceFolder.getPath().replace(File.separatorChar, '.')
 					.replace("code.src.java.", "");
 		String contextData =
-				FileUtils.readFileToString(new File(appContextFile), "UTF-8");
+				FileUtils.readFileToString(new File(APP_CONTEXT_FILE), "UTF-8");
 
 		for (Iterator<File> facetSourceFileIter =
 				FileUtils.iterateFiles(sourceFolder, new String[]{"java"},

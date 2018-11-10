@@ -45,8 +45,7 @@ import pcgen.util.Logging;
  * @param <F>
  *            The format of the data stored in the Fact
  */
-public class FactDefinition<T extends CDOMObject, F> extends
-		ContentDefinition<T, F> implements FactInfo<T, F>
+public class FactDefinition<T extends CDOMObject, F> extends ContentDefinition<T, F> implements FactInfo<T, F>
 {
 
 	/**
@@ -61,27 +60,18 @@ public class FactDefinition<T extends CDOMObject, F> extends
 		getFactKey();
 	}
 
-	/**
-	 * @see pcgen.cdom.content.ContentDefinition#activateOutput(DataSetID)
-	 */
 	@Override
 	protected void activateOutput(DataSetID dsID)
- 	{
- 		FactKeyActor<?> fca = new FactKeyActor<>(getFactKey());
-		CDOMWrapperInfoFacet wiFacet =
-				FacetLibrary.getFacet(CDOMWrapperInfoFacet.class);
+	{
+		FactKeyActor<?> fca = new FactKeyActor<>(getFactKey());
+		CDOMWrapperInfoFacet wiFacet = FacetLibrary.getFacet(CDOMWrapperInfoFacet.class);
 		if (!wiFacet.set(dsID, getUsableLocation(), factName.toLowerCase(), fca))
 		{
-			Logging.errorPrint(getUsableLocation().getSimpleName() + " output "
-				+ factName.toLowerCase()
-				+ " already exists, ignoring Visibility to EXPORT for FACT: "
-				+ factName);
+			Logging.errorPrint(getUsableLocation().getSimpleName() + " output " + factName.toLowerCase()
+				+ " already exists, ignoring Visibility to EXPORT for FACT: " + factName);
 		}
 	}
 
-	/**
-	 * @see pcgen.cdom.content.ContentDefinition#activateTokens(pcgen.rules.context.LoadContext)
-	 */
 	@Override
 	protected void activateTokens(LoadContext context)
 	{
@@ -119,22 +109,23 @@ public class FactDefinition<T extends CDOMObject, F> extends
 		factName = name;
 	}
 
-	/**
-	 * @see pcgen.cdom.content.fact.FactInfo#getFactName()
-	 */
 	@Override
 	public String getFactName()
 	{
 		return factName;
 	}
 
-	/**
-	 * @see pcgen.cdom.content.fact.FactInfo#getFactKey()
-	 */
 	@Override
 	public FactKey<F> getFactKey()
 	{
 		return FactKey.getConstant(getFactName(), getFormatManager());
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Fact Definition: " + getUsableLocation().getSimpleName() + ":" + factName + " ("
+			+ getFormatManager().getIdentifierType() + ")";
 	}
 
 }

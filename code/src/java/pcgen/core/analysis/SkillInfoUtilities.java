@@ -33,8 +33,12 @@ import pcgen.core.Skill;
 import pcgen.core.bonus.BonusObj;
 import pcgen.core.bonus.BonusUtilities;
 
-public class SkillInfoUtilities
+public final class SkillInfoUtilities
 {
+
+	private SkillInfoUtilities()
+	{
+	}
 
 	/**
 	 * Get the key attribute's description
@@ -92,10 +96,8 @@ public class SkillInfoUtilities
 					// Get a list of all BONUS:SKILL|TYPE.<type>|x for this
 					// skill that would come from current stat
 					//
-					List<BonusObj> bonusList =
-							BonusUtilities.getBonusFromList(stat
-								.getSafeListFor(ListKey.BONUS), "SKILL",
-								"TYPE." + aType);
+					List<BonusObj> bonusList = BonusUtilities.getBonusFromList(stat.getSafeListFor(ListKey.BONUS),
+						"SKILL", "TYPE." + aType);
 					if (!bonusList.isEmpty())
 					{
 						for (int iCount = bonusList.size() - 1; iCount >= 0; --iCount)

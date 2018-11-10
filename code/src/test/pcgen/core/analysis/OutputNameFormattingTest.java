@@ -1,5 +1,4 @@
 /**
- * OutputNameFormattingTest.java
  * Copyright James Dempsey, 2010
  *
  * This library is free software; you can redistribute it and/or
@@ -15,20 +14,15 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.analysis;
 
+import junit.framework.TestCase;
 import pcgen.cdom.enumeration.StringKey;
 import pcgen.core.PObject;
-import junit.framework.TestCase;
 
 /**
  * Verify the function of the OutputNameFormatting class.
- *
- * <br/>
- * 
  */
 public class OutputNameFormattingTest extends TestCase
 {
@@ -49,7 +43,7 @@ public class OutputNameFormattingTest extends TestCase
 
 	
 	/**
-	 * Test method for {@link pcgen.core.analysis.OutputNameFormatting#getOutputName(pcgen.core.PObject)}.
+	 * Test method for {@link pcgen.core.analysis.OutputNameFormatting#getOutputName(CDOMObject)}.
 	 * Check that a default output name will work correctly.
 	 */
 	public final void testGetOutputNameDisplay()
@@ -58,7 +52,7 @@ public class OutputNameFormattingTest extends TestCase
 	}
 	
 	/**
-	 * Test method for {@link pcgen.core.analysis.OutputNameFormatting#getOutputName(pcgen.core.PObject)}.
+	 * Test method for {@link pcgen.core.analysis.OutputNameFormatting#getOutputName(CDOMObject)}.
 	 * Check that the [BASE] macro in output name will work correctly.
 	 */
 	public final void testGetOutputNameBase()
@@ -73,7 +67,7 @@ public class OutputNameFormattingTest extends TestCase
 	}
 	
 	/**
-	 * Test method for {@link pcgen.core.analysis.OutputNameFormatting#getOutputName(pcgen.core.PObject)}.
+	 * Test method for {@link pcgen.core.analysis.OutputNameFormatting#getOutputName(CDOMObject)}.
 	 * Check that the [NAME] macro in output name will work correctly.
 	 */
 	public final void testGetOutputNameName()

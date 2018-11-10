@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.gui2.tabs.equip;
 
@@ -28,15 +27,16 @@ import pcgen.facade.core.EquipmentFacade;
 import pcgen.facade.core.EquipmentListFacade;
 import pcgen.facade.core.EquipmentListFacade.EquipmentListListener;
 import pcgen.facade.core.EquipmentSetFacade;
+import pcgen.facade.util.AbstractListFacade;
 import pcgen.facade.util.ReferenceFacade;
 import pcgen.facade.util.event.ListEvent;
 import pcgen.facade.util.event.ListListener;
 import pcgen.facade.util.event.ReferenceEvent;
 import pcgen.facade.util.event.ReferenceListener;
-import pcgen.facade.util.AbstractListFacade;
 import pcgen.util.Logging;
 
-public class UnequippedList extends AbstractListFacade<EquipmentFacade> implements EquipmentListFacade, EquipmentListListener, ListListener<EquipmentFacade>, ReferenceListener<EquipmentSetFacade>
+public class UnequippedList extends AbstractListFacade<EquipmentFacade> implements EquipmentListFacade,
+		EquipmentListListener, ListListener<EquipmentFacade>, ReferenceListener<EquipmentSetFacade>
 {
 
 	private final CharacterFacade character;
@@ -56,8 +56,7 @@ public class UnequippedList extends AbstractListFacade<EquipmentFacade> implemen
 		equippedList = ref.get().getEquippedItems();
 		for (EquipmentFacade equipment : purchasedList)
 		{
-			int quantity = purchasedList.getQuantity(equipment) -
-					equippedList.getQuantity(equipment);
+			int quantity = purchasedList.getQuantity(equipment) - equippedList.getQuantity(equipment);
 			if (quantity > 0)
 			{
 				equipmentList.add(equipment);
@@ -146,13 +145,12 @@ public class UnequippedList extends AbstractListFacade<EquipmentFacade> implemen
 		EquipmentFacade equipment = e.getElement();
 		if (e.getSource() == purchasedList)
 		{
-			lastRemoved = null;			
+			lastRemoved = null;
 			addEquipment(equipment, purchasedList.getQuantity(equipment));
 		}
 		else
 		{
-			int quantity = purchasedList.getQuantity(equipment) -
-					equippedList.getQuantity(equipment);
+			int quantity = purchasedList.getQuantity(equipment) - equippedList.getQuantity(equipment);
 			if (quantity > 0)
 			{
 				setQuantity(equipment, quantity);
@@ -181,14 +179,11 @@ public class UnequippedList extends AbstractListFacade<EquipmentFacade> implemen
 			{
 				if (Logging.isDebugMode())
 				{
-					Logging
-						.debugPrint("Ignoring unequip of item just removed: "
-							+ equipment);
+					Logging.debugPrint("Ignoring unequip of item just removed: " + equipment);
 				}
 				return;
 			}
-			int quantity = purchasedList.getQuantity(equipment) -
-					equippedList.getQuantity(equipment);
+			int quantity = purchasedList.getQuantity(equipment) - equippedList.getQuantity(equipment);
 			if (quantityMap.containsKey(equipment))
 			{
 				setQuantity(equipment, quantity);
@@ -207,8 +202,7 @@ public class UnequippedList extends AbstractListFacade<EquipmentFacade> implemen
 		quantityMap.clear();
 		for (EquipmentFacade equipment : purchasedList)
 		{
-			int quantity = purchasedList.getQuantity(equipment) -
-					equippedList.getQuantity(equipment);
+			int quantity = purchasedList.getQuantity(equipment) - equippedList.getQuantity(equipment);
 			if (quantity > 0)
 			{
 				equipmentList.add(equipment);
@@ -227,8 +221,7 @@ public class UnequippedList extends AbstractListFacade<EquipmentFacade> implemen
 	public void quantityChanged(EquipmentListEvent e)
 	{
 		EquipmentFacade equipment = e.getEquipment();
-		int quantity = purchasedList.getQuantity(equipment) -
-				equippedList.getQuantity(equipment);
+		int quantity = purchasedList.getQuantity(equipment) - equippedList.getQuantity(equipment);
 		if (quantity > 0)
 		{
 			if (quantityMap.containsKey(equipment))

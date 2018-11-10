@@ -1,8 +1,10 @@
-/*
- */
+
 package pcgen.inttest.game_35e;
 
 import pcgen.inttest.PcgenFtlTestCase;
+
+import java.io.IOException;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -14,9 +16,7 @@ import junit.framework.TestSuite;
 public class pcGenGUICloudGiantTest extends PcgenFtlTestCase
 {
 
-	/**
-	 *
-	 */
+
 	public pcGenGUICloudGiantTest()
 	{
 		super("35e_cloudgiant");
@@ -41,10 +41,11 @@ public class pcGenGUICloudGiantTest extends PcgenFtlTestCase
 	}
 
 	/**
-	 * Run the test
-	 * @throws Exception
+	 * Run the test.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public void testCloudGiantHalfDragon() throws Exception
+	public void testCloudGiantHalfDragon() throws IOException
 	{
 		runTest("35e_CloudGiantHalfDragon", "35e");
 	}

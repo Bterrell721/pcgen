@@ -1,5 +1,4 @@
 /*
- * TotalToken.java
  * Copyright 2003 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
  * This library is free software; you can redistribute it and/or
@@ -57,8 +56,7 @@ public class TotalToken extends Token
 	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
 	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		String retString = "";
 
@@ -89,8 +87,7 @@ public class TotalToken extends Token
 	 */
 	public static String getCapacityToken(CharacterDisplay display)
 	{
-		return Globals.getGameModeUnitSet().displayWeightInUnitSet(
-			display.getMaxLoad().doubleValue());
+		return Globals.getGameModeUnitSet().displayWeightInUnitSet(display.getMaxLoad().doubleValue());
 	}
 
 	/**
@@ -108,20 +105,17 @@ public class TotalToken extends Token
 				return CoreUtility.capitalizeFirstLetter(Load.LIGHT.toString());
 
 			case MEDIUM:
-				return CoreUtility
-					.capitalizeFirstLetter(Load.MEDIUM.toString());
+				return CoreUtility.capitalizeFirstLetter(Load.MEDIUM.toString());
 
 			case HEAVY:
 				return CoreUtility.capitalizeFirstLetter(Load.HEAVY.toString());
 
 			case OVERLOAD:
-				return CoreUtility.capitalizeFirstLetter(Load.OVERLOAD
-					.toString());
+				return CoreUtility.capitalizeFirstLetter(Load.OVERLOAD.toString());
 
 			default:
-				Logging
-					.errorPrint("Unknown load constant detected in TokenTotal.getLoadToken, the constant was "
-						+ load + ".");
+				Logging.errorPrint(
+					"Unknown load constant detected in TokenTotal.getLoadToken, the constant was " + load + '.');
 
 				return "Unknown";
 		}
@@ -134,8 +128,7 @@ public class TotalToken extends Token
 	 */
 	public static String getValueToken(PlayerCharacter pc)
 	{
-		return BigDecimalHelper.trimZeros(pc.totalValue()) + " "
-			+ SettingsHandler.getGame().getCurrencyDisplay();
+		return BigDecimalHelper.trimZeros(pc.totalValue()) + ' ' + SettingsHandler.getGame().getCurrencyDisplay();
 	}
 
 	/**
@@ -145,8 +138,7 @@ public class TotalToken extends Token
 	 */
 	public static String getWeightToken(CharacterDisplay display)
 	{
-		return Globals.getGameModeUnitSet().displayWeightInUnitSet(
-			display.totalWeight().doubleValue())
+		return Globals.getGameModeUnitSet().displayWeightInUnitSet(display.totalWeight().doubleValue())
 			+ Globals.getGameModeUnitSet().getWeightUnit();
 	}
 }

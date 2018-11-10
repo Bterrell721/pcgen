@@ -1,5 +1,4 @@
 /*
- * OrCommandTest.java
  * Copyright 2007 (C) andrew wilson <nuance@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.jepcommands;
 
@@ -31,6 +27,7 @@ import pcgen.cdom.enumeration.Type;
 import pcgen.cdom.formula.FixedSizeFormula;
 import pcgen.cdom.reference.CDOMDirectSingleRef;
 import pcgen.core.Campaign;
+import pcgen.core.ClassType;
 import pcgen.core.Description;
 import pcgen.core.GameMode;
 import pcgen.core.Globals;
@@ -39,7 +36,9 @@ import pcgen.core.PlayerCharacter;
 import pcgen.core.Race;
 import pcgen.core.SettingsHandler;
 import pcgen.core.SizeAdjustment;
+import pcgen.persistence.lst.SimpleLoader;
 import plugin.lsttokens.testsupport.BuildUtilities;
+import util.TestURI;
 
 /**
  * <code>OrCommandTest</code> tests the functioning of the jep or plugin
@@ -80,9 +79,12 @@ public class ClassLevelCommandTest extends AbstractCharacterTestCase
 
 		// Create the monseter class type
 		GameMode gamemode = SettingsHandler.getGame();
-		gamemode.addClassType(
-				"Monster		CRFORMULA:0			ISMONSTER:YES	XPPENALTY:NO");
-		gamemode.setSkillMultiplierLevels("4");
+		SimpleLoader<ClassType> methodLoader = new SimpleLoader<>(ClassType.class);
+		methodLoader.parseLine(gamemode.getModeContext(),
+			"Monster		CRFORMULA:0			ISMONSTER:YES	XPPENALTY:NO",
+			TestURI.getURI());
+		gamemode.removeSkillMultiplierLevels();
+		gamemode.addSkillMultiplierLevel("4");
 		gamemode.setMaxNonEpicLevel(20);
 
 		CDOMDirectSingleRef<SizeAdjustment> mediumRef = CDOMDirectSingleRef.getRef(medium);

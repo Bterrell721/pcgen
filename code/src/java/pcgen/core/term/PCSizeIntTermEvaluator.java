@@ -16,16 +16,13 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 05-Oct-2008 20:49:34
- *
- *
  */
 
 package pcgen.core.term;
 
 import pcgen.core.display.CharacterDisplay;
 
-public class PCSizeIntTermEvaluator
-		extends BasePCDTermEvaluator implements TermEvaluator
+public class PCSizeIntTermEvaluator extends BasePCDTermEvaluator implements TermEvaluator
 {
 	public PCSizeIntTermEvaluator(String expressionString)
 	{

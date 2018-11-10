@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -24,7 +22,6 @@ import org.junit.Test;
 import pcgen.AbstractCharacterTestCase;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.SettingsHandler;
@@ -34,6 +31,7 @@ import pcgen.facade.util.ListFacade;
 import pcgen.rules.persistence.token.ParseResult;
 import pcgen.util.TestHelper;
 import plugin.lsttokens.choose.StringToken;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * The Class <code>CharacterAbilitiesTest</code> verifies the operation of the 
@@ -60,15 +58,15 @@ public class CharacterAbilitiesTest extends AbstractCharacterTestCase
 		ca.rebuildAbilityLists();
 		ListFacade<AbilityCategoryFacade> categories = ca.getActiveAbilityCategories();
 		assertNotNull("Categories should not be null", categories);
-		assertTrue("Feat should be active", categories.containsElement(AbilityCategory.FEAT));
-		ListFacade<AbilityFacade> abilities = ca.getAbilities(AbilityCategory.FEAT);
+		assertTrue("Feat should be active", categories.containsElement(BuildUtilities.getFeatCat()));
+		ListFacade<AbilityFacade> abilities = ca.getAbilities(BuildUtilities.getFeatCat());
 		assertNotNull("Feat list should not be null", abilities);
 		assertTrue("Feat list should be empty", abilities.isEmpty());
 		
 		// Add an entry - note rebuild is implicit
-		Ability fencing = TestHelper.makeAbility("fencing", AbilityCategory.FEAT, "sport");
-		addAbility(AbilityCategory.FEAT, fencing);
-		abilities = ca.getAbilities(AbilityCategory.FEAT);
+		Ability fencing = TestHelper.makeAbility("fencing", BuildUtilities.getFeatCat(), "sport");
+		addAbility(BuildUtilities.getFeatCat(), fencing);
+		abilities = ca.getAbilities(BuildUtilities.getFeatCat());
 		assertEquals("Feat list should have one entry", 1, abilities.getSize());
 		Ability abilityFromList = (Ability) abilities.getElementAt(0);
 		assertEquals("Should have found fencing", fencing, abilityFromList);
@@ -85,29 +83,29 @@ public class CharacterAbilitiesTest extends AbstractCharacterTestCase
 		ca.rebuildAbilityLists();
 		ListFacade<AbilityCategoryFacade> categories = ca.getActiveAbilityCategories();
 		assertNotNull("Categories should not be null", categories);
-		assertTrue("Feat should be active", categories.containsElement(AbilityCategory.FEAT));
-		ListFacade<AbilityFacade> abilities = ca.getAbilities(AbilityCategory.FEAT);
+		assertTrue("Feat should be active", categories.containsElement(BuildUtilities.getFeatCat()));
+		ListFacade<AbilityFacade> abilities = ca.getAbilities(BuildUtilities.getFeatCat());
 		assertNotNull("Feat list should not be null", abilities);
 		assertTrue("Feat list should be empty", abilities.isEmpty());
 		
 		// Add an entry - note rebuild is implicit
-		Ability reading = TestHelper.makeAbility("reading", AbilityCategory.FEAT, "interest");
+		Ability reading = TestHelper.makeAbility("reading", BuildUtilities.getFeatCat(), "interest");
 		reading.put(ObjectKey.MULTIPLE_ALLOWED, Boolean.TRUE);
 		StringToken st = new plugin.lsttokens.choose.StringToken();
 		ParseResult pr = st.parseToken(Globals.getContext(), reading, "STRING|Magazines|Books");
 		assertTrue(pr.passed());
 		Globals.getContext().commit();
-		applyAbility(pc, AbilityCategory.FEAT, reading, "Books");
-		abilities = ca.getAbilities(AbilityCategory.FEAT);
+		applyAbility(pc, BuildUtilities.getFeatCat(), reading, "Books");
+		abilities = ca.getAbilities(BuildUtilities.getFeatCat());
 		assertFalse("Feat list should not be empty", abilities.isEmpty());
 		Ability abilityFromList = (Ability) abilities.getElementAt(0);
 		assertEquals("Should have found reading", reading, abilityFromList);
 		assertEquals("Feat list should have one entry", 1, abilities.getSize());
 
 		// Now add the choice
-		pcgenFinalize(abilityFromList, "Magazines", pc, AbilityCategory.FEAT);
+		finalizeTest(abilityFromList, "Magazines", pc, BuildUtilities.getFeatCat());
 		ca.rebuildAbilityLists();
-		abilities = ca.getAbilities(AbilityCategory.FEAT);
+		abilities = ca.getAbilities(BuildUtilities.getFeatCat());
 		assertEquals("Feat list should have one entry", 1, abilities.getSize());
 		abilityFromList = (Ability) abilities.getElementAt(0);
 		assertEquals("Should have found reading", reading, abilityFromList);
@@ -122,7 +120,7 @@ public class CharacterAbilitiesTest extends AbstractCharacterTestCase
 	{
 		super.setUp();
 		dataset = new MockDataSetFacade(SettingsHandler.getGame());
-		dataset.addAbilityCategory(AbilityCategory.FEAT);
+		dataset.addAbilityCategory(BuildUtilities.getFeatCat());
 		uiDelegate = new MockUIDelegate();
 		todoManager = new TodoManager();
 	}

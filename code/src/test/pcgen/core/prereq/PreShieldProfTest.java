@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -31,7 +29,6 @@ import pcgen.base.lang.UnreachableError;
 import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.enumeration.Type;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Campaign;
 import pcgen.core.Equipment;
 import pcgen.core.Globals;
@@ -41,12 +38,11 @@ import pcgen.persistence.lst.CampaignSourceEntry;
 import pcgen.persistence.lst.FeatLoader;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 import pcgen.util.TestHelper;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * <code>PreShieldProfTest</code> tests that the PREPROFWITHSHIELD tag is
  * working correctly.
- *
- *
  */
 public class PreShieldProfTest extends AbstractCharacterTestCase
 {
@@ -93,7 +89,7 @@ public class PreShieldProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "SHIELDPROF|Heavy Steel Shield");
 		assertTrue(Globals.getContext().getReferenceContext().resolveReferences(null));
 		
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(), martialProf, null);
 
 		assertTrue("Character has the Heavy Wooden Shield proficiency.", 
 					PrereqHandler.passes(prereq, character, null));
@@ -133,7 +129,7 @@ public class PreShieldProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "SHIELDPROF|Full Plate");
 		assertTrue(Globals.getContext().getReferenceContext().resolveReferences(null));
 		
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(), martialProf, null);
 
 		assertTrue("Character has one of Heavy Wooden Shield or Full Plate proficiency", 
 			PrereqHandler.passes(prereq, character, null));
@@ -173,7 +169,7 @@ public class PreShieldProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "SHIELDPROF|SHIELDTYPE=Medium");
 		Globals.getContext().getReferenceContext().resolveReferences(null);
 		
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(), martialProf, null);
 		
 		assertTrue("Character has Medium Shield Proficiency", 
 				PrereqHandler.passes(prereq, character, null));
@@ -202,7 +198,7 @@ public class PreShieldProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "SHIELDPROF|Heavy Steel Shield");
 		assertTrue(Globals.getContext().getReferenceContext().resolveReferences(null));
 		
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(), martialProf, null);
 
 		assertFalse("Character has the Heavy Steel Shield proficiency.", 
 					PrereqHandler.passes(prereq, character, null));
@@ -238,10 +234,10 @@ public class PreShieldProfTest extends AbstractCharacterTestCase
 			prereq, character, null));
 		
 		final Ability martialProf = 
-			TestHelper.makeAbility("Shield Proficiency (Single)", AbilityCategory.FEAT, "General");
+			TestHelper.makeAbility("Shield Proficiency (Single)", BuildUtilities.getFeatCat(), "General");
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "SHIELDPROF|SHIELDTYPE.Heavy");
 		
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(), martialProf, null);
 
 		assertTrue("Character has the Heavy Steel Shield proficiency.", 
 					PrereqHandler.passes(prereq, character, null));
@@ -288,7 +284,7 @@ public class PreShieldProfTest extends AbstractCharacterTestCase
 		final String barStr =
 			"Bar	TYPE:General	DESC:See Text	BONUS:HP|CURRENTMAX|50";
 		featLoader.parseLine(Globals.getContext(), bar, barStr, cse);
-		addAbility(AbilityCategory.FEAT, bar);
+		addAbility(BuildUtilities.getFeatCat(), bar);
 		
 		assertEquals("Character should have 50 bonus hp added.",
 					baseHp+50,
@@ -300,13 +296,13 @@ public class PreShieldProfTest extends AbstractCharacterTestCase
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO", "SHIELDPROF|Full Plate");
 		assertTrue(Globals.getContext().getReferenceContext().resolveReferences(null));
 		
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(), martialProf, null);
 		
 		Ability foo = new Ability();
 		final String fooStr =
 			"Foo	TYPE:General	DESC:See Text	BONUS:HP|CURRENTMAX|50|PREPROFWITHSHIELD:1,Full Plate";
 		featLoader.parseLine(Globals.getContext(), foo, fooStr, cse);
-		addAbility(AbilityCategory.FEAT, foo);
+		addAbility(BuildUtilities.getFeatCat(), foo);
 		
 		assertEquals("Character has the Full Plate proficiency so the bonus should be added",
 					baseHp+50+50,

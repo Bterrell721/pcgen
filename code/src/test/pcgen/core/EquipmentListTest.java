@@ -1,5 +1,4 @@
 /*
- * EquipmentListTest.java
  * Copyright 2006 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.core;
 
@@ -33,15 +29,13 @@ import pcgen.util.TestHelper;
 
 /**
  * <code>EquipmentListTest</code> checks the functionality of the EquipmentList class.
- *
- *
  */
 @SuppressWarnings("nls")
 public class EquipmentListTest extends TestCase
 {
 
 	private Equipment eq = null;
-	private static final String originalKey = "OrigKey";
+	private static final String ORIGINAL_KEY = "OrigKey";
 	private boolean firstTime = true;
 
 	/**
@@ -55,7 +49,7 @@ public class EquipmentListTest extends TestCase
 	/**
 	 * Constructs a new <code>EquipmentListTest</code>.
 	 *
-	 * @see PCGenTestCase#PCGenTestCase()
+	 * @see pcgen.PCGenTestCase#PCGenTestCase()
 	 */
 	public EquipmentListTest()
 	{
@@ -68,7 +62,7 @@ public class EquipmentListTest extends TestCase
 	 *
 	 * @param name the test case name
 	 *
-	 * @see PCGenTestCase#PCGenTestCase()
+	 * @see pcgen.PCGenTestCase#PCGenTestCase(String)
 	 */
 	public EquipmentListTest(final String name)
 	{
@@ -98,7 +92,7 @@ public class EquipmentListTest extends TestCase
 		eq.put(ObjectKey.BASESIZE, mediumRef);
 		TestHelper.addType(eq, "WEAPON.MELEE.CHOCOLATE");
 
-		this.eq.put(StringKey.KEY_NAME, originalKey);
+		this.eq.put(StringKey.KEY_NAME, ORIGINAL_KEY);
 	}
 
 	/**

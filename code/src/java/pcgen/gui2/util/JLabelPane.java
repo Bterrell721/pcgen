@@ -1,5 +1,4 @@
 /*
- * JLabelPane.java
  * Copyright 2001 (C) Jonas Karlsson <jujutsunerd@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -20,9 +19,9 @@
  */
 package pcgen.gui2.util;
 
-import pcgen.cdom.base.Constants;
-
 import javax.swing.JEditorPane;
+
+import pcgen.cdom.base.Constants;
 
 /**
  *  {@code JLabelPane} extends {@code JEditorPane} for PCGen

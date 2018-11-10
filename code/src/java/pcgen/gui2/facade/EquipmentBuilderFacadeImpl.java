@@ -1,5 +1,4 @@
 /*
- * EquipmentBuilderFacadeImpl.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -42,18 +39,18 @@ import pcgen.core.PlayerCharacter;
 import pcgen.core.SizeAdjustment;
 import pcgen.core.SpecialProperty;
 import pcgen.core.analysis.EqModSpellInfo;
+import pcgen.core.spell.Spell;
 import pcgen.facade.core.AbilityFacade;
-import pcgen.facade.util.DefaultReferenceFacade;
 import pcgen.facade.core.EquipModFacade;
 import pcgen.facade.core.EquipmentBuilderFacade;
 import pcgen.facade.core.EquipmentFacade;
 import pcgen.facade.core.InfoFacade;
-import pcgen.facade.util.ReferenceFacade;
 import pcgen.facade.core.SizeAdjustmentFacade;
 import pcgen.facade.core.UIDelegate;
 import pcgen.facade.util.DefaultListFacade;
+import pcgen.facade.util.DefaultReferenceFacade;
 import pcgen.facade.util.ListFacade;
-import pcgen.core.spell.Spell;
+import pcgen.facade.util.ReferenceFacade;
 import pcgen.system.LanguageBundle;
 import pcgen.util.enumeration.View;
 
@@ -89,49 +86,41 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 		this.equip = equip;
 		this.character = character;
 		this.delegate = delegate;
-		
-		sizeRef =
-                new DefaultReferenceFacade<>(
-                        equip.getSizeAdjustment());
+
+		sizeRef = new DefaultReferenceFacade<>(equip.getSizeAdjustment());
 
 		final String sBaseKey = equip.getBaseItemKeyName();
-		baseEquipment = Globals.getContext().getReferenceContext().silentlyGetConstructedCDOMObject(
-			Equipment.class, sBaseKey);
-		
-		equipHeads =
-				equip.isDouble() ? EnumSet.range(EquipmentHead.PRIMARY,
-					EquipmentHead.SECONDARY) : EnumSet
-					.of(EquipmentHead.PRIMARY);
+		baseEquipment =
+				Globals.getContext().getReferenceContext().silentlyGetConstructedCDOMObject(Equipment.class, sBaseKey);
 
-		availListMap =
-                new HashMap<>();
-		selectedListMap =
-                new HashMap<>();
+		equipHeads = equip.isDouble() ? EnumSet.range(EquipmentHead.PRIMARY, EquipmentHead.SECONDARY)
+			: EnumSet.of(EquipmentHead.PRIMARY);
+
+		availListMap = new HashMap<>();
+		selectedListMap = new HashMap<>();
 		for (EquipmentHead head : equipHeads)
 		{
 			availListMap.put(head, new DefaultListFacade<>());
-			DefaultListFacade<EquipModFacade> selectedList =
-                    new DefaultListFacade<>();
+			DefaultListFacade<EquipModFacade> selectedList = new DefaultListFacade<>();
 			selectedList.setContents(equip.getEqModifierList(head.isPrimary()));
 			selectedListMap.put(head, selectedList);
 		}
 		refreshAvailList();
 	}
-	
+
 	@Override
 	public boolean addModToEquipment(EquipModFacade modifier, EquipmentHead head)
 	{
-		if (modifier == null || !(modifier instanceof EquipmentModifier)
-			|| head == null)
+		if (modifier == null || !(modifier instanceof EquipmentModifier) || head == null)
 		{
 			return false;
 		}
-		
+
 		EquipmentModifier equipMod = (EquipmentModifier) modifier;
-		
+
 		// Trash the cost modifications
 		equip.setCostMod("0");
-		
+
 		// Handle spells
 		if (equipMod.getSafe(StringKey.CHOICE_STRING).startsWith("EQBUILDER.SPELL"))
 		{
@@ -140,14 +129,14 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 				return false;
 			}
 		}
-		
+
 		equip.addEqModifier(equipMod, head.isPrimary(), character);
 
 		if (equip.isDouble() && equipMod.getSafe(ObjectKey.ASSIGN_TO_ALL))
 		{
 			equip.addEqModifier(equipMod, !head.isPrimary(), character);
 		}
-		
+
 		equip.nameItemFromModifiers(character);
 
 		refreshAvailList();
@@ -163,7 +152,7 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 		{
 			return false;
 		}
-		
+
 		EquipmentModifier equipMod = (EquipmentModifier) modifier;
 
 		if (baseEquipment.getEqModifierList(true).contains(equipMod))
@@ -172,10 +161,10 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 				LanguageBundle.getFormattedString("in_eqCust_RemoveBaseErr", equipMod));
 			return false;
 		}
-		
+
 		// Trash the cost modifications
 		equip.setCostMod("0");
-		
+
 		equip.removeEqModifier(equipMod, head.isPrimary(), character);
 		equip.nameItemFromModifiers(character);
 
@@ -195,8 +184,8 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 
 		String aString = name.trim();
 
-		if ((aString.indexOf('|') >= 0) || (aString.indexOf(':') >= 0)
-			|| (aString.indexOf(';') >= 0) || (aString.indexOf(',') >= 0))
+		if ((aString.indexOf('|') >= 0) || (aString.indexOf(':') >= 0) || (aString.indexOf(';') >= 0)
+			|| (aString.indexOf(',') >= 0))
 		{
 			delegate.showErrorMessage(Constants.APPLICATION_NAME,
 				LanguageBundle.getString("in_eqCust_InvalidNameChar"));
@@ -207,14 +196,12 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 		// Replace illegal characters in old name
 		oldName = oldName.replaceAll(";:\\|,", "@");
 
-		if (!oldName.toString().toUpperCase()
-			.startsWith(Constants.GENERIC_ITEM))
+		if (!oldName.toUpperCase().startsWith(Constants.GENERIC_ITEM))
 		{
-			equip.addToListFor(ListKey.SPECIAL_PROPERTIES,
-				SpecialProperty.createFromLst(oldName.toString()));
+			equip.addToListFor(ListKey.SPECIAL_PROPERTIES, SpecialProperty.createFromLst(oldName));
 		}
 		equip.setName(aString);
-		
+
 		return true;
 	}
 
@@ -223,8 +210,7 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 	{
 		String aString = StringUtils.trimToEmpty(sprop);
 
-		if ((aString.indexOf('|') >= 0) || (aString.indexOf(':') >= 0)
-			|| (aString.indexOf(';') >= 0))
+		if ((aString.indexOf('|') >= 0) || (aString.indexOf(':') >= 0) || (aString.indexOf(';') >= 0))
 		{
 			delegate.showErrorMessage(Constants.APPLICATION_NAME,
 				LanguageBundle.getString("in_eqCust_InvalidSpropChar"));
@@ -234,8 +220,7 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 		equip.removeListFor(ListKey.SPECIAL_PROPERTIES);
 		if (!aString.equals(""))
 		{
-			equip.addToListFor(ListKey.SPECIAL_PROPERTIES,
-				SpecialProperty.createFromLst(aString));
+			equip.addToListFor(ListKey.SPECIAL_PROPERTIES, SpecialProperty.createFromLst(aString));
 		}
 
 		return true;
@@ -297,9 +282,7 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 			}
 
 			equip.put(ObjectKey.WEIGHT_MOD, BigDecimal.ZERO);
-			equip.put(ObjectKey.WEIGHT_MOD,
-					newWeight.subtract(new BigDecimal(equip
-							.getWeightAsDouble(character))));
+			equip.put(ObjectKey.WEIGHT_MOD, newWeight.subtract(new BigDecimal(equip.getWeightAsDouble(character))));
 			return true;
 		}
 		catch (Exception e)
@@ -380,8 +363,7 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 	{
 		for (EquipmentHead eqHead : equipHeads)
 		{
-			selectedListMap.get(eqHead).updateContents(
-				equip.getEqModifierList(eqHead.isPrimary()));
+			selectedListMap.get(eqHead).updateContents(equip.getEqModifierList(eqHead.isPrimary()));
 		}
 	}
 
@@ -392,12 +374,12 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 		{
 			return false;
 		}
-		
+
 		EquipmentModifier eqMod = (EquipmentModifier) eqModFacade;
-		
+
 		return equip.canAddModifier(character, eqMod, head.isPrimary());
 	}
-	
+
 	@Override
 	public boolean isResizable()
 	{
@@ -411,7 +393,7 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 		{
 			return;
 		}
-		
+
 		equip.resizeItem(character, (SizeAdjustment) newSize);
 		equip.nameItemFromModifiers(character);
 		sizeRef.set(newSize);
@@ -429,18 +411,16 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 		return equipHeads;
 	}
 
-
 	private boolean getSpellChoiceForEqMod(EquipmentModifier eqMod)
 	{
 		String choiceValue = eqMod.getSafe(StringKey.CHOICE_STRING).substring(15);
 
-		SpellBuilderFacadeImpl spellBuilderFI =
-				new SpellBuilderFacadeImpl(choiceValue, character, equip);
+		SpellBuilderFacadeImpl spellBuilderFI = new SpellBuilderFacadeImpl(choiceValue, character, equip);
 		if (!delegate.showCustomSpellDialog(spellBuilderFI))
 		{
 			return false;
 		}
-		
+
 		InfoFacade castingClass = spellBuilderFI.getClassRef().get();
 		Spell theSpell = (Spell) spellBuilderFI.getSpellRef().get();
 		String variant = spellBuilderFI.getVariantRef().get();
@@ -460,19 +440,16 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 
 		int charges = getNumCharges(eqMod);
 
-		EquipmentModifier existingEqMod =
-				equip.getEqModifierKeyed(eqMod.getKeyName(), true);
+		EquipmentModifier existingEqMod = equip.getEqModifierKeyed(eqMod.getKeyName(), true);
 		if (existingEqMod == null)
 		{
 			equip.addEqModifier(eqMod, true, character);
 		}
 		existingEqMod = equip.getEqModifierKeyed(eqMod.getKeyName(), true);
-		
-		EqModSpellInfo.setSpellInfo(equip, existingEqMod,
-				(PObject) castingClass, theSpell, variant, spellType,
-				baseSpellLevel, casterLevel, metamagicFeats, charges);
-		
-		
+
+		EqModSpellInfo.setSpellInfo(equip, existingEqMod, (PObject) castingClass, theSpell, variant, spellType,
+			baseSpellLevel, casterLevel, metamagicFeats, charges);
+
 		return true;
 	}
 
@@ -486,11 +463,8 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 			Integer max = eqMod.get(IntegerKey.MAX_CHARGES);
 			for (;;)
 			{
-				String selectedValue =
-						delegate.showInputDialog(Constants.APPLICATION_NAME,
-							LanguageBundle.getFormattedString(
-								"in_csdChargesMessage", min, max), Integer
-								.toString(max));
+				String selectedValue = delegate.showInputDialog(Constants.APPLICATION_NAME,
+					LanguageBundle.getFormattedString("in_csdChargesMessage", min, max), Integer.toString(max));
 
 				if (selectedValue != null)
 				{

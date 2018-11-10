@@ -17,10 +17,11 @@
  */
 package pcgen.output.wrapper;
 
-import pcgen.output.base.SimpleObjectWrapper;
-import pcgen.output.model.StringModel;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
+import pcgen.io.FileAccess;
+import pcgen.output.base.SimpleObjectWrapper;
+import pcgen.output.model.StringModel;
 
 /**
  * A StringWrapper is an ObjectWrapper capable of producing a TemplateModel for
@@ -33,7 +34,7 @@ public class StringWrapper implements SimpleObjectWrapper
 	{
 		if (o instanceof String)
 		{
-			return new StringModel(o.toString());
+			return new StringModel(FileAccess.filterString(o.toString()));
 		}
 		throw new TemplateModelException("Object was not a String");
 	}

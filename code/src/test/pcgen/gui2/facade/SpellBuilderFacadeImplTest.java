@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -26,7 +24,6 @@ import pcgen.AbstractCharacterTestCase;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.facet.FacetLibrary;
 import pcgen.cdom.facet.MasterAvailableSpellFacet;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Globals;
 import pcgen.core.PCClass;
 import pcgen.core.PlayerCharacter;
@@ -83,7 +80,7 @@ public class SpellBuilderFacadeImplTest extends AbstractCharacterTestCase
 		fighterCls = TestHelper.makeClass("Fighter");
 		
 		dataset = new MockDataSetFacade(SettingsHandler.getGame());
-		dataset.addAbilityCategory(AbilityCategory.FEAT);
+		dataset.addAbilityCategory(BuildUtilities.getFeatCat());
 		dataset.addClass(wizardCls);
 		dataset.addClass(divineCls);
 		dataset.addClass(fighterCls);

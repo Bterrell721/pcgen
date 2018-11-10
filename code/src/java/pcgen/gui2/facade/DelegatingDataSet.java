@@ -1,5 +1,4 @@
 /*
- * DelegatingDataSet.java
  * Copyright 2014 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -25,9 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import pcgen.core.PCAlignment;
 import pcgen.facade.core.AbilityCategoryFacade;
 import pcgen.facade.core.AbilityFacade;
-import pcgen.facade.core.AlignmentFacade;
 import pcgen.facade.core.BodyStructureFacade;
 import pcgen.facade.core.CampaignFacade;
 import pcgen.facade.core.ClassFacade;
@@ -42,13 +41,13 @@ import pcgen.facade.core.SizeAdjustmentFacade;
 import pcgen.facade.core.SkillFacade;
 import pcgen.facade.core.StatFacade;
 import pcgen.facade.core.TemplateFacade;
-import pcgen.facade.util.event.MapEvent;
-import pcgen.facade.util.event.MapListener;
 import pcgen.facade.core.generator.StatGenerationFacade;
 import pcgen.facade.util.AbstractMapFacade;
 import pcgen.facade.util.DelegatingListFacade;
 import pcgen.facade.util.ListFacade;
 import pcgen.facade.util.MapFacade;
+import pcgen.facade.util.event.MapEvent;
+import pcgen.facade.util.event.MapListener;
 
 /**
  * This class implements a {@code DataSetFacade} by delegating to another
@@ -58,7 +57,6 @@ import pcgen.facade.util.MapFacade;
  * delegate layer, upon closing a character, the CFI can sever connections
  * between the DelegatingDataSet and the actual DataSetFacade thus preventing an
  * memory leaks that could occur from an outside event listener.
- *
  */
 public class DelegatingDataSet implements DataSetFacade
 {
@@ -68,7 +66,7 @@ public class DelegatingDataSet implements DataSetFacade
 	private final DelegatingListFacade<DeityFacade> deities;
 	private final DelegatingListFacade<SkillFacade> skills;
 	private final DelegatingListFacade<TemplateFacade> templates;
-	private final DelegatingListFacade<AlignmentFacade> alignments;
+	private final DelegatingListFacade<PCAlignment> alignments;
 	private final DelegatingListFacade<KitFacade> kits;
 	private final DelegatingListFacade<StatFacade> stats;
 	private final DelegatingAbilitiesMap abilities;
@@ -280,7 +278,7 @@ public class DelegatingDataSet implements DataSetFacade
 	}
 
 	@Override
-	public ListFacade<AlignmentFacade> getAlignments()
+	public ListFacade<PCAlignment> getAlignments()
 	{
 		return alignments;
 	}
@@ -294,7 +292,8 @@ public class DelegatingDataSet implements DataSetFacade
 	@Override
 	public ListFacade<StatGenerationFacade> getStatGenerators()
 	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//To change body of generated methods, choose Tools | Templates.
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
@@ -355,6 +354,12 @@ public class DelegatingDataSet implements DataSetFacade
 	public void refreshEquipment()
 	{
 		delegate.refreshEquipment();
+	}
+
+	@Override
+	public boolean hasDeityDomain()
+	{
+		return delegate.hasDeityDomain();
 	}
 
 }

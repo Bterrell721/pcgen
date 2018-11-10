@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.core.chooser;
 
@@ -33,13 +32,11 @@ public class AbilityChooseController extends ChooseController<Ability>
 	private final PlayerCharacter pc;
 	ChoiceManagerList<?> ccm;
 
-	public AbilityChooseController(Ability a, AbilityCategory cat,
-			PlayerCharacter aPC, ChoiceManagerList<?> cont)
+	public AbilityChooseController(Ability a, AbilityCategory cat, PlayerCharacter aPC, ChoiceManagerList<?> cont)
 	{
 		if (a == null)
 		{
-			throw new IllegalArgumentException(
-					"Ability cannot be null for AbilityChooseController");
+			throw new IllegalArgumentException("Ability cannot be null for AbilityChooseController");
 		}
 		ability = a;
 		ac = cat;
@@ -53,7 +50,7 @@ public class AbilityChooseController extends ChooseController<Ability>
 		if (isMultYes())
 		{
 			int availPool = pc.getAvailableAbilityPool(ac).intValue();
-			return availPool == 0 && getCost() == 0 ? 1 : availPool;
+			return ((availPool == 0) && (getCost() == 0)) ? 1 : availPool;
 		}
 		return 1;
 	}

@@ -1,5 +1,4 @@
 /*
- * SpellLevelTest.java
  * Copyright 2008 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package pcgen.core.analysis;
@@ -31,7 +28,6 @@ import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.facet.FacetLibrary;
 import pcgen.cdom.facet.KnownSpellFacet;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Campaign;
 import pcgen.core.Globals;
 import pcgen.core.PCClass;
@@ -42,6 +38,7 @@ import pcgen.persistence.lst.CampaignSourceEntry;
 import pcgen.persistence.lst.PCClassLoader;
 import pcgen.rules.context.LoadContext;
 import pcgen.util.TestHelper;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * The Class <code>SpellLevelTest</code> checks the SpellLevel class.
@@ -55,7 +52,7 @@ public class SpellLevelTest extends AbstractCharacterTestCase
 			.getFacet(KnownSpellFacet.class);
 
 	/**
-	 * Test method for {@link pcgen.core.analysis.SpellLevel#getPCBasedBonusKnownSpells(pcgen.core.PlayerCharacter, pcgen.core.PCClass)}.
+	 *
 	 * @throws Exception 
 	 */
 	public void testGetPCBasedBonusKnownSpells() throws Exception
@@ -74,7 +71,7 @@ public class SpellLevelTest extends AbstractCharacterTestCase
 
 		
 		final String classLine =
-			"CLASS:Sorcerer	TYPE:Base.PC	SPELLSTAT:CHA	SPELLTYPE:Arcane	MEMORIZE:NO	BONUS:CASTERLEVEL|Sorcerer|CL";
+		"CLASS:Sorcerer	TYPE:Base.PC	SPELLSTAT:CHA	SPELLTYPE:Arcane	MEMORIZE:NO	BONUS:CASTERLEVEL|Sorcerer|CL";
 		PCClassLoader classLoader = new PCClassLoader();
 		PCClass pcc = classLoader.parseLine(context, null, classLine, source);
 				
@@ -85,8 +82,7 @@ public class SpellLevelTest extends AbstractCharacterTestCase
 		AbilityLoader abilityLoader = new AbilityLoader();
 		abilityLoader.parseLine(context, null, abilityLine, source);
 		Ability ab1 = Globals.getContext().getReferenceContext()
-				.silentlyGetConstructedCDOMObject(Ability.class,
-						AbilityCategory.FEAT, "Spell bonanza");
+			.getManufacturerId(BuildUtilities.getFeatCat()).getActiveObject("Spell bonanza");
 
 		// Do the post parsing cleanup
 		context.resolveDeferredTokens();
@@ -100,7 +96,7 @@ public class SpellLevelTest extends AbstractCharacterTestCase
 		Collection<Integer> levels = listManagerFacet.getScopes2(aPC.getCharID(), pcc.get(ObjectKey.CLASS_SPELLLIST));
 		assertEquals("Initial number of spell levels incorrect", 0, levels.size());
 		
-		addAbility(AbilityCategory.FEAT, ab1);
+		addAbility(BuildUtilities.getFeatCat(), ab1);
 
 		// Now for the tests
 		levels = listManagerFacet.getScopes2(aPC.getCharID(), pcc.get(ObjectKey.CLASS_SPELLLIST));

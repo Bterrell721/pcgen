@@ -19,9 +19,6 @@
 
 package pcgen.facade.core;
 
-/**
- *
- */
 public interface KitFacade extends InfoFacade
 {
 	/**

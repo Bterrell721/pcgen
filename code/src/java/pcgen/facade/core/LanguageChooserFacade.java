@@ -18,12 +18,9 @@
  */
 package pcgen.facade.core;
 
-import pcgen.facade.util.ReferenceFacade;
 import pcgen.facade.util.ListFacade;
+import pcgen.facade.util.ReferenceFacade;
 
-/**
- *
- */
 public interface LanguageChooserFacade
 {
 
@@ -66,7 +63,6 @@ public interface LanguageChooserFacade
 	 * undos any changes made to the selected and available list
 	 */
 	void rollback();
-
 
 	/**
 	 * this returns the string that will be displayed in the summary tab, as

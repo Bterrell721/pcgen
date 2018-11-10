@@ -1,5 +1,4 @@
 /*
- * SourceMigration.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -39,6 +38,10 @@ public final class SourceMigration
 
 	private static Map<int[], List<MigrationRule>> sourceChangesForVer = new HashMap<>();
 
+	private SourceMigration()
+	{
+	}
+
 	/**
 	 * Find the new source key to replace the provided one.
 	 * 
@@ -48,12 +51,8 @@ public final class SourceMigration
 	 */
 	public static String getNewSourceKey(String sourceKey, int[] pcgVer, String gameModeName)
 	{
-		List<MigrationRule> sourceChangeList = sourceChangesForVer.computeIfAbsent(
-				pcgVer,
-				v -> MigrationUtils.getChangeList(v, gameModeName,
-						ObjectType.SOURCE
-				)
-		);
+		List<MigrationRule> sourceChangeList = sourceChangesForVer.computeIfAbsent(pcgVer,
+			v -> MigrationUtils.getChangeList(v, gameModeName, ObjectType.SOURCE));
 
 		for (MigrationRule rule : sourceChangeList)
 		{

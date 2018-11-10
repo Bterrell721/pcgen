@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens.deprecated;
 
@@ -37,13 +34,12 @@ public class Personality1Token extends AbstractExportToken
 		return "PERSONALITY1";
 	}
 
-	//TODO: Move this to a token that has all of teh descriptive stuff about a cahracter
+	//TODO: Move this to a token that has all of the descriptive stuff about a character
 	/**
-	 * @see pcgen.io.exporttoken.AbstractExportToken#getToken(java.lang.String, pcgen.core.display.CharacterDisplay, pcgen.io.ExportHandler)
+	 * @see AbstractExportToken#getToken(String, CharacterDisplay, ExportHandler)
 	 */
 	@Override
-	public String getToken(String tokenSource, CharacterDisplay display,
-		ExportHandler eh)
+	public String getToken(String tokenSource, CharacterDisplay display, ExportHandler eh)
 	{
 		return display.getTrait1();
 	}

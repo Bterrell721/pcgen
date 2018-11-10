@@ -200,8 +200,18 @@ CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_JackOfAllTrades|0
 CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_ClassSkills|0
 CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_Proficiencies|0
 
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_BardDistraction|0
 CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_Fascinate|0
-CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_FrighteningPerformance|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_InspireCourage|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_InspireCompetence|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_Suggestion|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_DirgeOfDoom|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_InspireGreatness|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_SoothingPerformance|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_FrighteningTune|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_InspireHeroics|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_MassSuggestion|0
+CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_DeadlyPerformance|0
 CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_InspireCourage1|0
 CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_InspireCourage2|0
 CATEGORY=Class|Bard.MOD	DEFINE:Bard_CF_InspireCourage3|0
@@ -226,8 +236,18 @@ CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_JackOfAl
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_ClassSkills|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_ClassSkills=True
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_Proficiencies|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_Proficiencies=True
 
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_BardDistraction|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_BardDistraction=True
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_Fascinate|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_Fascinate=True
-CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_FrighteningPerformance|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_FrighteningPerformance=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_InspireCourage|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_InspireCourage=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_InspireCompetence|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_InspireCompetence=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_Suggestion|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_Suggestion=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_DirgeOfDoom|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_DirgeOfDoom=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_InspireGreatness|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_InspireGreatness=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_SoothingPerformance|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_SoothingPerformance=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_FrighteningTune|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_FrighteningTune=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_InspireHeroics|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_InspireHeroics=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_MassSuggestion|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_MassSuggestion=True
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_DeadlyPerformance|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_DeadlyPerformance=True
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_InspireCourage1|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_InspireCourage1=True
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_InspireCourage2|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_InspireCourage2=True
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_InspireCourage3|1|TYPE=Boolean|PREFACT:1,ABILITIES,Bard_CF_InspireCourage3=True
@@ -242,6 +262,7 @@ CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_InspireC
 # Old TYPE version Support
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_BardicKnowledge|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.BardBardicKnowledge
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_CounterSong|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.BardCounterSong
+CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_BardDistraction|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.BardDistraction
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_BardicPerformance|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.BardBardicPerformance
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_ArmoredCasting|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.BardArmoredCasting
 CATEGORY=Class|Bard.MOD																															BONUS:VAR|Bard_CF_Cantrips|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.BardCantrips
@@ -319,9 +340,11 @@ CATEGORY=Class|Cleric.MOD								BONUS:VAR|Cleric_CF_SpontaneousCasting|1|TYPE=B
 ###Block: Druid
 # Ability Name			Define						Ability																																	Modify VAR
 CATEGORY=Class|Druid.MOD								ABILITY:Druid Class Feature|AUTOMATIC|Weapon and Armor Proficiency ~ Druid|!PREABILITY:1,CATEGORY=Archetype,TYPE.DruidArmorProficiencies|!PREABILITY:1,CATEGORY=Archetype,TYPE.DruidWeaponProficiencies
-CATEGORY=Class|Druid.MOD								ABILITY:Internal|AUTOMATIC|Shield Prof|TYPE=ArmorProfMedium|!PREABILITY:1,CATEGORY=Archetype,TYPE.DruidArmorProficiencies
-CATEGORY=Class|Druid.MOD								ABILITY:Internal|AUTOMATIC|Weapon Proficiencies ~ Druid|!PREABILITY:1,CATEGORY=Archetype,TYPE.DruidWeaponProficiencies
+CATEGORY=Class|Druid.MOD								ABILITY:Internal|AUTOMATIC|Shield Prof|TYPE=ArmorProfMedium|!PREABILITY:1,CATEGORY=Archetype,TYPE.DruidArmorProficiencies|PREVAREQ:Druid_CF_ArmorProficiencies,0
+CATEGORY=Class|Druid.MOD								ABILITY:Internal|AUTOMATIC|Weapon Proficiencies ~ Druid|!PREABILITY:1,CATEGORY=Archetype,TYPE.DruidWeaponProficiencies|PREVAREQ:Druid_CF_WeaponProficiencies,0
 
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_ArmorProficiencies|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WeaponProficiencies|0
 CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_SpontaneousCasting|0
 CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_NatureSense|0
 CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildEmpathy|0
@@ -334,12 +357,25 @@ CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_AThousandFaces|0
 CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_TimelessBody|0
 CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_NatureBond|0
 CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_ClassSkills|0
-CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShape6|0
-CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShape8|0
-
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses4|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses6|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses8|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses10|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses12|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses14|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses16|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses18|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeUses20|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeOptions4|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeOptions6|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeOptions8|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeOptions10|0
+CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_WildShapeOptions12|0
 CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_DruidDomain|0
 CATEGORY=Class|Druid.MOD	DEFINE:Druid_CF_AnimalCompanion|0
 
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_ArmorProficiencies|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_ArmorProficiencies=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WeaponProficiencies|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WeaponProficiencies=True
 CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_SpontaneousCasting|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_SpontaneousCasting=True
 CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_NatureSense|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_NatureSense=True
 CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildEmpathy|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildEmpathy=True
@@ -352,9 +388,19 @@ CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Drui
 CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_TimelessBody|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_TimelessBody=True
 CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_NatureBond|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_NatureBond=True
 CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_ClassSkills|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_ClassSkills=True
-CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShape6|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShape=True
-CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShape8|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShape=True
-
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeUses4|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeUses4=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeUses8|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeUses8=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeUses10|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeUses10=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeUses12|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeUses12=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeUses14|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeUses14=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeUses16|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeUses16=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeUses18|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeUses18=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeUses20|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeUses20=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeOptions4|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeOptions4=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeOptions6|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeOptions6=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeOptions8|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeOptions8=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeOptions10|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeOptions10=True
+CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_WildShapeOptions12|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_WildShapeOptions12=True
 CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_DruidDomain|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_DruidDomain=True
 CATEGORY=Class|Druid.MOD																																										BONUS:VAR|Druid_CF_AnimalCompanion|1|TYPE=Boolean|PREFACT:1,ABILITIES,Druid_CF_AnimalCompanion=True
 
@@ -472,6 +518,7 @@ CATEGORY=Class|Fighter.MOD							BONUS:VAR|Fighter_CF_BonusFeat20|1|TYPE=Boolean
 
 ###Block: Monk
 # Ability Name		Define						Ability																	Modify VAR
+CATEGORY=Class|Monk.MOD	DEFINE:Monk_CF_UnarmedStrike|0
 CATEGORY=Class|Monk.MOD	DEFINE:Monk_CF_FlurryOfBlows|0
 CATEGORY=Class|Monk.MOD	DEFINE:Monk_CF_BonusFeats|0
 CATEGORY=Class|Monk.MOD	DEFINE:Monk_CF_ACBonus|0
@@ -548,6 +595,7 @@ CATEGORY=Class|Monk.MOD
 CATEGORY=Class|Monk.MOD								ABILITY:Special Ability|AUTOMATIC|Weapon and Armor Proficiency ~ Monk|PREVAREQ:Monk_CF_Proficiencies,0
 CATEGORY=Class|Monk.MOD								ABILITY:Internal|AUTOMATIC|Weapon Proficiencies ~ Monk|PREVAREQ:Monk_CF_Proficiencies,0
 
+CATEGORY=Class|Monk.MOD																										BONUS:VAR|Monk_CF_UnarmedStrike|1|TYPE=Boolean|PREFACT:1,ABILITIES,Monk_CF_FlurryOfBlows=True
 CATEGORY=Class|Monk.MOD																										BONUS:VAR|Monk_CF_FlurryOfBlows|1|TYPE=Boolean|PREFACT:1,ABILITIES,Monk_CF_FlurryOfBlows=True
 CATEGORY=Class|Monk.MOD																										BONUS:VAR|Monk_CF_BonusFeats|1|TYPE=Boolean|PREFACT:1,ABILITIES,Monk_CF_BonusFeats=True
 CATEGORY=Class|Monk.MOD																										BONUS:VAR|Monk_CF_ACBonus|1|TYPE=Boolean|PREFACT:1,ABILITIES,Monk_CF_ACBonus=True
@@ -638,7 +686,7 @@ CATEGORY=Class|Paladin.MOD	DEFINE:Paladin_CF_ArmorProficiencyMedium|0
 CATEGORY=Class|Paladin.MOD	DEFINE:Paladin_CF_ShieldProficiency|0
 CATEGORY=Class|Paladin.MOD	DEFINE:Paladin_CF_BondedMount|0
 
-CATEGORY=Class|Paladin.MOD	DEFINE:AllowHolyAvenger|0				BONUS:VAR|AlignmentAuraLVL|PaladinLVL	BONUS:VAR|AllowHolyAvenger|1
+CATEGORY=Class|Paladin.MOD	DEFINE:AllowHolyAvenger|0				BONUS:VAR|AlignmentAuraLVL|PaladinLVL	BONUS:VAR|AllowHolyAvenger|1	DEFINE:HolyAvengerCL|0	BONUS:VAR|HolyAvengerCL|PaladinLVL	DEFINE:HolyAvengerSR|0	BONUS:VAR|HolyAvengerSR|5+PaladinLVL
 
 CATEGORY=Class|Paladin.MOD									BONUS:VAR|Paladin_CF_ClassSkills|1|TYPE=Boolean|PREFACT:1,ABILITIES,Paladin_CF_ClassSkills=True
 CATEGORY=Class|Paladin.MOD									BONUS:VAR|Paladin_CF_BondedWeapon|1|TYPE=Boolean|PREFACT:1,ABILITIES,Paladin_CF_BondedWeapon=True
@@ -822,6 +870,8 @@ CATEGORY=Class|Rogue.MOD	DEFINE:Rogue_CF_RogueTalents|0
 CATEGORY=Class|Rogue.MOD	DEFINE:Rogue_CF_TrapSense|0
 CATEGORY=Class|Rogue.MOD	DEFINE:Rogue_CF_MasterStrike|0
 CATEGORY=Class|Rogue.MOD	DEFINE:Rogue_CF_ClassSkills|0
+CATEGORY=Class|Rogue.MOD	DEFINE:Rogue_CF_WeaponProficiencies|0
+CATEGORY=Class|Rogue.MOD	DEFINE:Rogue_CF_ArmorProficiencies|0
 
 CATEGORY=Class|Rogue.MOD	DEFINE:Rogue_CF_TrapSense1|0
 CATEGORY=Class|Rogue.MOD	DEFINE:Rogue_CF_TrapSense2|0
@@ -891,6 +941,8 @@ CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_RogueTalents|1|TYPE=Boolean|P
 CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_TrapSense|1|TYPE=Boolean|PREFACT:1,ABILITIES,Rogue_CF_TrapSense=True
 CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_MasterStrike|1|TYPE=Boolean|PREFACT:1,ABILITIES,Rogue_CF_MasterStrike=True
 CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_ClassSkills|1|TYPE=Boolean|PREFACT:1,ABILITIES,Rogue_CF_ClassSkills=True
+CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_WeaponProficiencies|1|TYPE=Boolean|PREFACT:1,ABILITIES,Rogue_CF_WeaponProficiencies=True
+CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_ArmorProficiencies|1|TYPE=Boolean|PREFACT:1,ABILITIES,Rogue_CF_ArmorProficiencies=True
 # Old Style
 CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_UncannyDodge|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.RogueUncannyDodge
 CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_ImprovedUncannyDodge|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.RogueImprovedUncannyDodge
@@ -919,11 +971,18 @@ CATEGORY=Class|Rogue.MOD								BONUS:VAR|Rogue_CF_RogueTalent20|1|TYPE=Boolean|
 ###Block:
 
 # Ability Name			Define						Modify VAR
-CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_WeaponProficiencies|0
 CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_ClassSkills|0
-CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_EschewMaterials|0
+CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_WeaponProficiencies|0
+CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_Spells|0
 CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_Bloodline|0
+CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_Cantrips|0
+CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_EschewMaterials|0
 
+CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_BloodlineClassSkill|0
+
+CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_BloodlineArcana|0
+
+CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_BloodlinePowers|0
 CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_BloodlinePower1|0
 CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_BloodlinePower3|0
 CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_BloodlinePower9|0
@@ -943,6 +1002,8 @@ CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_BloodlineSpell8|0
 CATEGORY=Class|Sorcerer.MOD	DEFINE:Sorcerer_CF_BloodlineSpell9|0
 
 CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_ClassSkills|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_ClassSkills=True
+CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlineArcana|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_BloodlineArcana=True
+CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlinePowers|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_BloodlinePowers=True
 CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlinePower1|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_BloodlinePower1=True
 CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlinePower3|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_BloodlinePower3=True
 CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlinePower9|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_BloodlinePower9=True
@@ -964,6 +1025,9 @@ CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlineSpell7|1|TYPE=
 CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlineSpell8|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_BloodlineSpell8=True
 CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlineSpell9|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_BloodlineSpell9=True
 CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_Bloodline|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_Bloodline=True
+CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_BloodlineClassSkill|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_BloodlineClassSkill=True
+CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_Spells|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_Spells=True
+CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_Cantrips|1|TYPE=Boolean|PREFACT:1,ABILITIES,Sorcerer_CF_Cantrips=True
 
 # Old Style
 CATEGORY=Class|Sorcerer.MOD								BONUS:VAR|Sorcerer_CF_WeaponProficiencies|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.SorcererWeaponProficiencies
@@ -984,6 +1048,8 @@ CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_ArcaneBond|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_Cantrips|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_BonusFeats|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_SpellBook|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_Familiar|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_BondedObject|0
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ClassSkills|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_ClassSkills=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ArcaneSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_ArcaneSchool=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_WeaponProficiencies|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_WeaponProficiencies=True
@@ -992,6 +1058,8 @@ CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ArcaneBond|1|TYPE=Boolean|P
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_Cantrips|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_Cantrips=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_BonusFeats|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_BonusFeats=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_SpellBook|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_SpellBook=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_Familiar|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_Familiar=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_BondedObject|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_BondedObject=True
 # Old Style
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ArcaneSchool|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.WizardArcaneSchool
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_WeaponProficiencies|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.WizardWeaponProficiencies
@@ -1000,6 +1068,16 @@ CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ArcaneBond|1|TYPE=Boolean|P
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_Cantrips|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.WizardCantrips
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_BonusFeats|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.WizardBonusFeats
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_SpellBook|1|TYPE=Boolean|PREABILITY:1,CATEGORY=Archetype,TYPE.WizardSpellBook
+
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_AbjurationOppositionSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_AbjurationOppositionSchool=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ConjurationOppositionSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_ConjurationOppositionSchool=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_DivinationOppositionSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_DivinationOppositionSchool=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_EnchantmentOppositionSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_EnchantmentOppositionSchool=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_EvocationOppositionSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_EvocationOppositionSchool=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_IllusionOppositionSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_IllusionOppositionSchool=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_NecromancyOppositionSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_NecromancyOppositionSchool=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_TransmutationOppositionSchool|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_TransmutationOppositionSchool=True
+
 ###Block: Wizard School Replacement Support
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_AcidDart|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_AcidDart=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_AuraOfDespair|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_AuraOfDespair=True
@@ -1011,6 +1089,7 @@ CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_DivinersFortune|1|TYPE=Bool
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ElementalWall|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_ElementalWall=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_EnchantingSmile|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_EnchantingSmile=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_EnergyAbsorption|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_EnergyAbsorption=True
+CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ExtendedIllusion|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_ExtendedIllusion=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ForceMissile|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_ForceMissile=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_GraveTouch|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_GraveTouch=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_IntenseSpells|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_IntenseSpells=True
@@ -1020,7 +1099,14 @@ CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ProtectiveWard|1|TYPE=Boole
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_ScryingAdept|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_ScryingAdept=True
 CATEGORY=Class|Wizard.MOD								BONUS:VAR|Wizard_CF_TelekineticFist|1|TYPE=Boolean|PREFACT:1,ABILITIES,Wizard_CF_TelekineticFist=True
 
-
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_AbjurationOppositionSchool|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_ConjurationOppositionSchool|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_DivinationOppositionSchool|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_EnchantmentOppositionSchool|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_EvocationOppositionSchool|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_IllusionOppositionSchool|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_NecromancyOppositionSchool|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_TransmutationOppositionSchool|0
 
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_AcidDart|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_AuraOfDespair|0
@@ -1032,6 +1118,7 @@ CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_DivinersFortune|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_ElementalWall|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_EnchantingSmile|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_EnergyAbsorption|0
+CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_ExtendedIllusion|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_ForceMissile|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_GraveTouch|0
 CATEGORY=Class|Wizard.MOD	DEFINE:Wizard_CF_IntenseSpells|0	

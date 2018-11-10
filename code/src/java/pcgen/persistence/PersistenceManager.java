@@ -1,5 +1,4 @@
 /*
- * PersistenceManager.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -35,9 +34,8 @@ import pcgen.persistence.lst.LstSystemLoader;
  */
 public final class PersistenceManager
 {
-	private static final SystemLoader instance = new LstSystemLoader();
-	private static final PersistenceManager managerInstance =
-			new PersistenceManager();
+	private static final SystemLoader INSTANCE = new LstSystemLoader();
+	private static final PersistenceManager MANAGER_INSTANCE = new PersistenceManager();
 
 	private PersistenceManager()
 	{
@@ -49,7 +47,7 @@ public final class PersistenceManager
 	 */
 	public static PersistenceManager getInstance()
 	{
-		return managerInstance;
+		return MANAGER_INSTANCE;
 	}
 
 	/**
@@ -60,7 +58,7 @@ public final class PersistenceManager
 	 */
 	public void setChosenCampaignSourcefiles(List<URI> l)
 	{
-		instance.setChosenCampaignSourcefiles(l, SettingsHandler.getGame());
+		INSTANCE.setChosenCampaignSourcefiles(l, SettingsHandler.getGame());
 	}
 
 	/**
@@ -72,7 +70,7 @@ public final class PersistenceManager
 	 */
 	public void setChosenCampaignSourcefiles(List<URI> l, GameMode game)
 	{
-		instance.setChosenCampaignSourcefiles(l, game);
+		INSTANCE.setChosenCampaignSourcefiles(l, game);
 	}
 
 	/**
@@ -83,7 +81,7 @@ public final class PersistenceManager
 	 */
 	public List<URI> getChosenCampaignSourcefiles()
 	{
-		return instance.getChosenCampaignSourcefiles(SettingsHandler.getGame());
+		return INSTANCE.getChosenCampaignSourcefiles(SettingsHandler.getGame());
 	}
 
 }

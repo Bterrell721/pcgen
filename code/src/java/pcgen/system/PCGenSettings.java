@@ -1,5 +1,4 @@
 /*
- * PCGenSettings.java
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -33,21 +32,18 @@ import pcgen.output.publish.OutputDB;
 public final class PCGenSettings extends PropertyContext
 {
 
-	private static final PCGenSettings instance = new PCGenSettings();
+	private static final PCGenSettings INSTANCE = new PCGenSettings();
 	/**
 	 * This is the PropertyContext for the pcgen options, all keys that are used with
 	 * this context have a key name starting with 'OPTION'
 	 */
-	public static final PropertyContext OPTIONS_CONTEXT = instance.createChildContext("pcgen.options");
+	public static final PropertyContext OPTIONS_CONTEXT = INSTANCE.createChildContext("pcgen.options");
 	public static final String OPTION_SAVE_CUSTOM_EQUIPMENT = "saveCustomInLst";
 	public static final String OPTION_ALLOWED_IN_SOURCES = "optionAllowedInSources";
 	public static final String OPTION_SOURCES_ALLOW_MULTI_LINE = "optionSourcesAllowMultiLine";
 	public static final String OPTION_SHOW_LICENSE = "showLicense";
 	public static final String OPTION_SHOW_MATURE_ON_LOAD = "showMatureOnLoad";
-	public static final String OPTION_SHOW_SPONSORS_ON_LOAD = "showSponsorsOnLoad";
 	public static final String OPTION_CREATE_PCG_BACKUP = "createPcgBackup";
-	public static final String OPTION_SHOW_HP_DIALOG_AT_LEVELUP = "showHPDialogAtLevelUp";
-	public static final String OPTION_SHOW_STAT_DIALOG_AT_LEVELUP = "showStatDialogAtLevelUp";
 	public static final String OPTION_SHOW_WARNING_AT_FIRST_LEVEL_UP = "showWarningAtFirstLevelUp";
 	public static final String OPTION_AUTO_RESIZE_EQUIP = "autoResizeEquip";
 	public static final String OPTION_SHOW_SKILL_MOD_BREAKDOWN = "showSkillModBreakdown";
@@ -77,36 +73,31 @@ public final class PCGenSettings extends PropertyContext
 	public static final String VENDOR_DATA_DIR = "pcgen.files.vendordataPath";
 	public static final String HOMEBREW_DATA_DIR = "pcgen.files.homebrewdataPath";
 	public static final String CUSTOM_DATA_DIR = "pcgen.files.customPath";
-	
+
 	/* Data converter saved choices. */
 	public static final String CONVERT_OUTPUT_SAVE_PATH = "pcgen.convert.outputPath";
 	public static final String CONVERT_INPUT_PATH = "pcgen.convert.inputPath";
 	public static final String CONVERT_GAMEMODE = "pcgen.convert.gamemode";
 	public static final String CONVERT_SOURCES = "pcgen.convert.sources";
 	public static final String CONVERT_DATA_LOG_FILE = "pcgen.convert.dataLogFile";
-	
-	public static final PropertyContext GMGEN_OPTIONS_CONTEXT = instance.createChildContext("gmgen.options");
-	
+
+	public static final PropertyContext GMGEN_OPTIONS_CONTEXT = INSTANCE.createChildContext("gmgen.options");
+
 	private PCGenSettings()
 	{
 		super("options.ini");
 		setProperty(PCG_SAVE_PATH,
-					(ConfigurationSettings.getUserDir() + "/characters").replace('/',
-																				 File.separatorChar));
+			(ConfigurationSettings.getUserDir() + "/characters").replace('/', File.separatorChar));
 		setProperty(PCP_SAVE_PATH,
-					(ConfigurationSettings.getUserDir() + "/characters").replace('/',
-																				 File.separatorChar));
+			(ConfigurationSettings.getUserDir() + "/characters").replace('/', File.separatorChar));
 		setProperty(CHAR_PORTRAITS_PATH,
-					(ConfigurationSettings.getUserDir() + "/characters").replace('/',
-																				 File.separatorChar));
+			(ConfigurationSettings.getUserDir() + "/characters").replace('/', File.separatorChar));
 		setProperty(BACKUP_PCG_PATH,
-					(ConfigurationSettings.getUserDir() + "/characters").replace('/',
-																				 File.separatorChar));
+			(ConfigurationSettings.getUserDir() + "/characters").replace('/', File.separatorChar));
 		setProperty(VENDOR_DATA_DIR, "@vendordata");
 		setProperty(HOMEBREW_DATA_DIR, "@homebrewdata");
 		setProperty(CUSTOM_DATA_DIR, "@data/customsources".replace('/', File.separatorChar));
-		OutputDB.registerBooleanPreference(
-			OPTION_SHOW_OUTPUT_NAME_FOR_OTHER_ITEMS, false);
+		OutputDB.registerBooleanPreference(OPTION_SHOW_OUTPUT_NAME_FOR_OTHER_ITEMS, false);
 	}
 
 	@Override
@@ -119,7 +110,7 @@ public final class PCGenSettings extends PropertyContext
 
 	public static PCGenSettings getInstance()
 	{
-		return instance;
+		return INSTANCE;
 	}
 
 	public static String getSelectedSpellSheet()
@@ -149,8 +140,7 @@ public final class PCGenSettings extends PropertyContext
 
 	public static boolean getCreatePcgBackup()
 	{
-		return OPTIONS_CONTEXT.initBoolean(
-				PCGenSettings.OPTION_CREATE_PCG_BACKUP, true);
+		return OPTIONS_CONTEXT.initBoolean(PCGenSettings.OPTION_CREATE_PCG_BACKUP, true);
 	}
 
 	public static String getVendorDataDir()

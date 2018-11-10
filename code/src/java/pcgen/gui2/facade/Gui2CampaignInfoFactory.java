@@ -1,5 +1,4 @@
 /*
- * Gui2CampaignInfoFactory.java
  * Copyright James Dempsey, 2011
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -35,11 +32,12 @@ import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.enumeration.SourceFormat;
 import pcgen.cdom.enumeration.Status;
 import pcgen.cdom.enumeration.StringKey;
+import pcgen.cdom.helper.AllowUtilities;
 import pcgen.core.Campaign;
+import pcgen.core.prereq.PrerequisiteUtilities;
 import pcgen.facade.core.CampaignFacade;
 import pcgen.facade.core.CampaignInfoFactory;
 import pcgen.facade.core.SourceSelectionFacade;
-import pcgen.core.prereq.PrerequisiteUtilities;
 import pcgen.gui2.util.HtmlInfoBuilder;
 import pcgen.persistence.PersistenceManager;
 import pcgen.persistence.lst.CampaignSourceEntry;
@@ -64,8 +62,7 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 		return htmlInfo;
 	}
 
-	private List<URI> setSourcesForPrereqTesting(List<CampaignFacade> testList,
-		PersistenceManager pman)
+	private List<URI> setSourcesForPrereqTesting(List<CampaignFacade> testList, PersistenceManager pman)
 	{
 		List<URI> oldList = pman.getChosenCampaignSourcefiles();
 		List<URI> uris = new ArrayList<>();
@@ -76,9 +73,9 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 		pman.setChosenCampaignSourcefiles(uris);
 		return oldList;
 	}
-	
+
 	/**
-	 * @see pcgen.core.facade.CampaignInfoFactory#getHTMLInfo(pcgen.core.facade.CampaignFacade)
+	 * @see pcgen.facade.core.CampaignInfoFactory#getHTMLInfo(CampaignFacade)
 	 */
 	@Override
 	public String getHTMLInfo(CampaignFacade campaign)
@@ -88,7 +85,7 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 			return "";
 		}
 		Campaign aCamp = (Campaign) campaign;
-		
+
 		final HtmlInfoBuilder infoText = new HtmlInfoBuilder(aCamp.getDisplayName());
 		appendCampaignInfo(aCamp, infoText);
 
@@ -112,8 +109,6 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 		{
 			infoText.appendLineBreak();
 		}
-
-
 		String bString = SourceFormat.getFormattedString(aCamp, SourceFormat.MEDIUM, true);
 		if (StringUtils.isEmpty(bString))
 		{
@@ -123,14 +118,12 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 		infoText.appendI18nFormattedElement("in_infByPub", //$NON-NLS-1$
 			aCamp.getSafe(StringKey.PUB_NAME_LONG));
 		infoText.appendLineBreak();
-
 		// Add the data set release status
 		Status status = aCamp.getSafe(ObjectKey.STATUS);
 		infoText.appendI18nElement("in_infStatus", //$NON-NLS-1$
 			"<font color=\"#" + Integer.toHexString(status.getColor()) + "\">" //$NON-NLS-1$ //$NON-NLS-2$
 				+ status + "</font>"); //$NON-NLS-1$
 		infoText.appendLineBreak();
-			
 		String descr = aCamp.get(StringKey.DESCRIPTION);
 		if (descr != null)
 		{
@@ -144,13 +137,11 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 			infoText.appendI18nElement("in_infWebsite", buildURLListString(webURLs)); //$NON-NLS-1$
 			infoText.appendLineBreak();
 		}
-		
 		if (!aCamp.getType().isEmpty())
 		{
 			infoText.appendI18nElement("in_infType", aCamp.getType()); //$NON-NLS-1$
 			infoText.appendSpacer();
 		}
-
 		infoText.appendI18nElement("in_infRank", String.valueOf(aCamp //$NON-NLS-1$
 			.getSafe(IntegerKey.CAMPAIGN_RANK)));
 		if (!StringUtil.join(aCamp.getSafeListFor(ListKey.GAME_MODE), ", ").isEmpty())
@@ -160,7 +151,6 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 				StringUtil.join(aCamp.getSafeListFor(ListKey.GAME_MODE), ", "));
 		}
 		infoText.appendLineBreak();
-
 		// Add the purchase URLs
 		List<CampaignURL> purchaseURLs = getUrlListForKind(aCamp, URLKind.PURCHASE);
 		if (!purchaseURLs.isEmpty())
@@ -168,7 +158,6 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 			infoText.appendI18nElement("in_infPurchase", buildURLListString(purchaseURLs)); //$NON-NLS-1$
 			infoText.appendLineBreak();
 		}
-
 		// Add the survey URLs
 		List<CampaignURL> surveyURLs = getUrlListForKind(aCamp, URLKind.SURVEY);
 		if (!surveyURLs.isEmpty())
@@ -176,14 +165,18 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 			infoText.appendI18nElement("in_infSurvey", buildURLListString(surveyURLs)); //$NON-NLS-1$
 			infoText.appendLineBreak();
 		}
-
-		String preString = PrerequisiteUtilities.preReqHTMLStringsForList(null,
-				null, aCamp.getPrerequisiteList(), false);
+		String preString =
+				PrerequisiteUtilities.preReqHTMLStringsForList(null, null, aCamp.getPrerequisiteList(), false);
 		if (!preString.isEmpty())
 		{
 			infoText.appendI18nFormattedElement("in_InfoRequirements", preString); //$NON-NLS-1$
 		}
-		
+		String aString = AllowUtilities.getAllowInfo(null, aCamp);
+		if (!aString.isEmpty())
+		{
+			infoText.appendLineBreak();
+			infoText.appendI18nElement("in_requirements", aString); //$NON-NLS-1$
+		}
 		boolean infoDisplayed = false;
 		List<String> info = aCamp.getListFor(ListKey.INFO_TEXT);
 		if (info != null)
@@ -192,7 +185,6 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 			{
 				infoText.appendLineBreak();
 			}
-
 			infoText.appendSmallTitleElement(LanguageBundle.getString("in_infInf")); //$NON-NLS-1$
 			infoText.appendLineBreak();
 			for (String infotext : info)
@@ -202,7 +194,6 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 			}
 			infoDisplayed = true;
 		}
-
 		List<String> copyright = aCamp.getListFor(ListKey.SECTION_15);
 		if (copyright != null)
 		{
@@ -210,7 +201,6 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 			{
 				infoText.appendLineBreak();
 			}
-
 			infoText.appendSmallTitleElement(LanguageBundle.getString("in_infCopyright")); //$NON-NLS-1$
 			infoText.appendLineBreak();
 			for (String license : copyright)
@@ -219,16 +209,13 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 				infoText.appendLineBreak();
 			}
 		}
-		
 		List<Campaign> subCampaigns = aCamp.getSubCampaigns();
 		List<CampaignSourceEntry> notFoundSubCampaigns = aCamp.getNotFoundSubCampaigns();
 		if (subCampaigns != null && notFoundSubCampaigns != null
 			&& (!subCampaigns.isEmpty() || !notFoundSubCampaigns.isEmpty()))
 		{
 			infoText.appendLineBreak();
-
-			infoText.appendSmallTitleElement(LanguageBundle
-				.getString("in_infIncludedCampaigns")); //$NON-NLS-1$
+			infoText.appendSmallTitleElement(LanguageBundle.getString("in_infIncludedCampaigns")); //$NON-NLS-1$
 			infoText.appendLineBreak();
 			for (Campaign subCamp : subCampaigns)
 			{
@@ -237,24 +224,22 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 			}
 			for (CampaignSourceEntry subCse : notFoundSubCampaigns)
 			{
-				infoText.append(LanguageBundle.getFormattedString(
-					"in_infMissingCampaign", subCse.getURI()));
+				infoText.append(LanguageBundle.getFormattedString("in_infMissingCampaign", subCse.getURI()));
 				infoText.appendLineBreak();
 			}
 		}
-
 		infoText.appendLineBreak();
 		infoText.appendI18nElement("in_infPccPath", aCamp.getSourceURI().getPath());
 	}
 
-
+	@Override
 	public String getHTMLInfo(SourceSelectionFacade selection)
 	{
 		if (selection.getCampaigns().getSize() == 1)
 		{
 			return getHTMLInfo(selection.getCampaigns().getElementAt(0));
 		}
-		
+
 		final HtmlInfoBuilder infoText = new HtmlInfoBuilder(selection.toString());
 		for (CampaignFacade campaign : selection.getCampaigns())
 		{
@@ -263,7 +248,7 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 				continue;
 			}
 			Campaign aCamp = (Campaign) campaign;
-			
+
 			infoText.appendLineBreak();
 			infoText.appendLineBreak();
 			infoText.appendTitleElement(aCamp.getDisplayName());
@@ -271,7 +256,7 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 		}
 		return infoText.toString();
 	}
-	
+
 	/**
 	 * Builds a html display string based on the list of campaign urls.
 	 * 
@@ -299,7 +284,7 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 		}
 		return sb.toString();
 	}
-	
+
 	public static List<CampaignURL> getUrlListForKind(Campaign c, URLKind kind)
 	{
 		List<CampaignURL> kindList = new ArrayList<>();
@@ -314,8 +299,7 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 	}
 
 	@Override
-	public String getRequirementsHTMLString(CampaignFacade campaign,
-		List<CampaignFacade> testList)
+	public String getRequirementsHTMLString(CampaignFacade campaign, List<CampaignFacade> testList)
 	{
 		if (campaign == null || !(campaign instanceof Campaign))
 		{
@@ -325,11 +309,12 @@ public class Gui2CampaignInfoFactory implements CampaignInfoFactory
 
 		PersistenceManager pman = PersistenceManager.getInstance();
 		List<URI> oldList = setSourcesForPrereqTesting(testList, pman);
-		String preReqHtml = PrerequisiteUtilities.preReqHTMLStringsForList(null,
-			null, aCamp.getPrerequisiteList(), false);
+		StringBuilder sb = new StringBuilder();
+		sb.append(PrerequisiteUtilities.preReqHTMLStringsForList(null, null, aCamp.getPrerequisiteList(), false));
+		sb.append(AllowUtilities.getAllowInfo(null, aCamp));
 		pman.setChosenCampaignSourcefiles(oldList);
-		
-		return preReqHtml;
+
+		return sb.toString();
 	}
 
 }

@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package plugin.lsttokens;
 
@@ -62,8 +61,6 @@ import pcgen.rules.persistence.token.ParseResult;
  * <b>Examples:</b><br>
  * {@code FOLLOWERS:Familiar|1}<br>
  * A character is allowed only 1 companion of type Familiar
- *
- *
  */
 public class FollowersLst implements CDOMPrimaryToken<CDOMObject>
 {
@@ -78,19 +75,16 @@ public class FollowersLst implements CDOMPrimaryToken<CDOMObject>
 	}
 
 	@Override
-	public ParseResult parseToken(LoadContext context, CDOMObject obj,
-		String value)
+	public ParseResult parseToken(LoadContext context, CDOMObject obj, String value)
 	{
 		if (obj instanceof Ungranted)
 		{
-			return new ParseResult.Fail("Cannot use " + getTokenName()
-				+ " on an Ungranted object type: "
-				+ obj.getClass().getSimpleName(), context);
+			return new ParseResult.Fail(
+				"Cannot use " + getTokenName() + " on an Ungranted object type: " + obj.getClass().getSimpleName());
 		}
 		if ((value == null) || value.isEmpty())
 		{
-			return new ParseResult.Fail("Argument in " + getTokenName()
-					+ " cannot be empty", context);
+			return new ParseResult.Fail("Argument in " + getTokenName() + " cannot be empty");
 		}
 		ParsingSeparator sep = new ParsingSeparator(value, '|');
 		sep.addGroupingPair('[', ']');
@@ -99,44 +93,39 @@ public class FollowersLst implements CDOMPrimaryToken<CDOMObject>
 		String followerType = sep.next();
 		if (followerType.isEmpty())
 		{
-			return new ParseResult.Fail("Follower Type in " + getTokenName()
-					+ " cannot be empty", context);
+			return new ParseResult.Fail("Follower Type in " + getTokenName() + " cannot be empty");
 		}
 		if (!sep.hasNext())
 		{
-			return new ParseResult.Fail(getTokenName() + " has no PIPE character: "
-				+ "Must be of the form <follower type>|<formula>", context);
+			return new ParseResult.Fail(
+				getTokenName() + " has no PIPE character: " + "Must be of the form <follower type>|<formula>");
 		}
 		String followerNumber = sep.next();
 		if (sep.hasNext())
 		{
-			return new ParseResult.Fail(getTokenName()
-					+ " has too many PIPE characters: "
-					+ "Must be of the form <follower type>|<formula", context);
+			return new ParseResult.Fail(
+				getTokenName() + " has too many PIPE characters: " + "Must be of the form <follower type>|<formula");
 		}
 		if (followerNumber.isEmpty())
 		{
-			return new ParseResult.Fail("Follower Count in " + getTokenName()
-					+ " cannot be empty", context);
+			return new ParseResult.Fail("Follower Count in " + getTokenName() + " cannot be empty");
 		}
-		CDOMSingleRef<CompanionList> cl = context.getReferenceContext().getCDOMReference(
-				CompanionList.class, followerType);
+		CDOMSingleRef<CompanionList> cl =
+				context.getReferenceContext().getCDOMReference(CompanionList.class, followerType);
 		Formula num = FormulaFactory.getFormulaFor(followerNumber);
 		if (!num.isValid())
 		{
-			return new ParseResult.Fail("Number of Followers in "
-					+ getTokenName() + " was not valid: " + num.toString(), context);
+			return new ParseResult.Fail(
+				"Number of Followers in " + getTokenName() + " was not valid: " + num.toString());
 		}
-		context.getObjectContext().addToList(obj, ListKey.FOLLOWERS,
-				new FollowerLimit(cl, num));
+		context.getObjectContext().addToList(obj, ListKey.FOLLOWERS, new FollowerLimit(cl, num));
 		return ParseResult.SUCCESS;
 	}
 
 	@Override
 	public String[] unparse(LoadContext context, CDOMObject obj)
 	{
-		Changes<FollowerLimit> changes = context.getObjectContext()
-				.getListChanges(obj, ListKey.FOLLOWERS);
+		Changes<FollowerLimit> changes = context.getObjectContext().getListChanges(obj, ListKey.FOLLOWERS);
 		if (changes == null || changes.isEmpty())
 		{
 			return null;
@@ -146,8 +135,7 @@ public class FollowersLst implements CDOMPrimaryToken<CDOMObject>
 		{
 			String followerType = fl.getCompanionList().getLSTformat(false);
 			Formula followerNumber = fl.getValue();
-			returnSet.add(followerType + Constants.PIPE
-					+ followerNumber.toString());
+			returnSet.add(followerType + Constants.PIPE + followerNumber.toString());
 		}
 		return returnSet.toArray(new String[returnSet.size()]);
 	}

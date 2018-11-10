@@ -16,13 +16,14 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created/Reinstated on 2015-11-24
- *
  */
 package pcgen.inttest.game_3e;
 
-import pcgen.inttest.pcGenGUITestCase;
+import java.io.IOException;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import pcgen.inttest.PcgenFtlTestCase;
 
 /**
  * Tests a 3e 1st level Halfling Wizard(Transmuter).
@@ -30,7 +31,7 @@ import junit.framework.TestSuite;
  * See PCG file for details.
  */
 @SuppressWarnings("nls")
-public class pcGenGUISWizSamTest extends pcGenGUITestCase
+public class pcGenGUISWizSamTest extends PcgenFtlTestCase
 {
 	/**
 	 * Run the tests.
@@ -61,10 +62,11 @@ public class pcGenGUISWizSamTest extends pcGenGUITestCase
 	}
 
 	/**
-	 * Run test
-	 * @throws Exception
+	 * Run test.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public void testSWizSam() throws Exception
+	public void testSWizSam() throws IOException
 	{
 		runTest("3e_SWizSam", "3e");
 	}

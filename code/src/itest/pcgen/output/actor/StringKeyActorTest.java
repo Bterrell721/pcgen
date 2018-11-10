@@ -20,40 +20,45 @@ package pcgen.output.actor;
 import pcgen.cdom.enumeration.StringKey;
 import pcgen.cdom.facet.model.DeityFacet;
 import pcgen.core.Deity;
-import pcgen.output.base.OutputActor;
 import pcgen.output.publish.OutputDB;
 import pcgen.output.testsupport.AbstractOutputTestCase;
 import pcgen.output.wrapper.CDOMObjectWrapper;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 public class StringKeyActorTest extends AbstractOutputTestCase
 {
-	private static final DeityFacet df = new DeityFacet();
+	private static final DeityFacet DF = new DeityFacet();
 
+	private static boolean classSetUpRun = false;
 
-	@BeforeClass
+	@Override
+	protected void setUp() throws Exception
+	{
+		super.setUp();
+		if (!classSetUpRun)
+		{
+			classSetUp();
+			classSetUpRun = true;
+		}
+	}
+
 	private void classSetUp()
 	{
 		OutputDB.reset();
-		df.init();
+		DF.init();
 	}
 
-	@Test
 	public void testStringKeyActor()
 	{
 		Deity d = new Deity();
 		d.setName("Bob");
 		String expectedResult = "Magical";
-		df.set(id, d);
+		DF.set(id, d);
 		d.put(StringKey.DAMAGE, expectedResult);
-		OutputActor ska = new StringKeyActor(StringKey.DAMAGE);
+		StringKeyActor ska = new StringKeyActor(StringKey.DAMAGE);
 		CDOMObjectWrapper.load(dsid, d.getClass(), "damage", ska);
 		processThroughFreeMarker("${deity.damage}", expectedResult);
 	}
 
-	@Test
 	public void testListKeyActorMissingSafe()
 	{
 		StringKeyActor ska = new StringKeyActor(StringKey.DAMAGE);

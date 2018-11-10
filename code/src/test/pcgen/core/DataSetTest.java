@@ -1,5 +1,4 @@
 /**
- * DataSetTest.java
  * Copyright James Dempsey, 2010
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core;
 
@@ -28,8 +25,10 @@ import pcgen.facade.core.AbilityFacade;
 import pcgen.facade.core.BodyStructureFacade;
 import pcgen.facade.util.DefaultListFacade;
 import pcgen.facade.util.ListFacade;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.core.prereq.Prerequisite;
 import pcgen.util.TestHelper;
+import plugin.lsttokens.testsupport.BuildUtilities;
 import plugin.pretokens.parser.PreAbilityParser;
 
 /**
@@ -59,9 +58,12 @@ public class DataSetTest extends TestCase
 		DataSet dataset = new DataSet(Globals.getContext(), SettingsHandler.getGame(), new DefaultListFacade<>());
 		ListFacade<BodyStructureFacade> locations = dataset.getEquipmentLocations();
 		assertNotNull("Body Structure should not be null", locations);
-		assertTrue("Expected to find Equipped", checkBodyStructurePresent(locations, Constants.EQUIP_LOCATION_EQUIPPED));
-		assertTrue("Expected to find Carried", checkBodyStructurePresent(locations, Constants.EQUIP_LOCATION_CARRIED));
-		assertTrue("Expected to find Not Carried", checkBodyStructurePresent(locations, Constants.EQUIP_LOCATION_NOTCARRIED));
+		assertTrue("Expected to find Equipped",
+			checkBodyStructurePresent(locations, Constants.EQUIP_LOCATION_EQUIPPED));
+		assertTrue("Expected to find Carried",
+			checkBodyStructurePresent(locations, Constants.EQUIP_LOCATION_CARRIED));
+		assertTrue("Expected to find Not Carried",
+			checkBodyStructurePresent(locations, Constants.EQUIP_LOCATION_NOTCARRIED));
 		assertEquals("Incorrect size of body structures list", 3, locations.getSize());
 	}
 
@@ -95,14 +97,15 @@ public class DataSetTest extends TestCase
 
 	/**
 	 * Verify the getPrereqAbilities method is functioning correctly.
-	 * @throws Exception
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testGetPrereqAbilities() throws Exception
+	public void testGetPrereqAbilities() throws PersistenceLayerException
 	{
-		Ability acrobatics = TestHelper.makeAbility("Acrobatics", AbilityCategory.FEAT, "general");
-		Ability dodge = TestHelper.makeAbility("Dodge", AbilityCategory.FEAT, "general");
-		Ability mobility = TestHelper.makeAbility("Mobility", AbilityCategory.FEAT, "general");
-		Ability springAttack = TestHelper.makeAbility("Spring Attack", AbilityCategory.FEAT, "general");
+		Ability acrobatics = TestHelper.makeAbility("Acrobatics", BuildUtilities.getFeatCat(), "general");
+		Ability dodge = TestHelper.makeAbility("Dodge", BuildUtilities.getFeatCat(), "general");
+		Ability mobility = TestHelper.makeAbility("Mobility", BuildUtilities.getFeatCat(), "general");
+		Ability springAttack = TestHelper.makeAbility("Spring Attack", BuildUtilities.getFeatCat(), "general");
 		PreAbilityParser parser = new PreAbilityParser();
 		Prerequisite prereq =
 				parser.parse("ability", "1,CATEGORY=FEAT,KEY_Dodge",

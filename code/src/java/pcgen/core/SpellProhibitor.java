@@ -14,11 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- * Created on March 3, 2005, 16:30 AM
- *
- * Current Ver: $Revision$
- *
  */
 package pcgen.core;
 
@@ -31,7 +26,6 @@ import pcgen.core.spell.Spell;
 import pcgen.util.enumeration.ProhibitedSpellType;
 
 /**
- * @author stefan
  * 
  * TODO To change the template for this generated type comment go to Window -
  * Preferences - Java - Code Style - Code Templates
@@ -73,8 +67,7 @@ public class SpellProhibitor extends ConcretePrereqObject
 		 * Alignment" - thus this Globals check is only relevant to the
 		 * Alignment type
 		 */
-		if (type == ProhibitedSpellType.ALIGNMENT
-				&& !Globals.checkRule(RuleConstants.PROHIBITSPELLS))
+		if (type == ProhibitedSpellType.ALIGNMENT && !Globals.checkRule(RuleConstants.PROHIBITSPELLS))
 		{
 			return false;
 		}
@@ -116,11 +109,10 @@ public class SpellProhibitor extends ConcretePrereqObject
 			return false;
 		}
 		SpellProhibitor other = (SpellProhibitor) o;
-		if ((type == null && other.type == null)
-				|| (type != null && type == other.type))
+		if ((type == null && other.type == null) || (type != null && type == other.type))
 		{
 			return (other.valueList == null && valueList == null)
-					|| valueList != null && valueList.equals(other.valueList);
+				|| valueList != null && valueList.equals(other.valueList);
 		}
 		return false;
 	}

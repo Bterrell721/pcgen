@@ -1,5 +1,4 @@
 /*
- * PCGVer2ParserCharacterTest.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.io;
 
@@ -56,9 +53,10 @@ public class PCGVer2ParserCharacterTest extends AbstractCharacterTestCase
 	 * Check that a racial ADD:SPELLCASTER happens exactly once on character 
 	 * load. Duplication of the association has occurred a couple of times in 
 	 * the past.
-	 * @throws Exception
+	 *
+	 * @throws PCGParseException the PCG parse exception
 	 */
-	public void testRaceAddSpellcaster() throws Exception
+	public void testRaceAddSpellcaster() throws PCGParseException
 	{
 		LoadContext context = Globals.getContext();
 		Race rakshasha =

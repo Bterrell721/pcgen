@@ -1,5 +1,4 @@
 /*
- * XPTableFacade.java
  * Copyright 2009 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -21,16 +20,13 @@ package pcgen.facade.core;
 
 import pcgen.core.LevelInfo;
 
-/**
- *
- */
 public interface XPTableFacade
 {
 
-    public String getName();
+	public String getName();
 
-    @Override
-    public String toString();
+	@Override
+	public String toString();
 
 	public LevelInfo getLevelInfo(String levelString);
 

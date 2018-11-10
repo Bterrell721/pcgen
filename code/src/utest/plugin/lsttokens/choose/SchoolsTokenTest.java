@@ -24,8 +24,6 @@ import org.junit.Test;
 import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.base.Loadable;
 import pcgen.cdom.identifier.SpellSchool;
-import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.PCTemplate;
 import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.context.LoadContext;
@@ -35,8 +33,8 @@ import pcgen.rules.persistence.token.CDOMSecondaryToken;
 import pcgen.rules.persistence.token.QualifierToken;
 import plugin.lsttokens.ChooseLst;
 import plugin.lsttokens.testsupport.AbstractChooseTokenTestCase;
+import plugin.lsttokens.testsupport.BuildUtilities;
 import plugin.lsttokens.testsupport.CDOMTokenLoader;
-import plugin.lsttokens.testsupport.ConsolidationRule;
 import plugin.lsttokens.testsupport.TokenRegistration;
 
 public class SchoolsTokenTest extends AbstractChooseTokenTestCase
@@ -82,12 +80,6 @@ public class SchoolsTokenTest extends AbstractChooseTokenTestCase
 	}
 
 	@Override
-	protected ConsolidationRule getConsolidationRule()
-	{
-		return ConsolidationRule.OVERWRITE;
-	}
-
-	@Override
 	protected String getLegalValue()
 	{
 		return "SCHOOLS|Abjuration";
@@ -106,14 +98,8 @@ public class SchoolsTokenTest extends AbstractChooseTokenTestCase
 	{
 		construct(primaryContext, "Abjuration");
 		construct(secondaryContext, "Abjuration");
-		Ability ss =
-				primaryContext.getReferenceContext().constructCDOMObject(Ability.class,
-					"School Stuff");
-		primaryContext.getReferenceContext().reassociateCategory(AbilityCategory.FEAT, ss);
-		ss =
-				secondaryContext.getReferenceContext().constructCDOMObject(Ability.class,
-					"School Stuff");
-		secondaryContext.getReferenceContext().reassociateCategory(AbilityCategory.FEAT, ss);
+		BuildUtilities.buildAbility(primaryContext, BuildUtilities.getFeatCat(), "School Stuff");
+		BuildUtilities.buildAbility(secondaryContext, BuildUtilities.getFeatCat(), "School Stuff");
 		runRoundRobin("SCHOOLS|ABILITY=FEAT[School Stuff]");
 	}
 
@@ -138,7 +124,7 @@ public class SchoolsTokenTest extends AbstractChooseTokenTestCase
 	}
 
 	@Test
-	public void testInvalidInputNoBrackets() throws PersistenceLayerException
+	public void testInvalidInputNoBrackets()
 	{
 		assertFalse(parse("SCHOOLS|Sorry No [Brackets]"));
 		assertNoSideEffects();
@@ -187,14 +173,13 @@ public class SchoolsTokenTest extends AbstractChooseTokenTestCase
 	}
 
 	@Override
-	public void testInvalidInputOnlySubToken() throws PersistenceLayerException
+	public void testInvalidInputOnlySubToken()
 	{
 		// Must ignore due to 5.16 syntax
 	}
 
 	@Override
 	public void testInvalidInputOnlySubTokenPipe()
-		throws PersistenceLayerException
 	{
 		// Must ignore due to 5.16 syntax
 	}
@@ -206,31 +191,31 @@ public class SchoolsTokenTest extends AbstractChooseTokenTestCase
 	}
 
 	@Override
-	public void testUnparseIllegalAllItem() throws PersistenceLayerException
+	public void testUnparseIllegalAllItem()
 	{
 		//Ignore since SpellSchool doesn't have a RM
 	}
 
 	@Override
-	public void testUnparseIllegalAllType() throws PersistenceLayerException
+	public void testUnparseIllegalAllType()
 	{
 		//Ignore since SpellSchool doesn't have a RM
 	}
 
 	@Override
-	public void testUnparseIllegalItemAll() throws PersistenceLayerException
+	public void testUnparseIllegalItemAll()
 	{
 		//Ignore since SpellSchool doesn't have a RM
 	}
 
 	@Override
-	public void testUnparseIllegalTypeAll() throws PersistenceLayerException
+	public void testUnparseIllegalTypeAll()
 	{
 		//Ignore since SpellSchool doesn't have a RM
 	}
 
 	@Override
-	public void testUnparseLegal() throws PersistenceLayerException
+	public void testUnparseLegal()
 	{
 		//Ignore since SpellSchool doesn't have a RM
 	}

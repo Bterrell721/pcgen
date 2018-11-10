@@ -27,36 +27,37 @@ import pcgen.output.publish.OutputDB;
 import pcgen.output.testsupport.AbstractOutputTestCase;
 import pcgen.output.wrapper.CDOMObjectWrapper;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 public class FactSetKeyActorTest extends AbstractOutputTestCase
 {
 
-	private static final DeityFacet df = new DeityFacet();
+	private static final DeityFacet DF = new DeityFacet();
 
-	@Before
+	private static boolean classSetUpRun = false;
+
+	@Override
 	protected void setUp() throws Exception
 	{
 		super.setUp();
+		if (!classSetUpRun)
+		{
+			classSetUp();
+			classSetUpRun = true;
+		}
 	}
 
-	@BeforeClass
 	private void classSetUp()
 	{
 		OutputDB.reset();
-		df.init();
+		DF.init();
 	}
 
-	@Test
 	public void testListKeyActor()
 	{
 		Deity d = new Deity();
 		d.setName("Bob");
 		String expectedResult1 = "Magical";
 		String expectedResult2 = "Long";
-		df.set(id, d);
+		DF.set(id, d);
 		d.addToListFor(ListKey.BOOK_TYPE, expectedResult1);
 		d.addToListFor(ListKey.BOOK_TYPE, expectedResult2);
 		StringManager mgr = new StringManager();
@@ -70,14 +71,13 @@ public class FactSetKeyActorTest extends AbstractOutputTestCase
 	}
 
 
-	@Test
 	public void testSetJoined()
 	{
 		Deity d = new Deity();
 		d.setName("Bob");
 		String expectedResult1 = "Magical";
 		String expectedResult2 = "Long";
-		df.set(id, d);
+		DF.set(id, d);
 		d.addToListFor(ListKey.BOOK_TYPE, expectedResult1);
 		d.addToListFor(ListKey.BOOK_TYPE, expectedResult2);
 		StringManager mgr = new StringManager();

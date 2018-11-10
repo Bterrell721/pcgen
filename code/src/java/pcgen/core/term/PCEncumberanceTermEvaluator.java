@@ -16,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 09-Aug-2008 20:47:03
- *
- *
  */
 
 package pcgen.core.term;
@@ -26,8 +24,7 @@ import pcgen.core.display.CharacterDisplay;
 import pcgen.core.spell.Spell;
 import pcgen.util.enumeration.Load;
 
-public class PCEncumberanceTermEvaluator 
-		extends BasePCDTermEvaluator implements TermEvaluator
+public class PCEncumberanceTermEvaluator extends BasePCDTermEvaluator implements TermEvaluator
 {
 	public PCEncumberanceTermEvaluator(String originalText)
 	{
@@ -41,18 +38,18 @@ public class PCEncumberanceTermEvaluator
 	}
 
 	@Override
-	public String evaluate (CharacterDisplay display)
+	public String evaluate(CharacterDisplay display)
 	{
 		final Load l = display.getLoadType();
 		return ((Integer) l.ordinal()).toString();
 	}
 
 	@Override
-	public String evaluate (CharacterDisplay display, Spell aSpell)
+	public String evaluate(CharacterDisplay display, Spell aSpell)
 	{
 		return evaluate(display);
 	}
-	
+
 	@Override
 	public boolean isSourceDependant()
 	{

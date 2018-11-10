@@ -1,5 +1,4 @@
 /*
- * SkinLFResourceChecker.java
  * Copyright 2001 (C) Jason Buchanan
  *
  * This library is free software; you can redistribute it and/or
@@ -15,12 +14,10 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.util;
 
 /**
- * Title:        SkinLFResourceChecker.java
  * Description:
  * Copyright:    Copyright (c) 2001
  * Company:
@@ -29,7 +26,7 @@ public final class SkinLFResourceChecker
 {
 	private static int missingResourceCount;
 	private static StringBuilder resourceBuffer;
-	private static final String whereToGetIt =
+	private static final String WHERE_TO_GET_IT =
 			"<a href=\"http://prdownloads.sourceforge.net/pcgen/skin.zip\">skin.zip</a>";
 
 	static
@@ -39,6 +36,10 @@ public final class SkinLFResourceChecker
 		//optimize StringBuilder initial size (0 should be right length. Hopefully we don't get an error. :)
 		resourceBuffer = new StringBuilder(0);
 		checkResource();
+	}
+
+	private SkinLFResourceChecker()
+	{
 	}
 
 	/**
@@ -58,9 +59,8 @@ public final class SkinLFResourceChecker
 	{
 		if (missingResourceCount != 0)
 		{
-			return resourceBuffer + "\n"
-				+ ResourceChecker.getItHereMsg + whereToGetIt + '\n'
-				+ ResourceChecker.missingLibMsg;//TODO Why does this have hardcoded file separators? JK070115
+			return resourceBuffer + "\n" + ResourceChecker.GET_IT_HERE_MSG + WHERE_TO_GET_IT + '\n'
+				+ ResourceChecker.MISSING_LIB_MSG; //TODO Why does this have hardcoded file separators? JK070115
 		}
 
 		return "";
@@ -68,9 +68,7 @@ public final class SkinLFResourceChecker
 
 	private static void checkResource()
 	{
-		if (!ResourceChecker.hasResource(
-				"com.l2fprod.gui.plaf.skin.SkinLookAndFeel", "skinlf.jar",
-				resourceBuffer))
+		if (!ResourceChecker.hasResource("com.l2fprod.gui.plaf.skin.SkinLookAndFeel", "skinlf.jar", resourceBuffer))
 		{
 			++missingResourceCount;
 		}

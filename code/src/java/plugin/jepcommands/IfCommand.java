@@ -1,9 +1,10 @@
 package plugin.jepcommands;
 
-import org.nfunk.jep.ParseException;
-import pcgen.util.PCGenCommand;
-
 import java.util.Stack;
+
+import org.nfunk.jep.ParseException;
+
+import pcgen.util.PCGenCommand;
 
 /**
  * <p>
@@ -16,8 +17,6 @@ import java.util.Stack;
  * So, given if(x,y,z), y is returned if x != 0, and z is returned
  * otherise.
  * </p>
- *
- *
  */
 public class IfCommand extends PCGenCommand
 {
@@ -26,7 +25,6 @@ public class IfCommand extends PCGenCommand
 	 * Initializes the number of parameters to = 3, indicating three number
 	 * of parameters.
 	 * </p>
-	 *
 	 */
 	public IfCommand()
 	{
@@ -38,7 +36,7 @@ public class IfCommand extends PCGenCommand
 	 * Gets the name of the function handled by this class.
 	 * @return The name of the function.
 	 */
-    @Override
+	@Override
 	public String getFunctionName()
 	{
 		return "IF";
@@ -57,7 +55,7 @@ public class IfCommand extends PCGenCommand
 	 * @throws ParseException
 	 */
 	@SuppressWarnings("unchecked") //Uses JEP, which doesn't use generics
-    @Override
+	@Override
 	public void run(final Stack stack) throws ParseException
 	{
 		// Check if stack is null
@@ -66,7 +64,7 @@ public class IfCommand extends PCGenCommand
 			throw new ParseException("Stack argument null");
 		}
 
-        final boolean condition;
+		final boolean condition;
 
 		final Object param3 = stack.pop();
 		final Object param2 = stack.pop();

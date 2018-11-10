@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this library; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.tabs;
 
@@ -42,9 +40,9 @@ import javax.swing.event.ListSelectionListener;
 
 import pcgen.facade.core.CharacterFacade;
 import pcgen.facade.core.NoteFacade;
+import pcgen.facade.util.ListFacade;
 import pcgen.facade.util.event.ListEvent;
 import pcgen.facade.util.event.ListListener;
-import pcgen.facade.util.ListFacade;
 import pcgen.gui2.tabs.bio.BiographyInfoPane;
 import pcgen.gui2.tabs.bio.CampaignHistoryInfoPane;
 import pcgen.gui2.tabs.bio.NoteInfoPane;
@@ -56,9 +54,6 @@ import pcgen.util.enumeration.Tab;
 /**
  * The Class {@code DescriptionInfoTab} is a placeholder for the yet to be
  * implemented description tab.
- *
- * -0700 (Wed, 29 Sep 2010) $
- *
  */
 @SuppressWarnings("serial")
 public class DescriptionInfoTab extends FlippingSplitPane implements CharacterInfoTab
@@ -81,7 +76,7 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 		this.portraitPane = new PortraitInfoPane();
 		this.bioPane = new BiographyInfoPane();
 		this.histPane = new CampaignHistoryInfoPane();
-		this.pageList = new JList();
+		this.pageList = new JList<>();
 		this.addButton = new JButton();
 		this.pagePanel = new JPanel();
 		initComponents();
@@ -89,7 +84,7 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 
 	private void initComponents()
 	{
-		addButton.setAlignmentX((float) 0.5);
+		addButton.setAlignmentX(0.5f);
 
 		Box box = Box.createVerticalBox();
 		box.add(new JScrollPane(pageList));
@@ -120,7 +115,7 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 	}
 
 	/**
-	 * @param noteInfoPane
+	 * @param page
 	 */
 	private <T extends Component & CharacterInfoTab> void removePage(T page)
 	{
@@ -131,13 +126,16 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 	public ModelMap createModels(CharacterFacade character)
 	{
 		ModelMap models = new ModelMap();
-		DefaultListModel listModel = new DefaultListModel();
+		DefaultListModel<PageItem> listModel = new DefaultListModel<>();
 		List<NoteInfoPane> notePaneList = new ArrayList<>();
 
-		PageItem firstPage = new PageItem(character, LanguageBundle.getString("in_descBiography"), bioPane); //$NON-NLS-1$
+		PageItem firstPage = new PageItem(
+			character, LanguageBundle.getString("in_descBiography"), bioPane); //$NON-NLS-1$
 		listModel.addElement(firstPage);
-		listModel.addElement(new PageItem(character, LanguageBundle.getString("in_portrait"), portraitPane)); //$NON-NLS-1$
-		listModel.addElement(new PageItem(character, LanguageBundle.getString("in_descCampHist"), histPane)); //$NON-NLS-1$
+		listModel.addElement(new PageItem(
+			character, LanguageBundle.getString("in_portrait"), portraitPane)); //$NON-NLS-1$
+		listModel.addElement(new PageItem(
+			character, LanguageBundle.getString("in_descCampHist"), histPane)); //$NON-NLS-1$
 
 		models.put(ListModel.class, listModel);
 		models.put(List.class, notePaneList);
@@ -182,11 +180,12 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 
 		private static final int NUM_NON_NOTE_NODES = 3;
 		private final ListFacade<NoteFacade> notes;
-		private final DefaultListModel listModel;
+		private final DefaultListModel<PageItem> listModel;
 		private final List<NoteInfoPane> notePaneList;
 		private final CharacterFacade character;
 
-		public NoteListHandler(CharacterFacade character, DefaultListModel listModel, List<NoteInfoPane> notePaneList)
+		public NoteListHandler(CharacterFacade character, DefaultListModel<PageItem> listModel,
+			List<NoteInfoPane> notePaneList)
 		{
 			this.character = character;
 			this.listModel = listModel;
@@ -201,7 +200,7 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 		}
 
 		private NoteInfoPane createNotePane(NoteFacade note, CharacterFacade character,
-				DefaultListModel listModel, List<NoteInfoPane> notePaneList, int pos)
+			DefaultListModel<PageItem> listModel, List<NoteInfoPane> notePaneList, int pos)
 		{
 			NoteInfoPane notePane = new NoteInfoPane(note);
 			PageItem pageItem = new PageItem(character, note, notePane);
@@ -243,9 +242,7 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 		public void elementAdded(ListEvent<NoteFacade> e)
 		{
 			NoteFacade note = e.getElement();
-			NoteInfoPane notePane
-					= createNotePane(note, character, listModel, notePaneList,
-							e.getIndex());
+			NoteInfoPane notePane = createNotePane(note, character, listModel, notePaneList, e.getIndex());
 			addPage(notePane);
 		}
 
@@ -281,7 +278,7 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 			}
 			for (int i = 0; i < listModel.getSize(); i++)
 			{
-				PageItem item = (PageItem) listModel.elementAt(i);
+				PageItem item = listModel.elementAt(i);
 				if (note == item.note)
 				{
 					listModel.removeElement(item);
@@ -338,7 +335,7 @@ public class DescriptionInfoTab extends FlippingSplitPane implements CharacterIn
 		public PageItem(CharacterFacade character, NoteFacade note, CharacterInfoTab page)
 		{
 			this.note = note;
-			this.name = "";  //$NON-NLS-1$
+			this.name = ""; //$NON-NLS-1$
 			this.id = (String) page.getTabTitle().getValue(TabTitle.TITLE);
 			this.page = page;
 			this.data = page.createModels(character);

@@ -4,14 +4,13 @@ import junit.framework.TestCase;
 
 /**
  * <code>ClassTypeTest</code> <strong>needs documentation</strong>.
- *
  */
 public class ClassTypeTest extends TestCase
 {
 	/**
 	 * Constructs a new <code>ClassTypeTest</code>.
 	 *
-	 * @see PCGenTestCase#PCGenTestCase()
+	 * @see pcgen.PCGenTestCase#PCGenTestCase()
 	 */
 	public ClassTypeTest()
 	{
@@ -23,7 +22,7 @@ public class ClassTypeTest extends TestCase
 	 *
 	 * @param name the test case name
 	 *
-	 * @see PCGenTestCase#PCGenTestCase(String)
+	 * @see pcgen.PCGenTestCase#PCGenTestCase(String)
 	 */
 	public ClassTypeTest(final String name)
 	{
@@ -31,10 +30,9 @@ public class ClassTypeTest extends TestCase
 	}
 
 	/**
-	 * test clone
-	 * @throws Exception
+	 * test clone.
 	 */
-	public void testClone() throws Exception
+	public void testClone()
 	{
 		final ClassType expected = new ClassType();
 		final ClassType actual = expected.clone();

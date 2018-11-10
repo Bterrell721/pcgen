@@ -14,11 +14,8 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.spell;
-
 
 import pcgen.base.lang.StringUtil;
 import pcgen.cdom.base.CDOMReference;
@@ -35,7 +32,6 @@ import pcgen.persistence.lst.output.prereq.PrerequisiteWriter;
 
 /**
  * {@code Spell} represents a magic spell from the games rules.
- *
  */
 @SuppressWarnings("serial")
 public final class Spell extends PObject implements InfoFacade, Ungranted
@@ -55,8 +51,7 @@ public final class Spell extends PObject implements InfoFacade, Ungranted
 		final StringBuilder txt = new StringBuilder(200);
 		txt.append(getDisplayName());
 		txt.append("\t");
-		txt.append(StringUtil.joinToStringBuilder(Globals.getContext().unparse(
-				this), "\t"));
+		txt.append(StringUtil.joinToStringBuilder(Globals.getContext().unparse(this), "\t"));
 		txt.append("\t");
 		txt.append(PrerequisiteWriter.prereqsToString(this));
 
@@ -71,12 +66,11 @@ public final class Spell extends PObject implements InfoFacade, Ungranted
 	 * @return <tt>true</tt> if the Spells are the same.
 	 */
 	@Override
-	public boolean equals( final Object obj )
+	public boolean equals(final Object obj)
 	{
-		return obj instanceof Spell
-				&& getKeyName().equalsIgnoreCase(((Spell) obj).getKeyName());
+		return obj instanceof Spell && getKeyName().equalsIgnoreCase(((Spell) obj).getKeyName());
 	}
-	
+
 	/**
 	 * Need something consistent with equals - this causes conflicts with the same name
 	 * but that's ok, it's only a hashcode.
@@ -90,8 +84,7 @@ public final class Spell extends PObject implements InfoFacade, Ungranted
 	public boolean isAllowed(Type t)
 	{
 		boolean allowed = containsInList(ListKey.ITEM, t);
-		boolean prohibited = Type.POTION.equals(t)
-				|| containsInList(ListKey.PROHIBITED_ITEM, t);
+		boolean prohibited = Type.POTION.equals(t) || containsInList(ListKey.PROHIBITED_ITEM, t);
 		return allowed || !prohibited;
 	}
 

@@ -1,5 +1,4 @@
 /*
- * BigDecimalHelper.java
  * Copyright 2003 (C) Jonas Karlsson <jujutsunerd@sf.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,8 +23,12 @@ import java.math.BigDecimal;
 /**
  * This contains helper functions for BigDecimal.
  */
-public class BigDecimalHelper
+public final class BigDecimalHelper
 {
+
+	private BigDecimalHelper()
+	{
+	}
 
 	/**
 	 * trimBigDecimal ( (BigDecimal) a) to cut off all trailing zeros.
@@ -74,8 +77,7 @@ public class BigDecimalHelper
 		}
 		catch (NumberFormatException exc)
 		{
-			Logging.errorPrint("Cannot trim zeroes from " + numberToTrim
-				+ " as is not a number. Using 0 instead.");
+			Logging.errorPrint("Cannot trim zeroes from " + numberToTrim + " as is not a number. Using 0 instead.");
 		}
 
 		return trimBigDecimal(aBigD).toString();

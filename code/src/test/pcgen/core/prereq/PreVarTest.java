@@ -1,5 +1,4 @@
 /*
- *
  * To change the template for this generated file go to
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
@@ -56,10 +55,13 @@ public class PreVarTest extends AbstractCharacterTestCase
 		return new TestSuite(PreVarTest.class);
 	}
 
+	
 	/**
-	 * @throws Exception
+	 * Test var pass.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testVarPass() throws Exception
+	public void testVarPass() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 

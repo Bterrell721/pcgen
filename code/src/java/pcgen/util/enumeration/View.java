@@ -14,15 +14,12 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.util.enumeration;
 
 /**
  * {@code View} is an enumeration of possible view types. It is
  * closely related to the Visibility enumeration.
- *
- *
  */
 public enum View
 {
@@ -31,7 +28,7 @@ public enum View
 	HIDDEN_EXPORT("HIDDEN_EXPORT"), // Show only those not visible
 	VISIBLE_DISPLAY("VISIBLE_DISPLAY"), // Shows types visible to the GUI
 	VISIBLE_EXPORT("VISIBLE_EXPORT"); // Shows types visible to the Export
-	
+
 	private final String text;
 
 	/**

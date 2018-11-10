@@ -1,5 +1,4 @@
 /*
- * JEPResourceChecker.java
  * Copyright 2003 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -38,6 +37,10 @@ public final class JEPResourceChecker
 		checkResource();
 	}
 
+	private JEPResourceChecker()
+	{
+	}
+
 	/**
 	 * Get the number of missing resources
 	 * @return the number of missing resources
@@ -49,8 +52,7 @@ public final class JEPResourceChecker
 
 	private static void checkResource()
 	{
-		if (!ResourceChecker.hasResource("org.nfunk.jep.JEP",
-				"jep-2.3.1.jar", resourceBuffer))
+		if (!ResourceChecker.hasResource("org.nfunk.jep.JEP", "jep-2.3.1.jar", resourceBuffer))
 		{
 			++missingResourceCount;
 		}

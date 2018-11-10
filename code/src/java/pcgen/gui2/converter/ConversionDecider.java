@@ -1,5 +1,4 @@
 /*
- * ConversionDecider.java
  * Copyright 2009 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.converter;
 
@@ -44,8 +41,8 @@ public interface ConversionDecider
 	 * @param defaultChoice The index of the initially selected option.
 	 * @return the conversion decision
 	 */
-	public String getConversionDecision(String overallDescription,
-		List<String> choiceDescriptions, List<String> choiceTokenResults, int defaultChoice);
+	public String getConversionDecision(String overallDescription, List<String> choiceDescriptions,
+		List<String> choiceTokenResults, int defaultChoice);
 
 	public String getConversionInput(String overallDescription);
 }

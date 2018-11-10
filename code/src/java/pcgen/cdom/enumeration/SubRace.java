@@ -50,14 +50,13 @@ public final class SubRace implements TypeSafeConstant
 	/**
 	 * The ordinal of this Constant
 	 */
-	private final transient int ordinal;
+	private final int ordinal;
 
 	private SubRace(String name)
 	{
 		if (name == null)
 		{
-			throw new IllegalArgumentException(
-					"Name for SubRace cannot be null");
+			throw new IllegalArgumentException("Name for SubRace cannot be null");
 		}
 		ordinal = ordinalCount++;
 		fieldName = name;
@@ -132,8 +131,7 @@ public final class SubRace implements TypeSafeConstant
 		SubRace subRace = typeMap.get(name);
 		if (subRace == null)
 		{
-			throw new IllegalArgumentException(name
-					+ " is not a previously defined SubRace");
+			throw new IllegalArgumentException(name + " is not a previously defined SubRace");
 		}
 		return subRace;
 	}

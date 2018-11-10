@@ -1,5 +1,4 @@
 /**
- * pcgen.core.term.BasePCTermEvaluator.java
  * Copyright (c) 2008 Andrew Wilson <nuance@users.sourceforge.net>.
  *
  * This library is free software; you can redistribute it and/or
@@ -17,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 07-Aug-2008 20:49:05
- *
- *
  */
 
 package pcgen.core.term;
@@ -32,31 +29,30 @@ public abstract class BasePCTermEvaluator
 {
 	protected String originalText;
 
-	public String evaluate(PlayerCharacter pc) {
+	public String evaluate(PlayerCharacter pc)
+	{
 		return Integer.toString(resolve(pc).intValue());
 	}
 
-	public String evaluate(PlayerCharacter pc,  final Spell aSpell) {
-		return evaluate(pc);	
-	}
-
-	public String evaluate(
-			Equipment eq,
-			boolean primary,
-			PlayerCharacter pc) {
+	public String evaluate(PlayerCharacter pc, final Spell aSpell)
+	{
 		return evaluate(pc);
 	}
-	
+
+	public String evaluate(Equipment eq, boolean primary, PlayerCharacter pc)
+	{
+		return evaluate(pc);
+	}
+
 	public abstract Float resolve(PlayerCharacter pc);
 
-	public Float resolve(PlayerCharacter pc, final CharacterSpell aSpell) {
+	public Float resolve(PlayerCharacter pc, final CharacterSpell aSpell)
+	{
 		return TermUtil.convertToFloat(originalText, evaluate(pc, aSpell == null ? null : aSpell.getSpell()));
 	}
 
-	public Float resolve(
-			Equipment eq,
-			boolean primary,
-			PlayerCharacter pc) {
+	public Float resolve(Equipment eq, boolean primary, PlayerCharacter pc)
+	{
 		return TermUtil.convertToFloat(originalText, evaluate(eq, primary, pc));
 	}
 

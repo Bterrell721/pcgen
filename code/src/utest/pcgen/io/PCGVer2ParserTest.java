@@ -14,18 +14,20 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.io;
 
-import pcgen.system.PCGenPropBundle;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
-/**
- */
+import pcgen.system.PCGenPropBundle;
+
+
 public class PCGVer2ParserTest
 {
 
@@ -148,7 +150,8 @@ public class PCGVer2ParserTest
 
 	/**
 	 * Test parsing of version line for broken 5.12RC1 version number.
-	 * @throws PCGParseException
+	 *
+	 * @throws PCGParseException the PCG parse exception
 	 */
 	@Test
 	public void test_1045596_8() throws PCGParseException
@@ -170,7 +173,8 @@ public class PCGVer2ParserTest
 
 	/**
 	 * Test that the currently specified version can be parsed.
-	 * @throws PCGParseException
+	 *
+	 * @throws PCGParseException the PCG parse exception
 	 */
 	@Test
 	public void testCurrVersion() throws PCGParseException

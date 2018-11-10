@@ -1,5 +1,4 @@
 /*
- * pcgen.core.term.PCScoreTermEvaluator.java
  * Copyright (c) 2008 Andrew Wilson <nuance@users.sourceforge.net>.
  *
  * This library is free software; you can redistribute it and/or
@@ -21,8 +20,7 @@ package pcgen.core.term;
 
 import pcgen.core.display.CharacterDisplay;
 
-public class FixedTermEvaluator 
-		extends BasePCDTermEvaluator implements TermEvaluator
+public class FixedTermEvaluator extends BasePCDTermEvaluator implements TermEvaluator
 {
 	private final int value;
 

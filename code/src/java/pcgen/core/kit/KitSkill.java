@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.kit;
 
@@ -45,19 +43,16 @@ import pcgen.util.Logging;
 
 /**
  * {@code KitSkill}.
- *
  */
 public final class KitSkill extends BaseKit
 {
 	private Boolean free = null;
 	private BigDecimal rank = null;
-	private final List<CDOMReference<Skill>> skillList =
-            new ArrayList<>();
+	private final List<CDOMReference<Skill>> skillList = new ArrayList<>();
 	private CDOMSingleRef<PCClass> className = null;
 	private Integer choiceCount;
 
-	private final List<CDOMSingleRef<Language>> selection =
-            new ArrayList<>();
+	private final List<CDOMSingleRef<Language>> selection = new ArrayList<>();
 	private List<KitSkillAdd> skillsToAdd;
 
 	/**
@@ -132,8 +127,7 @@ public final class KitSkill extends BaseKit
 	}
 
 	@Override
-	public boolean testApply(Kit aKit, PlayerCharacter aPC,
-		List<String> warnings)
+	public boolean testApply(Kit aKit, PlayerCharacter aPC, List<String> warnings)
 	{
 		skillsToAdd = new ArrayList<>();
 		List<Skill> skillChoices = getSkillChoices(aPC);
@@ -164,8 +158,7 @@ public final class KitSkill extends BaseKit
 				}
 				else
 				{
-					warnings.add("SKILL: Could not find specified class "
-						+ classKey + " in PC to add ranks from.");
+					warnings.add("SKILL: Could not find specified class " + classKey + " in PC to add ranks from.");
 				}
 			}
 			for (PCClass pcClass : aPC.getClassSet())
@@ -181,9 +174,7 @@ public final class KitSkill extends BaseKit
 			aPC.setImporting(true);
 			for (PCClass pcClass : classList)
 			{
-				final KitSkillAdd sta =
-						addRanks(aPC, pcClass, skill, ranksLeft, isFree(),
-							warnings);
+				final KitSkillAdd sta = addRanks(aPC, pcClass, skill, ranksLeft, isFree(), warnings);
 				if (sta != null)
 				{
 					skillsToAdd.add(sta);
@@ -197,9 +188,8 @@ public final class KitSkill extends BaseKit
 			aPC.setImporting(oldImporting);
 			if (ranksLeft > 0.0)
 			{
-				warnings.add("SKILL: Could not add " + ranksLeft
-					+ " ranks to " + skill.getKeyName()
-					+ ". Not enough points.");
+				warnings.add(
+					"SKILL: Could not add " + ranksLeft + " ranks to " + skill.getKeyName() + ". Not enough points.");
 			}
 		}
 		return true;
@@ -211,8 +201,8 @@ public final class KitSkill extends BaseKit
 		/** @todo Fix this to return what panes need to be refreshed */
 		for (KitSkillAdd ksa : skillsToAdd)
 		{
-			updatePCSkills(aPC, ksa.getSkill(), (int) ksa.getRanks(), ksa
-				.getCost(), ksa.getLanguages(), ksa.getPCClass());
+			updatePCSkills(aPC, ksa.getSkill(), (int) ksa.getRanks(), ksa.getCost(), ksa.getLanguages(),
+				ksa.getPCClass());
 		}
 	}
 
@@ -229,14 +219,12 @@ public final class KitSkill extends BaseKit
 	 * @return {@code true} for success
 	 * TODO What about throwing on failure?
 	 */
-	private boolean updatePCSkills(final PlayerCharacter pc,
-		final Skill aSkill, final int aRank, final double aCost,
+	private boolean updatePCSkills(final PlayerCharacter pc, final Skill aSkill, final int aRank, final double aCost,
 		List<Language> langList, final PCClass pcClass)
 	{
 		boolean oldImporting = pc.isImporting();
 		pc.setImporting(true);
-		final String aString =
-				SkillRankControl.modRanks(aRank, pcClass, true, pc, aSkill);
+		final String aString = SkillRankControl.modRanks(aRank, pcClass, true, pc, aSkill);
 		pc.setImporting(oldImporting);
 
 		if (!aString.isEmpty())
@@ -246,15 +234,13 @@ public final class KitSkill extends BaseKit
 		}
 
 		// Add any supplied languages
-		ChoiceManagerList<Language> controller = ChooserUtilities
-				.getConfiguredController(aSkill, pc, null,
-                        new ArrayList<>());
+		ChoiceManagerList<Language> controller =
+				ChooserUtilities.getConfiguredController(aSkill, pc, null, new ArrayList<>());
 		for (Language lang : langList)
 		{
 			if (!controller.conditionallyApply(pc, lang))
 			{
-				Logging.errorPrint("Failed to apply Language into Skill: "
-						+ lang.getLSTformat());
+				Logging.errorPrint("Failed to apply Language into Skill: " + lang.getKeyName());
 			}
 		}
 
@@ -274,8 +260,7 @@ public final class KitSkill extends BaseKit
 					{
 						continue;
 					}
-					int left =
-							remaining - (int) Math.min(remaining, ptsToSpend);
+					int left = remaining - (int) Math.min(remaining, ptsToSpend);
 					info.setSkillPointsRemaining(left);
 					ptsToSpend -= (remaining - left);
 					if (ptsToSpend <= 0)
@@ -313,15 +298,13 @@ public final class KitSkill extends BaseKit
 		}
 
 		List<Skill> skillChoices = new ArrayList<>();
-		skillChoices = Globals.getChoiceFromList("Select skill", skillsOfType, skillChoices,
-			getSafeCount(), aPC);
+		skillChoices = Globals.getChoiceFromList("Select skill", skillsOfType, skillChoices, getSafeCount(), aPC);
 
 		return skillChoices;
 	}
 
-	private KitSkillAdd addRanks(PlayerCharacter pc, PCClass pcClass,
-		Skill aSkill, double ranksLeftToAdd, boolean isFree,
-		List<String> warnings)
+	private KitSkillAdd addRanks(PlayerCharacter pc, PCClass pcClass, Skill aSkill, double ranksLeftToAdd,
+		boolean isFree, List<String> warnings)
 	{
 		if (!isFree && pcClass.getSkillPool(pc) == 0)
 		{
@@ -336,16 +319,12 @@ public final class KitSkill extends BaseKit
 		double ranksToAdd = ranksLeftToAdd;
 		if (!Globals.checkRule(RuleConstants.SKILLMAX) && (ranksToAdd > 0.0))
 		{
-			ranksToAdd =
-					Math.min(pc.getMaxRank(aSkill, pcClass)
-						.doubleValue(), curRank + ranksLeftToAdd);
+			ranksToAdd = Math.min(pc.getMaxRank(aSkill, pcClass).doubleValue(), curRank + ranksLeftToAdd);
 			ranksToAdd -= curRank;
 			if (!CoreUtility.doublesEqual(ranksToAdd, ranksLeftToAdd))
 			{
-				warnings.add("SKILL: Could not add " + (ranksLeftToAdd - ranksToAdd)
-					+ " to " + aSkill.getDisplayName()
-					+ ". Exceeds MAXRANK of "
-					+ pc.getMaxRank(aSkill, pcClass) + ".");
+				warnings.add("SKILL: Could not add " + (ranksLeftToAdd - ranksToAdd) + " to " + aSkill.getDisplayName()
+					+ ". Exceeds MAXRANK of " + pc.getMaxRank(aSkill, pcClass) + ".");
 			}
 		}
 		int ptsToSpend = 0;
@@ -390,13 +369,10 @@ public final class KitSkill extends BaseKit
 			ptsToSpend = (int) (ranksToAdd * skillCost);
 		}
 
-		String ret =
-				SkillRankControl
-					.modRanks(ranksToAdd, pcClass, false, pc, aSkill);
+		String ret = SkillRankControl.modRanks(ranksToAdd, pcClass, false, pc, aSkill);
 		if (!ret.isEmpty())
 		{
-			if (isFree
-				&& ret.indexOf("You do not have enough skill points.") != -1)
+			if (isFree && ret.indexOf("You do not have enough skill points.") != -1)
 			{
 				SkillRankControl.modRanks(ranksToAdd, pcClass, true, pc, aSkill);
 			}
@@ -421,9 +397,8 @@ public final class KitSkill extends BaseKit
 		List<Language> langList = new ArrayList<>();
 		if (ChooseActivation.hasNewChooseToken(aSkill) && !selection.isEmpty())
 		{
-			ChoiceManagerList<Language> controller = ChooserUtilities
-					.getConfiguredController(aSkill, pc, null,
-                            new ArrayList<>());
+			ChoiceManagerList<Language> controller =
+					ChooserUtilities.getConfiguredController(aSkill, pc, null, new ArrayList<>());
 			int limit = (int) ranksToAdd;
 			for (CDOMSingleRef<Language> ref : selection)
 			{
@@ -439,8 +414,7 @@ public final class KitSkill extends BaseKit
 				}
 			}
 		}
-		return new KitSkillAdd(aSkill, ranksToAdd, ptsToSpend, langList,
-			pcClass);
+		return new KitSkillAdd(aSkill, ranksToAdd, ptsToSpend, langList, pcClass);
 	}
 
 	public Boolean getFree()

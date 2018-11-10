@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -23,10 +21,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pcgen.AbstractCharacterTestCase;
-import pcgen.core.AbilityCategory;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.SettingsHandler;
 import pcgen.core.character.EquipSet;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * The Class <code>CharacterFacadeImplTest</code> verifies the behaviour of 
@@ -68,7 +66,7 @@ public class CharacterFacadeImplTest extends AbstractCharacterTestCase
 	{
 		super.setUp();
 		dataset = new MockDataSetFacade(SettingsHandler.getGame());
-		dataset.addAbilityCategory(AbilityCategory.FEAT);
+		dataset.addAbilityCategory(BuildUtilities.getFeatCat());
 		uiDelegate = new MockUIDelegate();
 	}
 

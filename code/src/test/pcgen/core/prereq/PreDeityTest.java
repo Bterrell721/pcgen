@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -31,14 +28,13 @@ import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.reference.CDOMDirectSingleRef;
 import pcgen.core.Deity;
 import pcgen.core.PlayerCharacter;
+import pcgen.output.channel.ChannelCompatibility;
 import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreDeityTest</code> tests that the PREDEITY tag is
  * working correctly.
- *
- *
  */
 public class PreDeityTest extends AbstractCharacterTestCase
 {
@@ -58,10 +54,11 @@ public class PreDeityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test that the boolean version (Y/N) works
-	 * @throws Exception
+	 * Test that the boolean version (Y/N) works.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testBoolean() throws Exception
+	public void testBoolean() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 
@@ -78,7 +75,7 @@ public class PreDeityTest extends AbstractCharacterTestCase
 		assertTrue("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 
 		assertFalse("Character has deity selected", PrereqHandler.passes(
@@ -92,10 +89,11 @@ public class PreDeityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test different formats for the option
-	 * @throws Exception
+	 * Test different formats for the option.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testFormat() throws Exception
+	public void testFormat() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 
@@ -112,7 +110,7 @@ public class PreDeityTest extends AbstractCharacterTestCase
 		assertTrue("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 
 		assertFalse("Character has deity selected", PrereqHandler.passes(
@@ -135,10 +133,11 @@ public class PreDeityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test naming specific deities works as expected
-	 * @throws Exception
+	 * Test naming specific deities works as expected.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testName() throws Exception
+	public void testName() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 
@@ -150,7 +149,7 @@ public class PreDeityTest extends AbstractCharacterTestCase
 		assertFalse("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 
 		assertTrue("Character has Test Deity selected", PrereqHandler.passes(
@@ -163,8 +162,9 @@ public class PreDeityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test that the new standardised format works correctly.
-	 * @throws PersistenceLayerException
+	 * Test that the new standardized format works correctly.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testNewFormat() throws PersistenceLayerException
 	{
@@ -183,7 +183,7 @@ public class PreDeityTest extends AbstractCharacterTestCase
 		assertTrue("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 
 		assertFalse("Character has deity selected", PrereqHandler.passes(
@@ -221,7 +221,7 @@ public class PreDeityTest extends AbstractCharacterTestCase
 		assertFalse("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 		assertTrue("Character has Celtic deity selected", PrereqHandler.passes(
 			prereq, character, null));

@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.kit;
 
@@ -28,6 +26,7 @@ import pcgen.core.Kit;
 import pcgen.core.PCAlignment;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.analysis.RaceAlignment;
+import pcgen.output.channel.ChannelCompatibility;
 
 /**
  * Deals with the automatic assignment of an Alignment via a Kit
@@ -48,7 +47,7 @@ public class KitAlignment extends BaseKit
 	@Override
 	public void apply(PlayerCharacter aPC)
 	{
-		aPC.setAlignment(align);
+		ChannelCompatibility.setCurrentAlignment(aPC.getCharID(), align);
 	}
 
 	/**
@@ -76,8 +75,7 @@ public class KitAlignment extends BaseKit
 			while (true)
 			{
 				List<PCAlignment> sel = new ArrayList<>(1);
-				sel = Globals.getChoiceFromList("Choose alignment", available, sel,
-					1, aPC);
+				sel = Globals.getChoiceFromList("Choose alignment", available, sel, 1, aPC);
 				if (sel.size() == 1)
 				{
 					align = sel.get(0);

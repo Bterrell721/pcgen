@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.bonustokens;
 
@@ -29,12 +26,11 @@ import pcgen.core.bonus.MultiTagBonusObj;
  * do not gain skills.
  *
  *
- * @author	James Dempsey &lt;jdempsey@users.sourceforge.net&gt;
  */
 
 public final class MonNonSkillHD extends MultiTagBonusObj
 {
-	private static final String[] bonusTags = {"NUMBER", "LOCKNUMBER"};
+	private static final String[] BONUS_TAGS = {"NUMBER", "LOCKNUMBER"};
 
 	/**
 	 * Return the bonus tag handled by this class.
@@ -55,7 +51,7 @@ public final class MonNonSkillHD extends MultiTagBonusObj
 	@Override
 	protected String getBonusTag(final int tagNumber)
 	{
-		return bonusTags[tagNumber];
+		return BONUS_TAGS[tagNumber];
 	}
 
 	/**
@@ -66,6 +62,6 @@ public final class MonNonSkillHD extends MultiTagBonusObj
 	@Override
 	protected int getBonusTagLength()
 	{
-		return bonusTags.length;
+		return BONUS_TAGS.length;
 	}
 }

@@ -1,5 +1,4 @@
 /*
- *
  * To change the template for this generated file go to
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
@@ -11,6 +10,7 @@ import org.junit.Test;
 
 import pcgen.EnUsLocaleDependentTestCase;
 import pcgen.core.prereq.Prerequisite;
+import pcgen.persistence.PersistenceLayerException;
 import plugin.pretokens.parser.PreSkillParser;
 
 /**
@@ -21,11 +21,14 @@ import plugin.pretokens.parser.PreSkillParser;
 @SuppressWarnings("nls")
 public class PreSkillParserTest extends EnUsLocaleDependentTestCase
 {
+	
 	/**
-	 * @throws Exception
+	 * Test 1.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void test1() throws Exception
+	public void test1() throws PersistenceLayerException
 	{
 		PreSkillParser producer = new PreSkillParser();
 
@@ -35,20 +38,23 @@ public class PreSkillParserTest extends EnUsLocaleDependentTestCase
 					false);
 
 		assertEquals(
-			"<prereq operator=\"GTEQ\" operand=\"3\" >\n"
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"Decipher Script\" operator=\"GTEQ\" operand=\"7\" >\n"
-				+ "</prereq>\n"
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"Disable Device\" operator=\"GTEQ\" operand=\"7\" >\n"
-				+ "</prereq>\n"
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"Escape Artist\" operator=\"GTEQ\" operand=\"7\" >\n"
-				+ "</prereq>\n" + "</prereq>\n", prereq.toString());
+		"<prereq operator=\"GTEQ\" operand=\"3\" >\n"
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"Decipher Script\" operator=\"GTEQ\" operand=\"7\" >\n"
+		+ "</prereq>\n"
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"Disable Device\" operator=\"GTEQ\" operand=\"7\" >\n"
+		+ "</prereq>\n"
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"Escape Artist\" operator=\"GTEQ\" operand=\"7\" >\n"
+		+ "</prereq>\n" + "</prereq>\n", prereq.toString());
 	}
 
+	
 	/**
-	 * @throws Exception
+	 * Test 2.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void test2() throws Exception
+	public void test2() throws PersistenceLayerException
 	{
 		PreSkillParser producer = new PreSkillParser();
 
@@ -57,11 +63,11 @@ public class PreSkillParserTest extends EnUsLocaleDependentTestCase
 					false, false);
 
 		assertEquals(
-			"<prereq operator=\"GTEQ\" operand=\"2\" >\n"
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE.Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
-				+ "</prereq>\n"
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE.Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
-				+ "</prereq>\n" + "</prereq>\n", prereq.toString());
+		"<prereq operator=\"GTEQ\" operand=\"2\" >\n"
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE.Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
+		+ "</prereq>\n"
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE.Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
+		+ "</prereq>\n" + "</prereq>\n", prereq.toString());
 	}
 
 	@Test
@@ -75,9 +81,9 @@ public class PreSkillParserTest extends EnUsLocaleDependentTestCase
 					false);
 
 		assertEquals(
-			"<prereq operator=\"GTEQ\" operand=\"3\" >\n"
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE.Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
-				+ "</prereq>\n" + "</prereq>\n", prereq.toString());
+		"<prereq operator=\"GTEQ\" operand=\"3\" >\n"
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE.Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
+		+ "</prereq>\n" + "</prereq>\n", prereq.toString());
 	}
 
 	@Test
@@ -91,9 +97,9 @@ public class PreSkillParserTest extends EnUsLocaleDependentTestCase
 					false);
 
 		assertEquals(
-			"<prereq operator=\"GTEQ\" operand=\"3\" >\n"
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE=Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
-				+ "</prereq>\n" + "</prereq>\n", prereq.toString());
+		"<prereq operator=\"GTEQ\" operand=\"3\" >\n"
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE=Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
+		+ "</prereq>\n" + "</prereq>\n", prereq.toString());
 	}
 
 	@Test
@@ -107,11 +113,11 @@ public class PreSkillParserTest extends EnUsLocaleDependentTestCase
 					false);
 
 		assertEquals(
-			"<prereq operator=\"GTEQ\" operand=\"3\" >\n"
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE=Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
-				+ "</prereq>\n" 
-				+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE=Craft\" operator=\"GTEQ\" operand=\"6\" >\n"
-				+ "</prereq>\n" + 
-				"</prereq>\n", prereq.toString());
+		"<prereq operator=\"GTEQ\" operand=\"3\" >\n"
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE=Knowledge\" operator=\"GTEQ\" operand=\"10\" >\n"
+		+ "</prereq>\n" 
+		+ "<prereq kind=\"skill\" count-multiples=\"true\" key=\"TYPE=Craft\" operator=\"GTEQ\" operand=\"6\" >\n"
+		+ "</prereq>\n"
+		+ "</prereq>\n", prereq.toString());
 	}
 }

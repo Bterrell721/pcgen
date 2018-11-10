@@ -17,12 +17,9 @@
  */
 package plugin.lsttokens.choose;
 
-import org.junit.Test;
-
 import pcgen.cdom.base.CDOMObject;
 import pcgen.core.PCAlignment;
 import pcgen.core.Race;
-import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.persistence.CDOMLoader;
 import pcgen.rules.persistence.token.CDOMPrimaryToken;
 import pcgen.rules.persistence.token.CDOMSecondaryToken;
@@ -88,12 +85,6 @@ public class AlignmentTokenTest extends
 	}
 
 	@Override
-	protected boolean requiresLiteral()
-	{
-		return false;
-	}
-
-	@Override
 	protected boolean isTypeLegal()
 	{
 		return false;
@@ -112,7 +103,7 @@ public class AlignmentTokenTest extends
 	}
 
 	@Override
-	public void testOverwrite() throws PersistenceLayerException
+	public void testOverwrite()
 	{
 		construct(primaryContext, "TestWP1");
 		construct(primaryContext, "TestWP2");

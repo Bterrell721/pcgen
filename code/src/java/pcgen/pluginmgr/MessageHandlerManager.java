@@ -1,5 +1,4 @@
 /*
- * MessageHandlerManager.java
  * Copyright James Dempsey, 2014
  *
  * This library is free software; you can redistribute it and/or
@@ -36,20 +35,20 @@ public class MessageHandlerManager
 {
 	private final PCGenMessageHandler postbox;
 	private final EventListenerList chain;
-	
+
 	public MessageHandlerManager()
 	{
 		chain = new EventListenerList();
 		postbox = new PCGenMessagePostbox();
 	}
-	
+
 	public void addMember(PCGenMessageHandler plugin)
 	{
 		// Add the plugin to the chain of responsibility.
 		chain.add(PCGenMessageHandler.class, plugin);
 		postbox.handleMessage(new ComponentAddedMessage(this, plugin));
 	}
-	
+
 	public void removeMember(PCGenMessageHandler plugin)
 	{
 		postbox.handleMessage(new ComponentRemovedMessage(this, plugin));
@@ -57,7 +56,6 @@ public class MessageHandlerManager
 		chain.remove(PCGenMessageHandler.class, plugin);
 	}
 
-	
 	/**
 	 * @return the postbox to be used to despatch messages 
 	 */
@@ -67,7 +65,7 @@ public class MessageHandlerManager
 	}
 
 	/* ------------------------------------------------------------- */
-	
+
 	/**
 	 * The Class {@code PCGenMessagePostbox} distributes PCGenMessages
 	 * to all handlers registered in the parent ChainOfResponsibility. The handlers 
@@ -90,8 +88,7 @@ public class MessageHandlerManager
 			{
 				if (listeners[i] == PCGenMessageHandler.class)
 				{
-					PCGenMessageHandler handler =
-							(PCGenMessageHandler) listeners[i + 1];
+					PCGenMessageHandler handler = (PCGenMessageHandler) listeners[i + 1];
 					if (handler == msg.getSource())
 					{
 						sourceListening = true;
@@ -114,6 +111,6 @@ public class MessageHandlerManager
 				((PCGenMessageHandler) msg.getSource()).handleMessage(msg);
 			}
 		}
-		
+
 	}
 }

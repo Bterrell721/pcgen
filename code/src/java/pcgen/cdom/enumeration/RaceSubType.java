@@ -50,14 +50,13 @@ public final class RaceSubType implements TypeSafeConstant
 	/**
 	 * The ordinal of this Constant
 	 */
-	private final transient int ordinal;
+	private final int ordinal;
 
 	private RaceSubType(String name)
 	{
 		if (name == null)
 		{
-			throw new IllegalArgumentException(
-					"Name for RaceSubType cannot be null");
+			throw new IllegalArgumentException("Name for RaceSubType cannot be null");
 		}
 		ordinal = ordinalCount++;
 		fieldName = name;
@@ -132,8 +131,7 @@ public final class RaceSubType implements TypeSafeConstant
 		RaceSubType type = typeMap.get(name);
 		if (type == null)
 		{
-			throw new IllegalArgumentException(name
-					+ " is not a previously defined RaceSubType");
+			throw new IllegalArgumentException(name + " is not a previously defined RaceSubType");
 		}
 		return type;
 	}

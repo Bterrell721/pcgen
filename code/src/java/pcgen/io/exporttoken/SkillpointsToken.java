@@ -1,5 +1,4 @@
 /*
- * SkillpointsToken.java
  * Copyright 2003 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
  * This library is free software; you can redistribute it and/or
@@ -46,25 +45,18 @@ public class SkillpointsToken extends Token
 	/** Token name */
 	public static final String TOKENNAME = "SKILLPOINTS";
 
-	/**
-	 * @see pcgen.io.exporttoken.Token#getTokenName()
-	 */
 	@Override
 	public String getTokenName()
 	{
 		return TOKENNAME;
 	}
 
-	/**
-	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
-	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		final StringTokenizer aTok = new StringTokenizer(tokenSource, ".");
 		String bString;
-		int classNum = -1; 
+		int classNum = -1;
 
 		bString = aTok.nextToken();
 
@@ -82,8 +74,7 @@ public class SkillpointsToken extends Token
 			}
 			catch (NumberFormatException e)
 			{
-				Logging.errorPrint("Expected class number in " + tokenSource
-					+ " but got " + pcclass + ".");
+				Logging.errorPrint("Expected class number in " + tokenSource + " but got " + pcclass + ".");
 			}
 		}
 
@@ -96,26 +87,12 @@ public class SkillpointsToken extends Token
 
 		if ("TOTAL".equals(bString) || "UNUSED".equals(bString))
 		{
-			if (classNum >= 0)
-			{
-				aTotalSkillPoints += getUnusedSkillPoints(pc, classNum);
-			}
-			else
-			{
-				aTotalSkillPoints += getUnusedSkillPoints(pc);
-			}
+			aTotalSkillPoints += (classNum >= 0) ? getUnusedSkillPoints(pc, classNum) : getUnusedSkillPoints(pc);
 		}
 
 		if ("TOTAL".equals(bString) || "USED".equals(bString))
 		{
-			if (classNum >= 0)
-			{
-				aTotalSkillPoints += getUsedSkillPoints(pc, classNum);
-			}
-			else
-			{
-				aTotalSkillPoints += getUsedSkillPoints(pc);
-			}
+			aTotalSkillPoints += (classNum >= 0) ? getUsedSkillPoints(pc, classNum) : getUsedSkillPoints(pc);
 		}
 
 		return BigDecimalHelper.trimZeros(new BigDecimal(aTotalSkillPoints));
@@ -205,16 +182,14 @@ public class SkillpointsToken extends Token
 		for (Skill aSkill : display.getSkillSet())
 		{
 			Integer outputIndex = pc.getSkillOrder(aSkill);
-			if ((pc.getRank(aSkill).doubleValue() > 0)
-				|| (outputIndex != null && outputIndex != 0))
+			if ((pc.getRank(aSkill).doubleValue() > 0) || (outputIndex != null && outputIndex != 0))
 			{
 				Double rank = pc.getSkillRankForClass(aSkill, targetClass);
 				if (rank == null)
 				{
 					rank = 0.0d;
 				}
-				SkillCost skillCost =
-						pc.getSkillCostForClass(aSkill, targetClass);
+				SkillCost skillCost = pc.getSkillCostForClass(aSkill, targetClass);
 				usedPoints += (rank * skillCost.getCost());
 			}
 		}

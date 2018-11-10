@@ -1,5 +1,4 @@
 /*
- * SourceEntryTest.java
  * Copyright 2008 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package pcgen.core;
@@ -24,14 +21,13 @@ package pcgen.core;
 import javax.xml.transform.Source;
 
 import junit.framework.TestCase;
+import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.enumeration.SourceFormat;
 import pcgen.cdom.enumeration.StringKey;
 
 /**
  * <code>SourceEntryTest</code> verifies the function of the SourceEntry class.
- *
- *
  */
 public class SourceEntryTest extends TestCase
 {
@@ -58,7 +54,8 @@ public class SourceEntryTest extends TestCase
 	}
 
 	/**
-	 * Test method for {@link pcgen.core.SourceEntry#getFormattedString(pcgen.core.SourceEntry.SourceFormat, boolean)}.
+	 * Test method for
+	 * {@link SourceFormat#getFormattedString(CDOMObject, SourceFormat, boolean)}.
 	 */
 	public void testGetFormattedString()
 	{

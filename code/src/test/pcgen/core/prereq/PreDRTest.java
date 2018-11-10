@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -29,13 +26,12 @@ import pcgen.cdom.content.DamageReduction;
 import pcgen.cdom.enumeration.ListKey;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.Race;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreDRTest</code> tests that the PREDR tag is
  * working correctly.
- *
- *
  */
 public class PreDRTest extends AbstractCharacterTestCase
 {
@@ -56,10 +52,11 @@ public class PreDRTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test basic functionality
-	 * @throws Exception
+	 * Test basic functionality.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testDR() throws Exception
+	public void testDR() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		character.setRace(race);
@@ -91,10 +88,11 @@ public class PreDRTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Make sure or case works
-	 * @throws Exception
+	 * Make sure or case works.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testMultiOr() throws Exception
+	public void testMultiOr() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		character.setRace(race);

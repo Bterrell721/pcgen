@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package plugin.lsttokens.gamemode;
 
@@ -40,15 +38,12 @@ import pcgen.util.Logging;
 public class OutputSheetToken implements GameModeLstToken
 {
 
-	/**
-	 * @see pcgen.persistence.lst.GameModeLstToken#parse(pcgen.core.GameMode, java.lang.String, java.net.URI)
-	 */
-    @Override
+	@Override
 	public boolean parse(GameMode gameMode, String value, URI source)
 	{
 		String[] tokens = value.split("\\|");
 		List<String> validTags = new ArrayList<>(Arrays.asList("HTM", "PDF", "TXT"));
-		
+
 		if (tokens.length == 2)
 		{
 			if (tokens[0].equals("DIRECTORY"))
@@ -66,28 +61,22 @@ public class OutputSheetToken implements GameModeLstToken
 						gameMode.setOutputSheetDefault(subtokens[1], tokens[1]);
 						return true;
 					}
-					Logging.log(Logging.LST_ERROR, "Invalid token " + getTokenName()
-							+ Constants.COLON + value
-							+ ". Invalid DEFAULT.x subtoken"
-							+ " in " + source.toString());
+					Logging.log(Logging.LST_ERROR, "Invalid token " + getTokenName() + Constants.COLON + value
+						+ ". Invalid DEFAULT.x subtoken" + " in " + source.toString());
 					return false;
 				}
 			}
 		}
-		Logging.log(Logging.LST_ERROR, "Invalid token " + getTokenName()
-				+ Constants.COLON + value
-				+ ". Expected OUTPUTSHEET:DIRECTORY|x or OUTPUTSHEET:DEFAULT.x|y "
-				+ " in " + source.toString());
-			return false;
-			
+		Logging.log(Logging.LST_ERROR, "Invalid token " + getTokenName() + Constants.COLON + value
+			+ ". Expected OUTPUTSHEET:DIRECTORY|x or OUTPUTSHEET:DEFAULT.x|y " + " in " + source.toString());
+		return false;
+
 	}
 
 	/**
 	 * Returns the name of the token this class handles.
-	 * 
-	 * @see pcgen.persistence.lst.LstToken#getTokenName()
 	 */
-    @Override
+	@Override
 	public String getTokenName()
 	{
 		return "OUTPUTSHEET"; //$NON-NLS-1$

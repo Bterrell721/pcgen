@@ -1,5 +1,4 @@
 /*
- * VisionType.java
  * Missing License Header, Copyright 2016 (C) Andrew Maitland <amaitland@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 
 package pcgen.util.enumeration;
@@ -67,16 +65,14 @@ public final class VisionType extends AbstractConstant
 		{
 			int mod = fields[i].getModifiers();
 
-			if (Modifier.isStatic(mod) && Modifier.isFinal(mod)
-				&& Modifier.isPublic(mod))
+			if (Modifier.isStatic(mod) && Modifier.isFinal(mod) && Modifier.isPublic(mod))
 			{
 				try
 				{
 					Object o = fields[i].get(null);
 					if (o instanceof VisionType)
 					{
-						typeMap.put(new CaseInsensitiveString(fields[i]
-							.getName()), (VisionType) o);
+						typeMap.put(new CaseInsensitiveString(fields[i].getName()), (VisionType) o);
 					}
 				}
 				catch (IllegalArgumentException | IllegalAccessException e)
@@ -95,8 +91,7 @@ public final class VisionType extends AbstractConstant
 		{
 			return "";
 		}
-		for (Map.Entry<CaseInsensitiveString, VisionType> me : typeMap
-			.entrySet())
+		for (Map.Entry<CaseInsensitiveString, VisionType> me : typeMap.entrySet())
 		{
 			if (me.getValue().equals(this))
 			{

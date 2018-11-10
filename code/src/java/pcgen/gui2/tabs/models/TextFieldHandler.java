@@ -26,9 +26,6 @@ import pcgen.facade.util.ReferenceFacade;
 import pcgen.facade.util.event.ReferenceEvent;
 import pcgen.facade.util.event.ReferenceListener;
 
-/**
- *
- */
 public abstract class TextFieldHandler implements DocumentListener, ReferenceListener<String>
 {
 
@@ -101,4 +98,3 @@ public abstract class TextFieldHandler implements DocumentListener, ReferenceLis
 	}
 
 }
-

@@ -11,9 +11,6 @@
  *
  * You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to
  * the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -34,7 +31,7 @@ import pcgen.system.LanguageBundle;
  */
 public class Prerequisite implements Cloneable
 {
-	
+
 	private static final String PERCENT_CHOICE_PATTERN = Pattern.quote(Constants.LST_PERCENT_CHOICE);
 	/** Kind to be used for a clear prerequisite request. */
 	public static final String APPLY_KIND = "APPLY";
@@ -49,10 +46,10 @@ public class Prerequisite implements Cloneable
 	 * added together when checking for a value.
 	 */
 	private boolean totalValues;
-	
+
 	/** Is a character required to test this prereq against?. */
 	private boolean characterRequired = true;
-	
+
 	/** Indicates that the number of qualifying objects should be tallied when checking for a value. */
 	private boolean countMultiples;
 	private boolean overrideQualify = false;
@@ -61,21 +58,13 @@ public class Prerequisite implements Cloneable
 	private String categoryName;
 
 	/**
-	 * Instantiates a new prerequisite.
-	 */
-	public Prerequisite()
-	{
-		// Empty Constructor
-	}
-
-	/**
 	 * @return Returns the totalValues.
 	 */
 	public final boolean isTotalValues()
 	{
 		return totalValues;
 	}
-	
+
 	/**
 	 * Sets the totalValues attribute.
 	 * @param val The value to set TotalValues to.
@@ -84,7 +73,7 @@ public class Prerequisite implements Cloneable
 	{
 		this.totalValues = val;
 	}
-	
+
 	/**
 	 * Sets the countMultiples attribute.
 	 * @param val
@@ -219,11 +208,6 @@ public class Prerequisite implements Cloneable
 		return subKey;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString()
 	{
@@ -245,7 +229,7 @@ public class Prerequisite implements Cloneable
 		{
 			buf.append(LanguageBundle.getString("Prerequisite.count-multiples")); //$NON-NLS-1$
 		}
-		
+
 		if (totalValues)
 		{
 			buf.append(LanguageBundle.getString("Prerequisite.total-values")); //$NON-NLS-1$
@@ -297,9 +281,9 @@ public class Prerequisite implements Cloneable
 
 		if (prerequisites != null)
 		{
-			for ( Prerequisite prereq : prerequisites )
+			for (Prerequisite prereq : prerequisites)
 			{
-				buf.append(prereq.toString());
+				buf.append(prereq);
 			}
 		}
 
@@ -328,11 +312,6 @@ public class Prerequisite implements Cloneable
 		this.overrideQualify = override;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#clone()
-	 */
 	@Override
 	public Prerequisite clone() throws CloneNotSupportedException
 	{
@@ -341,7 +320,7 @@ public class Prerequisite implements Cloneable
 		if (prerequisites != null)
 		{
 			copy.prerequisites = new ArrayList<>();
-			for ( Prerequisite subreq : prerequisites )
+			for (Prerequisite subreq : prerequisites)
 			{
 				copy.prerequisites.add(subreq.clone());
 			}
@@ -367,14 +346,14 @@ public class Prerequisite implements Cloneable
 			buf.append("of category ");
 			buf.append(categoryName);
 			buf.append(":");
-			buf.append(' '); //$NON-NLS-1$
+			buf.append(' ');
 
 		}
 
 		if (kind != null && !shortForm)
 		{
 			buf.append(kind);
-			buf.append(' '); //$NON-NLS-1$
+			buf.append(' ');
 		}
 
 		if (key != null)
@@ -382,25 +361,25 @@ public class Prerequisite implements Cloneable
 			buf.append(key);
 			if (!shortForm)
 			{
-				buf.append(' '); //$NON-NLS-1$
+				buf.append(' ');
 			}
 		}
 
 		if ((subKey != null) && !subKey.equals("")) //$NON-NLS-1$
 		{
-			buf.append('('); //$NON-NLS-1$
+			buf.append('(');
 			buf.append(subKey);
-			buf.append(')'); //$NON-NLS-1$
+			buf.append(')');
 			if (!shortForm)
 			{
-				buf.append(' '); //$NON-NLS-1$
+				buf.append(' ');
 			}
 		}
 
 		if (!shortForm)
 		{
 			buf.append(operator);
-			buf.append(' '); //$NON-NLS-1$
+			buf.append(' ');
 		}
 
 		if (operand != null && !shortForm)
@@ -411,11 +390,11 @@ public class Prerequisite implements Cloneable
 		if (prerequisites != null && !prerequisites.isEmpty() && !shortForm)
 		{
 			buf.append(" ("); //$NON-NLS-1$
-			for ( Prerequisite subreq : prerequisites )
+			for (Prerequisite subreq : prerequisites)
 			{
 				buf.append(subreq.getDescription(shortForm));
 			}
-			buf.append(')'); //$NON-NLS-1$
+			buf.append(')');
 		}
 
 		return buf.toString();
@@ -440,8 +419,7 @@ public class Prerequisite implements Cloneable
 	@Override
 	public int hashCode()
 	{
-		return (kind == null ? -1 : kind.hashCode())
-				^ (key == null ? 0 : key.hashCode());
+		return (kind == null ? -1 : kind.hashCode()) ^ (key == null ? 0 : key.hashCode());
 	}
 
 	@Override
@@ -485,8 +463,7 @@ public class Prerequisite implements Cloneable
 			}
 		}
 		boolean iHave = prerequisites != null && !prerequisites.isEmpty();
-		boolean otherHas =
-				other.prerequisites != null && !other.prerequisites.isEmpty();
+		boolean otherHas = other.prerequisites != null && !other.prerequisites.isEmpty();
 		if (iHave)
 		{
 			if (!otherHas)
@@ -498,8 +475,7 @@ public class Prerequisite implements Cloneable
 			{
 				return false;
 			}
-			ArrayList<Prerequisite> removed =
-                    new ArrayList<>(prerequisites);
+			ArrayList<Prerequisite> removed = new ArrayList<>(prerequisites);
 			removed.removeAll(otherPRL);
 			if (!removed.isEmpty())
 			{
@@ -510,14 +486,10 @@ public class Prerequisite implements Cloneable
 		{
 			return false;
 		}
-		return countMultiples == other.countMultiples
-			&& overrideQualify == other.overrideQualify
-			&& operator == other.operator
-			&& (kind == null || kind.equals(other.kind))
-			&& (key == null || key.equals(other.key))
-			&& (subKey == null || subKey.equals(other.subKey))
-			&& operand.equals(other.operand)
-			&& (categoryName == null || categoryName.equals(other.categoryName));
+		return countMultiples == other.countMultiples && overrideQualify == other.overrideQualify
+			&& operator == other.operator && (kind == null || kind.equals(other.kind))
+			&& (key == null || key.equals(other.key)) && (subKey == null || subKey.equals(other.subKey))
+			&& operand.equals(other.operand) && (categoryName == null || categoryName.equals(other.categoryName));
 	}
 
 	/**
@@ -541,7 +513,7 @@ public class Prerequisite implements Cloneable
 	}
 
 	private boolean nativeCheckMult = false;
-	
+
 	public void setOriginalCheckmult(boolean b)
 	{
 		nativeCheckMult = b;
@@ -562,14 +534,13 @@ public class Prerequisite implements Cloneable
 		}
 		if (copy.operand != null)
 		{
-			copy.operand =
-					copy.operand.replaceAll(PERCENT_CHOICE_PATTERN, assoc);
+			copy.operand = copy.operand.replaceAll(PERCENT_CHOICE_PATTERN, assoc);
 		}
 
 		if (prerequisites != null)
 		{
 			copy.prerequisites = new ArrayList<>();
-			for ( Prerequisite subreq : prerequisites )
+			for (Prerequisite subreq : prerequisites)
 			{
 				copy.prerequisites.add(subreq.specify(assoc));
 			}

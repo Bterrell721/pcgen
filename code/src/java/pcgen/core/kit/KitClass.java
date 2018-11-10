@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.kit;
 
@@ -36,7 +34,6 @@ import pcgen.gui2.UIPropertyContext;
 
 /**
  * {@code KitClass} <strong>needs documentation</strong>.
- *
  */
 public class KitClass extends BaseKit
 {
@@ -65,22 +62,20 @@ public class KitClass extends BaseKit
 	}
 
 	@Override
-	public boolean testApply(Kit aKit, PlayerCharacter aPC,
-		List<String> warnings)
+	public boolean testApply(Kit aKit, PlayerCharacter aPC, List<String> warnings)
 	{
 		theLevel = -1;
 		doLevelAbilities = true;
-		
+
 		theClass = pcClass.get();
 
 		theOrigSubClass = aPC.getSubClassName(theClass);
 		applySubClass(aPC);
 
-		if (!PrereqHandler.passesAll(theClass.getPrerequisiteList(), aPC, aKit))
+		if (!PrereqHandler.passesAll(theClass, aPC, aKit))
 		{
 			PrereqHandler.toHtmlString(theClass.getPrerequisiteList());
-			warnings.add("CLASS: Not qualified for class \""
-				+ theClass.getKeyName() + "\".");
+			warnings.add("CLASS: Not qualified for class \"" + theClass.getKeyName() + "\".");
 			return false;
 		}
 
@@ -122,8 +117,8 @@ public class KitClass extends BaseKit
 		theClass = null;
 	}
 
-	private void addLevel(final PlayerCharacter pc, final int numLevels,
-		final PCClass aClass, final boolean doLevelAbilitiesIn)
+	private void addLevel(final PlayerCharacter pc, final int numLevels, final PCClass aClass,
+		final boolean doLevelAbilitiesIn)
 	{
 		// We want to level up as quietly as possible for kits.
 		boolean tempShowHP = SettingsHandler.getShowHPDialogAtLevelUp();

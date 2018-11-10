@@ -1,5 +1,4 @@
 /*
- * WeaponhToken.java
  * Copyright 2003 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
  * This library is free software; you can redistribute it and/or
@@ -45,7 +44,6 @@ import pcgen.system.LanguageBundle;
 /**
  * {@code WeaponhToken}.
  *
- * @author	binkley
  */
 public class WeaponhToken extends WeaponToken
 {
@@ -75,8 +73,7 @@ public class WeaponhToken extends WeaponToken
 	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
 	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		StringTokenizer aTok = new StringTokenizer(tokenSource, ".", false);
 		//Weapono Token
@@ -109,7 +106,8 @@ public class WeaponhToken extends WeaponToken
 	{
 		// Creating a fake Unarmed Strike equipment so we
 		// don't need it in the .lst files anymore
-		WeaponProf wp = Globals.getContext().getReferenceContext().silentlyGetConstructedCDOMObject(WeaponProf.class, "Unarmed Strike");
+		WeaponProf wp = Globals.getContext().getReferenceContext().silentlyGetConstructedCDOMObject(WeaponProf.class,
+			"Unarmed Strike");
 		if (wp == null)
 		{
 			wp = new WeaponProf();
@@ -132,7 +130,7 @@ public class WeaponhToken extends WeaponToken
 		eq.addType(Type.MONK);
 		eq.addType(Type.BLUDGEONING);
 		WieldCategory lightWC = Globals.getContext().getReferenceContext()
-				.silentlyGetConstructedCDOMObject(WieldCategory.class, "Light");
+			.silentlyGetConstructedCDOMObject(WieldCategory.class, "Light");
 		if (lightWC == null)
 		{
 			// Error?

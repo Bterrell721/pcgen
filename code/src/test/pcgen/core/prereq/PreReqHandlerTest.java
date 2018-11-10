@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2004 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,11 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -30,6 +24,7 @@ import java.util.Locale;
 import pcgen.EnUsLocaleDependentTestCase;
 import pcgen.LocaleDependentTestCase;
 import junit.framework.TestCase;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 import pcgen.util.TestHelper;
 
@@ -37,8 +32,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
 
-/**
- */
+
 @SuppressWarnings("nls")
 public class PreReqHandlerTest extends TestCase
 {
@@ -73,10 +67,11 @@ public class PreReqHandlerTest extends TestCase
 	}
 
 	/**
-	 * Print out as HTML
-	 * @throws Exception
+	 * Print out as HTML.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testToHtml() throws Exception
+	public void testToHtml() throws PersistenceLayerException
 	{
 		final PreParserFactory factory = PreParserFactory.getInstance();
 		final List<Prerequisite> list = new ArrayList<>();
@@ -90,7 +85,9 @@ public class PreReqHandlerTest extends TestCase
 		final String htmlString = PrereqHandler.toHtmlString(list);
 		System.out.println(htmlString);
 		assertEquals(
-			"at least 15 ranks in Spellcraft and at least 1 Arcane spell of level 8 and at least 2 FEAT(s) of type Metamagic and at least 2 FEAT(s) of type ItemCreation and at least 20 of ( at least 1 ranks in TYPE.Knowledge )",
+			"at least 15 ranks in Spellcraft and at least 1 Arcane spell of level 8 and at least 2 FEAT(s) of type "
+					+ "Metamagic and at least 2 FEAT(s) of type ItemCreation and at least 20 of "
+					+ "( at least 1 ranks in TYPE.Knowledge )",
 			htmlString);
 		EnUsLocaleDependentTestCase.after();
 	}

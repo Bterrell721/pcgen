@@ -14,23 +14,25 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.cdom.util;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import pcgen.cdom.enumeration.AspectName;
 import pcgen.cdom.enumeration.MapKey;
 import pcgen.cdom.helper.Aspect;
-
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * The Class {@code MapKeyMapTest} test that the MapKeyMap
@@ -57,7 +59,8 @@ public class MapKeyMapTest
 	private Aspect breedAspect;
 
 	/**
-	 * @see junit.framework.TestCase#setUp()
+	 * @throws Exception 
+	 * @see junit.framework.TestCase#setUp
 	 */
 	@Before
 	public void setUp() throws Exception

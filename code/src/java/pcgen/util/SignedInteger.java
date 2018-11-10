@@ -1,5 +1,4 @@
 /*
- * SignedInteger.java
  * Copyright James Dempsey, 2013
  *
  * This library is free software; you can redistribute it and/or
@@ -32,7 +31,7 @@ public class SignedInteger extends Number implements Comparable<SignedInteger>
 
 	/** Version for serialisation. */
 	private static final long serialVersionUID = 3744855657358887537L;
-	
+
 	/** The integer value being represented. */
 	private final int value;
 
@@ -44,7 +43,7 @@ public class SignedInteger extends Number implements Comparable<SignedInteger>
 	{
 		this.value = value;
 	}
-	
+
 	@Override
 	public double doubleValue()
 	{
@@ -82,16 +81,8 @@ public class SignedInteger extends Number implements Comparable<SignedInteger>
 	@Override
 	public int compareTo(SignedInteger arg0)
 	{
-		if (value == arg0.value)
-		{
-			return 0;
-		}
-		if (value > arg0.value)
-		{
-			return 1;
-		}
-		return -1;
-	}
+        return Integer.compare(value, arg0.value);
+    }
 
 	@Override
 	public int hashCode()

@@ -1,5 +1,4 @@
 /*
- * PreDamageReductionParserTest.java
  *
  * Copyright 2003 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
@@ -16,11 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
- *
- *
  */
 package pcgen.persistence.lst.prereq;
 
@@ -34,17 +28,13 @@ import pcgen.core.prereq.Prerequisite;
 import pcgen.persistence.PersistenceLayerException;
 import plugin.pretokens.parser.PreDamageReductionParser;
 
-/**
- *
- */
+
 @SuppressWarnings("nls")
 public class PreDamageReductionParserTest extends EnUsLocaleDependentTestCase
 {
-	/**
-	 * @throws Exception
-	 */
+	
 	@Test
-	public void testMultipleFails() throws Exception
+	public void testMultipleFails()
 	{
 		PreDamageReductionParser parser = new PreDamageReductionParser();
 
@@ -61,11 +51,14 @@ public class PreDamageReductionParserTest extends EnUsLocaleDependentTestCase
 		}
 	}
 
+	
 	/**
-	 * @throws Exception
+	 * Test multiple passes.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void testMultiplePasses() throws Exception
+	public void testMultiplePasses() throws PersistenceLayerException
 	{
 		PreDamageReductionParser parser = new PreDamageReductionParser();
 
@@ -73,15 +66,20 @@ public class PreDamageReductionParserTest extends EnUsLocaleDependentTestCase
 				parser.parse("DR", "1,Evil=5,Magic.10", false, false);
 
 		assertEquals(
-			"<prereq operator=\"GTEQ\" operand=\"1\" >\n<prereq kind=\"dr\" key=\"Evil\" operator=\"GTEQ\" operand=\"5\" >\n</prereq>\n<prereq kind=\"dr\" key=\"Magic\" operator=\"GTEQ\" operand=\"10\" >\n</prereq>\n</prereq>\n",
+			"<prereq operator=\"GTEQ\" operand=\"1\" >\n<prereq kind=\"dr\" key=\"Evil\" "
+			+ "operator=\"GTEQ\" operand=\"5\" >\n</prereq>\n<prereq kind=\"dr\" key=\"Magic\" "
+			+ "operator=\"GTEQ\" operand=\"10\" >\n</prereq>\n</prereq>\n",
 			prereq.toString());
 	}
 
+	
 	/**
-	 * @throws Exception
+	 * Test no value.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void testNoValue() throws Exception
+	public void testNoValue() throws PersistenceLayerException
 	{
 		PreDamageReductionParser parser = new PreDamageReductionParser();
 
@@ -89,7 +87,9 @@ public class PreDamageReductionParserTest extends EnUsLocaleDependentTestCase
 				parser.parse("DR", "1,Evil=5,Magic", false, false);
 
 		assertEquals(
-			"<prereq operator=\"GTEQ\" operand=\"1\" >\n<prereq kind=\"dr\" key=\"Evil\" operator=\"GTEQ\" operand=\"5\" >\n</prereq>\n<prereq kind=\"dr\" key=\"Magic\" operator=\"GTEQ\" operand=\"0\" >\n</prereq>\n</prereq>\n",
+			"<prereq operator=\"GTEQ\" operand=\"1\" >\n<prereq kind=\"dr\" key=\"Evil\" "
+					+ "operator=\"GTEQ\" operand=\"5\" >\n</prereq>\n<prereq kind=\"dr\" key=\"Magic\" "
+					+ "operator=\"GTEQ\" operand=\"0\" >\n</prereq>\n</prereq>\n",
 			prereq.toString());
 	}
 }

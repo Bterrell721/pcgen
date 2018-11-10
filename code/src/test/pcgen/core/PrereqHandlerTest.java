@@ -4,14 +4,14 @@ import pcgen.AbstractCharacterTestCase;
 import pcgen.cdom.enumeration.StringKey;
 import pcgen.core.prereq.PrereqHandler;
 import pcgen.core.prereq.Prerequisite;
+import pcgen.output.channel.ChannelCompatibility;
 import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * <code>PrereqHandlerTest</code> tests the operation of the
  * PrereqHandler class.
- *
- *
  */
 @SuppressWarnings("nls")
 public class PrereqHandlerTest extends AbstractCharacterTestCase
@@ -28,7 +28,8 @@ public class PrereqHandlerTest extends AbstractCharacterTestCase
 	/**
 	 * Test the passes method. Currently this concentrates on making sure
 	 * the invert result is working.
-	 * @throws PersistenceLayerException
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testPasses() throws PersistenceLayerException
 	{
@@ -42,13 +43,13 @@ public class PrereqHandlerTest extends AbstractCharacterTestCase
 		human.setName("Human");
 		pc.setRace(human);
 
-		pc.setAlignment(le);
+		ChannelCompatibility.setCurrentAlignment(pc.getCharID(), le);
 		assertEquals("Non-negate returns false", false, PrereqHandler.passes(
 			prereq, pc, null));
 		assertEquals("Negate returns false", false, PrereqHandler.passes(
 			prereqNeg, pc, null));
 
-		pc.setAlignment(tn);
+		ChannelCompatibility.setCurrentAlignment(pc.getCharID(), tn);
 		assertEquals("Non-negate returns true", true, PrereqHandler.passes(
 			prereq, pc, null));
 		assertEquals("Negate returns true", true, PrereqHandler.passes(
@@ -56,8 +57,9 @@ public class PrereqHandlerTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Tests PREFEAT
-	 * @throws PersistenceLayerException
+	 * Tests PREFEAT.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testFeatPasses() throws PersistenceLayerException
 	{
@@ -74,9 +76,9 @@ public class PrereqHandlerTest extends AbstractCharacterTestCase
 
 		final Ability ud = new Ability();
 		ud.setName("Uncanny Dodge");
-		ud.setCDOMCategory(AbilityCategory.FEAT);
+		ud.setCDOMCategory(BuildUtilities.getFeatCat());
 		ud.put(StringKey.KEY_NAME, "Uncanny Dodge");
-		addAbility(AbilityCategory.FEAT, ud);
+		addAbility(BuildUtilities.getFeatCat(), ud);
 		assertFalse("Feat should return false", PrereqHandler.passes(prereq,
 			pc, null));
 	}

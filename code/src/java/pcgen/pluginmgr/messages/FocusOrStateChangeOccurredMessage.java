@@ -1,5 +1,4 @@
 /*
- * FocusOrStateChangeOccurredMessage.java
  * Copyright James Dempsey, 2014
  *
  * This library is free software; you can redistribute it and/or
@@ -41,8 +40,7 @@ public class FocusOrStateChangeOccurredMessage extends PCGenMessage
 	 * @param source
 	 * @param editMenu
 	 */
-	public FocusOrStateChangeOccurredMessage(Object source,
-		JMenu editMenu)
+	public FocusOrStateChangeOccurredMessage(Object source, JMenu editMenu)
 	{
 		super(source);
 		this.editMenu = editMenu;

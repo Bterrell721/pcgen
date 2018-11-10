@@ -15,19 +15,16 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens;
+
+import java.util.Map;
+import java.util.StringTokenizer;
 
 import pcgen.core.PlayerCharacter;
 //import pcgen.core.bonus.TypedBonus;
 import pcgen.io.ExportHandler;
 import pcgen.io.exporttoken.Token;
-
-import java.util.StringTokenizer;
-import java.util.Map;
 
 /**
  * Deals with BONUSLIST token
@@ -37,21 +34,14 @@ public class BonusListToken extends Token
 	/** Token name */
 	public static final String TOKENNAME = "BONUSLIST";
 
-	/**
-	 * @see pcgen.io.exporttoken.Token#getTokenName()
-	 */
 	@Override
 	public String getTokenName()
 	{
 		return TOKENNAME;
 	}
 
-	/**
-	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
-	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		return getBonusListToken(tokenSource, pc);
 	}
@@ -62,11 +52,9 @@ public class BonusListToken extends Token
 	 * @param pc
 	 * @return String of Bonus List
 	 */
-	public static String getBonusListToken(String tokenSource,
-		PlayerCharacter pc)
+	public static String getBonusListToken(String tokenSource, PlayerCharacter pc)
 	{
-		StringTokenizer bTok =
-				new StringTokenizer(tokenSource.substring(10), ".", false);
+		StringTokenizer bTok = new StringTokenizer(tokenSource.substring(10), ".", false);
 		String bonusString = "";
 		String substring = "";
 		String typeSeparator = " ";
@@ -110,8 +98,7 @@ public class BonusListToken extends Token
 			}
 
 			boolean needDelim = false;
-			for (Map.Entry<String, String> entry : pc.getBonusStrings(
-					bonusString, substring).entrySet())
+			for (Map.Entry<String, String> entry : pc.getBonusStrings(bonusString, substring).entrySet())
 			{
 				String aKey = entry.getKey();
 

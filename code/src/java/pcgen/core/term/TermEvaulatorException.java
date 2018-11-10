@@ -18,13 +18,13 @@
 
 package pcgen.core.term;
 
-public class TermEvaulatorException extends Exception {
+public class TermEvaulatorException extends Exception
+{
 	/**
 	 * Creates a new instance of {@code TermEvaulatorException} without detail message.
 	 */
 	public TermEvaulatorException()
 	{
-		super();
 	}
 
 	/**

@@ -1,5 +1,4 @@
 /*
- * UDam.java
  * Copyright 2002 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.bonustokens;
 
@@ -42,15 +38,13 @@ public final class UDam extends BonusObj
 	@Override
 	protected boolean parseToken(LoadContext context, final String token)
 	{
-		if (token.startsWith(Constants.LST_CLASS_EQUAL)
-			|| token.startsWith(Constants.LST_CLASS_DOT))
+		if (token.startsWith(Constants.LST_CLASS_EQUAL) || token.startsWith(Constants.LST_CLASS_DOT))
 		{
 			addBonusInfo(token.substring(Constants.SUBSTRING_LENGTH_SIX));
 			return true;
 		}
 
-		Logging.errorPrint(
-			"BONUS:UDAM syntax must have Info (2nd arg to BONUS) start with CLASS= or CLASS. ");
+		Logging.errorPrint("BONUS:UDAM syntax must have Info (2nd arg to BONUS) start with CLASS= or CLASS. ");
 		return false;
 	}
 

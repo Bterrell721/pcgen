@@ -94,7 +94,7 @@ CATEGORY=Special Ability|Trait ~ Adopted.MOD																																				
 CATEGORY=Special Ability|Trait ~ Adopted.MOD																																																																																																																																																					BONUS:ABILITYPOOL|Half-Orc Race Trait|1|PREABILITY:1,CATEGORY=Special Ability,Adoptive Race ~ Half-Orc
 
 Bully								KEY:Trait ~ Bully				CATEGORY:Special Ability	TYPE:Trait.BasicTrait.SocialTrait	PREMULT:1,[PREABILITY:1,CATEGORY=Special Ability,Trait ~ Bully],[PREVAREQ:BypassTraitRestriction,1],[!PREABILITY:1,CATEGORY=Special Ability,TYPE.SocialTrait]							DESC:You grew up in an environment where the meek were ignored and you often had to resort to threats or violence to be heard. You gain a +1 trait bonus on Intimidate checks, and Intimidate is always a class skill for you.																																																																																																						BONUS:SKILL|Intimidate|1|TYPE=Trait									CSKILL:Intimidate						SOURCEPAGE:p.329
-Canter							KEY:Trait ~ Canter			CATEGORY:Special Ability	TYPE:Trait.BasicTrait.SocialTrait	PREMULT:1,[PREABILITY:1,CATEGORY=Special Ability,Trait ~ Canter],[PREVAREQ:BypassTraitRestriction,1],[!PREABILITY:1,CATEGORY=Special Ability,TYPE.SocialTrait]							DESC:You grew up among thieves and scoundrels, and their unusual speech patterns and turns of phrase don't phase you in the slightest today as a result. Anyone who attempts to use Bluff to deliver a secret message to you gains a +5 bonus on his Bluff check. When you attempt to intercept a secret message using Sense Motive, you gain a +5 trait bonus on the attempt.																																																							BONUS:SITUATION|Bluff=Secret Messages|5|TYPE=Trait	BONUS:SITUATION|Sense Motive=Secret Messages|5|TYPE=Trait																											SOURCEPAGE:p.330
+Canter							KEY:Trait ~ Canter			CATEGORY:Special Ability	TYPE:Trait.BasicTrait.SocialTrait	PREMULT:1,[PREABILITY:1,CATEGORY=Special Ability,Trait ~ Canter],[PREVAREQ:BypassTraitRestriction,1],[!PREABILITY:1,CATEGORY=Special Ability,TYPE.SocialTrait]							DESC:You grew up among thieves and scoundrels, and their unusual speech patterns and turns of phrase don't phase you in the slightest today as a result. Anyone who attempts to use Bluff to deliver a secret message to you gains a +5 bonus on his Bluff check. When you attempt to intercept a secret message using Sense Motive, you gain a +5 trait bonus on the attempt.																																																							BONUS:SITUATION|Bluff=Pass Hidden Message|5|TYPE=Trait	BONUS:SITUATION|Sense Motive=Secret Messages|5|TYPE=Trait																											SOURCEPAGE:p.330
 Charming							KEY:Trait ~ Charming			CATEGORY:Special Ability	TYPE:Trait.BasicTrait.SocialTrait	PREMULT:1,[PREABILITY:1,CATEGORY=Special Ability,Trait ~ Charming],[PREVAREQ:BypassTraitRestriction,1],[!PREABILITY:1,CATEGORY=Special Ability,TYPE.SocialTrait]							DESC:Blessed with good looks, you've come to depend on the fact that others find you attractive. You gain a +1 trait bonus when you use Bluff or Diplomacy on a character that is (or could be) sexually attracted to you, and a +1 trait bonus to the save DC of any language-dependent spell you cast on such characters or creatures.																																																														BONUS:SITUATION|Diplomacy=Potentially Sexually Attracted|1|TYPE=Trait	BONUS:SITUATION|Bluff=Potentially Sexually Attracted|1|TYPE=Trait																							SOURCEPAGE:p.330
 Child of the Streets					KEY:Trait ~ Child of the Streets	CATEGORY:Special Ability	TYPE:Trait.BasicTrait.SocialTrait	PREMULT:1,[PREABILITY:1,CATEGORY=Special Ability,Trait ~ Child of the Streets],[PREVAREQ:BypassTraitRestriction,1],[!PREABILITY:1,CATEGORY=Special Ability,TYPE.SocialTrait]					DESC:You grew up on the streets of a large city, and as a result you have developed a knack for picking pockets and hiding small objects on your person. You gain a +1 trait bonus on Sleight of Hand checks, and Sleight of Hand is always a class skill for you.																																																																																																BONUS:SKILL|Sleight of Hand|1|TYPE=Trait								CSKILL:Sleight of Hand					SOURCEPAGE:p.330
 Fast-Talker							KEY:Trait ~ Fast-Talker			CATEGORY:Special Ability	TYPE:Trait.BasicTrait.SocialTrait	PREMULT:1,[PREABILITY:1,CATEGORY=Special Ability,Trait ~ Fast-Talker],[PREVAREQ:BypassTraitRestriction,1],[!PREABILITY:1,CATEGORY=Special Ability,TYPE.SocialTrait]						DESC:You had a knack at getting yourself into trouble as a child, and as a result developed a silver tongue at an early age. You gain a +1 trait bonus on Bluff checks, and Bluff is always a class skill for you.																																																																																																								BONUS:SKILL|Bluff|1|TYPE=Trait									CSKILL:Bluff						SOURCEPAGE:p.330
@@ -236,17 +236,21 @@ Feat ~ Cosmopolitan										CATEGORY:Internal																BONUS:ABILITYPOOL|
 Spindle of Perfect Knowledge	KEY:Equipment ~ Spindle of Perfect Knowledge	CATEGORY:Internal		STACK:NO	MULT:YES	CHOOSE:SKILL|TYPE=Knowledge															BONUS:SKILL|LIST|5
 
 ###Block: Optional System Rules
-# Ability Name			Unique Key						Category of Ability	Type				PRECHARACTERTYPE		Ability							Cost
-Use Hero Points			KEY:Rules ~ Use Hero Points			CATEGORY:Internal		TYPE:OptionalRules	PRECHARACTERTYPE:1,PC									COST:0
-Use Hero Points (Antihero)	KEY:Rules ~ Use Hero Points (Antihero)	CATEGORY:Internal		TYPE:OptionalRules	PRECHARACTERTYPE:1,PC	ABILITY:Special Ability|AUTOMATIC|Antihero	COST:0
+# Ability Name			Unique Key						Category of Ability	Type				PRECHARACTERTYPE														Ability							Cost
+Use Hero Points			KEY:Rules ~ Use Hero Points			CATEGORY:Internal		TYPE:OptionalRules	PRECHARACTERTYPE:1,PC	!PREABILITY:1,CATEGORY=Internal,Rules ~ Use Hero Points (Antihero)	ABILITY:Special Ability|AUTOMATIC|Hero Points	COST:0	BONUS:VAR|HeroPointsMax|3
+Use Hero Points (Antihero)	KEY:Rules ~ Use Hero Points (Antihero)	CATEGORY:Internal		TYPE:OptionalRules	PRECHARACTERTYPE:1,PC	!PREABILITY:1,CATEGORY=Internal,Rules ~ Use Hero Points			ABILITY:Special Ability|AUTOMATIC|Antihero	COST:0
 
 ###Block: Hero Points System
 # Ability Name			Define										Ability									Modify VAR
-CATEGORY=Internal|Default.MOD	DEFINE:Heroic|0	DEFINE:HeroPoints|0	DEFINE:HeroPointsMax|0	ABILITY:Internal|AUTOMATIC|Hero Points|PREVAREQ:Heroic,1	BONUS:VAR|Heroic|1|PREMULT:2,[PRECHARACTERTYPE:1,PC],[PREABILITY:1,CATEGORY=Internal,Rules ~ Use Hero Points]	BONUS:VAR|HeroPointsMax|3|PREVAREQ:Heroic,1
+CATEGORY=Internal|Default.MOD	DEFINE:HeroPoints|0	DEFINE:HeroPointsMax|0		
 
 ###Block: Ability
 # Ability Name				Category of Ability		Type				Visible		Description																																			Bonus Ability Pool			Modify VAR			Cost		Source Page		Aspects																																							Temporary Bonus					TEMPVALUE
-Hero Points					CATEGORY:Internal			TYPE:Internal		VISIBLE:DISPLAY																																																																																												TEMPBONUS:ANYPC|VAR|HeroPoints|%CHOICE	TEMPVALUE:MIN=0|MAX=HeroPointsMax|TITLE=Current Hero Points
+Hero Points					CATEGORY:Special Ability	TYPE:SpecialQuality	VISIBLE:YES	DESC:Current Points = %1; Max Allowed = %2 [Alter these values in GM Awards]|HeroPoints|HeroPointsMax																																																																																											
+
++1 Hero Point Current Value	SORTKEY:Z_Award	CATEGORY:Special Ability	TYPE:GM_Award.SpecialQuality	DESC:Increase Hero Point Current Total by +1.		MULT:YES	STACK:YES	CHOOSE:NOCHOICE	BONUS:VAR|HeroPoints|1		COST:0	PREVARLT:HeroPoints,HeroPointsMax
++1 Hero Point Maximum Value	SORTKEY:Z_Award	CATEGORY:Special Ability	TYPE:GM_Award.SpecialQuality	DESC:GM Awarded a +1 to the Hero Point maximum value.	MULT:YES	STACK:YES	CHOOSE:NOCHOICE	BONUS:VAR|HeroPointsMax|1	COST:0
+
 
 Antihero					CATEGORY:Special Ability	TYPE:SpecialQuality				DESC:You have elected to rely only on your skills and abilities. You do not receive hero points, regardless of the source, and can never benefit from their use. In exchange, you receive a bonus feat at 1st level.	BONUS:ABILITYPOOL|Antihero Feat|1	BONUS:VAR|Heroic|-1	COST:0	SOURCEPAGE:p.324
 
@@ -318,6 +322,14 @@ Spark			CATEGORY:Spell-Like Ability	TYPE:ClassAbility.SpellLike.SpecialQuality	V
 
 # Feat Support
 Aspect ~ Steel Soul				CATEGORY:Internal			TYPE:DwarfHardy																													ASPECT:SaveBonus|+2 vs. poison; +4 vs. spells, and spell-like abilities
+
+
+
+#
+CATEGORY=Internal|Default.MOD	DEFINE:TempBonus_AspectOfTheFalcon|0	ABILITY:Internal|AUTOMATIC|SPELL ~ Aspect of the Falcon|PREVARGT:TempBonus_AspectOfTheFalcon,0
+SPELL ~ Aspect of the Falcon	CATEGORY:Internal	BONUS:COMBAT|TOHIT.Ranged|1|TYPE=Competence	BONUS:SKILL|Perception|3|TYPE=Competence	ABILITY:FEAT|AUTOMATIC|Improved Critical(Longbow)|Improved Critical(Shortbow)|Improved Critical(Longbow)|Improved Critical(Crossbow (Light))|Improved Critical(Crossbow (Heavy))|Improved Critical(Crossbow (Hand))|Improved Critical(Crossbow (Repeating Light))|Improved Critical(Crossbow (Repeating Heavy))
+
+
 
 #
 # End

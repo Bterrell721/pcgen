@@ -14,14 +14,14 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.system;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * MigrationRuleTest checks the functions of the MigrationRule class.
@@ -33,9 +33,6 @@ public class MigrationRuleTest
 
 	private MigrationRule migrationRule;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@Before
 	public void setUp() throws Exception
 	{
@@ -50,10 +47,10 @@ public class MigrationRuleTest
 	{
 		migrationRule.setMaxVer("6.0.1");
 
-		int[][] validVersions = {{5,17,10}, {6,0,0}, {6,0,1}};
+		int[][] validVersions = {{5, 17, 10}, {6, 0, 0}, {6, 0, 1}};
 		confirmMigrationDoesApply(validVersions);
 
-		int[][] invalidVersions = {{6,0,2}, {6,1,0}, {6,1,5}, {6,2,0}, {7,0,0}};
+		int[][] invalidVersions = {{6, 0, 2}, {6, 1, 0}, {6, 1, 5}, {6, 2, 0}, {7, 0, 0}};
 		confirmMigrationDoesNotApply(invalidVersions);
 	}
 
@@ -66,10 +63,10 @@ public class MigrationRuleTest
 		migrationRule.setMaxVer("6.0.1");
 		migrationRule.setMaxDevVer("6.1.3");
 		
-		int[][] validVersions = {{5,17,10}, {6,0,0}, {6,0,1}, {6,1,0}, {6,1,3}};
+		int[][] validVersions = {{5, 17, 10}, {6, 0, 0}, {6, 0, 1}, {6, 1, 0}, {6, 1, 3}};
 		confirmMigrationDoesApply(validVersions);
 
-		int[][] invalidVersions = {{6,0,2}, {6,1,4}, {6,2,0}, {7,0,0}};
+		int[][] invalidVersions = {{6, 0, 2}, {6, 1, 4}, {6, 2, 0}, {7, 0, 0}};
 		confirmMigrationDoesNotApply(invalidVersions);
 	}
 
@@ -82,11 +79,11 @@ public class MigrationRuleTest
 		migrationRule.setMaxVer("6.0.1");
 		migrationRule.setMinVer("5.17.7");
 
-		int[][] validVersions = {{5,17,7}, {5,17,10}, {6,0,0}, {6,0,1}};
+		int[][] validVersions = {{5, 17, 7}, {5, 17, 10}, {6, 0, 0}, {6, 0, 1}};
 		confirmMigrationDoesApply(validVersions);
 
-		int[][] invalidVersions = {{5,17,6}, {5,16,8}, {6,0,2}, {6,0,2},
-			{6,1,0}, {6,1,5}, {6,2,0}, {7,0,0}};
+		int[][] invalidVersions = {{5, 17, 6}, {5, 16, 8}, {6, 0, 2}, {6, 0, 2},
+			{6, 1, 0}, {6, 1, 5}, {6, 2, 0}, {7, 0, 0}};
 		confirmMigrationDoesNotApply(invalidVersions);
 	}
 
@@ -100,11 +97,11 @@ public class MigrationRuleTest
 		migrationRule.setMinVer("5.16.4");
 		migrationRule.setMinDevVer("5.17.7");
 
-		int[][] validVersions = {{5,17,7}, {5,17,10}, {5,16,4}, {5,16,5}, {6,0,0}, {6,0,1}};
+		int[][] validVersions = {{5, 17, 7}, {5, 17, 10}, {5, 16, 4}, {5, 16, 5}, {6, 0, 0}, {6, 0, 1}};
 		confirmMigrationDoesApply(validVersions);
 
-		int[][] invalidVersions = {{5,17,6}, {5,16,3}, {6,0,2}, {6,0,2},
-			{6,1,0}, {6,1,5}, {6,2,0}, {7,0,0}};
+		int[][] invalidVersions = {{5, 17, 6}, {5, 16, 3}, {6, 0, 2}, {6, 0, 2},
+			{6, 1, 0}, {6, 1, 5}, {6, 2, 0}, {7, 0, 0}};
 		confirmMigrationDoesNotApply(invalidVersions);
 	}
 

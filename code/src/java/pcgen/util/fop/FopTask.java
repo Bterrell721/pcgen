@@ -1,5 +1,4 @@
 /*
- * FopTask.java
  * Copyright 2016 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -56,7 +55,6 @@ import pcgen.util.Logging;
  * source of the task: files or inputstreams. The output of this task can either be an OutputStream
  * which you can point to a file, or a Renderer. The Renderer is used by print preview and for
  * direct printing.
- *
  */
 public final class FopTask implements Runnable
 {
@@ -83,8 +81,7 @@ public final class FopTask implements Runnable
 			}
 			catch (Exception e)
 			{
-				Logging.errorPrint("FoPTask encountered a problem with FOP configuration "
-						+ configPath + ": ", e);
+				Logging.errorPrint("FoPTask encountered a problem with FOP configuration " + configPath + ": ", e);
 				return null;
 			}
 			builder = parser.getFopFactoryBuilder();
@@ -94,7 +91,7 @@ public final class FopTask implements Runnable
 			Logging.log(Logging.INFO, "FoPTask using default config");
 			builder = new FopFactoryBuilder(new File(".").toURI());
 			builder.setStrictFOValidation(false);
-		}	
+		}
 		return builder.build();
 	}
 
@@ -121,8 +118,7 @@ public final class FopTask implements Runnable
 		}
 		if (!xsltFile.exists())
 		{
-			throw new FileNotFoundException("xsl file "
-					+ xsltFile.getAbsolutePath() + " not found ");
+			throw new FileNotFoundException("xsl file " + xsltFile.getAbsolutePath() + " not found ");
 		}
 		return new StreamSource(xsltFile);
 	}
@@ -131,7 +127,7 @@ public final class FopTask implements Runnable
 	{
 		return FOP_FACTORY;
 	}
-	
+
 	/**
 	 * Creates a new FopTask that transforms the input stream using the given xsltFile and outputs a
 	 * pdf document to the given output stream. The output can be saved to a file if a
@@ -143,7 +139,8 @@ public final class FopTask implements Runnable
 	 * @return a FopTask to be executed
 	 * @throws FileNotFoundException if xsltFile is not null and does not exist
 	 */
-	public static FopTask newFopTask(InputStream inputXmlStream, File xsltFile, OutputStream outputPdf) throws FileNotFoundException
+	public static FopTask newFopTask(InputStream inputXmlStream, File xsltFile, OutputStream outputPdf)
+		throws FileNotFoundException
 	{
 		StreamSource xsltSource = createXsltStreamSource(xsltFile);
 		userAgent = FOP_FACTORY.newFOUserAgent();
@@ -161,7 +158,8 @@ public final class FopTask implements Runnable
 	 * @return a FopTask to be executed
 	 * @throws FileNotFoundException if xsltFile is not null and does not exist
 	 */
-	public static FopTask newFopTask(InputStream inputXmlStream, File xsltFile, Renderer renderer) throws FileNotFoundException
+	public static FopTask newFopTask(InputStream inputXmlStream, File xsltFile, Renderer renderer)
+		throws FileNotFoundException
 	{
 		StreamSource xsltSource = createXsltStreamSource(xsltFile);
 		userAgent = renderer.getUserAgent();
@@ -180,12 +178,12 @@ public final class FopTask implements Runnable
 	@Override
 	public void run()
 	{
-		try(OutputStream out = outputStream)
+		try (OutputStream out = outputStream)
 		{
 			userAgent.setProducer("PC Gen Character Generator");
 			userAgent.setAuthor(System.getProperty("user.name"));
 			userAgent.setCreationDate(new Date());
-			
+
 			userAgent.getEventBroadcaster().addEventListener(new FOPEventListener());
 
 			String mimeType;
@@ -197,7 +195,7 @@ public final class FopTask implements Runnable
 			else
 			{
 				userAgent.setKeywords("PCGEN FOP PDF");
-				mimeType = MimeConstants.MIME_PDF;
+				mimeType = org.apache.xmlgraphics.util.MimeConstants.MIME_PDF;
 			}
 			Fop fop;
 			if (out != null)
@@ -216,7 +214,7 @@ public final class FopTask implements Runnable
 			}
 			else
 			{
-				transformer = TRANS_FACTORY.newTransformer();// identity transformer		
+				transformer = TRANS_FACTORY.newTransformer(); // identity transformer		
 			}
 			transformer.setErrorListener(new FOPErrorListener());
 			transformer.transform(inputSource, new SAXResult(fop.getDefaultHandler()));
@@ -241,8 +239,7 @@ public final class FopTask implements Runnable
 	{
 
 		@Override
-		public void error(TransformerException exception)
-				throws TransformerException
+		public void error(TransformerException exception) throws TransformerException
 		{
 			SourceLocator locator = exception.getLocator();
 			Logging.errorPrint("FOP Error " + exception.getMessage() + " at " + getLocation(locator));
@@ -250,8 +247,7 @@ public final class FopTask implements Runnable
 		}
 
 		@Override
-		public void fatalError(TransformerException exception)
-				throws TransformerException
+		public void fatalError(TransformerException exception) throws TransformerException
 		{
 			SourceLocator locator = exception.getLocator();
 			Logging.errorPrint("FOP Fatal Error " + exception.getMessage() + " at " + getLocation(locator));
@@ -259,8 +255,7 @@ public final class FopTask implements Runnable
 		}
 
 		@Override
-		public void warning(TransformerException exception)
-				throws TransformerException
+		public void warning(TransformerException exception) throws TransformerException
 		{
 			SourceLocator locator = exception.getLocator();
 			Logging.log(Logging.WARNING, getLocation(locator) + exception.getMessage());
@@ -294,42 +289,42 @@ public final class FopTask implements Runnable
 		}
 
 	}
-	
+
 	private static class FOPEventListener implements EventListener
 	{
 		/**
 		 * @{inheritdoc}
 		 */
 		@Override
-	    public void processEvent(final Event event)
+		public void processEvent(final Event event)
 		{
-	        String msg = "[FOP] " + EventFormatter.format(event);
-	        
-	        // filter out some erroneous FOP warnings about not finding internal fonts
-	        // this is an ancient, but still unfixed FOP bug
-	        // see https://issues.apache.org/jira/browse/FOP-1667
-	        if (msg.contains("not found") && (msg.contains("Symbol,normal") || msg.contains("ZapfDingbats,normal")))
-	        {
-	        	return;
-	        }
-	        
-	        EventSeverity severity = event.getSeverity();
-	        if (severity == EventSeverity.INFO)
-	        {
-	        	Logging.log(Logging.INFO, msg);
-	        }
-	        else if (severity == EventSeverity.WARN)
-	        {
-	        	Logging.log(Logging.WARNING, msg);
-	        }
-	        else if (severity == EventSeverity.ERROR || severity == EventSeverity.FATAL)
-	        {
-	        	Logging.log(Logging.ERROR, msg);
-	        }
-	        else
-	        {
-	            assert false;
-	        }
+			String msg = "[FOP] " + EventFormatter.format(event);
+
+			// filter out some erroneous FOP warnings about not finding internal fonts
+			// this is an ancient, but still unfixed FOP bug
+			// see https://issues.apache.org/jira/browse/FOP-1667
+			if (msg.contains("not found") && (msg.contains("Symbol,normal") || msg.contains("ZapfDingbats,normal")))
+			{
+				return;
+			}
+
+			EventSeverity severity = event.getSeverity();
+			if (severity == EventSeverity.INFO)
+			{
+				Logging.log(Logging.INFO, msg);
+			}
+			else if (severity == EventSeverity.WARN)
+			{
+				Logging.log(Logging.WARNING, msg);
+			}
+			else if (severity == EventSeverity.ERROR || severity == EventSeverity.FATAL)
+			{
+				Logging.log(Logging.ERROR, msg);
+			}
+			else
+			{
+				assert false;
+			}
 		}
 	}
 }

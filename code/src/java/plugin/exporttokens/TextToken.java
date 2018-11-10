@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens;
 
@@ -48,21 +45,14 @@ public class TextToken extends Token
 	/** Token Name */
 	public static final String TOKENNAME = "TEXT";
 
-	/**
-	 * @see pcgen.io.exporttoken.Token#getTokenName()
-	 */
 	@Override
 	public String getTokenName()
 	{
 		return TOKENNAME;
 	}
 
-	/**
-	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
-	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		String retString = "";
 
@@ -79,7 +69,7 @@ public class TextToken extends Token
 				// Make sure that any "." in the token itself stay together
 				while (action.charAt(action.length() - 1) != '}')
 				{
-					action += "." + aTok.nextToken();
+					action += '.' + aTok.nextToken();
 				}
 			}
 		}
@@ -89,7 +79,7 @@ public class TextToken extends Token
 		}
 		while (aTok.hasMoreElements())
 		{
-			varName.append(".").append(aTok.nextToken());
+			varName.append('.').append(aTok.nextToken());
 		}
 
 		StringWriter writer = new StringWriter();
@@ -105,23 +95,19 @@ public class TextToken extends Token
 		}
 		retString = writer.getBuffer().toString();
 
-		if (action.equalsIgnoreCase("UPPER")
-			|| action.equalsIgnoreCase("UPPERCASE"))
+		if (action.equalsIgnoreCase("UPPER") || action.equalsIgnoreCase("UPPERCASE"))
 		{
 			retString = retString.toUpperCase();
 		}
-		else if (action.equalsIgnoreCase("LOWER")
-			|| action.equalsIgnoreCase("LOWERCASE"))
+		else if (action.equalsIgnoreCase("LOWER") || action.equalsIgnoreCase("LOWERCASE"))
 		{
 			retString = retString.toLowerCase();
 		}
-		else if (action.equalsIgnoreCase("SENTENCE")
-			|| action.equalsIgnoreCase("SENTENCECASE"))
+		else if (action.equalsIgnoreCase("SENTENCE") || action.equalsIgnoreCase("SENTENCECASE"))
 		{
 			retString = changeToSentenceCase(retString);
 		}
-		else if (action.equalsIgnoreCase("TITLE")
-			|| action.equalsIgnoreCase("TITLECASE"))
+		else if (action.equalsIgnoreCase("TITLE") || action.equalsIgnoreCase("TITLECASE"))
 		{
 			retString = changeToTitleCase(retString);
 		}
@@ -138,9 +124,7 @@ public class TextToken extends Token
 		else if (action.startsWith("REPLACE"))
 		{
 			final String replaceType = action.substring(7, action.indexOf('{'));
-			String args =
-					action.substring(action.indexOf('{') + 1,
-						action.length() - 1);
+			String args = action.substring(action.indexOf('{') + 1, action.length() - 1);
 			int patternEnd = 0;
 
 			for (;;)
@@ -162,12 +146,9 @@ public class TextToken extends Token
 				Logging.errorPrint("Invalid REPLACE token");
 			}
 			String pattern = args.substring(0, patternEnd);
-			pattern =
-					pattern.replaceAll("__LP__", "\\(").replaceAll("__RP__",
-						"\\)").replaceAll("__PLUS__", "+");
+			pattern = pattern.replaceAll("__LP__", "\\(").replaceAll("__RP__", "\\)").replaceAll("__PLUS__", "+");
 			final String replacement =
-					args.substring(patternEnd + 1).trim().replaceFirst("^\"",
-						"").replaceFirst("\"$", "");
+					args.substring(patternEnd + 1).trim().replaceFirst("^\"", "").replaceFirst("\"$", "");
 			if (replaceType.equalsIgnoreCase("ALL"))
 			{
 				retString = retString.replaceAll(pattern, replacement);
@@ -189,14 +170,14 @@ public class TextToken extends Token
 	private String changeToSentenceCase(String value)
 	{
 		String temp = value.toLowerCase();
-		String sentence[] = temp.split("\\.");
+		String[] sentence = temp.split("\\.");
 		StringBuilder res = new StringBuilder(value.length());
 		Pattern p = Pattern.compile("\\s*");
 		for (int i = 0; i < sentence.length; i++)
 		{
 			if (i > 0)
 			{
-				res.append(".");
+				res.append('.');
 			}
 			if (!sentence[i].trim().isEmpty())
 			{
@@ -236,8 +217,7 @@ public class TextToken extends Token
 		for (int i = 0; i < chars.length; i++)
 		{
 			char c = chars[i];
-			boolean whiteSpace =
-					(c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\r');
+			boolean whiteSpace = (c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\r');
 			if (start && !whiteSpace)
 			{
 				res.append(Character.toUpperCase(c));

@@ -13,11 +13,12 @@ import pcgen.base.lang.UnreachableError;
 import pcgen.core.Ability;
 import pcgen.core.Campaign;
 import pcgen.core.Globals;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.util.TestHelper;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * JUnit testcases for <code>pcgen.core.Feat</code>.
- *
  */
 public class FeatTest extends TestCase
 {
@@ -58,13 +59,15 @@ public class FeatTest extends TestCase
 	public void setUp() throws Exception
 	{
 		TestHelper.loadPlugins();
+		Globals.getContext().getReferenceContext().importObject(BuildUtilities.getFeatCat());
 	}
 
 	/**
-	 * Test Alertness Feat
-	 * @throws Exception
+	 * Test Alertness Feat.
+	 * 
+	 * @throws PersistenceLayerException   if there is a problem with the LST syntax
 	 */
-	public void testAlertness() throws Exception
+	public void testAlertness() throws PersistenceLayerException
 	{
 		Ability alertnessFeat;
 		FeatLoader featLoader = new FeatLoader();
@@ -89,10 +92,11 @@ public class FeatTest extends TestCase
 	}
 
 	/**
-	 * Test ambidexterity feat
-	 * @throws Exception
+	 * Test ambidexterity feat.
+	 * 
+	 * @throws PersistenceLayerException   if there is a problem with the LST syntax
 	 */
-	public void testAmbidexterity() throws Exception
+	public void testAmbidexterity() throws PersistenceLayerException
 	{
 		FeatLoader featLoader = new FeatLoader();
 		CampaignSourceEntry source;
@@ -108,18 +112,19 @@ public class FeatTest extends TestCase
 
 		Ability ambidexterityFeat = new Ability();
 		featLoader
-			.parseLine(
-				Globals.getContext(),
-				ambidexterityFeat,
-				"Ambidexterity	PRESTAT:1,DEX=15	PREHANDSEQ:2	TYPE:General.Fighter	DESC:You ignore all penalties for using your off-hand	BONUS:COMBAT|TOHIT-SECONDARY|4", source);
+			.parseLine(Globals.getContext(), ambidexterityFeat,
+				"Ambidexterity	PRESTAT:1,DEX=15	PREHANDSEQ:2	TYPE:General.Fighter	"
+			+ "DESC:You ignore all penalties for using your off-hand	BONUS:COMBAT|TOHIT-SECONDARY|4",
+				source);
 		assertEquals("Ambidexterity", ambidexterityFeat.getKeyName());
 	}
 
 	/**
-	 * Test simple weapon feat
-	 * @throws Exception
+	 * Test simple weapon feat.
+	 * 
+	 * @throws PersistenceLayerException  if there is a problem with the LST syntax
 	 */
-	public void testSimpleWeapon() throws Exception
+	public void testSimpleWeapon() throws PersistenceLayerException
 	{
 		FeatLoader featLoader = new FeatLoader();
 		CampaignSourceEntry source;
@@ -138,7 +143,8 @@ public class FeatTest extends TestCase
 			.parseLine(
 				Globals.getContext(),
 				simpleWeaponFeat,
-				"Simple Weapon Proficiency	TYPE:General	DESC:You are proficient with all simple weapons. Non-proficiency suffers -4 to hit.	ADD:WEAPONPROFS|Simple", source);
+				"Simple Weapon Proficiency	TYPE:General	DESC:You are proficient with all simple weapons. "
+						+ "Non-proficiency suffers -4 to hit.	ADD:WEAPONPROFS|Simple", source);
 		assertEquals("Simple Weapon Proficiency", simpleWeaponFeat.getKeyName());
 	}
 }

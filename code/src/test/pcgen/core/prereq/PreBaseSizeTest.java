@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -35,14 +32,13 @@ import pcgen.core.Race;
 import pcgen.core.SizeAdjustment;
 import pcgen.core.bonus.Bonus;
 import pcgen.core.bonus.BonusObj;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 import pcgen.rules.context.LoadContext;
 
 /**
  * <code>PreBaseSizeTest</code> tests that the PREBASESIZE tag is
  * working correctly.
- *
- *
  */
 @SuppressWarnings("nls")
 public class PreBaseSizeTest extends AbstractCharacterTestCase
@@ -64,10 +60,11 @@ public class PreBaseSizeTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the PREBASESIZE code
-	 * @throws Exception
+	 * Test the PREBASESIZE code.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testBaseSize() throws Exception
+	public void testBaseSize() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		character.setRace(race);
@@ -113,9 +110,10 @@ public class PreBaseSizeTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test to make sure template SIZE: changes the base size.
-	 * @throws Exception
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testModBaseSize() throws Exception
+	public void testModBaseSize() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		character.setRace(race);
@@ -161,10 +159,11 @@ public class PreBaseSizeTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Tests to make sure the base size does not includ SIZEMOD adjustments
-	 * @throws Exception
+	 * Tests to make sure the base size does not include SIZEMOD adjustments.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testBaseSizePlusMod() throws Exception
+	public void testBaseSizePlusMod() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		LoadContext context = Globals.getContext();

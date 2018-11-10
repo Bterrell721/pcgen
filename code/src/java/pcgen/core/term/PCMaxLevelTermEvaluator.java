@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 
 package pcgen.core.term;
@@ -22,8 +21,7 @@ package pcgen.core.term;
 import pcgen.core.PCClass;
 import pcgen.core.PlayerCharacter;
 
-public class PCMaxLevelTermEvaluator extends BasePCTermEvaluator implements
-		TermEvaluator
+public class PCMaxLevelTermEvaluator extends BasePCTermEvaluator implements TermEvaluator
 {
 	private final String classKey;
 
@@ -46,11 +44,9 @@ public class PCMaxLevelTermEvaluator extends BasePCTermEvaluator implements
 			//PC Doesn't have class
 			return 0.0f;
 		}
-		int level =
-				pc.getSpellSupport(aClass).getMaxSpellLevelForClassLevel(
-					pc.getDisplay().getLevel(aClass));
+		int level = pc.getSpellSupport(aClass).getMaxSpellLevelForClassLevel(pc.getDisplay().getLevel(aClass));
 
-		return Integer.valueOf(level).floatValue();
+		return (float) level;
 	}
 
 	@Override

@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens.deprecated;
 
@@ -46,8 +43,7 @@ public class ClassListToken extends AbstractExportToken
 	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
 	 */
 	@Override
-	public String getToken(String tokenSource, CharacterDisplay display,
-		ExportHandler eh)
+	public String getToken(String tokenSource, CharacterDisplay display, ExportHandler eh)
 	{
 		return getClassListToken(display);
 	}
@@ -72,15 +68,13 @@ public class ClassListToken extends AbstractExportToken
 			firstLine = false;
 
 			String subClassKey = display.getSubClassName(pcClass);
-			if (subClassKey == null || Constants.NONE.equals(subClassKey)
-					|| "".equals(subClassKey))
+			if (subClassKey == null || Constants.NONE.equals(subClassKey) || "".equals(subClassKey))
 			{
 				returnString.append(OutputNameFormatting.getOutputName(pcClass));
 			}
 			else
 			{
-				returnString.append(pcClass.getSubClassKeyed(
-						subClassKey).getDisplayName());
+				returnString.append(pcClass.getSubClassKeyed(subClassKey).getDisplayName());
 			}
 
 			returnString.append(display.getLevel(pcClass));

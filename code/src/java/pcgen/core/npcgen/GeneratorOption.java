@@ -1,5 +1,4 @@
 /*
- * GeneratorOption.java
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.core.npcgen;
 
@@ -33,14 +31,6 @@ import pcgen.cdom.base.Constants;
 public abstract class GeneratorOption
 {
 	private String theName = Constants.EMPTY_STRING;
-
-	/**
-	 * Default constructor.
-	 */
-	public GeneratorOption()
-	{
-		// Do nothing
-	}
 
 	/**
 	 * Sets the display name for this option.
@@ -77,7 +67,7 @@ public abstract class GeneratorOption
 	 * @param aWeight The weight to assign this choice.
 	 * @param aChoice The String key for this choice.
 	 */
-	public abstract void addChoice( final int aWeight, final String aChoice );
+	public abstract void addChoice(final int aWeight, final String aChoice);
 
 	/**
 	 * Gets a <tt>WeightedCollection</tt> of choices for this option.

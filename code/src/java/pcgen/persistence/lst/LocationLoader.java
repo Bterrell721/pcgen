@@ -1,5 +1,4 @@
 /*
- * LocationLoader.java
  * Copyright 2003 (C) David Hibbs <sage_sam@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -20,11 +19,11 @@
  */
 package pcgen.persistence.lst;
 
+import java.net.URI;
+
 import pcgen.core.SystemCollections;
 import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.context.LoadContext;
-
-import java.net.URI;
 
 /**
  * This class is a LstFileLoader used to load character locations.
@@ -36,14 +35,6 @@ public class LocationLoader extends LstLineFileLoader
 {
 	private int traitType = -1;
 
-	/**
-	 * Constructor for TraitLoader.
-	 */
-	public LocationLoader()
-	{
-		super();
-	}
-
 	@Override
 	public void loadLstFile(LoadContext context, URI source) throws PersistenceLayerException
 	{
@@ -51,9 +42,6 @@ public class LocationLoader extends LstLineFileLoader
 		super.loadLstFile(context, source);
 	}
 
-	/**
-	 * @see pcgen.persistence.lst.LstLineFileLoader#parseLine(LoadContext, String, URI)
-	 */
 	@Override
 	public void parseLine(LoadContext context, String lstLine, URI sourceURI)
 	{

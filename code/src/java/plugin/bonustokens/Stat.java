@@ -1,5 +1,4 @@
 /*
- * Stat.java
  * Copyright 2002 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.bonustokens;
 
@@ -34,8 +30,7 @@ import pcgen.rules.context.LoadContext;
  */
 public final class Stat extends BonusObj
 {
-	private static final String[] BONUS_TAGS =
-			{"BASESPELLSTAT", "BASESPELLKNOWNSTAT"};
+	private static final String[] BONUS_TAGS = {"BASESPELLSTAT", "BASESPELLKNOWNSTAT"};
 
 	@Override
 	protected boolean parseToken(LoadContext context, final String token)
@@ -49,11 +44,9 @@ public final class Stat extends BonusObj
 			}
 		}
 
-		if (token.startsWith("CAST=")
-			|| token.startsWith("CAST."))
+		if (token.startsWith("CAST=") || token.startsWith("CAST."))
 		{
-			PCStat stat = context.getReferenceContext().silentlyGetConstructedCDOMObject(
-				PCStat.class,
+			PCStat stat = context.getReferenceContext().silentlyGetConstructedCDOMObject(PCStat.class,
 				token.substring(Constants.SUBSTRING_LENGTH_FIVE));
 
 			if (stat != null)
@@ -65,9 +58,7 @@ public final class Stat extends BonusObj
 		}
 		else
 		{
-			PCStat stat =
-					context.getReferenceContext()
-						.silentlyGetConstructedCDOMObject(PCStat.class, token);
+			PCStat stat = context.getReferenceContext().silentlyGetConstructedCDOMObject(PCStat.class, token);
 
 			if (stat != null)
 			{
@@ -76,7 +67,7 @@ public final class Stat extends BonusObj
 			else
 			{
 				final PCClass aClass =
-					context.getReferenceContext().silentlyGetConstructedCDOMObject(PCClass.class, token);
+						context.getReferenceContext().silentlyGetConstructedCDOMObject(PCClass.class, token);
 
 				if (aClass != null)
 				{
@@ -155,17 +146,13 @@ public final class Stat extends BonusObj
 	@Override
 	public String getDescription()
 	{
-		final PCStat pcstat =
-				Globals
-					.getContext()
-					.getReferenceContext()
-					.silentlyGetConstructedCDOMObject(PCStat.class,
-						getBonusInfo());
+		final PCStat pcstat = Globals.getContext().getReferenceContext().silentlyGetConstructedCDOMObject(PCStat.class,
+			getBonusInfo());
 		if (pcstat != null)
 		{
 			return pcstat.getName();
 		}
 		return super.getDescription();
-	}	
-	
+	}
+
 }

@@ -1,5 +1,4 @@
 /*
- * PCTemplateTest.java
  * Copyright 2007 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.core;
 
@@ -43,11 +39,10 @@ import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.CampaignSourceEntry;
 import pcgen.persistence.lst.GenericLoader;
 import pcgen.rules.context.LoadContext;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * <code>PCTemplateTest</code> tests the fucntion of the PCTemplate class.
- *
- *
  */
 public class PCTemplateTest extends AbstractCharacterTestCase
 {
@@ -57,7 +52,7 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 	/**
 	 * Constructs a new <code>PCTemplateTest</code>.
 	 *
-	 * @see PCGenTestCase#PCGenTestCase()
+	 * @see pcgen.PCGenTestCase#PCGenTestCase()
 	 */
 	public PCTemplateTest()
 	{
@@ -69,7 +64,7 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 	 *
 	 * @param name the test case name
 	 *
-	 * @see PCGenTestCase#PCGenTestCase(String)
+	 * @see pcgen.PCGenTestCase#PCGenTestCase(String)
 	 */
 	public PCTemplateTest(final String name)
 	{
@@ -130,7 +125,8 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 				context,
 				null,
 				"Template1	ABILITY:TestCat|AUTOMATIC|Ability1	ABILITY:TestCat|AUTOMATIC|Ability2", source);
-		PCTemplate template = context.getReferenceContext().silentlyGetConstructedCDOMObject(PCTemplate.class, "Template1");
+		PCTemplate template =
+				context.getReferenceContext().silentlyGetConstructedCDOMObject(PCTemplate.class, "Template1");
 		context.getReferenceContext().importObject(ab1);
 		context.getReferenceContext().importObject(ab2);
 		CDOMSingleRef<AbilityCategory> acRef =
@@ -170,11 +166,11 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 		// Create some abilities to be added
 		Ability ab1 = new Ability();
 		ab1.setName("Ability1");
-		ab1.setCDOMCategory(AbilityCategory.FEAT);
+		ab1.setCDOMCategory(BuildUtilities.getFeatCat());
 		context.getReferenceContext().importObject(ab1);
 		Ability ab2 = new Ability();
 		ab2.setName("Ability2");
-		ab2.setCDOMCategory(AbilityCategory.FEAT);
+		ab2.setCDOMCategory(BuildUtilities.getFeatCat());
 		context.getReferenceContext().importObject(ab2);
 
 		CampaignSourceEntry source;
@@ -192,7 +188,8 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 					context,
 					null,
 				"Template1	ABILITY:FEAT|AUTOMATIC|Ability1	ABILITY:FEAT|AUTOMATIC|Ability2", source);
-		PCTemplate template = context.getReferenceContext().silentlyGetConstructedCDOMObject(PCTemplate.class, "Template1");
+		PCTemplate template =
+				context.getReferenceContext().silentlyGetConstructedCDOMObject(PCTemplate.class, "Template1");
 		context.getReferenceContext().importObject(ab1);
 		context.getReferenceContext().importObject(ab2);
 		CDOMSingleRef<AbilityCategory> acRef =
@@ -216,10 +213,10 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 		PlayerCharacter pc = getCharacter();
 		pc.addTemplate(template);
 		// Need to do this to populate the ability list
-		//pc.getAutomaticAbilityList(AbilityCategory.FEAT);
-		assertTrue("Character should have ability1.", hasAbility(pc, AbilityCategory.FEAT,
+		//pc.getAutomaticAbilityList(BuildUtilities.getFeatCat());
+		assertTrue("Character should have ability1.", hasAbility(pc, BuildUtilities.getFeatCat(),
 			Nature.AUTOMATIC, ab1));
-		assertTrue("Character should have ability2.", hasAbility(pc, AbilityCategory.FEAT,
+		assertTrue("Character should have ability2.", hasAbility(pc, BuildUtilities.getFeatCat(),
 			Nature.AUTOMATIC, ab2));
 	}
 
@@ -259,7 +256,8 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 					context,
 					null,
 				"Template1	LEVEL:2:ABILITY:TestCat|AUTOMATIC|Ability1	ABILITY:TestCat|AUTOMATIC|Ability2", source);
-		PCTemplate template = context.getReferenceContext().silentlyGetConstructedCDOMObject(PCTemplate.class, "Template1");
+		PCTemplate template =
+				context.getReferenceContext().silentlyGetConstructedCDOMObject(PCTemplate.class, "Template1");
 		context.getReferenceContext().importObject(ab1);
 		context.getReferenceContext().importObject(ab2);
 		CDOMSingleRef<AbilityCategory> acRef =
@@ -320,11 +318,11 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 		LoadContext context = Globals.getContext();
 		Ability ab1 = new Ability();
 		ab1.setName("Ability1");
-		ab1.setCDOMCategory(AbilityCategory.FEAT);
+		ab1.setCDOMCategory(BuildUtilities.getFeatCat());
 		context.getReferenceContext().importObject(ab1);
 		Ability ab2 = new Ability();
 		ab2.setName("Ability2");
-		ab2.setCDOMCategory(AbilityCategory.FEAT);
+		ab2.setCDOMCategory(BuildUtilities.getFeatCat());
 		context.getReferenceContext().importObject(ab2);
 
 		CampaignSourceEntry source;
@@ -342,7 +340,8 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 					context,
 				null,
 				"Template1	LEVEL:2:ABILITY:Feat|AUTOMATIC|Ability1	ABILITY:Feat|AUTOMATIC|Ability2", source);
-		PCTemplate template = context.getReferenceContext().silentlyGetConstructedCDOMObject(PCTemplate.class, "Template1");
+		PCTemplate template =
+				context.getReferenceContext().silentlyGetConstructedCDOMObject(PCTemplate.class, "Template1");
 		context.getReferenceContext().importObject(ab1);
 		context.getReferenceContext().importObject(ab2);
 		CDOMSingleRef<AbilityCategory> acRef =
@@ -374,20 +373,20 @@ public class PCTemplateTest extends AbstractCharacterTestCase
 		// Add the template to the character
 		PlayerCharacter pc = getCharacter();
 		pc.addTemplate(template);
-		assertFalse("Character should not have ability1.", hasAbility(pc, AbilityCategory.FEAT,
+		assertFalse("Character should not have ability1.", hasAbility(pc, BuildUtilities.getFeatCat(),
 			Nature.AUTOMATIC, ab1));
-		assertTrue("Character should have ability2.", hasAbility(pc, AbilityCategory.FEAT,
+		assertTrue("Character should have ability2.", hasAbility(pc, BuildUtilities.getFeatCat(),
 			Nature.AUTOMATIC, ab2));
 		
 		// Level the character up, testing for when the level tag kicks in
 		pc.incrementClassLevel(1, testClass);
 		pc.calcActiveBonuses();
-		assertFalse("Character should not have ability1.", hasAbility(pc, AbilityCategory.FEAT,
+		assertFalse("Character should not have ability1.", hasAbility(pc, BuildUtilities.getFeatCat(),
 			Nature.AUTOMATIC, ab1));
 
 		pc.incrementClassLevel(1, testClass);
 		pc.calcActiveBonuses();
-		assertTrue("Character should have ability1.", hasAbility(pc, AbilityCategory.FEAT,
+		assertTrue("Character should have ability1.", hasAbility(pc, BuildUtilities.getFeatCat(),
 			Nature.AUTOMATIC, ab1));
 		
 	}

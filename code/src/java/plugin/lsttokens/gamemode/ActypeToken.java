@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.lsttokens.gamemode;
 
@@ -43,13 +40,13 @@ import pcgen.util.Logging;
 public class ActypeToken implements GameModeLstToken
 {
 
-    @Override
+	@Override
 	public String getTokenName()
 	{
 		return "ACTYPE";
 	}
 
-    @Override
+	@Override
 	public boolean parse(GameMode gameMode, String value, URI source)
 	{
 		final StringTokenizer aTok = new StringTokenizer(value, "\t");
@@ -69,8 +66,7 @@ public class ActypeToken implements GameModeLstToken
 
 			if (aString.startsWith("ADD:"))
 			{
-				Collection<ACControl> controls = parseACControl(aString
-						.substring(4));
+				Collection<ACControl> controls = parseACControl(aString.substring(4));
 				if (controls == null)
 				{
 					return false;
@@ -79,8 +75,7 @@ public class ActypeToken implements GameModeLstToken
 			}
 			else if (aString.startsWith("REMOVE:"))
 			{
-				Collection<ACControl> controls = parseACControl(aString
-						.substring(7));
+				Collection<ACControl> controls = parseACControl(aString.substring(7));
 				if (controls == null)
 				{
 					return false;
@@ -89,8 +84,7 @@ public class ActypeToken implements GameModeLstToken
 			}
 			else
 			{
-				Logging.errorPrint("Incorrect tag in miscinfo.ACTYPE: "
-						+ aString);
+				Logging.errorPrint("Incorrect tag in miscinfo.ACTYPE: " + aString);
 				return false;
 			}
 		}
@@ -143,8 +137,7 @@ public class ActypeToken implements GameModeLstToken
 			token = st.nextToken();
 			if (!PreParserFactory.isPreReqString(token))
 			{
-				Logging.errorPrint("ERROR: Type found after"
-						+ " PRExxx in actype control: " + str);
+				Logging.errorPrint("ERROR: Type found after" + " PRExxx in actype control: " + str);
 				return null;
 			}
 		}

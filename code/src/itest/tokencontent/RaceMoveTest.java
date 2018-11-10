@@ -17,17 +17,17 @@
  */
 package tokencontent;
 
-import org.junit.Test;
-
 import pcgen.cdom.facet.FacetLibrary;
 import pcgen.cdom.facet.analysis.BaseMovementFacet;
 import pcgen.core.Movement;
 import pcgen.core.Race;
-import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.persistence.token.CDOMToken;
 import pcgen.rules.persistence.token.ParseResult;
 import plugin.lsttokens.race.MoveToken;
+
+import org.junit.Test;
 import tokenmodel.testsupport.AbstractTokenModelTest;
+import util.TestURI;
 
 public class RaceMoveTest extends AbstractTokenModelTest
 {
@@ -43,7 +43,7 @@ public class RaceMoveTest extends AbstractTokenModelTest
 	}
 
 	@Test
-	public void testFromRace() throws PersistenceLayerException
+	public void testFromRace()
 	{
 		Race source = create(Race.class, "Source");
 		processToken(source);
@@ -60,7 +60,7 @@ public class RaceMoveTest extends AbstractTokenModelTest
 		ParseResult result = token.parseToken(context, source, "Fly,30");
 		if (result != ParseResult.SUCCESS)
 		{
-			result.printMessages();
+			result.printMessages(TestURI.getURI());
 			fail("Test Setup Failed");
 		}
 		finishLoad();

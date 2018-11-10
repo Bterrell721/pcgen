@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -33,14 +30,13 @@ import pcgen.core.PCClass;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.bonus.Bonus;
 import pcgen.core.bonus.BonusObj;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 import pcgen.rules.context.LoadContext;
 
 /**
  * <code>PreHPTest</code> tests that the PREHP tag is
  * working correctly.
- *
- *
  */
 public class PreHPTest extends AbstractCharacterTestCase
 {
@@ -60,10 +56,11 @@ public class PreHPTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the PREHP code
-	 * @throws Exception
+	 * Test the PREHP code.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testHP() throws Exception
+	public void testHP() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		LoadContext context = Globals.getContext();

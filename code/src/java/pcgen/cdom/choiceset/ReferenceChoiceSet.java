@@ -16,7 +16,6 @@
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  * 
  * 
- * $Date: 2006-06-22 21:22:44 -0400 (Thu, 22 Jun 2006) $
  */
 package pcgen.cdom.choiceset;
 
@@ -73,16 +72,13 @@ public class ReferenceChoiceSet<T> implements PrimitiveChoiceSet<T>
 	 */
 	public ReferenceChoiceSet(Collection<? extends CDOMReference<T>> col)
 	{
-		super();
 		if (col == null)
 		{
-			throw new IllegalArgumentException(
-					"Choice Collection cannot be null");
+			throw new IllegalArgumentException("Choice Collection cannot be null");
 		}
 		if (col.isEmpty())
 		{
-			throw new IllegalArgumentException(
-					"Choice Collection cannot be empty");
+			throw new IllegalArgumentException("Choice Collection cannot be empty");
 		}
 		refCollection = new WeightedCollection<>(col);
 	}
@@ -100,11 +96,9 @@ public class ReferenceChoiceSet<T> implements PrimitiveChoiceSet<T>
 	@Override
 	public String getLSTformat(boolean useAny)
 	{
-		WeightedCollection<CDOMReference<?>> sortedSet = new WeightedCollection<>(
-                ReferenceUtilities.REFERENCE_SORTER);
+		WeightedCollection<CDOMReference<?>> sortedSet = new WeightedCollection<>(ReferenceUtilities.REFERENCE_SORTER);
 		sortedSet.addAll(refCollection);
-		return ReferenceUtilities.joinLstFormat(sortedSet, Constants.COMMA,
-				useAny);
+		return ReferenceUtilities.joinLstFormat(sortedSet, Constants.COMMA, useAny);
 	}
 
 	/**
@@ -119,8 +113,7 @@ public class ReferenceChoiceSet<T> implements PrimitiveChoiceSet<T>
 	@Override
 	public Class<T> getChoiceClass()
 	{
-		return refCollection == null ? null : refCollection.iterator().next()
-				.getReferenceClass();
+		return refCollection == null ? null : refCollection.iterator().next().getReferenceClass();
 	}
 
 	/**

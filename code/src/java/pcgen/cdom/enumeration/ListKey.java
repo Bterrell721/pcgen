@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.cdom.enumeration;
 
@@ -42,6 +40,7 @@ import pcgen.cdom.helper.ArmorProfProvider;
 import pcgen.cdom.helper.Capacity;
 import pcgen.cdom.helper.EqModRef;
 import pcgen.cdom.helper.FollowerLimit;
+import pcgen.cdom.helper.InfoBoolean;
 import pcgen.cdom.helper.ShieldProfProvider;
 import pcgen.cdom.helper.StatLock;
 import pcgen.cdom.helper.WeaponProfProvider;
@@ -285,6 +284,9 @@ public final class ListKey<T>
 	public static final ListKey<CampaignSourceEntry> FILE_DYNAMIC = new ListKey<>();
 	public static final ListKey<CDOMReference<Dynamic>> GRANTED = new ListKey<>();
 	public static final ListKey<CampaignSourceEntry> FILE_DATATABLE = new ListKey<>();
+	public static final ListKey<InfoBoolean> ENABLE = new ListKey<>();
+	public static final ListKey<InfoBoolean> ALLOW = new ListKey<>();
+	public static final ListKey<String> GRANTEDVARS = new ListKey<>();
 
 	private static CaseInsensitiveMap<ListKey<?>> map = null;
 
@@ -299,6 +301,7 @@ public final class ListKey<T>
 		//Only allow instantiation here
 	}
 
+	@SuppressWarnings("unchecked")
 	public T cast(Object obj)
 	{
 		return (T) obj;
@@ -333,7 +336,7 @@ public final class ListKey<T>
 			int mod = fields[i].getModifiers();
 
 			if (java.lang.reflect.Modifier.isStatic(mod) && java.lang.reflect.Modifier.isFinal(mod)
-					&& java.lang.reflect.Modifier.isPublic(mod))
+				&& java.lang.reflect.Modifier.isPublic(mod))
 			{
 				try
 				{

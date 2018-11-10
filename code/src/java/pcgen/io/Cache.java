@@ -1,5 +1,4 @@
 /*
- * Cache.java
  * Copyright 2002 (C) Thomas Behr <ravenlock@gmx.de>
  *
  * This library is free software; you can redistribute it and/or
@@ -36,7 +35,8 @@ final class Cache
 
 	Cache()
 	{
-		//should define some default or make the default constructor private making users of the cache to define its initial size
+		//should define some default
+		//or make the default constructor private making users of the cache to define its initial size
 		map = new HashMap<>();
 	}
 

@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package plugin.jepcommands;
@@ -30,17 +28,14 @@ import pcgen.util.AbstractCountCommand;
 import pcgen.util.JepCountType;
 import pcgen.util.Logging;
 
-
 /**
  * {@code CountDistinctCommand} deals with the count() JEP command. The first parameter will
  * be the type of object being counted and further parameters will specify the criteria.
  * <p> 
- *
  */
 public class CountDistinctCommand extends AbstractCountCommand
 {
 
-	
 	/**
 	 * Constructor.
 	 */
@@ -77,9 +72,7 @@ public class CountDistinctCommand extends AbstractCountCommand
 
 		if (pc == null)
 		{
-			throw new ParseException(
-				"Invalid parent (no PC): "
-					+ parent.getClass().getName());
+			throw new ParseException("Invalid parent (no PC): " + parent.getClass().getName());
 		}
 
 		// check the stack
@@ -95,8 +88,7 @@ public class CountDistinctCommand extends AbstractCountCommand
 			final Object toCount = inStack.pop();
 			if (toCount instanceof String)
 			{
-				JepCountType countEnum =
-						JepCountType.valueOf(toCount + "DISTINCT");
+				JepCountType countEnum = JepCountType.valueOf(toCount + "DISTINCT");
 				if (countEnum == null)
 				{
 					// Fall back to count

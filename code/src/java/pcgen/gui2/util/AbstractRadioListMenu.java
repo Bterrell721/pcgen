@@ -1,5 +1,4 @@
 /*
- * AbstractRadioListMenu.java
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -30,9 +29,6 @@ import javax.swing.JRadioButtonMenuItem;
 
 import pcgen.facade.util.event.ListEvent;
 
-/**
- *
- */
 public abstract class AbstractRadioListMenu<E> extends AbstractListMenu<E> implements ItemListener
 {
 
@@ -78,7 +74,7 @@ public abstract class AbstractRadioListMenu<E> extends AbstractListMenu<E> imple
 	{
 		group.clearSelection();
 	}
-	
+
 	private static class RadioMenuItem extends JRadioButtonMenuItem
 	{
 
@@ -94,10 +90,7 @@ public abstract class AbstractRadioListMenu<E> extends AbstractListMenu<E> imple
 		@Override
 		public Object[] getSelectedObjects()
 		{
-			return new Object[]
-					{
-						item
-					};
+			return new Object[]{item};
 		}
 
 	}

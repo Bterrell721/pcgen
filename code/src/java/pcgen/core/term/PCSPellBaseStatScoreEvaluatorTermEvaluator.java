@@ -16,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 10-Aug-2008 00:42:42
- *
- *
  */
 
 package pcgen.core.term;
@@ -28,15 +26,14 @@ import pcgen.core.PCClass;
 import pcgen.core.PCStat;
 import pcgen.core.PlayerCharacter;
 
-public class PCSPellBaseStatScoreEvaluatorTermEvaluator 
-		extends BasePCTermEvaluator implements TermEvaluator
+public class PCSPellBaseStatScoreEvaluatorTermEvaluator extends BasePCTermEvaluator implements TermEvaluator
 {
 	private final String classKey;
 
 	public PCSPellBaseStatScoreEvaluatorTermEvaluator(String originalText, String classKey)
 	{
 		this.originalText = originalText;
-		this.classKey     = classKey;
+		this.classKey = classKey;
 	}
 
 	@Override
@@ -48,7 +45,7 @@ public class PCSPellBaseStatScoreEvaluatorTermEvaluator
 		{
 			return 0.0f;
 		}
-		
+
 		CDOMSingleRef<PCStat> ss = aClass.get(ObjectKey.SPELL_STAT);
 
 		if (ss == null)

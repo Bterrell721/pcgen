@@ -14,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.core.character;
 
@@ -31,7 +28,6 @@ import pcgen.core.Race;
 public final class Follower implements Comparable<Object>, Cloneable
 {
 	/*
-	 *
 	 * the Structure of each Follower is as follows:
 	 *
 	 * FOLLOWER:name:type:race:HD:/path/to/some.pcg
@@ -41,7 +37,6 @@ public final class Follower implements Comparable<Object>, Cloneable
 	 * String race = race of follower
 	 * int HD = Number of "used" HD
 	 * String fileName = path and file name
-	 *
 	 */
 	private String fileName = Constants.EMPTY_STRING;
 	private String name = Constants.EMPTY_STRING;
@@ -153,17 +148,17 @@ public final class Follower implements Comparable<Object>, Cloneable
 		return usedHD;
 	}
 
-	public void setAdjustment( final int anAdjustment )
+	public void setAdjustment(final int anAdjustment)
 	{
 		theAdjustment = anAdjustment;
 	}
-	
+
 	public int getAdjustment()
 	{
 		return theAdjustment;
 	}
-	
-    @Override
+
+	@Override
 	public int compareTo(final Object obj)
 	{
 		final Follower aF = (Follower) obj;

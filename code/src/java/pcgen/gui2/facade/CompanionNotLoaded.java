@@ -1,5 +1,4 @@
 /*
- * CompanionNotLoaded.java
  * Copyright James Dempsey, 2012
  *
  * This library is free software; you can redistribute it and/or
@@ -15,16 +14,14 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
 import java.io.File;
 
 import pcgen.facade.core.CompanionFacade;
-import pcgen.facade.util.DefaultReferenceFacade;
 import pcgen.facade.core.RaceFacade;
+import pcgen.facade.util.DefaultReferenceFacade;
 import pcgen.facade.util.ReferenceFacade;
 
 /**
@@ -55,7 +52,7 @@ public class CompanionNotLoaded implements CompanionFacade
 		this.raceRef = new DefaultReferenceFacade<>(race);
 		this.companionType = compType;
 	}
-	
+
 	@Override
 	public ReferenceFacade<String> getNameRef()
 	{

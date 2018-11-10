@@ -1,5 +1,4 @@
 /*
- * PreRuleParserTest.java
  * Copyright 2007 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.persistence.lst.prereq;
 
@@ -28,22 +24,24 @@ import org.junit.Test;
 
 import pcgen.EnUsLocaleDependentTestCase;
 import pcgen.core.prereq.Prerequisite;
+import pcgen.persistence.PersistenceLayerException;
 import plugin.pretokens.parser.PreRuleParser;
 
 /**
  * <code>PreRuleParserTest</code> is ...
- *
- *
  */
 @SuppressWarnings("nls")
 public class PreRuleParserTest extends EnUsLocaleDependentTestCase
 {
 
+	
 	/**
-	 * @throws Exception
+	 * Test positive.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void testPositive() throws Exception
+	public void testPositive() throws PersistenceLayerException
 	{
 		PreRuleParser parser = new PreRuleParser();
 		Prerequisite prereq = parser.parse("RULE", "1,DISPLAYTYPETRAITS", false, false);
@@ -54,11 +52,14 @@ public class PreRuleParserTest extends EnUsLocaleDependentTestCase
 		assertFalse("Prerule should nto need a character", prereq.isCharacterRequired());
 	}
 
+	
 	/**
-	 * @throws Exception
+	 * Test negative.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	@Test
-	public void testNegative() throws Exception
+	public void testNegative() throws PersistenceLayerException
 	{
 		PreRuleParser parser = new PreRuleParser();
 		Prerequisite prereq = parser.parse("RULE", "1,DISPLAYTYPETRAITS", true, false);

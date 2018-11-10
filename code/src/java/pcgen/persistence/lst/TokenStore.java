@@ -1,5 +1,4 @@
 /*
- * TokenStore.java
  * Missing License Header, Copyright 2016 (C) Andrew Maitland <amaitland@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -39,8 +38,7 @@ public final class TokenStore implements PluginLoader
 
 	private TokenStore()
 	{
-		tokenTypeMap =
-                new HashMap<>();
+		tokenTypeMap = new HashMap<>();
 		tokenTypeList = new ArrayList<>();
 		populateTokenTypeList();
 	}
@@ -84,13 +82,13 @@ public final class TokenStore implements PluginLoader
 		tokenTypeList.add(MigrationLstToken.class);
 	}
 
-    @Override
+	@Override
 	public void loadPlugin(Class<?> clazz) throws Exception
 	{
 		addToTokenMap((LstToken) clazz.newInstance());
 	}
 
-    @Override
+	@Override
 	public Class[] getPluginClasses()
 	{
 		return new Class[]{LstToken.class};
@@ -111,10 +109,8 @@ public final class TokenStore implements PluginLoader
 
 				if (test != null)
 				{
-					Logging.errorPrint("More than one " + tokClass.getName()
-						+ " has the same token name: '"
-						+ newToken.getTokenName() + "'. " + "Classes were "
-						+ test.getClass().getName() + " and "
+					Logging.errorPrint("More than one " + tokClass.getName() + " has the same token name: '"
+						+ newToken.getTokenName() + "'. " + "Classes were " + test.getClass().getName() + " and "
 						+ newToken.getClass().getName());
 				}
 			}
@@ -126,8 +122,7 @@ public final class TokenStore implements PluginLoader
 	 * @param tokInterface
 	 * @return the token map
 	 */
-	public Map<String, LstToken> getTokenMap(
-		Class<? extends LstToken> tokInterface)
+	public Map<String, LstToken> getTokenMap(Class<? extends LstToken> tokInterface)
 	{
 		Map<String, LstToken> tokenMap = tokenTypeMap.get(tokInterface);
 		if (tokenMap == null)

@@ -1,5 +1,4 @@
 /*
- * AttackTokenTest.java
  * Copyright 2007 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens;
 
@@ -38,8 +34,6 @@ import pcgen.rules.context.LoadContext;
 /**
  * <code>ACTokenTest</code> tests the function of the AC token and 
  * thus the calculations of armor class.  
- *
- *
  */
 public class AttackTokenTest extends AbstractCharacterTestCase
 {
@@ -99,9 +93,8 @@ public class AttackTokenTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test the character's attack calcs with no bonus.
-	 * @throws Exception
 	 */
-	public void testBase() throws Exception
+	public void testBase()
 	{
 		assertEquals("Total melee attack no bonus", "+2", new AttackToken()
 			.getToken("ATTACK.MELEE.TOTAL", getCharacter(), null));
@@ -113,9 +106,8 @@ public class AttackTokenTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test the character's attack calcs with a bonus.
-	 * @throws Exception
 	 */
-	public void testIterative() throws Exception
+	public void testIterative()
 	{
 		getCharacter().incrementClassLevel(1, myClass, true);
 		getCharacter().calcActiveBonuses();

@@ -20,9 +20,6 @@ package pcgen.gui2.filter;
 
 import java.awt.Component;
 
-/**
- *
- */
 public interface DisplayableFilter<C, E> extends Filter<C, E>
 {
 

@@ -16,20 +16,19 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created/Reinstated on 2015-11-24
- *
  */
 package pcgen.inttest.game_3e;
 
-import pcgen.inttest.pcGenGUITestCase;
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import pcgen.inttest.PcgenFtlTestCase;
 
 /**
  * Tests a 3e 4th level Half-orc Fighter.
  * See the PCG file for details.
  */
 @SuppressWarnings("nls")
-public class pcGenGUIFigFaeTest extends pcGenGUITestCase
+public class pcGenGUIFigFaeTest extends PcgenFtlTestCase
 {
 
 	/**

@@ -1,5 +1,4 @@
 /*
- * VisibleToken.java
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package plugin.lsttokens.kit.startpack;
@@ -32,8 +29,7 @@ import pcgen.util.enumeration.Visibility;
 /**
  * VISIBLE token for KitsStartpack
  */
-public class VisibleToken extends AbstractNonEmptyToken<Kit> implements
-		CDOMPrimaryToken<Kit>
+public class VisibleToken extends AbstractNonEmptyToken<Kit> implements CDOMPrimaryToken<Kit>
 {
 	/**
 	 * Gets the name of the tag this class will parse.
@@ -53,8 +49,7 @@ public class VisibleToken extends AbstractNonEmptyToken<Kit> implements
 	}
 
 	@Override
-	protected ParseResult parseNonEmptyToken(LoadContext context, Kit kit,
-		String value)
+	protected ParseResult parseNonEmptyToken(LoadContext context, Kit kit, String value)
 	{
 		Visibility vis;
 		if (value.equals("QUALIFY"))
@@ -71,7 +66,7 @@ public class VisibleToken extends AbstractNonEmptyToken<Kit> implements
 		}
 		else
 		{
-			return new ParseResult.Fail("Can't understand Visibility: " + value, context);
+			return new ParseResult.Fail("Can't understand Visibility: " + value);
 		}
 		kit.put(ObjectKey.VISIBILITY, vis);
 		return ParseResult.SUCCESS;
@@ -100,8 +95,7 @@ public class VisibleToken extends AbstractNonEmptyToken<Kit> implements
 		}
 		else
 		{
-			context.addWriteMessage("Visibility " + vis
-				+ " is not a valid Visibility for a Kit");
+			context.addWriteMessage("Visibility " + vis + " is not a valid Visibility for a Kit");
 			return null;
 		}
 		return new String[]{visString};

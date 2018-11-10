@@ -14,14 +14,13 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
 import org.junit.Test;
 
 import pcgen.AbstractCharacterTestCase;
+import pcgen.cdom.base.BasicClassIdentity;
 import pcgen.cdom.base.CDOMReference;
 import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.list.CompanionList;
@@ -42,12 +41,6 @@ import pcgen.facade.util.DefaultListFacade;
 import pcgen.facade.util.ListFacade;
 import pcgen.util.TestHelper;
 
-/**
- * The Class <code></code> ...
- *
- * <br/>
- * 
- */
 public class CompanionSupportFacadeImplTest extends AbstractCharacterTestCase
 {
 
@@ -66,18 +59,20 @@ public class CompanionSupportFacadeImplTest extends AbstractCharacterTestCase
 		uiDelegate = new MockUIDelegate();
 		todoManager = new TodoManager();
 		ListFacade<CampaignFacade> campaigns = new DefaultListFacade<>();
-		dataSetFacade = new DataSet(Globals.getContext(), SettingsHandler.getGame(), campaigns );
+		dataSetFacade = new DataSet(Globals.getContext(), SettingsHandler.getGame(), campaigns);
 		masterRace = TestHelper.makeRace("Wood Elf");
 		companionRace = TestHelper.makeRace("Weasel");
 
 		CDOMReference<Race> race  = new CDOMDirectSingleRef<>(companionRace);
-		CDOMSingleRef<CompanionList> ref  = new CDOMSimpleSingleRef<>(CompanionList.class, companionList.getKeyName());
+		CDOMSingleRef<CompanionList> ref = new CDOMSimpleSingleRef<>(
+			BasicClassIdentity.getIdentity(CompanionList.class),
+			companionList.getKeyName());
 		FollowerOption option = new FollowerOption(race, ref);
 		masterRace.addToListFor(ListKey.COMPANIONLIST, option);
 	}
 
 	/**
-	 * Test method for {@link pcgen.gui2.facade.CompanionSupportFacadeImpl#addCompanion(pcgen.core.facade.CharacterFacade, java.lang.String)}.
+	 * Test method for {@link pcgen.gui2.facade.CompanionSupportFacadeImpl#addCompanion(CharacterFacade, String)}
 	 */
 	@Test
 	public void testAddCompanion()

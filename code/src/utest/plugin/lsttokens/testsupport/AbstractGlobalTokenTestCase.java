@@ -18,19 +18,17 @@
 package plugin.lsttokens.testsupport;
 
 
-import java.net.URI;
+import java.lang.ref.WeakReference;
 import java.net.URISyntaxException;
 import java.util.Locale;
-
-import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import junit.framework.TestCase;
 import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.base.ConcretePrereqObject;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Campaign;
 import pcgen.core.bonus.BonusObj;
 import pcgen.persistence.PersistenceLayerException;
@@ -45,6 +43,7 @@ import pcgen.rules.persistence.TokenLibrary;
 import pcgen.rules.persistence.token.CDOMPrimaryToken;
 import pcgen.rules.persistence.token.ParseResult;
 import pcgen.util.Logging;
+import util.TestURI;
 
 public abstract class AbstractGlobalTokenTestCase extends TestCase
 {
@@ -57,11 +56,10 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 	protected static CampaignSourceEntry testCampaign;
 
 	@BeforeClass
-	public static void classSetUp() throws URISyntaxException
+	public static void classSetUp()
 	{
 		Locale.setDefault(Locale.US);
-		testCampaign = new CampaignSourceEntry(new Campaign(), new URI(
-				"file:/Test%20Case"));
+		testCampaign = new CampaignSourceEntry(new Campaign(), TestURI.getURI());
 		classSetUpFired = true;
 	}
 
@@ -74,14 +72,16 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 			classSetUp();
 		}
 		TokenRegistration.register(getToken());
-		primaryContext = new RuntimeLoadContext(new RuntimeReferenceContext(), new ConsolidatedListCommitStrategy());
-		secondaryContext = new RuntimeLoadContext(new RuntimeReferenceContext(), new ConsolidatedListCommitStrategy());
+		primaryContext = new RuntimeLoadContext(RuntimeReferenceContext.createRuntimeReferenceContext(),
+			new ConsolidatedListCommitStrategy());
+		secondaryContext = new RuntimeLoadContext(RuntimeReferenceContext.createRuntimeReferenceContext(),
+			new ConsolidatedListCommitStrategy());
 		primaryProf = primaryContext.getReferenceContext().constructCDOMObject(getCDOMClass(),
 				"TestObj");
 		secondaryProf = secondaryContext.getReferenceContext().constructCDOMObject(
 				getCDOMClass(), "TestObj");
-		primaryContext.getReferenceContext().importObject(AbilityCategory.FEAT);
-		secondaryContext.getReferenceContext().importObject(AbilityCategory.FEAT);
+		additionalSetup(primaryContext);
+		additionalSetup(secondaryContext);
 	}
 
 	public abstract <T extends CDOMObject> Class<T> getCDOMClass();
@@ -130,8 +130,7 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 		StringBuilder unparsedBuilt = new StringBuilder();
 		for (String s : unparsed)
 		{
-			unparsedBuilt.append(getToken().getTokenName()).append(':').append(
-					s).append('\t');
+			unparsedBuilt.append(getToken().getTokenName()).append(':').append(s).append('\t');
 		}
 		getLoader().parseLine(secondaryContext, secondaryProf,
 				unparsedBuilt.toString(), testCampaign.getURI());
@@ -155,7 +154,7 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 	 * @param target The expected new token format.
 	 * @throws PersistenceLayerException If the parsing 
 	 */
-	public void runMigrationRoundRobin(String deprecated, String target) 
+	protected void runMigrationRoundRobin(String deprecated, String target)
 			throws PersistenceLayerException
 	{
 		// Default is not to write out anything
@@ -164,7 +163,6 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 		parse(deprecated);
 		primaryProf.setSourceURI(testCampaign.getURI());
 		String[] unparsed = validateUnparsed(primaryContext, primaryProf, target);
-
 
 		// Do round Robin
 		StringBuilder unparsedBuilt = new StringBuilder();
@@ -190,7 +188,7 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 		}
 		else
 		{
-			for (int i = 0; i < unparsed.length && i < sUnparsed.length; i++)
+			for (int i = 0; (i < unparsed.length) && (i < sUnparsed.length); i++)
 			{
 				assertEquals("Expected " + i + "th unparsed item to be equal",
 					unparsed[i], sUnparsed[i]);
@@ -224,7 +222,7 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 		}
 		else
 		{
-			pr.addMessagesToLog();
+			pr.addMessagesToLog(TestURI.getURI());
 			primaryContext.rollback();
 			Logging.rewindParseMessages();
 			Logging.replayParsedMessages();
@@ -253,7 +251,7 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 		return getToken().getTokenName();
 	}
 
-	public static void isCDOMEqual(CDOMObject cdo1, CDOMObject cdo2)
+	private static void isCDOMEqual(CDOMObject cdo1, CDOMObject cdo2)
 	{
 		assertTrue(cdo1.isCDOMEqual(cdo2));
 	}
@@ -269,7 +267,7 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 	public abstract <T extends CDOMObject> CDOMLoader<T> getLoader();
 
 	@Test
-	public void testOverwrite() throws PersistenceLayerException
+	public void testOverwrite()
 	{
 		parse(getLegalValue());
 		validateUnparsed(primaryContext, primaryProf, getLegalValue());
@@ -308,6 +306,50 @@ public abstract class AbstractGlobalTokenTestCase extends TestCase
 	{
 		assertTrue(primaryContext.getReferenceContext().validate(null));
 		assertTrue(primaryContext.getReferenceContext().resolveReferences(null));
+	}
+
+	@Test
+	public void testCleanup()
+	{
+		String s = new String(getLegalValue());
+		WeakReference<String> wr = new WeakReference<>(s);
+		assertTrue(parse(s));
+		s = null;
+		System.gc();
+		if (wr.get() != null)
+		{
+			fail("retained");
+		}
+	}
+
+	@Test
+	public void testAvoidContext()
+	{
+		RuntimeLoadContext context = new RuntimeLoadContext(
+			RuntimeReferenceContext.createRuntimeReferenceContext(),
+			new ConsolidatedListCommitStrategy());
+		additionalSetup(context);
+		WeakReference<LoadContext> wr = new WeakReference<>(context);
+		CDOMObject item = context.getReferenceContext()
+				.constructCDOMObject(getCDOMClass(), "TestObj");
+		ParseResult pr = getToken().parseToken(context, item, getLegalValue());
+		if (!pr.passed())
+		{
+			fail();
+		}
+		context.commit();
+		assertTrue(pr.passed());
+		context = null;
+		System.gc();
+		if (wr.get() != null)
+		{
+			fail("retained");
+		}
+	}
+
+	protected void additionalSetup(LoadContext context)
+	{
+		context.getReferenceContext().importObject(BuildUtilities.getFeatCat());
 	}
 
 }

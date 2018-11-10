@@ -1,5 +1,4 @@
 /*
- * SourceMigrationTest.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.io.migration;
 
@@ -76,8 +73,8 @@ public class SourceMigrationTest extends TestCase
 	 */
 	public void testMaxVer()
 	{
-		assertEquals("NewKey1", SourceMigration.getNewSourceKey("OldKey1", new int[]{6,0,0}, gameMode));
-		assertEquals("OldKey1", SourceMigration.getNewSourceKey("OldKey1", new int[]{6,0,2}, gameMode));
+		assertEquals("NewKey1", SourceMigration.getNewSourceKey("OldKey1", new int[]{6, 0, 0}, gameMode));
+		assertEquals("OldKey1", SourceMigration.getNewSourceKey("OldKey1", new int[]{6, 0, 2}, gameMode));
 	}
 
 	/**
@@ -85,13 +82,13 @@ public class SourceMigrationTest extends TestCase
 	 */
 	public void testMinMaxVer()
 	{
-		assertEquals("LateNewKey", SourceMigration.getNewSourceKey("OldKey2", new int[]{6,0,0}, gameMode));
-		assertEquals("OldKey2", SourceMigration.getNewSourceKey("OldKey2", new int[]{6,0,2}, gameMode));
-		assertEquals("LateNewKey", SourceMigration.getNewSourceKey("OldKey2", new int[]{5,17,8}, gameMode));
-		assertEquals("OldKey2", SourceMigration.getNewSourceKey("OldKey2", new int[]{5,17,6}, gameMode));
-		assertEquals("OldKey2", SourceMigration.getNewSourceKey("OldKey2", new int[]{5,16,5}, gameMode));
-		assertEquals("EarlyNewKey", SourceMigration.getNewSourceKey("OldKey2", new int[]{5,17,5}, gameMode));
-		assertEquals("EarlyNewKey", SourceMigration.getNewSourceKey("OldKey2", new int[]{5,16,4}, gameMode));
+		assertEquals("LateNewKey", SourceMigration.getNewSourceKey("OldKey2", new int[]{6, 0, 0}, gameMode));
+		assertEquals("OldKey2", SourceMigration.getNewSourceKey("OldKey2", new int[]{6, 0, 2}, gameMode));
+		assertEquals("LateNewKey", SourceMigration.getNewSourceKey("OldKey2", new int[]{5, 17, 8}, gameMode));
+		assertEquals("OldKey2", SourceMigration.getNewSourceKey("OldKey2", new int[]{5, 17, 6}, gameMode));
+		assertEquals("OldKey2", SourceMigration.getNewSourceKey("OldKey2", new int[]{5, 16, 5}, gameMode));
+		assertEquals("EarlyNewKey", SourceMigration.getNewSourceKey("OldKey2", new int[]{5, 17, 5}, gameMode));
+		assertEquals("EarlyNewKey", SourceMigration.getNewSourceKey("OldKey2", new int[]{5, 16, 4}, gameMode));
 	}
 
 	/**
@@ -99,8 +96,8 @@ public class SourceMigrationTest extends TestCase
 	 */
 	public void testNoCrossGameMode()
 	{
-		assertEquals("OldKey3", SourceMigration.getNewSourceKey("OldKey3", new int[]{6,0,0}, gameMode));
-		assertEquals("OldKey3", SourceMigration.getNewSourceKey("OldKey3", new int[]{5,17,0}, gameMode));
+		assertEquals("OldKey3", SourceMigration.getNewSourceKey("OldKey3", new int[]{6, 0, 0}, gameMode));
+		assertEquals("OldKey3", SourceMigration.getNewSourceKey("OldKey3", new int[]{5, 17, 0}, gameMode));
 	}
 
 	/**
@@ -108,6 +105,6 @@ public class SourceMigrationTest extends TestCase
 	 */
 	public void testCaseInsensitive()
 	{
-		assertEquals("NewKey1", SourceMigration.getNewSourceKey("OldKEY1", new int[]{6,0,0}, gameMode));
+		assertEquals("NewKey1", SourceMigration.getNewSourceKey("OldKEY1", new int[]{6, 0, 0}, gameMode));
 	}
 }

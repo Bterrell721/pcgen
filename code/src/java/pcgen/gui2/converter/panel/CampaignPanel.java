@@ -1,5 +1,4 @@
 /*
- * CampaignPanel.java
  * Copyright 2008 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.converter.panel;
 
@@ -77,7 +74,7 @@ public class CampaignPanel extends ConvertSubPanel
 	{
 		return true;
 	}
-	
+
 	/**
 	 * @see pcgen.gui2.converter.panel.ConvertSubPanel#performAnalysis(pcgen.cdom.base.CDOMObject)
 	 */
@@ -87,7 +84,7 @@ public class CampaignPanel extends ConvertSubPanel
 		GameMode game = pc.get(ObjectKey.GAME_MODE);
 		List<String> gameModeList = new ArrayList<>();
 		gameModeList.addAll(game.getAllowedModes());
-		
+
 		File sourceFolder = pc.get(ObjectKey.DIRECTORY);
 		folderName = sourceFolder.toURI().toString();
 
@@ -114,83 +111,73 @@ public class CampaignPanel extends ConvertSubPanel
 	public void setupDisplay(JPanel panel, final CDOMObject pc)
 	{
 		panel.setLayout(new GridBagLayout());
-		JLabel introLabel =
-				new JLabel("Please select the Campaign(s) to Convert:");
+		JLabel introLabel = new JLabel("Please select the Campaign(s) to Convert:");
 		GridBagConstraints gbc = new GridBagConstraints();
-		Utility
-			.buildRelativeConstraints(gbc, GridBagConstraints.REMAINDER, 1,
-				1.0, 0, GridBagConstraints.HORIZONTAL,
-				GridBagConstraints.NORTHWEST);
+		Utility.buildRelativeConstraints(gbc, GridBagConstraints.REMAINDER, 1, 1.0, 0, GridBagConstraints.HORIZONTAL,
+			GridBagConstraints.NORTHWEST);
 		gbc.insets = new Insets(25, 25, 5, 25);
 		panel.add(introLabel, gbc);
-		
+
 		final CampaignTableModel model = new CampaignTableModel(gameModeCampaigns, folderName);
-		final JTable table = new JTable(model){    
-		    //Implement table cell tool tips.
+		final JTable table = new JTable(model)
+		{
+			//Implement table cell tool tips.
 			@Override
 			public String getToolTipText(MouseEvent e)
 			{
-		        java.awt.Point p = e.getPoint();
-		        int rowIndex = rowAtPoint(p);
-		        int colIndex = columnAtPoint(p);
-	            String tip = String.valueOf(getValueAt(rowIndex, colIndex));
-		        return tip;
-		    }
+				java.awt.Point p = e.getPoint();
+				int rowIndex = rowAtPoint(p);
+				int colIndex = columnAtPoint(p);
+				String tip = String.valueOf(getValueAt(rowIndex, colIndex));
+				return tip;
+			}
 		};
-		table.getSelectionModel().addListSelectionListener(
-			new ListSelectionListener()
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+		{
+			@Override
+			public void valueChanged(ListSelectionEvent event)
 			{
-				@Override
-				public void valueChanged(ListSelectionEvent event)
+				pc.removeListFor(ListKey.CAMPAIGN);
+				int[] selRows = table.getSelectedRows();
+				if (selRows.length == 0)
 				{
-					pc.removeListFor(ListKey.CAMPAIGN);
-					int[] selRows = table.getSelectedRows();
-					if (selRows.length == 0)
+					saveSourceSelection(pc);
+					fireProgressEvent(ProgressEvent.NOT_ALLOWED);
+				}
+				else
+				{
+					for (int row : selRows)
 					{
-						saveSourceSelection(pc);
-						fireProgressEvent(ProgressEvent.NOT_ALLOWED);
+						Campaign selCampaign = (Campaign) model.getValueAt(row, 0);
+						pc.addToListFor(ListKey.CAMPAIGN, selCampaign);
 					}
-					else
-					{
-						for (int row : selRows)
-						{
-							Campaign selCampaign =
-									(Campaign) model.getValueAt(row, 0);
-							pc.addToListFor(ListKey.CAMPAIGN, selCampaign);
-						}
-						saveSourceSelection(pc);
-						fireProgressEvent(ProgressEvent.ALLOWED);
-					}
+					saveSourceSelection(pc);
+					fireProgressEvent(ProgressEvent.ALLOWED);
 				}
 			}
-		);
+		});
 
 		JScrollPane listScroller = new JScrollPane(table);
-		Utility.buildRelativeConstraints(gbc, GridBagConstraints.REMAINDER,
-			GridBagConstraints.REMAINDER, 1.0, 1.0);
+		Utility.buildRelativeConstraints(gbc, GridBagConstraints.REMAINDER, GridBagConstraints.REMAINDER, 1.0, 1.0);
 		gbc.fill = GridBagConstraints.BOTH;
 		panel.add(listScroller, gbc);
-		
+
 		initSourceSelection(model, table);
 	}
 
-	/**
-	 * 
-	 */
 	private void initSourceSelection(CampaignTableModel model, JTable table)
 	{
 		// Select any previous selections
 		PCGenSettings context = PCGenSettings.getInstance();
-		String sourceString = context
-			.initProperty(PCGenSettings.CONVERT_SOURCES, "");
-		String sources[] = sourceString.split("\\|");
+		String sourceString = context.initProperty(PCGenSettings.CONVERT_SOURCES, "");
+		String[] sources = sourceString.split("\\|");
 		for (String srcName : sources)
 		{
 			for (Campaign camp : gameModeCampaigns)
 			{
 				if (camp.toString().equals(srcName))
 				{
-					for (int i = 0; i<model.getRowCount(); i++)
+					for (int i = 0; i < model.getRowCount(); i++)
 					{
 						if (camp.equals(model.getValueAt(i, 0)))
 						{
@@ -203,13 +190,12 @@ public class CampaignPanel extends ConvertSubPanel
 			}
 		}
 	}
-	
+
 	private void saveSourceSelection(CDOMObject pc)
 	{
 		List<Campaign> selCampaigns = pc.getSafeListFor(ListKey.CAMPAIGN);
 		PCGenSettings context = PCGenSettings.getInstance();
-		context
-			.setProperty(PCGenSettings.CONVERT_SOURCES, StringUtils.join(selCampaigns, "|"));
+		context.setProperty(PCGenSettings.CONVERT_SOURCES, StringUtils.join(selCampaigns, "|"));
 	}
 
 	/**
@@ -218,10 +204,10 @@ public class CampaignPanel extends ConvertSubPanel
 	@SuppressWarnings("serial")
 	public class CampaignTableModel extends AbstractTableModel
 	{
-		
+
 		/** The column names. */
 		private final String[] columnNames = {"Campaign", "Location"};
-		
+
 		/** The row data. */
 		private final Object[][] rowData;
 
@@ -237,11 +223,7 @@ public class CampaignPanel extends ConvertSubPanel
 			int i = 0;
 			for (Campaign campaign : campList)
 			{
-				rowData[i++] =
-						new Object[]{
-							campaign,
-							campaign.getSourceURI().toString().substring(
-								prefix.length())};
+				rowData[i++] = new Object[]{campaign, campaign.getSourceURI().toString().substring(prefix.length())};
 			}
 		}
 
@@ -251,7 +233,7 @@ public class CampaignPanel extends ConvertSubPanel
 		@Override
 		public String getColumnName(int col)
 		{
-			return columnNames[col].toString();
+			return columnNames[col];
 		}
 
 		/**

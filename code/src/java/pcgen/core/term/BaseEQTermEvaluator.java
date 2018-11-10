@@ -1,5 +1,4 @@
 /**
- * pcgen.core.term.BaseEQTermEvaluator.java
  * Copyright (c) 2008 Andrew Wilson <nuance@users.sourceforge.net>.
  *
  * This library is free software; you can redistribute it and/or
@@ -17,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 03 October 2008 
- *
- *
  */
 
 package pcgen.core.term;
@@ -31,11 +28,13 @@ public abstract class BaseEQTermEvaluator
 {
 	protected String originalText;
 
-	public String evaluate(PlayerCharacter pc) {
+	public String evaluate(PlayerCharacter pc)
+	{
 		return "0.0";
 	}
 
-	public String evaluate(PlayerCharacter pc,  final Spell aSpell) {
+	public String evaluate(PlayerCharacter pc, final Spell aSpell)
+	{
 		return "0.0";
 	}
 
@@ -44,8 +43,8 @@ public abstract class BaseEQTermEvaluator
 		return TermUtil.convertToFloat(originalText, evaluate(pc));
 	}
 
-	public Float resolve(PlayerCharacter pc, final CharacterSpell aSpell) {
+	public Float resolve(PlayerCharacter pc, final CharacterSpell aSpell)
+	{
 		return TermUtil.convertToFloat(originalText, evaluate(pc, aSpell == null ? null : aSpell.getSpell()));
 	}
 }
-

@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package plugin.lsttokens;
 
@@ -34,8 +33,8 @@ import pcgen.rules.persistence.token.CDOMPrimaryToken;
 import pcgen.rules.persistence.token.ParseResult;
 import pcgen.util.Logging;
 
-public class SourcedateLst extends AbstractNonEmptyToken<CDOMObject> implements
-		CDOMPrimaryToken<CDOMObject>, InstallLstToken
+public class SourcedateLst extends AbstractNonEmptyToken<CDOMObject>
+		implements CDOMPrimaryToken<CDOMObject>, InstallLstToken
 {
 
 	@Override
@@ -45,8 +44,7 @@ public class SourcedateLst extends AbstractNonEmptyToken<CDOMObject> implements
 	}
 
 	@Override
-	protected ParseResult parseNonEmptyToken(LoadContext context,
-		CDOMObject obj, String value)
+	protected ParseResult parseNonEmptyToken(LoadContext context, CDOMObject obj, String value)
 	{
 		Date theDate = getDate(value);
 		if (theDate == null)
@@ -92,14 +90,13 @@ public class SourcedateLst extends AbstractNonEmptyToken<CDOMObject> implements
 	@Override
 	public String[] unparse(LoadContext context, CDOMObject obj)
 	{
-		Date date = context.getObjectContext().getObject(obj,
-				ObjectKey.SOURCE_DATE);
+		Date date = context.getObjectContext().getObject(obj, ObjectKey.SOURCE_DATE);
 		if (date == null)
 		{
 			return null;
 		}
 		DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-		return new String[] { df.format(date) };
+		return new String[]{df.format(date)};
 	}
 
 	@Override

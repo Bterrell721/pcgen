@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.pretokens.test;
 
@@ -26,20 +23,15 @@ import pcgen.core.PlayerCharacter;
 import pcgen.core.prereq.AbstractPrerequisiteTest;
 import pcgen.core.prereq.Prerequisite;
 import pcgen.core.prereq.PrerequisiteTest;
-import pcgen.util.Logging;
 import pcgen.system.LanguageBundle;
+import pcgen.util.Logging;
 
 /**
  * This is used to check the characters spellcasting ability.
- *
  */
-public class PreSpellTypeTester extends AbstractPrerequisiteTest implements
-		PrerequisiteTest
+public class PreSpellTypeTester extends AbstractPrerequisiteTest implements PrerequisiteTest
 {
 
-	/**
-	 * @see pcgen.core.prereq.PrerequisiteTest#passes(pcgen.core.PlayerCharacter)
-	 */
 	@Override
 	public int passes(final Prerequisite prereq, final PlayerCharacter character, CDOMObject source)
 	{
@@ -52,10 +44,8 @@ public class PreSpellTypeTester extends AbstractPrerequisiteTest implements
 		catch (NumberFormatException e)
 		{
 			requiredLevel = 1;
-			Logging.errorPrintLocalised(
-				"PreSpellType.Badly_formed_spell_type", //$NON-NLS-1$
-				prereq.getOperand(),
-				prereq.toString());
+			Logging.errorPrintLocalised("PreSpellType.Badly_formed_spell_type", //$NON-NLS-1$
+				prereq.getOperand(), prereq.toString());
 		}
 
 		int count = character.countSpellCastTypeLevel(castingType, requiredLevel);
@@ -68,22 +58,17 @@ public class PreSpellTypeTester extends AbstractPrerequisiteTest implements
 	 * Get the type of prerequisite handled by this token.
 	 * @return the type of prerequisite handled by this token.
 	 */
-    @Override
+	@Override
 	public String kindHandled()
 	{
 		return "SPELLTYPE"; //$NON-NLS-1$
 	}
 
-	/**
-	 * @see pcgen.core.prereq.PrerequisiteTest#toHtmlString(pcgen.core.prereq.Prerequisite)
-	 */
 	@Override
 	public String toHtmlString(final Prerequisite prereq)
 	{
-		return LanguageBundle.getFormattedString(
-			"PreSpellType.toHtmlSingle", //$NON-NLS-1$
-			prereq.getOperator().toDisplayString(), 1, prereq.getKey(),
-			prereq.getOperand());
+		return LanguageBundle.getFormattedString("PreSpellType.toHtmlSingle", //$NON-NLS-1$
+			prereq.getOperator().toDisplayString(), 1, prereq.getKey(), prereq.getOperand());
 	}
 
 }

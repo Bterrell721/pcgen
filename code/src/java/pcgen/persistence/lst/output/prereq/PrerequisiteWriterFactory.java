@@ -1,5 +1,4 @@
 /*
- * PrerequisiteWriterFactory.java
  *
  * Copyright 2004 (C) Frugal <frugal@purplewombat.co.uk>
  *
@@ -38,8 +37,7 @@ import pcgen.util.Logging;
 public final class PrerequisiteWriterFactory implements PluginLoader
 {
 	private static PrerequisiteWriterFactory instance = null;
-	private static Map<String, PrerequisiteWriterInterface> parserLookup =
-            new HashMap<>();
+	private static Map<String, PrerequisiteWriterInterface> parserLookup = new HashMap<>();
 
 	private PrerequisiteWriterFactory()
 	{
@@ -74,20 +72,19 @@ public final class PrerequisiteWriterFactory implements PluginLoader
 			test = parserLookup.get(kind.toLowerCase());
 			if (test == null)
 			{
-				Logging.errorPrintLocalised(
-					"PrerequisiteTestFactory.error.cannot_find_test", kind); //$NON-NLS-1$
+				Logging.errorPrintLocalised("PrerequisiteTestFactory.error.cannot_find_test", kind); //$NON-NLS-1$
 			}
 		}
 		return test;
 	}
 
 	/**
-	 * Register the test class with the factory 
-	 * @param testClass
-	 * @throws PersistenceLayerException
+	 * Register the test class with the factory .
+	 *
+	 * @param testClass the test class
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public static void register(PrerequisiteWriterInterface testClass)
-		throws PersistenceLayerException
+	public static void register(PrerequisiteWriterInterface testClass) throws PersistenceLayerException
 	{
 		String kindHandled = testClass.kindHandled();
 
@@ -95,23 +92,21 @@ public final class PrerequisiteWriterFactory implements PluginLoader
 
 		if (test != null)
 		{
-			throw new PersistenceLayerException("Error registering '"
-				+ testClass.getClass().getName() + "' as test '" + kindHandled
-				+ "'. The test is already registered to '"
-				+ test.getClass().getName() + "'");
+			throw new PersistenceLayerException("Error registering '" + testClass.getClass().getName() + "' as test '"
+				+ kindHandled + "'. The test is already registered to '" + test.getClass().getName() + "'");
 		}
 
 		parserLookup.put(kindHandled.toLowerCase(), testClass);
 	}
 
-    @Override
-	public void loadPlugin(Class<?> clazz) throws PersistenceLayerException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException
-    {
-		register((PrerequisiteWriterInterface) clazz.getConstructor()
-				.newInstance());
-}
+	@Override
+	public void loadPlugin(Class<?> clazz) throws PersistenceLayerException, InstantiationException,
+		IllegalAccessException, NoSuchMethodException, InvocationTargetException
+	{
+		register((PrerequisiteWriterInterface) clazz.getConstructor().newInstance());
+	}
 
-    @Override
+	@Override
 	public Class[] getPluginClasses()
 	{
 		return new Class[]{PrerequisiteWriterInterface.class};

@@ -16,9 +16,7 @@
  *  License along with this library; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  Spell.java
  *
- *  Created on January 16, 2002, 12:27 PM
  */
 package gmgen.plugin;
 
@@ -26,12 +24,11 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Vector;
 
-import pcgen.util.Logging;
-
 import org.jdom2.Element;
 
+import pcgen.util.Logging;
+
 /**
- *@author     devon
  */
 public class Event implements InitHolder
 {
@@ -166,7 +163,7 @@ public class Event implements InitHolder
 	 *
 	 *@return    The initiative object
 	 */
-    @Override
+	@Override
 	public SystemInitiative getInitiative()
 	{
 		return init;
@@ -187,7 +184,7 @@ public class Event implements InitHolder
 	 *
 	 *@return    The name value
 	 */
-    @Override
+	@Override
 	public String getName()
 	{
 		return name;
@@ -208,7 +205,7 @@ public class Event implements InitHolder
 	 *
 	 *@return    The player value
 	 */
-    @Override
+	@Override
 	public String getPlayer()
 	{
 		return player;
@@ -221,44 +218,47 @@ public class Event implements InitHolder
 	 *@param  columnOrder  The current table's column order
 	 *@return              The Row Vector
 	 */
-    @Override
+	@Override
 	public Vector<Object> getRowVector(List<String> columnOrder)
 	{
 		Vector<Object> rowVector = new Vector<>();
 
-		for ( String columnName : columnOrder )
+		for (String columnName : columnOrder)
 		{
 			switch (columnName)
 			{
-				case "Name":  // Event's name
+				case "Name": // Event's name
 					rowVector.add(getName());
 					break;
-				case "Player":  // Player's Name who cast the spell
+				case "Player": // Player's Name who cast the spell
 					rowVector.add("Owner: " + getPlayer());
 					break;
-				case "Status":  // Event's Status
+				case "Status": // Event's Status
 					rowVector.add(getStatus());
 					break;
-				case "+":  // Ignored
+				case "+": // Ignored
 					rowVector.add("");
 					break;
-				case "Init":  // Event's Initiative
+				case "Init": // Event's Initiative
 					rowVector.add(String.valueOf(init.getCurrentInitiative()));
 					break;
-				case "Dur":  // Event's Duration
+				case "Dur": // Event's Duration
 					rowVector.add(String.valueOf(getDuration()));
 					break;
-				case "#":  // Ignored
+				case "#": // Ignored
 					rowVector.add("");
 					break;
-				case "HP":  // Ignored
+				case "HP": // Ignored
 					rowVector.add("");
 					break;
-				case "HP Max":  // Ignored
+				case "HP Max": // Ignored
 					rowVector.add("");
 					break;
-				case "Type":  //PC, Enemy, Ally, -
+				case "Type": //PC, Enemy, Ally, -
 					rowVector.add("-");
+					break;
+				default:
+					//Case not caught, should this cause an error?
 					break;
 			}
 		}
@@ -266,7 +266,7 @@ public class Event implements InitHolder
 		return rowVector;
 	}
 
-    @Override
+	@Override
 	public Element getSaveElement()
 	{
 		Element retElement = new Element("Event");
@@ -290,7 +290,7 @@ public class Event implements InitHolder
 	 *
 	 *@param  status  The new status value
 	 */
-    @Override
+	@Override
 	public void setStatus(State status)
 	{
 		this.status = status;
@@ -301,7 +301,7 @@ public class Event implements InitHolder
 	 *
 	 *@return    The status value
 	 */
-    @Override
+	@Override
 	public State getStatus()
 	{
 		return status;
@@ -326,41 +326,37 @@ public class Event implements InitHolder
 	 *@param  colNumber    What column number has been edited
 	 *@param  data         The new value for the field
 	 */
-    @Override
+	@Override
 	public void editRow(List<String> columnOrder, int colNumber, Object data)
 	{
 		String columnName = columnOrder.get(colNumber);
 		String strData = String.valueOf(data);
-
+		Integer intData = Integer.valueOf(strData);
+		
 		switch (columnName)
 		{
-			case "Name":  // Spell's Name
+			case "Name": // Spell's Name
 				setName(strData);
 				break;
-			case "Player":  // Name of the player who cast the spell
+			case "Player": // Name of the player who cast the spell
 				setPlayer(strData);
 				break;
-			case "Status":  // SPell's status
+			case "Status": // SPell's status
 				setStatus(State.getStateLocalised(strData));
 				break;
-			case "Init":
-			{ // Spell's Initiative
-
-				Integer intData = Integer.valueOf(strData);
+			case "Init": // Spell's Initiative
 				init.setCurrentInitiative(intData.intValue());
 				break;
-			}
-			case "Dur":
-			{ // Spell's duration
-
-				Integer intData = Integer.valueOf(strData);
+			case "Dur": // Spell's duration
 				setDuration(intData.intValue());
 				break;
-			}
+			default:
+				//Case not caught, should this cause an error?
+				break;
 		}
 	}
 
-    @Override
+	@Override
 	public void endRound()
 	{
 		// TODO This method currently does nothing?
@@ -377,8 +373,7 @@ public class Event implements InitHolder
 	 * @param init
 	 * @param alert
 	 */
-	final void setValues(String name, String player, State status, String effect, int duration, int init,
-		boolean alert)
+	final void setValues(String name, String player, State status, String effect, int duration, int init, boolean alert)
 	{
 		this.name = name;
 		this.player = player;

@@ -19,6 +19,7 @@ package selectionactor.testsupport;
 
 import org.junit.Test;
 
+import compare.InequalityTesterInst;
 import pcgen.base.test.InequalityTester;
 import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.base.ChooseDriver;
@@ -27,10 +28,7 @@ import pcgen.cdom.facet.base.AbstractStorageFacet;
 import pcgen.core.Domain;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
-import pcgen.persistence.PersistenceLayerException;
 import pcgen.testsupport.AbstractCharacterUsingTestCase;
-
-import compare.InequalityTesterInst;
 
 public abstract class AbstractSelectionActorTest<T extends CDOMObject> extends AbstractCharacterUsingTestCase
 {
@@ -42,7 +40,7 @@ public abstract class AbstractSelectionActorTest<T extends CDOMObject> extends A
 	public abstract boolean isGranted();
 
 	@Test
-	public void testAddRemoveSimple() throws PersistenceLayerException
+	public void testAddRemoveSimple()
 	{
 		setUpPC();
 		finishLoad(Globals.getContext());
@@ -94,7 +92,7 @@ public abstract class AbstractSelectionActorTest<T extends CDOMObject> extends A
 	}
 
 	@Test
-	public void testAddRemoveHasChild() throws PersistenceLayerException
+	public void testAddRemoveHasChild()
 	{
 		if (isGranted())
 		{

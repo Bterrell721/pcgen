@@ -1,5 +1,4 @@
 /*
- * TreeViewModel.java
  * Copyright 2008 (C) Connor Petty <mistercpp2000@gmail.com>
  * 
  * This library is free software; you can redistribute it and/or
@@ -21,18 +20,15 @@ package pcgen.gui2.util.treeview;
 
 import pcgen.facade.util.ListFacade;
 
-/**
- *
- */
 public interface TreeViewModel<E>
 {
 
-    ListFacade<? extends TreeView<E>> getTreeViews();
+	ListFacade<? extends TreeView<E>> getTreeViews();
 
-    int getDefaultTreeViewIndex();
+	int getDefaultTreeViewIndex();
 
-    DataView<E> getDataView();
+	DataView<E> getDataView();
 
-    ListFacade<E> getDataModel();
+	ListFacade<E> getDataModel();
 
 }

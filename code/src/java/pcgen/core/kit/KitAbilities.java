@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.kit;
 
@@ -43,14 +41,12 @@ import pcgen.core.PlayerCharacter;
 
 /**
  * {@code KitAbiltiies}.
- *
  */
 public final class KitAbilities extends BaseKit
 {
 	private Boolean free = null;
 	private Integer choiceCount;
-	private List<CDOMReference<Ability>> abilities =
-            new ArrayList<>();
+	private List<CDOMReference<Ability>> abilities = new ArrayList<>();
 
 	// These members store the state of an instance of this class.  They are
 	// not cloned.
@@ -119,8 +115,7 @@ public final class KitAbilities extends BaseKit
 	}
 
 	@Override
-	public boolean testApply(Kit aKit, PlayerCharacter aPC,
-		List<String> warnings)
+	public boolean testApply(Kit aKit, PlayerCharacter aPC, List<String> warnings)
 	{
 		abilitiesToAdd = new ArrayList<>();
 		double minCost = Double.MAX_VALUE;
@@ -136,7 +131,7 @@ public final class KitAbilities extends BaseKit
 					minCost = 0;
 					continue;
 				}
-				
+
 				if (a.getCost() < minCost)
 				{
 					minCost = a.getCost();
@@ -168,10 +163,8 @@ public final class KitAbilities extends BaseKit
 		AbilityCategory category = catRef.get();
 		boolean tooManyAbilities = false;
 		// Don't allow choosing of more than allotted number of abilities
-		int maxChoices =
-				minCost > 0.0d ? aPC.getAvailableAbilityPool(category)
-					.divide(new BigDecimal(minCost)).intValue()
-					: numberOfChoices;
+		int maxChoices = minCost > 0.0d
+			? aPC.getAvailableAbilityPool(category).divide(new BigDecimal(minCost)).intValue() : numberOfChoices;
 		if (!isFree() && numberOfChoices > maxChoices)
 		{
 			numberOfChoices = maxChoices;
@@ -180,8 +173,7 @@ public final class KitAbilities extends BaseKit
 
 		if (!isFree() && numberOfChoices == 0)
 		{
-			warnings.add("ABILITY: Not enough " + category.getPluralName()
-				+ " available to take \"" + this + "\"");
+			warnings.add("ABILITY: Not enough " + category.getPluralName() + " available to take \"" + this + "\"");
 			return false;
 		}
 
@@ -197,10 +189,8 @@ public final class KitAbilities extends BaseKit
 			// Force user to make enough selections
 			while (true)
 			{
-				selected =
-						Globals.getChoiceFromList("Choose abilities",
-							available, new ArrayList<>(),
-							numberOfChoices, aPC);
+				selected = Globals.getChoiceFromList("Choose abilities", available, new ArrayList<>(), numberOfChoices,
+					aPC);
 
 				if (!selected.isEmpty())
 				{
@@ -236,8 +226,7 @@ public final class KitAbilities extends BaseKit
 
 		if (tooManyAbilities)
 		{
-			warnings
-				.add("ABILITY: Some Abilities were not granted -- not enough remaining feats");
+			warnings.add("ABILITY: Some Abilities were not granted -- not enough remaining feats");
 			return false;
 		}
 
@@ -250,7 +239,7 @@ public final class KitAbilities extends BaseKit
 		for (CNAbilitySelection cnas : abilitiesToAdd)
 		{
 			aPC.addAbility(cnas, UserSelection.getInstance(), UserSelection.getInstance());
-			
+
 			if (isFree())
 			{
 				AbilityCategory category = catRef.get();
@@ -301,8 +290,7 @@ public final class KitAbilities extends BaseKit
 
 	public Collection<CDOMReference<Ability>> getAbilityKeys()
 	{
-		Set<CDOMReference<Ability>> wc = new TreeSet<>(
-                ReferenceUtilities.REFERENCE_SORTER);
+		Set<CDOMReference<Ability>> wc = new TreeSet<>(ReferenceUtilities.REFERENCE_SORTER);
 		wc.addAll(abilities);
 		return wc;
 	}
@@ -330,7 +318,7 @@ public final class KitAbilities extends BaseKit
 			return sb.toString();
 		}
 
-        @Override
+		@Override
 		public int compareTo(AbilitySelection o)
 		{
 			int base = ability.compareTo(o.ability);
@@ -342,8 +330,7 @@ public final class KitAbilities extends BaseKit
 			{
 				return o.selection == null ? 0 : -1;
 			}
-			return o.selection == null ? 1 : selection
-					.compareToIgnoreCase(o.selection);
+			return o.selection == null ? 1 : selection.compareToIgnoreCase(o.selection);
 		}
 	}
 

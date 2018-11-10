@@ -33,11 +33,9 @@ import pcgen.output.publish.OutputDB;
  * LanguageFacet is a Facet that tracks the Languages that have been granted to
  * a Player Character.
  * 
- * @author Thomas Parker (thpr [at] yahoo.com)
  */
 public class LanguageFacet extends AbstractSourcedListFacet<CharID, Language>
-		implements DataFacetChangeListener<CharID, Language>,
-		PerspectiveLocation, SetFacet<CharID, Language>
+		implements DataFacetChangeListener<CharID, Language>, PerspectiveLocation, SetFacet<CharID, Language>
 {
 
 	/**
@@ -81,7 +79,7 @@ public class LanguageFacet extends AbstractSourcedListFacet<CharID, Language>
 	{
 		remove(dfce.getCharID(), dfce.getCDOMObject(), dfce.getSource());
 	}
-	
+
 	public void init()
 	{
 		CorePerspectiveDB.register(CorePerspective.LANGUAGE, FacetBehavior.MODEL, this);

@@ -1,5 +1,4 @@
 /*
- * Constants.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -18,6 +17,7 @@
  */
 package pcgen.cdom.base;
 
+import java.awt.SystemColor;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
@@ -83,7 +83,6 @@ public interface Constants
 	/** The prefix to add to an Automatically resized piece of equipment's Key. */
 	String AUTO_RESIZE_PREFIX = "AUTOSIZE"; //$NON-NLS-1$
 
-
 	/********************************************************************
 	 * Output sheet related
 	 ********************************************************************/
@@ -118,9 +117,6 @@ public interface Constants
 	/** The constant string "None". */
 	String NONE = "None"; //$NON-NLS-1$
 
-	/** The constant string {@literal "<none selected>" }. */
-	String NONESELECTED = "<none selected>"; //$NON-NLS-1$
-
 	/** The extension for a campaign file. */
 	String EXTENSION_CAMPAIGN_FILE = ".pcc"; //$NON-NLS-1$
 
@@ -138,7 +134,6 @@ public interface Constants
 
 	/** A constant string representing the type spellbook. */
 	String TYPE_SPELLBOOK = "SPELLBOOK"; //$NON-NLS-1$
-
 
 	/********************************************************************
 	 * Units of measurement
@@ -180,7 +175,6 @@ public interface Constants
 	/** The weight display pattern. */
 	DecimalFormat STANDARD_UNITSET_WEIGHT_DISPLAY_PATTERN = new DecimalFormat("#.###"); //$NON-NLS-1$
 
-
 	/********************************************************************
 	 * Systems for plug-ins
 	 ********************************************************************/
@@ -189,7 +183,6 @@ public interface Constants
 	String SYSTEM_PCGEN = "PCGen"; //$NON-NLS-1$
 	/** GMGen. */
 	String SYSTEM_GMGEN = "GMGen"; //$NON-NLS-1$
-
 
 	/********************************************************************
 	 * What equipment to auto generate
@@ -207,7 +200,6 @@ public interface Constants
 	/** Auto-generate equipment made from exotic materials. */
 	int AUTOGEN_EXOTIC_MATERIAL = 4;
 
-
 	/********************************************************************
 	 * Character stat generation methods
 	 ********************************************************************/
@@ -223,7 +215,6 @@ public interface Constants
 
 	/** A constant used to select the method of rolling stats. */
 	int CHARACTER_STAT_METHOD_ROLLED = 3;
-
 
 	/********************************************************************
 	 *  Character panel tab constants
@@ -244,7 +235,6 @@ public interface Constants
 	 * valid choice available - add single choice to selected list and then
 	 * close. */
 	int CHOOSER_SINGLE_CHOICE_METHOD_SELECT_EXIT = 2;
-
 
 	/********************************************************************
 	 * How to display the PC's name
@@ -313,7 +303,6 @@ public interface Constants
 	 * and extra point. The extra point is given on odd numbered levels. */
 	int HP_AVERAGE_ROUNDED_UP = 5;
 
-
 	/**
 	 * The highest possible maxDex value. */
 	int MAX_MAXDEX = 100;
@@ -321,8 +310,6 @@ public interface Constants
 	/**
 	 * The highest spell level we are catering for. */
 	int MAX_SPELL_LEVEL = 25;
-
-
 
 	/********************************************************************
 	 * merge of like equipment constants
@@ -343,7 +330,6 @@ public interface Constants
 	 * Merge those items located together. */
 	int MERGE_LOCATION = 2;
 
-
 	// TODO: this is broken in some sad way whereby if you change the case
 	// of FEAT to Feat, the pre-req tree fails on the Feats tab.
 	/** For accessing {@code CategorisableStore}. */
@@ -351,7 +337,6 @@ public interface Constants
 
 	/** An empty string. */
 	String EMPTY_STRING = ""; //$NON-NLS-1$
-
 
 	/********************************************************************
 	 * Various parsing token constants
@@ -456,7 +441,6 @@ public interface Constants
 	/** A snippet of List code as a constant. */
 	String LST_UNTRAINED = "UNTRAINED";
 
-
 	/** A constant used in List parsing of Favoured Class. */
 	String HIGHEST_LEVEL_CLASS = "HIGHESTLEVELCLASS";
 
@@ -481,7 +465,6 @@ public interface Constants
 	 */
 	int DEFAULT_MAX_WAND_SPELL_LEVEL = 4;
 
-
 	/** The default percentage of hit points to grant when granting a percentage of hitpoints. */
 	int DEFAULT_HP_PERCENT = 100;
 
@@ -501,10 +484,9 @@ public interface Constants
 
 	/**
 	 * The default colour of items in the GUI which the character does qualify
-	 * for. 0x000000 is black. This  is used to initialise the value in the settings
+	 * for.  This is used to initialise the value in the settings
 	 * handler if the user has not overridden it. */
-	int DEFAULT_PREREQ_QUALIFY_COLOUR = 0x000000;
-
+	int DEFAULT_PREREQ_QUALIFY_COLOUR = SystemColor.text.getRGB() & 0x00FFFFFF;
 
 	/** A constant used to define an array of age sets. */
 	int NUMBER_OF_AGESET_KIT_SELECTIONS = 10;
@@ -545,7 +527,7 @@ public interface Constants
 
 	/** The size (in pixels) of a side of the square thumbnail image */
 	public static final int THUMBNAIL_SIZE = 100;
-	
+
 	/** Type that signifies the modifier marks what the equipment item is made from. */
-	public static final String EQMOD_TYPE_BASEMATERIAL = "BaseMaterial"; 
+	public static final String EQMOD_TYPE_BASEMATERIAL = "BaseMaterial";
 }

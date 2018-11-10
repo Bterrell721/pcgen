@@ -17,7 +17,6 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  PreferencesTrackingPanel.java
- *
  */
 package plugin.initiative.gui;
 
@@ -34,12 +33,11 @@ import plugin.initiative.InitiativePlugin;
 
 /**
  * Panel that tracks the misc preferences
- *
  */
 public class PreferencesPerformancePanel extends gmgen.gui.PreferencesPanel
 {
 	private static final String OPTION_NAME = InitiativePlugin.LOG_NAME + ".refreshOnStateChange"; //$NON-NLS-1$
-	
+
 	private JPanel mainPanel;
 	private JCheckBox refreshOnStateChange;
 
@@ -50,17 +48,16 @@ public class PreferencesPerformancePanel extends gmgen.gui.PreferencesPanel
 		initPreferences();
 	}
 
-    @Override
+	@Override
 	public void applyPreferences()
 	{
 		SettingsHandler.setGMGenOption(OPTION_NAME, getRefreshOnStateChange());
 	}
 
-    @Override
+	@Override
 	public void initPreferences()
 	{
-		setRefreshOnStateChange(SettingsHandler.getGMGenOption(
-			OPTION_NAME, true));
+		setRefreshOnStateChange(SettingsHandler.getGMGenOption(OPTION_NAME, true));
 	}
 
 	/**

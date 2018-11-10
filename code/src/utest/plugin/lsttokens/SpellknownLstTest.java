@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package plugin.lsttokens;
 
@@ -126,119 +124,119 @@ public class SpellknownLstTest extends AbstractGlobalTokenTestCase
 	}
 
 	@Test
-	public void testInvalidDoublePipe() throws PersistenceLayerException
+	public void testInvalidDoublePipe()
 	{
 		assertFalse(parse("CLASS||Cleric=1|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidNoSpell() throws PersistenceLayerException
+	public void testInvalidNoSpell()
 	{
 		assertFalse(parse("CLASS|Cleric=1"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidNoLevel() throws PersistenceLayerException
+	public void testInvalidNoLevel()
 	{
 		assertFalse(parse("CLASS|Cleric=|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidClassOnly() throws PersistenceLayerException
+	public void testInvalidClassOnly()
 	{
 		assertFalse(parse("CLASS|Cleric|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidPrefix() throws PersistenceLayerException
+	public void testInvalidPrefix()
 	{
 		assertFalse(parse("SKILL|Cleric=2|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidNoPrefix() throws PersistenceLayerException
+	public void testInvalidNoPrefix()
 	{
 		assertFalse(parse("|Cleric=2|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidNoClass() throws PersistenceLayerException
+	public void testInvalidNoClass()
 	{
 		assertFalse(parse("CLASS|=2|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidOnlyPre1() throws PersistenceLayerException
+	public void testInvalidOnlyPre1()
 	{
 		assertFalse(parse("PRECLASS:1,Fighter"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidOnlyPre2() throws PersistenceLayerException
+	public void testInvalidOnlyPre2()
 	{
 		assertFalse(parse("CLASS|PRECLASS:1,Fighter"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidOnlyPre3() throws PersistenceLayerException
+	public void testInvalidOnlyPre3()
 	{
 		assertFalse(parse("CLASS|Cleric=2|PRECLASS:1,Fighter"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidBadCasterComma1() throws PersistenceLayerException
+	public void testInvalidBadCasterComma1()
 	{
 		assertFalse(parse("CLASS|,Cleric=2|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidBadCasterComma2() throws PersistenceLayerException
+	public void testInvalidBadCasterComma2()
 	{
 		assertFalse(parse("CLASS|Cleric,=2|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidBadCasterComma3() throws PersistenceLayerException
+	public void testInvalidBadCasterComma3()
 	{
 		assertFalse(parse("CLASS|Cleric,,Druid=2|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidBadCasterComma4() throws PersistenceLayerException
+	public void testInvalidBadCasterComma4()
 	{
 		assertFalse(parse("CLASS|Druid=2,|Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidBadComma1() throws PersistenceLayerException
+	public void testInvalidBadComma1()
 	{
 		assertFalse(parse("CLASS|Cleric=2|,Fireball"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidBadComma2() throws PersistenceLayerException
+	public void testInvalidBadComma2()
 	{
 		assertFalse(parse("CLASS|Cleric=2|Fireball,"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidBadComma3() throws PersistenceLayerException
+	public void testInvalidBadComma3()
 	{
 		assertFalse(parse("CLASS|Cleric=2|Fireball,,Lightning Bolt"));
 		assertNoSideEffects();
@@ -268,7 +266,7 @@ public class SpellknownLstTest extends AbstractGlobalTokenTestCase
 	}
 
 	@Test
-	public void testInvalidDomain() throws PersistenceLayerException
+	public void testInvalidDomain()
 	{
 		primaryContext.getReferenceContext().constructCDOMObject(Spell.class, "Fireball");
 		secondaryContext.getReferenceContext().constructCDOMObject(Spell.class, "Fireball");

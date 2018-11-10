@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -26,13 +23,12 @@ import junit.textui.TestRunner;
 import pcgen.AbstractCharacterTestCase;
 import pcgen.cdom.enumeration.PCAttribute;
 import pcgen.core.PlayerCharacter;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreBirthplaceTest</code> tests that the PREBIRTHPLACE tag is
  * working correctly.
- *
- *
  */
 public class PreBirthplaceTest extends AbstractCharacterTestCase
 {
@@ -50,10 +46,11 @@ public class PreBirthplaceTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the PREBIRTHPLACE code
-	 * @throws Exception
+	 * Test the PREBIRTHPLACE code.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testAtt() throws Exception
+	public void testAtt() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		character.setPCAttribute(PCAttribute.BIRTHPLACE, "Klamath");

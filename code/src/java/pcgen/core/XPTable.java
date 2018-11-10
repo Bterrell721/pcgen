@@ -15,9 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * Created on October 25, 2006
  *
- * $Id: PCClass.java 1526 2006-10-25 03:56:08Z thpr $
  */
 package pcgen.core;
 
@@ -29,14 +27,13 @@ import pcgen.facade.core.XPTableFacade;
 /**
  * {@code XPTable}.
  * 
- * @author Stefan Radermacher &lt;radermacher@netcologne.de&gt;
  */
 @SuppressWarnings("serial")
 public final class XPTable extends PObject implements XPTableFacade
 {
 	private final String name;
 	private final Map<String, LevelInfo> infoMap;
-	
+
 	public XPTable()
 	{
 		this.name = "Default";
@@ -49,7 +46,7 @@ public final class XPTable extends PObject implements XPTableFacade
 		this.infoMap = new HashMap<>();
 	}
 
-    @Override
+	@Override
 	public String getName()
 	{
 		return name;
@@ -60,7 +57,7 @@ public final class XPTable extends PObject implements XPTableFacade
 		infoMap.put(level, levelInfo);
 	}
 
-    @Override
+	@Override
 	public LevelInfo getLevelInfo(String levelString)
 	{
 		return infoMap.get(levelString);
@@ -87,7 +84,7 @@ public final class XPTable extends PObject implements XPTableFacade
 		}
 		return lInfo;
 	}
-	
+
 	public boolean validateSequence(String levelValue)
 	{
 		int value = getIntValue(levelValue);
@@ -101,7 +98,7 @@ public final class XPTable extends PObject implements XPTableFacade
 		}
 		return true;
 	}
-	
+
 	private static int getIntValue(String level)
 	{
 		try

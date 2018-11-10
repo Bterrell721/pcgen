@@ -14,16 +14,13 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.facade.core;
-
-import pcgen.facade.util.ReferenceFacade;
 
 import java.util.EnumSet;
 
 import pcgen.facade.util.ListFacade;
+import pcgen.facade.util.ReferenceFacade;
 
 /**
  * EquipmentBuilderFacade defines the methods that can be used to build up a 
@@ -42,30 +39,30 @@ public interface EquipmentBuilderFacade
 		PRIMARY, SECONDARY;
 
 		/**
-		 * @return
+		 * @return boolean <code>true</code> is Primary
 		 */
 		public boolean isPrimary()
 		{
 			return this == PRIMARY;
 		}
 	}
-	
+
 	public boolean addModToEquipment(EquipModFacade modifier, EquipmentHead head);
-	
+
 	public boolean removeModFromEquipment(EquipModFacade modifier, EquipmentHead head);
-	
+
 	public boolean setName(String name);
-	
+
 	public boolean setSProp(String sprop);
-	
+
 	public boolean setCost(String newCost);
-	
+
 	public boolean setWeight(String newWeight);
-	
+
 	public ListFacade<EquipModFacade> getAvailList(EquipmentHead head);
-	
+
 	public ListFacade<EquipModFacade> getSelectedList(EquipmentHead head);
-	
+
 	public EquipmentFacade getEquipment();
 
 	/**
@@ -91,7 +88,7 @@ public interface EquipmentBuilderFacade
 	 * @return A reference to the equipment's current size.
 	 */
 	public ReferenceFacade<SizeAdjustmentFacade> getSizeRef();
-	
+
 	/**
 	 * @return The equipment heads which can be customized on this item of equipment.
 	 */
@@ -99,22 +96,22 @@ public interface EquipmentBuilderFacade
 
 	/**
 	 * @param newValue
-	 * @return
+	 * @return boolean
 	 */
 	boolean setDamage(String newValue);
 
 	/**
-	 * @return
+	 * @return String Base Item Name
 	 */
 	public String getBaseItemName();
 
 	/**
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isWeapon();
 
 	/**
-	 * @return
+	 * @return String Damage
 	 */
 	public String getDamage();
 

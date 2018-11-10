@@ -14,12 +14,13 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package plugin.lsttokens.gamemode.migrate;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,11 +40,9 @@ public class NewCategoryTokenTest
 	private NewCategoryToken token;
 	private String gameModeName;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
+	
 	@Before
-	public void setUp() throws Exception
+	public void setUp()
 	{
 		migrationRule = new MigrationRule(ObjectType.SOURCE, "OldKey");
 		token = new NewCategoryToken();
@@ -51,7 +50,7 @@ public class NewCategoryTokenTest
 	}
 
 	/**
-	 * Test method for {@link plugin.lsttokens.gamemode.migrate.NewCategoryToken#parse(pcgen.core.system.MigrationRule, java.lang.String, java.lang.String)}.
+	 * Test method for {@link NewCategoryToken#parse(MigrationRule, String, String)}.
 	 */
 	@Test
 	public void testParseValidCat()

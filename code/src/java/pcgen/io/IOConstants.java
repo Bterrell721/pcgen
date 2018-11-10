@@ -1,5 +1,4 @@
 /*
- * IOConstants.java
  * Copyright 2002 (C) Thomas Behr <ravenlock@gmx.de>
  *
  * This library is free software; you can redistribute it and/or
@@ -154,7 +153,6 @@ interface IOConstants
 
 	/** CHOSENTEMPLATE */
 	String TAG_CHOSENTEMPLATE = "CHOSENTEMPLATE";
-
 
 	/** CHRONICLE */
 	String TAG_CHRONICLE = "CHRONICLE";

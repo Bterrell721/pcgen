@@ -39,11 +39,9 @@ import pcgen.core.ShieldProf;
  * CHOOSE). This facet consolidates those two sources into the complete list of
  * ShieldProf ProfProviders for a Player Character.
  * 
- * @author Thomas Parker (thpr [at] yahoo.com)
  */
-public class ShieldProfProviderFacet extends
-		AbstractQualifiedListFacet<ProfProvider<ShieldProf>> implements
-		DataFacetChangeListener<CharID, ProfProvider<ShieldProf>>, PerspectiveLocation
+public class ShieldProfProviderFacet extends AbstractQualifiedListFacet<ProfProvider<ShieldProf>>
+		implements DataFacetChangeListener<CharID, ProfProvider<ShieldProf>>, PerspectiveLocation
 {
 
 	/**

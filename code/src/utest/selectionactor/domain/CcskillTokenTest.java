@@ -26,19 +26,18 @@ import pcgen.core.PCClass;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.Skill;
 
-import org.junit.Test;
 import plugin.lsttokens.domain.CcskillToken;
 import selectionactor.testsupport.AbstractSelectionActorTest;
 
 public class CcskillTokenTest extends AbstractSelectionActorTest<Skill>
 {
 
-	private static final CcskillToken cra = new CcskillToken();
+	private static final CcskillToken CRA = new CcskillToken();
 
 	@Override
 	public ChooseSelectionActor<Skill> getActor()
 	{
-		return cra;
+		return CRA;
 	}
 
 	@Override

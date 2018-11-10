@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.pretokens.test;
 
@@ -32,33 +29,21 @@ import pcgen.core.prereq.PrerequisiteException;
 import pcgen.core.prereq.PrerequisiteTest;
 import pcgen.rules.context.AbstractReferenceContext;
 
-/**
- *
- */
 public class PreBaseSizeTester extends AbstractDisplayPrereqTest implements PrerequisiteTest
 {
 
-	/**
-	 * @see pcgen.core.prereq.PrerequisiteTest#passes(pcgen.core.PlayerCharacter)
-	 */
 	@Override
 	public int passes(final Prerequisite prereq, final CharacterDisplay display, CDOMObject source)
 		throws PrerequisiteException
 	{
 		int runningTotal = 0;
 
-		if ((display.getRace() != null)
-			&& !display.getRace().equals(Globals.s_EMPTYRACE))
+		if ((display.getRace() != null) && !display.getRace().isUnselected())
 		{
-			AbstractReferenceContext ref =
-					Globals.getContext().getReferenceContext();
-			SizeAdjustment sa =
-					ref.silentlyGetConstructedCDOMObject(SizeAdjustment.class,
-						prereq.getOperand());
+			AbstractReferenceContext ref = Globals.getContext().getReferenceContext();
+			SizeAdjustment sa = ref.silentlyGetConstructedCDOMObject(SizeAdjustment.class, prereq.getOperand());
 			int targetSize = sa.get(IntegerKey.SIZEORDER);
-			runningTotal =
-					prereq.getOperator().compare(display.racialSizeInt(),
-						targetSize);
+			runningTotal = prereq.getOperator().compare(display.racialSizeInt(), targetSize);
 		}
 
 		return countedTotal(prereq, runningTotal);
@@ -68,7 +53,7 @@ public class PreBaseSizeTester extends AbstractDisplayPrereqTest implements Prer
 	 * Get the type of prerequisite handled by this token.
 	 * @return the type of prerequisite handled by this token.
 	 */
-    @Override
+	@Override
 	public String kindHandled()
 	{
 		return "BASESIZE"; //$NON-NLS-1$

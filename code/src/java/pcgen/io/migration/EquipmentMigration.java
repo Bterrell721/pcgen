@@ -1,5 +1,4 @@
 /*
- * EquipmentMigration.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -37,6 +36,10 @@ public final class EquipmentMigration
 {
 	private static Map<int[], List<MigrationRule>> equipChangesForVer = new HashMap<>();
 
+	private EquipmentMigration()
+	{
+	}
+
 	/**
 	 * Find the new equipment key to replace the provided one.
 	 * 
@@ -46,12 +49,8 @@ public final class EquipmentMigration
 	 */
 	public static String getNewEquipmentKey(String equipKey, int[] pcgVer, String gameModeName)
 	{
-		List<MigrationRule> equipChangeList = equipChangesForVer.computeIfAbsent(
-				pcgVer,
-				v -> MigrationUtils.getChangeList(v, gameModeName,
-						ObjectType.EQUIPMENT
-				)
-		);
+		List<MigrationRule> equipChangeList = equipChangesForVer.computeIfAbsent(pcgVer,
+			v -> MigrationUtils.getChangeList(v, gameModeName, ObjectType.EQUIPMENT));
 
 		for (MigrationRule rule : equipChangeList)
 		{
@@ -62,6 +61,5 @@ public final class EquipmentMigration
 		}
 		return equipKey;
 	}
-	
 
 }

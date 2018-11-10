@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.kit;
 
@@ -38,7 +36,7 @@ import pcgen.util.chooser.ChooserFactory;
 public class KitTemplate extends BaseKit
 {
 	private final HashMapToList<CDOMSingleRef<PCTemplate>, CDOMSingleRef<PCTemplate>> templateList =
-            new HashMapToList<>();
+			new HashMapToList<>();
 
 	/**
 	 * Actually applies the templates to this PC.
@@ -48,8 +46,7 @@ public class KitTemplate extends BaseKit
 	@Override
 	public void apply(PlayerCharacter aPC)
 	{
-		HashMapToList<PCTemplate, PCTemplate> selectedMap =
-			buildSelectedTemplateMap(aPC, true);
+		HashMapToList<PCTemplate, PCTemplate> selectedMap = buildSelectedTemplateMap(aPC, true);
 
 		boolean tempShowHP = SettingsHandler.getShowHPDialogAtLevelUp();
 		SettingsHandler.setShowHPDialogAtLevelUp(false);
@@ -78,11 +75,9 @@ public class KitTemplate extends BaseKit
 	 * @param warnings List
 	 */
 	@Override
-	public boolean testApply(Kit aKit, PlayerCharacter aPC,
-		List<String> warnings)
+	public boolean testApply(Kit aKit, PlayerCharacter aPC, List<String> warnings)
 	{
-		HashMapToList<PCTemplate, PCTemplate> selectedMap =
-				buildSelectedTemplateMap(aPC, false);
+		HashMapToList<PCTemplate, PCTemplate> selectedMap = buildSelectedTemplateMap(aPC, false);
 
 		if (!selectedMap.isEmpty())
 		{
@@ -97,24 +92,20 @@ public class KitTemplate extends BaseKit
 	 * @param apply Is this a real application, false if a test run. 
 	 * @return The map of templates and child templates to be added
 	 */
-	private HashMapToList<PCTemplate, PCTemplate> buildSelectedTemplateMap(
-		PlayerCharacter aPC, boolean apply)
+	private HashMapToList<PCTemplate, PCTemplate> buildSelectedTemplateMap(PlayerCharacter aPC, boolean apply)
 	{
 		boolean tempShowHP = SettingsHandler.getShowHPDialogAtLevelUp();
 		SettingsHandler.setShowHPDialogAtLevelUp(false);
 		if (!apply)
 		{
-			ChooserFactory.pushChooserClassname(
-				"pcgen.util.chooser.RandomChooser"); //$NON-NLS-1$
+			ChooserFactory.pushChooserClassname("pcgen.util.chooser.RandomChooser"); //$NON-NLS-1$
 		}
-		HashMapToList<PCTemplate, PCTemplate> selectedMap =
-                new HashMapToList<>();
+		HashMapToList<PCTemplate, PCTemplate> selectedMap = new HashMapToList<>();
 
 		for (CDOMSingleRef<PCTemplate> ref : templateList.getKeySet())
 		{
 			PCTemplate templateToAdd = ref.get();
-			List<CDOMSingleRef<PCTemplate>> subList =
-					templateList.getListFor(ref);
+			List<CDOMSingleRef<PCTemplate>> subList = templateList.getListFor(ref);
 			List<PCTemplate> subAdded = new ArrayList<>();
 			if (subList != null)
 			{
@@ -158,8 +149,7 @@ public class KitTemplate extends BaseKit
 			}
 			needsPipe = true;
 			sb.append(ref.getLSTformat(false));
-			List<CDOMSingleRef<PCTemplate>> subList =
-					templateList.getListFor(ref);
+			List<CDOMSingleRef<PCTemplate>> subList = templateList.getListFor(ref);
 			if (subList != null)
 			{
 				for (CDOMSingleRef<PCTemplate> subref : subList)
@@ -173,8 +163,7 @@ public class KitTemplate extends BaseKit
 		return sb.toString();
 	}
 
-	public void addTemplate(CDOMSingleRef<PCTemplate> ref,
-		List<CDOMSingleRef<PCTemplate>> subList)
+	public void addTemplate(CDOMSingleRef<PCTemplate> ref, List<CDOMSingleRef<PCTemplate>> subList)
 	{
 		templateList.initializeListFor(ref);
 		templateList.addAllToListFor(ref, subList);

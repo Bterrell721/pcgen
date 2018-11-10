@@ -16,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 21-Sep-2008 01:22:27
- *
- *
  */
 
 package pcgen.core.term;
@@ -37,8 +35,6 @@ public interface TermEvaluatorBuilder
 	 * @return a term evaluator
 	 * @throws TermEvaulatorException If the term does not parse properly, this error is thrown
 	 */
-	TermEvaluator getTermEvaluator(
-			String expressionString,
-			String src,
-			String matchedSection) throws TermEvaulatorException;
+	TermEvaluator getTermEvaluator(String expressionString, String src, String matchedSection)
+		throws TermEvaulatorException;
 }

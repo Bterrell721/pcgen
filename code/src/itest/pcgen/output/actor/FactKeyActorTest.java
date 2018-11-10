@@ -24,38 +24,39 @@ import pcgen.cdom.facet.CDOMWrapperInfoFacet;
 import pcgen.cdom.facet.FacetLibrary;
 import pcgen.cdom.facet.model.DeityFacet;
 import pcgen.core.Deity;
-import pcgen.output.base.OutputActor;
 import pcgen.output.publish.OutputDB;
 import pcgen.output.testsupport.AbstractOutputTestCase;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class FactKeyActorTest extends AbstractOutputTestCase
 {
 
-	private static final DeityFacet df = new DeityFacet();
+	private static final DeityFacet DF = new DeityFacet();
+
+	private static boolean classSetUpRun = false;
 
 	@Override
 	protected void setUp() throws Exception
 	{
 		super.setUp();
+		if (!classSetUpRun)
+		{
+			classSetUp();
+			classSetUpRun = true;
+		}
 	}
 
-	@BeforeClass
 	private void classSetUp()
 	{
 		OutputDB.reset();
-		df.init();
+		DF.init();
 	}
 
-	@Test
 	public void testFactKeyActor()
 	{
 		Deity d = new Deity();
 		d.setName("Bob");
 		Integer expectedResult = 475;
-		df.set(id, d);
+		DF.set(id, d);
 		NumberManager mgr = new NumberManager();
 		FactKey<Number> fk = FactKey.getConstant("cost", mgr);
 		d.put(fk, new BasicIndirect<>(mgr, expectedResult));
@@ -66,12 +67,11 @@ public class FactKeyActorTest extends AbstractOutputTestCase
 		processThroughFreeMarker("${deity.cost}", expectedResult.toString());
 	}
 
-	@Test
 	public void testListKeyActorMissingSafe()
 	{
 		NumberManager mgr = new NumberManager();
 		FactKey<Number> fk = FactKey.getConstant("cost", mgr);
-		OutputActor<?> ika = new FactKeyActor<>(fk);
+		FactKeyActor<?> ika = new FactKeyActor<>(fk);
 		CDOMWrapperInfoFacet wiFacet =
 				FacetLibrary.getFacet(CDOMWrapperInfoFacet.class);
 		wiFacet.set(dsid, Deity.class, "cost", ika);

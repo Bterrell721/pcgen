@@ -37,6 +37,7 @@ import pcgen.rules.context.RuntimeLoadContext;
 import pcgen.rules.context.RuntimeReferenceContext;
 import pcgen.util.enumeration.Visibility;
 import plugin.lsttokens.testsupport.TokenRegistration;
+import util.TestURI;
 
 public class VisibleTokenTest extends TestCase
 {
@@ -50,11 +51,10 @@ public class VisibleTokenTest extends TestCase
 	protected static CampaignSourceEntry testCampaign;
 
 	@BeforeClass
-	public static void classSetUp() throws URISyntaxException
+	public static void classSetUp()
 	{
 		testCampaign =
-				new CampaignSourceEntry(new Campaign(), new URI(
-					"file:/Test%20Case"));
+				new CampaignSourceEntry(new Campaign(), TestURI.getURI());
 		classSetUpFired = true;
 	}
 
@@ -75,7 +75,7 @@ public class VisibleTokenTest extends TestCase
 	{
 		URI testURI = testCampaign.getURI();
 		context =
-				new RuntimeLoadContext(new RuntimeReferenceContext(),
+				new RuntimeLoadContext(RuntimeReferenceContext.createRuntimeReferenceContext(),
 					new ConsolidatedListCommitStrategy());
 		context.setSourceURI(testURI);
 		context.setExtractURI(testURI);
@@ -83,19 +83,19 @@ public class VisibleTokenTest extends TestCase
 	}
 
 	@Test
-	public void testInvalidInputNullString() throws PersistenceLayerException
+	public void testInvalidInputNullString()
 	{
 		assertFalse(token.parseToken(context, cd, null).passed());
 	}
 
 	@Test
-	public void testInvalidInputEmptyString() throws PersistenceLayerException
+	public void testInvalidInputEmptyString()
 	{
 		assertFalse(token.parseToken(context, cd, "").passed());
 	}
 
 	@Test
-	public void testValidStringYes() throws PersistenceLayerException
+	public void testValidStringYes()
 	{
 		assertNull(cd.getVisibility());
 		assertTrue(token.parseToken(context, cd, "YES").passed());
@@ -108,7 +108,7 @@ public class VisibleTokenTest extends TestCase
 	}
 
 	@Test
-	public void testValidStringNo() throws PersistenceLayerException
+	public void testValidStringNo()
 	{
 		assertNull(cd.getVisibility());
 		assertTrue(token.parseToken(context, cd, "NO").passed());
@@ -121,7 +121,7 @@ public class VisibleTokenTest extends TestCase
 	}
 
 	@Test
-	public void testValidStringDisplay() throws PersistenceLayerException
+	public void testValidStringDisplay()
 	{
 		assertNull(cd.getVisibility());
 		assertTrue(token.parseToken(context, cd, "DISPLAY").passed());
@@ -134,7 +134,7 @@ public class VisibleTokenTest extends TestCase
 	}
 
 	@Test
-	public void testValidStringExport() throws PersistenceLayerException
+	public void testValidStringExport()
 	{
 		assertNull(cd.getVisibility());
 		assertTrue(token.parseToken(context, cd, "EXPORT").passed());

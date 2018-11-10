@@ -1,5 +1,4 @@
 /*
- * AbilityListToken.java
  * Copyright (c) 2010 Tom Parker <thpr@users.sourceforge.net>
  * Copyright 2008 (C) James Dempsey
  * 
@@ -45,13 +44,9 @@ import pcgen.rules.persistence.token.ParseResult;
  * 
  * 
  */
-public class AbilityListToken extends
-		AbstractTokenWithSeparator<AbilityCategory> implements
-		CDOMPrimaryToken<AbilityCategory>
+public class AbilityListToken extends AbstractTokenWithSeparator<AbilityCategory>
+		implements CDOMPrimaryToken<AbilityCategory>
 {
-
-	private static final Class<Ability> ABILITY_CLASS = Ability.class;
-
 	@Override
 	public String getTokenName()
 	{
@@ -59,14 +54,12 @@ public class AbilityListToken extends
 	}
 
 	@Override
-	protected ParseResult parseTokenWithSeparator(LoadContext context,
-			AbilityCategory ac, String value)
+	protected ParseResult parseTokenWithSeparator(LoadContext context, AbilityCategory ac, String value)
 	{
 		StringTokenizer st = new StringTokenizer(value, Constants.PIPE);
 		while (st.hasMoreTokens())
 		{
-			ac.addAbilityKey(context.getReferenceContext().getManufacturer(ABILITY_CLASS, ac)
-					.getReference(st.nextToken()));
+			ac.addAbilityKey(context.getReferenceContext().getManufacturerId(ac).getReference(st.nextToken()));
 		}
 		return ParseResult.SUCCESS;
 	}
@@ -85,8 +78,7 @@ public class AbilityListToken extends
 		{
 			return null;
 		}
-		return new String[] { ReferenceUtilities.joinLstFormat(abilities,
-				Constants.PIPE) };
+		return new String[]{ReferenceUtilities.joinLstFormat(abilities, Constants.PIPE)};
 	}
 
 	@Override

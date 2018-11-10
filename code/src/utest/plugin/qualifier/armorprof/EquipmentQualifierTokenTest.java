@@ -48,11 +48,10 @@ public class EquipmentQualifierTokenTest extends
 	static ChooseLst token = new ChooseLst();
 	static ArmorProficiencyToken subtoken = new ArmorProficiencyToken();
 	static CDOMTokenLoader<CDOMObject> loader = new CDOMTokenLoader<>();
-	private static final plugin.qualifier.armorprof.EquipmentToken EQUIPMENT_TOKEN = new plugin.qualifier.armorprof.EquipmentToken();
-	private WeaponProf wp1;
-	private ShieldProf sp1;
+	private static final plugin.qualifier.armorprof.EquipmentToken EQUIPMENT_TOKEN =
+			new plugin.qualifier.armorprof.EquipmentToken();
+
 	private ArmorProf ap1, ap2;
-	private Equipment eq1, eq2, eq3, eq4;
 
 	public EquipmentQualifierTokenTest()
 	{
@@ -103,7 +102,7 @@ public class EquipmentQualifierTokenTest extends
 	}
 
 	@Test
-	public void testGetSet() throws PersistenceLayerException
+	public void testGetSet()
 	{
 		setUpPC();
 		initializeObjects();		
@@ -119,7 +118,7 @@ public class EquipmentQualifierTokenTest extends
 	}
 
 	@Test
-	public void testGetSetFiltered() throws PersistenceLayerException
+	public void testGetSetFiltered()
 	{
 		setUpPC();
 		initializeObjects();		
@@ -136,19 +135,19 @@ public class EquipmentQualifierTokenTest extends
 
 	private void initializeObjects()
 	{
-		wp1 = new WeaponProf();
+		WeaponProf wp1 = new WeaponProf();
 		wp1.setName("Eq1");
 		primaryContext.getReferenceContext().importObject(wp1);
-		eq1 = new Equipment();
+		Equipment eq1 = new Equipment();
 		eq1.setName("Eq1");
 		primaryContext.getReferenceContext().importObject(eq1);
 		primaryContext.unconditionallyProcess(eq1, "TYPE", "WEAPON");
 		primaryContext.unconditionallyProcess(eq1, "PROFICIENCY", "WEAPON|Eq1");
-		
-		sp1 = new ShieldProf();
+
+		ShieldProf sp1 = new ShieldProf();
 		sp1.setName("Eq2");
 		primaryContext.getReferenceContext().importObject(sp1);
-		eq2 = new Equipment();
+		Equipment eq2 = new Equipment();
 		eq2.setName("Eq2");
 		primaryContext.getReferenceContext().importObject(eq2);
 		primaryContext.unconditionallyProcess(eq2, "TYPE", "SHIELD.Masterful");
@@ -157,7 +156,7 @@ public class EquipmentQualifierTokenTest extends
 		ap1 = new ArmorProf();
 		ap1.setName("Eq3");
 		primaryContext.getReferenceContext().importObject(ap1);
-		eq3 = new Equipment();
+		Equipment eq3 = new Equipment();
 		eq3.setName("Eq3");
 		primaryContext.getReferenceContext().importObject(eq3);
 		primaryContext.unconditionallyProcess(eq3, "TYPE", "ARMOR");
@@ -166,7 +165,7 @@ public class EquipmentQualifierTokenTest extends
 		ap2 = new ArmorProf();
 		ap2.setName("Ap2");
 		primaryContext.getReferenceContext().importObject(ap2);
-		eq4 = new Equipment();
+		Equipment eq4 = new Equipment();
 		eq4.setName("Eq4");
 		primaryContext.getReferenceContext().importObject(eq4);
 		primaryContext.unconditionallyProcess(eq4, "TYPE", "ARMOR.Masterful");

@@ -1,5 +1,4 @@
 /*
- * Chooser.java
  * Copyright 2002 (C) Jonas Karlsson
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.util.chooser;
 
@@ -27,12 +25,11 @@ import pcgen.facade.core.UIDelegate;
  * This factory class returns a Chooser of the appropriate type. This is intended
  * to reduce the core/gui interdependence. Much more work is needed on this...
  * Currently only a SwingChooser has been implemented.
- *
  */
 public final class ChooserFactory
 {
 	private static UIDelegate delegate;
-	private final static Stack<String> interfaceClassNameStack = new Stack<>();
+	private static final Stack<String> INTERFACE_CLASS_NAME_STACK = new Stack<>();
 
 	/**
 	 * Deliberately private so it can't be instantiated.
@@ -52,11 +49,11 @@ public final class ChooserFactory
 	 */
 	public static ChoiceHandler getChoiceHandler()
 	{
-		if (interfaceClassNameStack.isEmpty())
+		if (INTERFACE_CLASS_NAME_STACK.isEmpty())
 		{
 			return null;
 		}
-		String className = interfaceClassNameStack.peek();
+		String className = INTERFACE_CLASS_NAME_STACK.peek();
 		try
 		{
 			Class<?> c = Class.forName(className);
@@ -79,7 +76,7 @@ public final class ChooserFactory
 	 */
 	public static void pushChooserClassname(String chooserClassname)
 	{
-		ChooserFactory.interfaceClassNameStack.push(chooserClassname);
+		ChooserFactory.INTERFACE_CLASS_NAME_STACK.push(chooserClassname);
 	}
 
 	/**
@@ -89,11 +86,11 @@ public final class ChooserFactory
 	 */
 	public static String popChooserClassname()
 	{
-		if (ChooserFactory.interfaceClassNameStack.isEmpty())
+		if (ChooserFactory.INTERFACE_CLASS_NAME_STACK.isEmpty())
 		{
 			return null;
 		}
-		return ChooserFactory.interfaceClassNameStack.pop();
+		return ChooserFactory.INTERFACE_CLASS_NAME_STACK.pop();
 	}
 
 	/**

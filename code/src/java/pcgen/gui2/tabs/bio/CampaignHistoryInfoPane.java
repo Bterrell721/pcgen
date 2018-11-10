@@ -30,8 +30,8 @@ import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.BorderFactory;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -129,7 +129,7 @@ public class CampaignHistoryInfoPane extends JPanel implements CharacterInfoTab
 		pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(pane);
 		add(Box.createVerticalStrut(10));
-		addButton.setAlignmentX((float) 0.5);
+		addButton.setAlignmentX(0.5f);
 		add(addButton);
 		add(Box.createVerticalStrut(5));
 		add(Box.createVerticalGlue());
@@ -344,8 +344,9 @@ public class CampaignHistoryInfoPane extends JPanel implements CharacterInfoTab
 		{
 			if (fieldsNotBlank())
 			{
-				int ret = JOptionPane.showConfirmDialog(this, "<html>This chronicle has been written in." +
-						"<br>Are you sure you want to delete it?</html>", Constants.APPLICATION_NAME, JOptionPane.YES_NO_OPTION);
+				int ret = JOptionPane.showConfirmDialog(this,
+					"<html>This chronicle has been written in." + "<br>Are you sure you want to delete it?</html>",
+					Constants.APPLICATION_NAME, JOptionPane.YES_NO_OPTION);
 				if (ret != JOptionPane.YES_OPTION)
 				{//The user has not agreed so exit out
 					return;
@@ -361,14 +362,10 @@ public class CampaignHistoryInfoPane extends JPanel implements CharacterInfoTab
 		 */
 		private boolean fieldsNotBlank()
 		{
-			return StringUtils.isNotBlank(campaignField.getText()) ||
-					StringUtils.isNotBlank(adventureField.getText()) ||
-					StringUtils.isNotBlank(adventureField.getText()) ||
-					StringUtils.isNotBlank(partyField.getText()) ||
-					StringUtils.isNotBlank(dateField.getText()) ||
-					!NumberUtils.INTEGER_ZERO.equals(xpField.getValue()) ||
-					StringUtils.isNotBlank(gmField.getText()) ||
-					StringUtils.isNotBlank(textArea.getText());
+			return StringUtils.isNotBlank(campaignField.getText()) || StringUtils.isNotBlank(adventureField.getText())
+				|| StringUtils.isNotBlank(partyField.getText()) || StringUtils.isNotBlank(dateField.getText())
+				|| !NumberUtils.INTEGER_ZERO.equals(xpField.getValue()) || StringUtils.isNotBlank(gmField.getText())
+				|| StringUtils.isNotBlank(textArea.getText());
 		}
 
 		private void initComponents()
@@ -392,7 +389,7 @@ public class CampaignHistoryInfoPane extends JPanel implements CharacterInfoTab
 			add(new JLabel("Adventure:"), gbc);
 			gbc2.gridwidth = GridBagConstraints.REMAINDER;
 			add(adventureField, gbc2);
-			
+
 			add(new JLabel(), gbc);
 			add(new JLabel("Party Name:"), gbc);
 			gbc2.gridwidth = 1;
@@ -446,50 +443,46 @@ public class CampaignHistoryInfoPane extends JPanel implements CharacterInfoTab
 
 			};
 			checkBox.addActionListener(actionListener);
-			campaignField.getDocument().addDocumentListener(
-				new TextFieldListener(campaignField)
+			campaignField.getDocument().addDocumentListener(new TextFieldListener(campaignField)
+			{
+
+				@Override
+				protected void textChanged(String text)
 				{
+					entry.setCampaign(text);
+				}
 
-					@Override
-					protected void textChanged(String text)
-					{
-						entry.setCampaign(text);
-					}
+			});
+			adventureField.getDocument().addDocumentListener(new TextFieldListener(adventureField)
+			{
 
-				});
-			adventureField.getDocument().addDocumentListener(
-				new TextFieldListener(adventureField)
+				@Override
+				protected void textChanged(String text)
 				{
+					entry.setAdventure(text);
+				}
 
-					@Override
-					protected void textChanged(String text)
-					{
-						entry.setAdventure(text);
-					}
+			});
+			partyField.getDocument().addDocumentListener(new TextFieldListener(partyField)
+			{
 
-				});
-			partyField.getDocument().addDocumentListener(
-				new TextFieldListener(partyField)
+				@Override
+				protected void textChanged(String text)
 				{
+					entry.setParty(text);
+				}
 
-					@Override
-					protected void textChanged(String text)
-					{
-						entry.setParty(text);
-					}
+			});
+			dateField.getDocument().addDocumentListener(new TextFieldListener(dateField)
+			{
 
-				});
-			dateField.getDocument().addDocumentListener(
-				new TextFieldListener(dateField)
+				@Override
+				protected void textChanged(String text)
 				{
+					entry.setDate(text);
+				}
 
-					@Override
-					protected void textChanged(String text)
-					{
-						entry.setDate(text);
-					}
-
-				});
+			});
 			xpField.addPropertyChangeListener("value", new PropertyChangeListener()
 			{
 
@@ -500,28 +493,26 @@ public class CampaignHistoryInfoPane extends JPanel implements CharacterInfoTab
 				}
 
 			});
-			gmField.getDocument().addDocumentListener(
-				new TextFieldListener(gmField)
+			gmField.getDocument().addDocumentListener(new TextFieldListener(gmField)
+			{
+
+				@Override
+				protected void textChanged(String text)
 				{
+					entry.setGmField(text);
+				}
 
-					@Override
-					protected void textChanged(String text)
-					{
-						entry.setGmField(text);
-					}
+			});
+			textArea.getDocument().addDocumentListener(new TextFieldListener(textArea)
+			{
 
-				});
-			textArea.getDocument().addDocumentListener(
-				new TextFieldListener(textArea)
+				@Override
+				protected void textChanged(String text)
 				{
+					entry.setChronicle(text);
+				}
 
-					@Override
-					protected void textChanged(String text)
-					{
-						entry.setChronicle(text);
-					}
-
-				});
+			});
 		}
 
 	}

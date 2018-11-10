@@ -1,5 +1,4 @@
 /*
- * TreeView.java
  * Copyright 2008 (C) Connor Petty <mistercpp2000@gmail.com>
  * 
  * This library is free software; you can redistribute it and/or
@@ -21,14 +20,11 @@ package pcgen.gui2.util.treeview;
 
 import java.util.List;
 
-/**
- *
- */
 public interface TreeView<E>
 {
 
-    public String getViewName();
+	public String getViewName();
 
-    public List<TreeViewPath<E>> getPaths(E pobj);
+	public List<TreeViewPath<E>> getPaths(E pobj);
 
 }

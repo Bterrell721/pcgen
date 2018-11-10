@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens.deprecated;
 
@@ -86,8 +83,7 @@ public class DeityToken extends Token
 	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
 	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		String retString = "";
 
@@ -124,8 +120,7 @@ public class DeityToken extends Token
 			}
 			else if ("FOLLOWERALIGNMENT".equals(subTag))
 			{
-				Logging.errorPrint("Output Sheet uses DEITY.FOLLOWERALIGN: "
-						+ "Function has been removed from PCGen");
+				Logging.errorPrint("Output Sheet uses DEITY.FOLLOWERALIGN: " + "Function has been removed from PCGen");
 			}
 			else if ("ALIGNMENT".equals(subTag))
 			{
@@ -150,8 +145,7 @@ public class DeityToken extends Token
 			}
 			else if ("FAVOREDWEAPON".equals(subTag))
 			{
-				List<CDOMReference<WeaponProf>> dwp = deity
-						.getSafeListFor(ListKey.DEITYWEAPON);
+				List<CDOMReference<WeaponProf>> dwp = deity.getSafeListFor(ListKey.DEITYWEAPON);
 				retString = ReferenceUtilities.joinLstFormat(dwp, Constants.PIPE, true);
 			}
 			else if ("PANTHEONLIST".equals(subTag))
@@ -166,8 +160,7 @@ public class DeityToken extends Token
 			}
 			else if ("SOURCE".equals(subTag))
 			{
-				retString = SourceFormat.getFormattedString(deity,
-				Globals.getSourceDisplay(), true);
+				retString = SourceFormat.getFormattedString(deity, Globals.getSourceDisplay(), true);
 			}
 			else if ("SA".equals(subTag))
 			{
@@ -197,8 +190,7 @@ public class DeityToken extends Token
 	 */
 	public static String getDomainListToken(Deity deity)
 	{
-		return ReferenceUtilities.joinDisplayFormat(deity
-				.getSafeListMods(Deity.DOMAINLIST), ", ");
+		return ReferenceUtilities.joinDisplayFormat(deity.getSafeListMods(Deity.DOMAINLIST), ", ");
 	}
 
 	/**

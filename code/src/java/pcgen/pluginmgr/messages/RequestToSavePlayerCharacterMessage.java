@@ -1,5 +1,4 @@
 /*
- * RequestToSavePlayerCharacterMessage.java
  * Copyright James Dempsey, 2014
  *
  * This library is free software; you can redistribute it and/or
@@ -40,8 +39,7 @@ public class RequestToSavePlayerCharacterMessage extends PCGenMessage
 	 * @param source The source of the message.
 	 * @param pc The character to be saved.
 	 */
-	public RequestToSavePlayerCharacterMessage(
-		Object source, PlayerCharacter pc)
+	public RequestToSavePlayerCharacterMessage(Object source, PlayerCharacter pc)
 	{
 		super(source);
 		this.pc = pc;

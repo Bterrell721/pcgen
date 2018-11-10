@@ -1,5 +1,4 @@
 /*
- * ComboSelectionDialog.java
  * Copyright 2008 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -21,14 +20,11 @@ package pcgen.gui2.util;
 
 import javax.swing.MutableComboBoxModel;
 
-/**
- *
- */
 public interface ComboSelectionDialog
 {
 
-    public void setModel(MutableComboBoxModel model);
+	public void setModel(MutableComboBoxModel model);
 
-    public void display();
+	public void display();
 
 }

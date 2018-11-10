@@ -33,7 +33,6 @@ import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.reference.CDOMDirectSingleRef;
 import pcgen.cdom.reference.CDOMGroupRef;
 import pcgen.core.PCTemplate;
-import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.persistence.CDOMLoader;
 import pcgen.rules.persistence.token.CDOMPrimaryToken;
 
@@ -45,12 +44,6 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 {
 	static AddLst token = new AddLst();
 	static CDOMTokenLoader<CDOMObject> loader = new CDOMTokenLoader<>();
-
-	@Override
-	public char getJoinCharacter()
-	{
-		return ',';
-	}
 
 	@Override
 	public Class<? extends CDOMObject> getCDOMClass()
@@ -101,7 +94,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseSingle() throws PersistenceLayerException
+	public void testUnparseSingle()
 	{
 		String name = "TestWP1";
 		List<CDOMReference<TC>> refs = new ArrayList<>();
@@ -112,7 +105,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseSingleThree() throws PersistenceLayerException
+	public void testUnparseSingleThree()
 	{
 		List<CDOMReference<TC>> refs = new ArrayList<>();
 		addSingleRef(refs, "TestWP1");
@@ -122,7 +115,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseSingleNegative() throws PersistenceLayerException
+	public void testUnparseSingleNegative()
 	{
 		List<CDOMReference<TC>> refs = new ArrayList<>();
 		addSingleRef(refs, "TestWP1");
@@ -131,7 +124,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseSingleZero() throws PersistenceLayerException
+	public void testUnparseSingleZero()
 	{
 		List<CDOMReference<TC>> refs = new ArrayList<>();
 		addSingleRef(refs, "TestWP1");
@@ -140,7 +133,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseSingleVariable() throws PersistenceLayerException
+	public void testUnparseSingleVariable()
 	{
 		List<CDOMReference<TC>> refs = new ArrayList<>();
 		addSingleRef(refs, "TestWP1");
@@ -150,7 +143,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseType() throws PersistenceLayerException
+	public void testUnparseType()
 	{
 		List<CDOMReference<TC>> refs = new ArrayList<>();
 		addTypeRef(refs, "Bar", "Foo");
@@ -161,7 +154,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseSingleAll() throws PersistenceLayerException
+	public void testUnparseSingleAll()
 	{
 		if (isAllLegal())
 		{
@@ -174,7 +167,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseAll() throws PersistenceLayerException
+	public void testUnparseAll()
 	{
 		if (isAllLegal())
 		{
@@ -187,7 +180,7 @@ public abstract class AbstractAddTokenTestCase<TC extends CDOMObject> extends
 	}
 
 	@Test
-	public void testUnparseTypeAll() throws PersistenceLayerException
+	public void testUnparseTypeAll()
 	{
 		if (isAllLegal())
 		{

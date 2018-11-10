@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -27,13 +24,12 @@ import pcgen.AbstractCharacterTestCase;
 import pcgen.cdom.enumeration.IntegerKey;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.Race;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreHandsTest</code> tests that the PREHANDS tag is
  * working correctly.
- *
- *
  */
 public class PreHandsTest extends AbstractCharacterTestCase
 {
@@ -51,10 +47,11 @@ public class PreHandsTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the PREHANDS code
-	 * @throws Exception
+	 * Test the PREHANDS code.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testHands() throws Exception
+	public void testHands() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		Race race = new Race();

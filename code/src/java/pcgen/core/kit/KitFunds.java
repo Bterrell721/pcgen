@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.kit;
 
@@ -27,7 +25,6 @@ import pcgen.core.PlayerCharacter;
 
 /**
  * {@code KitFunds}.
- *
  */
 public final class KitFunds extends BaseKit
 {
@@ -45,8 +42,7 @@ public final class KitFunds extends BaseKit
 	}
 
 	@Override
-	public boolean testApply(Kit aKit, PlayerCharacter aPC,
-		List<String> warnings)
+	public boolean testApply(Kit aKit, PlayerCharacter aPC, List<String> warnings)
 	{
 		theQty = -1;
 		if (quantity == null)
@@ -74,7 +70,7 @@ public final class KitFunds extends BaseKit
 		quantity = formula;
 	}
 
-    @Override
+	@Override
 	public void setName(String value)
 	{
 		name = value;

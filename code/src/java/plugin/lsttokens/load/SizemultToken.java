@@ -1,5 +1,4 @@
 /*
- * SizemultToken.java
  * Copyright (c) 2010 Tom Parker <thpr@users.sourceforge.net>
  * Copyright 2006 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
@@ -16,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.lsttokens.load;
 
@@ -48,25 +44,22 @@ public class SizemultToken extends AbstractTokenWithSeparator<LoadInfo>
 	}
 
 	@Override
-	protected ParseResult parseTokenWithSeparator(LoadContext context,
-			LoadInfo info, String value)
+	protected ParseResult parseTokenWithSeparator(LoadContext context, LoadInfo info, String value)
 	{
 		int pipeLoc = value.indexOf('|');
 		if (pipeLoc == -1)
 		{
-			return new ParseResult.Fail(getTokenName()
-					+ " requires a pipe, found : " + value, context);
+			return new ParseResult.Fail(getTokenName() + " requires a pipe, found : " + value);
 		}
 		if (pipeLoc != value.lastIndexOf('|'))
 		{
-			return new ParseResult.Fail(getTokenName()
-					+ " requires only one pipe, found : " + value, context);
+			return new ParseResult.Fail(getTokenName() + " requires only one pipe, found : " + value);
 		}
 		String sizeName = value.substring(0, pipeLoc);
 		String multiplierString = value.substring(pipeLoc + 1);
 
-		CDOMSingleRef<SizeAdjustment> size = context.getReferenceContext().getCDOMReference(
-				SizeAdjustment.class, sizeName);
+		CDOMSingleRef<SizeAdjustment> size =
+				context.getReferenceContext().getCDOMReference(SizeAdjustment.class, sizeName);
 		/*
 		 * TODO Any way to handle the situation of the sizeName being
 		 * misspelled, etc? (old system did just first character)
@@ -76,17 +69,15 @@ public class SizemultToken extends AbstractTokenWithSeparator<LoadInfo>
 			BigDecimal multiplier = new BigDecimal(multiplierString);
 			if (multiplier.compareTo(BigDecimal.ZERO) <= 0)
 			{
-				return new ParseResult.Fail(getTokenName()
-						+ " requires a positive multiplier : "
-						+ multiplierString + " in value: " + value, context);
+				return new ParseResult.Fail(
+					getTokenName() + " requires a positive multiplier : " + multiplierString + " in value: " + value);
 			}
 			info.addSizeAdjustment(size, multiplier);
 		}
 		catch (NumberFormatException nfe)
 		{
-			return new ParseResult.Fail(getTokenName()
-					+ " misunderstood multiplier : " + multiplierString
-					+ " in value: " + value, context);
+			return new ParseResult.Fail(
+				getTokenName() + " misunderstood multiplier : " + multiplierString + " in value: " + value);
 		}
 		return ParseResult.SUCCESS;
 	}
@@ -97,32 +88,32 @@ public class SizemultToken extends AbstractTokenWithSeparator<LoadInfo>
 		return '|';
 	}
 
-    @Override
+	@Override
 	public String[] unparse(LoadContext context, LoadInfo info)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-    @Override
+	@Override
 	public Class<LoadInfo> getTokenClass()
 	{
 		return LoadInfo.class;
 	}
 
-    @Override
+	@Override
 	public Class<LoadInfo> getDeferredTokenClass()
 	{
 		return LoadInfo.class;
 	}
 
-    @Override
+	@Override
 	public int getPriority()
 	{
 		return 0;
 	}
 
-    @Override
+	@Override
 	public boolean process(LoadContext context, LoadInfo info)
 	{
 		info.resolveSizeAdjustmentMap();

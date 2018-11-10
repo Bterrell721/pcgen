@@ -1,5 +1,4 @@
 /*
- *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -13,8 +12,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -32,14 +29,13 @@ import pcgen.core.PlayerCharacter;
 import pcgen.core.Race;
 import pcgen.core.bonus.Bonus;
 import pcgen.core.bonus.BonusObj;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 import pcgen.rules.context.LoadContext;
 
 /**
  * <code>PREPCLEVELTest</code> tests that the PREPCLEVEL tag is
  * working correctly.
- *
- *
  */
 public class PrePCLevelTest extends AbstractCharacterTestCase
 {
@@ -60,10 +56,11 @@ public class PrePCLevelTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test that Level works
-	 * @throws Exception
+	 * Test that Level works.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testLevel() throws Exception
+	public void testLevel() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		character.incrementClassLevel(1, myClass, true);
@@ -112,10 +109,11 @@ public class PrePCLevelTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test that HD are counted
-	 * @throws Exception
+	 * Test that HD are counted.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testHD() throws Exception
+	public void testHD() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		character.incrementClassLevel(2, myClass, true);
@@ -172,10 +170,11 @@ public class PrePCLevelTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Make sure BONUS:PCLEVEL is not counted
-	 * @throws Exception
+	 * Make sure BONUS:PCLEVEL is not counted.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testPCLevel() throws Exception
+	public void testPCLevel() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		LoadContext context = Globals.getContext();

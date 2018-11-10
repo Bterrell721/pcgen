@@ -1,5 +1,4 @@
 /*
- * RangeAdd.java
  * Copyright 2002 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.bonustokens;
 
@@ -72,9 +68,7 @@ public final class RangeAdd extends MultiTagBonusObj
 	{
 		if (ControlUtilities.hasControlToken(context, CControl.EQRANGE))
 		{
-			Logging.errorPrint(
-				"BONUS:RANGEADD is disabled when EQRANGE control is used: "
-					+ token, context);
+			Logging.errorPrint("BONUS:RANGEADD is disabled when EQRANGE control is used: " + token, context);
 			return false;
 		}
 		return super.parseToken(context, token);

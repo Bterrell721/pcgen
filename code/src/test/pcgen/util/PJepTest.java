@@ -1,5 +1,4 @@
 /*
- * PJepTest.java
  *
  * Copyright 2004 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
@@ -16,11 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
- *
- *
  */
 package pcgen.util;
 
@@ -45,7 +39,7 @@ public class PJepTest extends AbstractCharacterTestCase
 	/**
 	 * Constructs a new <code>PJepTest</code>.
 	 *
-	 * @see PCGenTestCase#PCGenTestCase()
+	 * @see pcgen.PCGenTestCase#PCGenTestCase()
 	 */
 	public PJepTest()
 	{
@@ -57,7 +51,7 @@ public class PJepTest extends AbstractCharacterTestCase
 	 *
 	 * @param name the test case name
 	 *
-	 * @see PCGenTestCase#PCGenTestCase(String)
+	 * @see pcgen.PCGenTestCase#PCGenTestCase(String)
 	 */
 	public PJepTest(final String name)
 	{
@@ -99,9 +93,9 @@ public class PJepTest extends AbstractCharacterTestCase
 	{
 		final PJEP jep = new PJEP();
 
-		jep
-			.parseExpression("max(max(var(\"BL=Wizard\")+var(\"CL=Wizard\"),var(\"BL=Sorcerer\")+var(\"CL=Sorcerer\")),var(\"BL=Cleric\")+var(\"CL=Cleric\"))");
-
+		jep.parseExpression(
+			"max(max(var(\"BL=Wizard\")+var(\"CL=Wizard\"),var(\"BL=Sorcerer\")+var(\"CL=Sorcerer\")),"
+					+ "var(\"BL=Cleric\")+var(\"CL=Cleric\"))");
 		assertFalse(jep.hasError());
 	}
 

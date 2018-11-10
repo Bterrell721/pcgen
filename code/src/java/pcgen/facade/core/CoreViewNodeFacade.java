@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.facade.core;
 
@@ -29,28 +27,28 @@ import java.util.List;
  */
 public interface CoreViewNodeFacade
 {
-	
+
 	/**
 	 * Retrieve a list of the nodes which grant this node.
 	 * @return The child nodes.
 	 */
 	public List<CoreViewNodeFacade> getGrantedByNodes();
-	
+
 	/**
 	 * @return The type of node that this is.
 	 */
 	public String getNodeType();
-	
+
 	/**
 	 * @return The key of this node, if any.
 	 */
 	public String getKey();
-	
+
 	/**
 	 * @return The source (i.e. LST dataset) where this node is defined.
 	 */
 	public String getSource();
-	
+
 	/**
 	 * @return A description of the requirements needed to take this object.
 	 */

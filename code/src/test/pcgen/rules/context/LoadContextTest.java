@@ -1,5 +1,4 @@
 /**
- * LoadContextTest.java
  * Copyright James Dempsey, 2010
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.rules.context;
 
@@ -37,7 +34,7 @@ import pcgen.rules.persistence.TokenUtilities;
 import pcgen.util.TestHelper;
 
 /**
- * The Class <code>LoadContextTest</code> checks the fucntion fo the LoadCOntext class.
+ * The Class <code>LoadContextTest</code> checks the function of the LoadCOntext class.
  *
  * <br/>
  * 
@@ -46,7 +43,7 @@ public class LoadContextTest extends TestCase
 {
 
 	/**
-	 * Test method for {@link pcgen.rules.context.LoadContext#cloneInMasterLists(pcgen.cdom.base.CDOMObject, java.lang.String)}.
+	 * Test CloneInMasterListsSimple
 	 */
 	public final void testCloneInMasterListsSimple()
 	{
@@ -57,7 +54,6 @@ public class LoadContextTest extends TestCase
 	}
 
 	/**
-	 * Test method for {@link pcgen.rules.context.LoadContext#cloneInMasterLists(pcgen.cdom.base.CDOMObject, java.lang.String)}.
 	 * Verify that associations from other objects to the object being cloned 
 	 * are copied over. 
 	 */

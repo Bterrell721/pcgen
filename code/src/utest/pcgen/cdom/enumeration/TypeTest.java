@@ -1,5 +1,4 @@
 /*
- * TypeTest.java
  * Copyright 2008 (C) Jasper Spaans <jasperspaans@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -18,11 +17,12 @@
  */
 package pcgen.cdom.enumeration;
 
+import static org.junit.Assert.fail;
+
 import java.util.Collection;
 import java.util.HashSet;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 
 /**

@@ -1,5 +1,4 @@
 /*
- * pcgen.core.term.PCBaseHDTermEvaluator.java
  * Copyright (c) 2014 Stefan Radermacher <zaister@users.sourceforge.net>.
  *
  * This library is free software; you can redistribute it and/or
@@ -17,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 07-May-2014 22:45:18
- *
- *
  */
 
 package pcgen.core.term;
@@ -32,8 +29,8 @@ import pcgen.core.PlayerCharacter;
  * 
  * 
  */
-public class PCBaseHDTermEvaluator
-		extends BasePCTermEvaluator implements TermEvaluator {
+public class PCBaseHDTermEvaluator extends BasePCTermEvaluator implements TermEvaluator
+{
 
 	/**
 	 * Instantiates a new PCBaseHDTermEvaluator.
@@ -63,9 +60,6 @@ public class PCBaseHDTermEvaluator
 		return false;
 	}
 
-	/**
-	 * @see pcgen.core.term.TermEvaluator#isStatic()
-	 */
 	public boolean isStatic()
 	{
 		return false;

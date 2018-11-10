@@ -1,5 +1,4 @@
 /*
- * CompanionFacadeDelegate.java
  * Copyright 2012 (C) Connor Petty <cpmeister@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,15 +14,14 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.gui2.facade;
 
 import java.io.File;
 
 import pcgen.facade.core.CompanionFacade;
-import pcgen.facade.util.DefaultReferenceFacade;
 import pcgen.facade.core.RaceFacade;
+import pcgen.facade.util.DefaultReferenceFacade;
 import pcgen.facade.util.ReferenceFacade;
 import pcgen.facade.util.event.ReferenceEvent;
 import pcgen.facade.util.event.ReferenceListener;
@@ -67,7 +65,7 @@ public class CompanionFacadeDelegate implements CompanionFacade
 	{
 		return delegate;
 	}
-	
+
 	@Override
 	public ReferenceFacade<String> getNameRef()
 	{
@@ -96,8 +94,7 @@ public class CompanionFacadeDelegate implements CompanionFacade
 		return delegate.getCompanionType();
 	}
 
-	private static class DelegateReferenceFacade<T> extends DefaultReferenceFacade<T>
-		implements ReferenceListener<T>
+	private static class DelegateReferenceFacade<T> extends DefaultReferenceFacade<T> implements ReferenceListener<T>
 	{
 
 		private ReferenceFacade<T> delegate;

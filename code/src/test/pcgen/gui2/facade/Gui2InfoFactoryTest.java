@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -23,7 +21,6 @@ import pcgen.AbstractCharacterTestCase;
 import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Description;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
@@ -31,6 +28,7 @@ import pcgen.core.SettingsHandler;
 import pcgen.rules.persistence.token.ParseResult;
 import pcgen.util.TestHelper;
 import plugin.lsttokens.choose.StringToken;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * The Class <code>Gui2InfoFactoryTest</code> verifies the operation of the 
@@ -53,20 +51,20 @@ public class Gui2InfoFactoryTest extends AbstractCharacterTestCase
 		Gui2InfoFactory ca = new Gui2InfoFactory(pc);
 
 		Ability choiceAbility =
-				TestHelper.makeAbility("Skill Focus", AbilityCategory.FEAT,
+				TestHelper.makeAbility("Skill Focus", BuildUtilities.getFeatCat(),
 					"General");
 		choiceAbility.put(ObjectKey.MULTIPLE_ALLOWED, Boolean.TRUE);
-		StringToken st = new plugin.lsttokens.choose.StringToken();
+		StringToken st = new StringToken();
 		ParseResult pr = st.parseToken(Globals.getContext(), choiceAbility, "SKILL|Perception|Acrobatics");
 		assertTrue(pr.passed());
 		Globals.getContext().commit();
-		pcgenFinalize(choiceAbility, "Perception", pc,
-			AbilityCategory.FEAT);
+		finalizeTest(choiceAbility, "Perception", pc,
+			BuildUtilities.getFeatCat());
 		assertEquals("Incorrect single choice", "Perception",
 			ca.getChoices(choiceAbility));
 
-		pcgenFinalize(choiceAbility, "Acrobatics", pc,
-			AbilityCategory.FEAT);
+		finalizeTest(choiceAbility, "Acrobatics", pc,
+			BuildUtilities.getFeatCat());
 		assertEquals("Incorrect multiple choice", "Acrobatics, Perception",
 			ca.getChoices(choiceAbility));
 	}
@@ -81,12 +79,12 @@ public class Gui2InfoFactoryTest extends AbstractCharacterTestCase
 
 		Ability tbAbility =
 				TestHelper.makeAbility("Combat expertise",
-					AbilityCategory.FEAT, "General");
+					BuildUtilities.getFeatCat(), "General");
 		tbAbility.put(ObjectKey.MULTIPLE_ALLOWED, Boolean.FALSE);
 		final Description desc = new Description("CE Desc");
 		tbAbility.addToListFor(ListKey.DESCRIPTION, desc);
 		Globals.getContext().commit();
-		addAbility(AbilityCategory.FEAT, tbAbility);
+		addAbility(BuildUtilities.getFeatCat(), tbAbility);
 
 		TempBonusFacadeImpl tbf = new TempBonusFacadeImpl(tbAbility);
 
@@ -104,7 +102,7 @@ public class Gui2InfoFactoryTest extends AbstractCharacterTestCase
 	{
 		super.setUp();
 		dataset = new MockDataSetFacade(SettingsHandler.getGame());
-		dataset.addAbilityCategory(AbilityCategory.FEAT);
+		dataset.addAbilityCategory(BuildUtilities.getFeatCat());
 	}
 
 }

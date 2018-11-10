@@ -20,12 +20,9 @@ package pcgen.facade.core;
 
 import pcgen.core.GameMode;
 
-/**
- *
- */
 public interface GameModeDisplayFacade
 {
-    @Override
+	@Override
 	public String toString();
 
 	public GameMode getGameMode();

@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -31,13 +28,13 @@ import pcgen.core.Deity;
 import pcgen.core.Domain;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
+import pcgen.output.channel.ChannelCompatibility;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreDeityDomainTest</code> tests that the PREDEITYDOMAIN tag is
  * working correctly.
- *
- *
  */
 public class PreDeityDomainTest extends AbstractCharacterTestCase
 {
@@ -57,10 +54,11 @@ public class PreDeityDomainTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test for a single domain
-	 * @throws Exception
+	 * Test for a single domain.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testSingle() throws Exception
+	public void testSingle() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 
@@ -72,7 +70,7 @@ public class PreDeityDomainTest extends AbstractCharacterTestCase
 		assertFalse("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 
 		assertTrue("Character's deity has Good domain", PrereqHandler.passes(
@@ -97,7 +95,7 @@ public class PreDeityDomainTest extends AbstractCharacterTestCase
 		assertFalse("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 
 		assertTrue("Character's deity has Good domain", PrereqHandler.passes(

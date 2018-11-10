@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.utils;
 
@@ -23,44 +21,43 @@ import java.util.Observable;
 
 /**
  * This is a facade for gui objects in the core code.
- *
  */
 public final class ShowMessageDelegate extends Observable
 {
-	private static final ShowMessageDelegate instance = new ShowMessageDelegate();
-
+	private static final ShowMessageDelegate INSTANCE = new ShowMessageDelegate();
 
 	private ShowMessageDelegate()
 	{
-		super();
 	}
 
-
-	public static void showMessageDialog(final Object message, final String title, final MessageType messageType, final Object parent) {
+	public static void showMessageDialog(final Object message, final String title, final MessageType messageType,
+		final Object parent)
+	{
 		showMessageDialog(new MessageWrapper(message, title, messageType, parent));
 	}
 
-	public static void showMessageDialog(final Object message, final String title, final MessageType messageType) {
+	public static void showMessageDialog(final Object message, final String title, final MessageType messageType)
+	{
 		showMessageDialog(new MessageWrapper(message, title, messageType));
 	}
 
 	public static void showMessageDialog(final MessageWrapper messageWrapper)
 	{
-		instance.setChanged();
-		instance.notifyObservers(messageWrapper);
-		if (instance.countObservers() == 0 && messageWrapper.getMessage() != null && !messageWrapper.getMessage().toString().isEmpty())
+		INSTANCE.setChanged();
+		INSTANCE.notifyObservers(messageWrapper);
+		if (INSTANCE.countObservers() == 0 && messageWrapper.getMessage() != null
+			&& !messageWrapper.getMessage().toString().isEmpty())
 		{
 			System.out.println(messageWrapper.getTitle() + ": " + messageWrapper.getMessage());
 		}
 	}
 
-
-
 	/**
 	 * @return Returns the instance.
 	 */
-	public static ShowMessageDelegate getInstance() {
-		return instance;
+	public static ShowMessageDelegate getInstance()
+	{
+		return INSTANCE;
 	}
 
 }

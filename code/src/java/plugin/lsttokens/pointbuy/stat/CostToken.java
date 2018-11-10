@@ -1,5 +1,4 @@
 /*
- * CostToken.java
  * Copyright (c) 2010 Tom Parker <thpr@users.sourceforge.net>
  * Copyright 2006 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
@@ -16,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.lsttokens.pointbuy.stat;
 
@@ -32,8 +28,7 @@ import pcgen.rules.persistence.token.ParseResult;
  * {@code CostToken}
  * 
  */
-public class CostToken extends AbstractNonEmptyToken<PointBuyCost> implements
-		CDOMPrimaryToken<PointBuyCost>
+public class CostToken extends AbstractNonEmptyToken<PointBuyCost> implements CDOMPrimaryToken<PointBuyCost>
 {
 
 	@Override
@@ -43,8 +38,7 @@ public class CostToken extends AbstractNonEmptyToken<PointBuyCost> implements
 	}
 
 	@Override
-	protected ParseResult parseNonEmptyToken(LoadContext context,
-			PointBuyCost pbc, String value)
+	protected ParseResult parseNonEmptyToken(LoadContext context, PointBuyCost pbc, String value)
 	{
 		try
 		{
@@ -53,16 +47,15 @@ public class CostToken extends AbstractNonEmptyToken<PointBuyCost> implements
 		}
 		catch (NumberFormatException nfe)
 		{
-			return new ParseResult.Fail(getTokenName()
-					+ " expected an integer.  Tag must be of the form: "
-					+ getTokenName() + ":<int>", context);
+			return new ParseResult.Fail(
+				getTokenName() + " expected an integer.  Tag must be of the form: " + getTokenName() + ":<int>");
 		}
 	}
 
 	@Override
 	public String[] unparse(LoadContext context, PointBuyCost pbc)
 	{
-		return new String[] { String.valueOf(pbc.getBuyCost()) };
+		return new String[]{String.valueOf(pbc.getBuyCost())};
 	}
 
 	@Override

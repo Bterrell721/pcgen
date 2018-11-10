@@ -1,5 +1,4 @@
 /*
- * LeftmarginToken.java
  * Copyright (c) 2010 Tom Parker <thpr@users.sourceforge.net>
  * Copyright 2006 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
@@ -16,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.lsttokens.paper;
 
@@ -32,8 +28,7 @@ import pcgen.rules.persistence.token.ParseResult;
  * {@code LeftmarginToken}
  * 
  */
-public class LeftmarginToken extends AbstractNonEmptyToken<PaperInfo> implements
-		CDOMPrimaryToken<PaperInfo>
+public class LeftmarginToken extends AbstractNonEmptyToken<PaperInfo> implements CDOMPrimaryToken<PaperInfo>
 {
 
 	@Override
@@ -43,14 +38,13 @@ public class LeftmarginToken extends AbstractNonEmptyToken<PaperInfo> implements
 	}
 
 	@Override
-	protected ParseResult parseNonEmptyToken(LoadContext context, PaperInfo pi,
-			String value)
+	protected ParseResult parseNonEmptyToken(LoadContext context, PaperInfo pi, String value)
 	{
 		pi.setPaperInfo(PaperInfo.LEFTMARGIN, value);
 		return ParseResult.SUCCESS;
 	}
 
-    @Override
+	@Override
 	public String[] unparse(LoadContext context, PaperInfo pi)
 	{
 		String info = pi.getPaperInfo(PaperInfo.LEFTMARGIN);
@@ -59,10 +53,10 @@ public class LeftmarginToken extends AbstractNonEmptyToken<PaperInfo> implements
 			// Probably an error
 			return null;
 		}
-		return new String[] { info };
+		return new String[]{info};
 	}
 
-    @Override
+	@Override
 	public Class<PaperInfo> getTokenClass()
 	{
 		return PaperInfo.class;

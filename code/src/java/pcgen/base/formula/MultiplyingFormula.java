@@ -68,14 +68,12 @@ public class MultiplyingFormula implements ReferenceFormula<Integer>
 	@Override
 	public Integer resolve(Number... numbers)
 	{
-		if (numbers == null || numbers.length != 1)
+		if ((numbers == null) || (numbers.length != 1))
 		{
-			throw new IllegalArgumentException(
-					"MultiplyingFormula only has one backreference");
+			throw new IllegalArgumentException("MultiplyingFormula only has one backreference");
 		}
 		//Must calculate before rounding, consider 1.4 * 3
-		double d = numbers[0].doubleValue() * multiplier;
-		return (int) d;
+		return (int) (numbers[0].doubleValue() * multiplier);
 	}
 
 	/**
@@ -108,7 +106,6 @@ public class MultiplyingFormula implements ReferenceFormula<Integer>
 	@Override
 	public boolean equals(Object obj)
 	{
-		return obj instanceof MultiplyingFormula
-				&& ((MultiplyingFormula) obj).multiplier == multiplier;
+		return obj instanceof MultiplyingFormula && ((MultiplyingFormula) obj).multiplier == multiplier;
 	}
 }

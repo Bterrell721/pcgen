@@ -1,5 +1,4 @@
 /*
- * PlayerCharacterSpellTest.java
  * Copyright James Dempsey, 2012
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core;
 
@@ -76,8 +73,12 @@ public class PlayerCharacterSpellTest extends AbstractCharacterTestCase
 		PCClassLoader classLoader = new PCClassLoader();
 		divineClass = classLoader.parseLine(context, null, classLine, source);
 		BuildUtilities.setFact(divineClass, "SpellType", "Divine");
-		classLoader.parseLine(context, divineClass, "CLASS:MyClass	KNOWNSPELLS:LEVEL=0|LEVEL=1|LEVEL=2|LEVEL=3|LEVEL=4|LEVEL=5|LEVEL=6|LEVEL=7|LEVEL=8|LEVEL=9	BONUS:CASTERLEVEL|Cleric|CL", source);
-		classLoader.parseClassLevelLine(context, divineClass, 1, source, "CAST:5,4	BONUS:DOMAIN|NUMBER|2	BONUS:VAR|DomainLVL|CL");
+		classLoader.parseLine(context, divineClass,
+			"CLASS:MyClass	KNOWNSPELLS:LEVEL=0|LEVEL=1|LEVEL=2|LEVEL=3|LEVEL=4|LEVEL=5|LEVEL=6|LEVEL=7|"
+					+ "LEVEL=8|LEVEL=9	BONUS:CASTERLEVEL|Cleric|CL",
+			source);
+		classLoader.parseClassLevelLine(context, divineClass, 1, source,
+			"CAST:5,4	BONUS:DOMAIN|NUMBER|2	BONUS:VAR|DomainLVL|CL");
 		context.getReferenceContext().importObject(divineClass);
 		
 		final String domainLine = "Sun	SPELLLEVEL:DOMAIN|Sun=1|KEY_domainSpell";

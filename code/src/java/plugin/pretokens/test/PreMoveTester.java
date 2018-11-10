@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.pretokens.test;
 
@@ -34,10 +31,6 @@ import pcgen.system.LanguageBundle;
 public class PreMoveTester extends AbstractDisplayPrereqTest
 {
 
-	/*
-	 * (non-Javadoc)
-	 * @see pcgen.core.prereq.PrerequisiteTest#passes(pcgen.core.prereq.Prerequisite, pcgen.core.PlayerCharacter)
-	 */
 	@Override
 	public int passes(final Prerequisite prereq, final CharacterDisplay display, CDOMObject source)
 		throws PrerequisiteException
@@ -55,9 +48,8 @@ public class PreMoveTester extends AbstractDisplayPrereqTest
 			}
 			catch (NumberFormatException e)
 			{
-				throw new PrerequisiteException(LanguageBundle
-					.getFormattedString(
-						"PreMove.error.bad_operand", prereq.toString())); //$NON-NLS-1$
+				throw new PrerequisiteException(
+					LanguageBundle.getFormattedString("PreMove.error.bad_operand", prereq.toString())); //$NON-NLS-1$
 			}
 
 			int speed = (int) display.getMovementOfType(moveType);
@@ -75,7 +67,7 @@ public class PreMoveTester extends AbstractDisplayPrereqTest
 	 * Get the type of prerequisite handled by this token.
 	 * @return the type of prerequisite handled by this token.
 	 */
-    @Override
+	@Override
 	public String kindHandled()
 	{
 		return "MOVE"; //$NON-NLS-1$

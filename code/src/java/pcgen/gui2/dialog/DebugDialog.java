@@ -1,5 +1,4 @@
 /*
- * DebugDialog.java
  * Copyright 2011 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -58,14 +57,10 @@ import pcgen.gui2.tools.Utility;
 import pcgen.system.LoggingRecorder;
 import pcgen.util.Logging;
 
-/**
- * 
- */
 public class DebugDialog extends JDialog
 {
 
-	private static final MemoryMXBean memoryBean = ManagementFactory
-		.getMemoryMXBean();
+	private static final MemoryMXBean MEMORY_BEAN = ManagementFactory.getMemoryMXBean();
 	private final LogPanel logPanel;
 	private final MemoryPanel memoryPanel;
 
@@ -154,8 +149,7 @@ public class DebugDialog extends JDialog
 				}
 				catch (IOException e1)
 				{
-					Logging.log(Level.WARNING,
-						"Unable to open the requested file: " + file.getName(), e1);
+					Logging.log(Level.WARNING, "Unable to open the requested file: " + file.getName(), e1);
 				}
 			}
 			else
@@ -177,15 +171,14 @@ public class DebugDialog extends JDialog
 				logText.repaint();
 			}
 		}
+
 		private void openFile(File file) throws IOException
 		{
 			if (Desktop.isDesktopSupported())
 			{
 				if (System.getProperty("os.name").toLowerCase().contains("windows"))
 				{
-					String cmd =
-							"rundll32 url.dll,FileProtocolHandler "
-								+ file.getCanonicalPath();
+					String cmd = "rundll32 url.dll,FileProtocolHandler " + file.getCanonicalPath();
 					Runtime.getRuntime().exec(cmd);
 				}
 				else
@@ -242,8 +235,7 @@ public class DebugDialog extends JDialog
 			return file;
 		}
 
-		private URI extractFileURIFromLinePart(String part)
-			throws URISyntaxException
+		private URI extractFileURIFromLinePart(String part) throws URISyntaxException
 		{
 			String filePart = part;
 			if (part.indexOf(':') < 0)
@@ -255,8 +247,8 @@ public class DebugDialog extends JDialog
 
 		private String getCurrentIndexedLine(int index)
 		{
-			int startIndex = logText.getText().lastIndexOf("\n", index) + 1;
-			int endIndex = logText.getText().indexOf("\n", index);
+			int startIndex = logText.getText().lastIndexOf('\n', index) + 1;
+			int endIndex = logText.getText().indexOf('\n', index);
 			String line = "";
 			if (startIndex >= 0 && endIndex >= startIndex)
 			{
@@ -267,9 +259,8 @@ public class DebugDialog extends JDialog
 
 		private int determineCaretPosition(MouseEvent e)
 		{
-			logText.setCaretPosition(logText.viewToModel(e.getPoint()));
-			int caretPos = logText.getCaretPosition();
-			return caretPos;
+			logText.setCaretPosition(logText.viewToModel2D(e.getPoint()));
+			return logText.getCaretPosition();
 		}
 
 		private class LogHandler extends Handler implements Runnable
@@ -331,7 +322,7 @@ public class DebugDialog extends JDialog
 
 		}
 	}
-	
+
 	private static class MemoryPanel extends JPanel implements ActionListener
 	{
 
@@ -364,22 +355,20 @@ public class DebugDialog extends JDialog
 			}, BorderLayout.CENTER);
 			memoryTable.setFocusable(false);
 			memoryTable.setRowSelectionAllowed(false);
-			memoryTable.setPreferredScrollableViewportSize(memoryTable
-				.getPreferredSize());
-			memoryTable.setDefaultRenderer(Long.class,
-				new DefaultTableCellRenderer()
+			memoryTable.setPreferredScrollableViewportSize(memoryTable.getPreferredSize());
+			memoryTable.setDefaultRenderer(Long.class, new DefaultTableCellRenderer()
+			{
+
+				DecimalFormat format = new DecimalFormat("###,###,###");
+
+				@Override
+				protected void setValue(Object value)
 				{
+					setHorizontalAlignment(SwingConstants.RIGHT);
+					setText(format.format(value));
+				}
 
-					DecimalFormat format = new DecimalFormat("###,###,###");
-
-					@Override
-					protected void setValue(Object value)
-					{
-						setHorizontalAlignment(SwingConstants.RIGHT);
-						setText(format.format(value));
-					}
-
-				});
+			});
 
 			gcButton.setActionCommand("COLLECT");
 			gcButton.addActionListener(this);
@@ -396,11 +385,9 @@ public class DebugDialog extends JDialog
 		{
 			if ("COLLECT".equals(e.getActionCommand()))
 			{
-				memoryBean.gc();
-				Logging.log(Logging.INFO, MessageFormat.format(
-					"Memory used after manual GC, Heap: {0}, Non heap: {1}",
-					memoryBean.getHeapMemoryUsage().getUsed(), memoryBean
-						.getNonHeapMemoryUsage().getUsed()));
+				MEMORY_BEAN.gc();
+				Logging.log(Logging.INFO, MessageFormat.format("Memory used after manual GC, Heap: {0}, Non heap: {1}",
+					MEMORY_BEAN.getHeapMemoryUsage().getUsed(), MEMORY_BEAN.getNonHeapMemoryUsage().getUsed()));
 			}
 			else
 			{
@@ -413,7 +400,7 @@ public class DebugDialog extends JDialog
 	private static class MemoryTableModel extends AbstractTableModel
 	{
 
-		private static final long megaByte = 1024 * 1024;
+		private static final long MEGABYTE = 1024 * 1024;
 
 		@Override
 		public int getRowCount()
@@ -468,11 +455,11 @@ public class DebugDialog extends JDialog
 			MemoryUsage usage;
 			if (rowIndex == 0)
 			{
-				usage = memoryBean.getHeapMemoryUsage();
+				usage = MEMORY_BEAN.getHeapMemoryUsage();
 			}
 			else
 			{
-				usage = memoryBean.getNonHeapMemoryUsage();
+				usage = MEMORY_BEAN.getNonHeapMemoryUsage();
 			}
 			switch (columnIndex)
 			{
@@ -487,7 +474,7 @@ public class DebugDialog extends JDialog
 				case 4:
 					return usage.getMax(); // / megaByte;
 				case 5:
-					return (100*usage.getUsed())/usage.getMax(); // / percent
+					return (100 * usage.getUsed()) / usage.getMax(); // / percent
 				default:
 					return 0;
 			}

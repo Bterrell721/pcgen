@@ -1,5 +1,4 @@
 /*
- * CombatHasBeenInitiatedMessage.java
  * Copyright James Dempsey, 2014
  *
  * This library is free software; you can redistribute it and/or
@@ -16,9 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * Created on 16/02/2014 10:23:08 pm
  *
- * $Id$
  */
 package gmgen.pluginmgr.messages;
 
@@ -30,7 +27,6 @@ import pcgen.pluginmgr.PCGenMessage;
  * message that the user has kicked off combat.
  *
  * 
- * @author James Dempsey &lt;jdempsey@users.sourceforge.net&gt;
  */
 
 @SuppressWarnings("serial")
@@ -43,8 +39,7 @@ public class CombatHasBeenInitiatedMessage extends PCGenMessage
 	 * Create a new instance of CombatHasBeenInitiatedMessage
 	 * @param source
 	 */
-	public CombatHasBeenInitiatedMessage(
-		Object source)
+	public CombatHasBeenInitiatedMessage(Object source)
 	{
 		super(source);
 	}

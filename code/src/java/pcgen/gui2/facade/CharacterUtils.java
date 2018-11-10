@@ -1,5 +1,4 @@
 /*
- * CharacterUtils.java
  * Missing License Header, Copyright 2016 (C) Andrew Maitland <amaitland@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 
 package pcgen.gui2.facade;
@@ -38,14 +36,12 @@ public class CharacterUtils
 {
 	public static void selectClothes(final PlayerCharacter aPC)
 	{
-		if (Globals.checkRule(RuleConstants.FREECLOTHES)
-			&& ((aPC.getDisplay().totalNonMonsterLevels()) == 1)) //$NON-NLS-1$
+		if (Globals.checkRule(RuleConstants.FREECLOTHES) && ((aPC.getDisplay().totalNonMonsterLevels()) == 1))
 		{
 			//
 			// See what the PC is already carrying
 			//
-			List<Equipment> clothes = aPC.getEquipmentOfType(
-						"Clothing.Resizable", 3); //$NON-NLS-1$ //$NON-NLS-2$
+			List<Equipment> clothes = aPC.getEquipmentOfType("Clothing.Resizable", 3); //$NON-NLS-1$ 
 
 			//
 			// Check to see if any of the clothing the PC
@@ -59,8 +55,7 @@ public class CharacterUtils
 			{
 				for (Equipment eq : clothes)
 				{
-					if (!eq.isType("Magic") && (CoreUtility.doublesEqual(
-						eq.getCost(aPC).doubleValue(), 0.0))
+					if (!eq.isType("Magic") && (CoreUtility.doublesEqual(eq.getCost(aPC).doubleValue(), 0.0))
 						&& pcSizeAdj.equals(eq.getSafe(ObjectKey.SIZE)))
 					{
 						hasClothes = true;
@@ -77,20 +72,16 @@ public class CharacterUtils
 			//
 			if (!hasClothes)
 			{
-				clothes =
-						EquipmentList.getEquipmentOfType(
-							"Clothing.Resizable.Starting",
-							"Magic.Custom.Auto_Gen");
+				clothes = EquipmentList.getEquipmentOfType("Clothing.Resizable.Starting", "Magic.Custom.Auto_Gen");
 				if (clothes.isEmpty())
 				{
-					clothes =
-							EquipmentList.getEquipmentOfType(
-								"Clothing.Resizable", "Magic.Custom.Auto_Gen");
+					clothes = EquipmentList.getEquipmentOfType("Clothing.Resizable", "Magic.Custom.Auto_Gen");
 				}
 
 				List<Equipment> selectedClothes = new ArrayList<>();
-				selectedClothes = Globals.getChoiceFromList(
-					LanguageBundle.getString("in_sumSelectAFreeSetOfClothing"), //$NON-NLS-1$ 
+				selectedClothes =
+						Globals.getChoiceFromList(
+							LanguageBundle.getString("in_sumSelectAFreeSetOfClothing"), //$NON-NLS-1$ 
 					clothes, selectedClothes, 1, aPC);
 
 				if (!selectedClothes.isEmpty())
@@ -112,15 +103,13 @@ public class CharacterUtils
 
 						eq.setCostMod('-' + eq.getCost(aPC).toString()); // make cost 0
 
-						if (aPC
-							.getEquipmentNamed(eq.nameItemFromModifiers(aPC)) == null)
+						if (aPC.getEquipmentNamed(eq.nameItemFromModifiers(aPC)) == null)
 						{
 							aPC.addEquipment(eq);
 						}
 						else
 						{
-							Logging
-								.errorPrint("Cannot add duplicate equipment to PC"); //$NON-NLS-1$
+							Logging.errorPrint("Cannot add duplicate equipment to PC"); //$NON-NLS-1$
 						}
 					}
 				}

@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.persistence.lst;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.net.URI;
 import java.util.List;
@@ -39,13 +39,13 @@ public class CampaignSourceEntryTest
 	private URI sourceUri;
 	
 	@Before
-	public void setup() throws Exception
+	public void setUp() throws Exception
 	{
 		sourceUri = new URI("file://CampaignSourceEntryTest");
 	}
 	
 	/**
-	 * Test method for {@link pcgen.persistence.lst.CampaignSourceEntry#parseSuffix(java.lang.String)}.
+	 * Test method for {@link pcgen.persistence.lst.CampaignSourceEntry#parseSuffix(String, URI, String)}
 	 */
 	@Test
 	public void testParseSuffix()
@@ -108,7 +108,7 @@ public class CampaignSourceEntryTest
 	}
 
 	/**
-	 * Test method for {@link pcgen.persistence.lst.CampaignSourceEntry#parseSuffix(java.lang.String)}.
+	 * Test method for {@link pcgen.persistence.lst.CampaignSourceEntry#parseSuffix(String, URI, String)}
 	 */
 	@Test
 	public void testParseSuffixInvalid()
@@ -138,7 +138,7 @@ public class CampaignSourceEntryTest
 	}
 	
 	/**
-	 * Test method for {@link pcgen.persistence.lst.CampaignSourceEntry#parseSuffix(java.lang.String)}.
+	 * Test method for {@link pcgen.persistence.lst.CampaignSourceEntry#parseSuffix(String, URI, String)}
 	 */
 	@Test
 	public void testParseSuffixInlineBracket()

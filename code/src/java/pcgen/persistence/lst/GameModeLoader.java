@@ -1,5 +1,4 @@
 /*
- * GameModeLoader.java
  * Copyright 2001 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -21,7 +20,7 @@
  */
 package pcgen.persistence.lst;
 
- import java.net.URI;
+import java.net.URI;
 import java.util.Map;
 
 import pcgen.core.GameMode;
@@ -48,8 +47,7 @@ public final class GameModeLoader
 	 * @param source
 	 * @param lineNum
 	 */
-	public static void parseMiscGameInfoLine(GameMode gameMode, String aLine,
-		URI source, int lineNum)
+	public static void parseMiscGameInfoLine(GameMode gameMode, String aLine, URI source, int lineNum)
 	{
 		if (gameMode == null)
 		{
@@ -64,24 +62,21 @@ public final class GameModeLoader
 
 		final String key = aLine.substring(0, idxColon);
 		final String value = aLine.substring(idxColon + 1).trim();
-		Map<String, LstToken> tokenMap =
-				TokenStore.inst().getTokenMap(GameModeLstToken.class);
+		Map<String, LstToken> tokenMap = TokenStore.inst().getTokenMap(GameModeLstToken.class);
 		GameModeLstToken token = (GameModeLstToken) tokenMap.get(key);
 		if (token != null)
 		{
 			LstUtils.deprecationCheck(token, gameMode.getName(), source, value);
 			if (!token.parse(gameMode, value.intern(), source))
 			{
-				Logging.errorPrint("Error parsing misc. game info "
-					+ gameMode.getName() + '/' + source + ':'
+				Logging.errorPrint("Error parsing misc. game info " + gameMode.getName() + '/' + source + ':'
 					+ Integer.toString(lineNum) + " \"" + aLine + "\"");
 			}
 		}
 		else
 		{
-			Logging.errorPrint("Illegal misc. game info " + gameMode.getName()
-				+ '/' + source + ':' + Integer.toString(lineNum)
-				+ " \"" + aLine + "\"");
+			Logging.errorPrint("Illegal misc. game info " + gameMode.getName() + '/' + source + ':'
+				+ Integer.toString(lineNum) + " \"" + aLine + "\"");
 		}
 	}
 }

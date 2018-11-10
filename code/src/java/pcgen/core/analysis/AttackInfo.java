@@ -14,11 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- * Created on December 15, 2003, 12:21 PM
- *
- * Current Ver: $Revision: 18723 $
- *
  */
 package pcgen.core.analysis;
 
@@ -27,8 +22,12 @@ import pcgen.core.display.CharacterDisplay;
 import pcgen.util.Delta;
 import pcgen.util.enumeration.AttackType;
 
-public class AttackInfo
+public final class AttackInfo
 {
+
+	private AttackInfo()
+	{
+	}
 
 	/**
 	 * Get Attack Information for a PC.  
@@ -43,8 +42,7 @@ public class AttackInfo
 	 *                  SIZE, STAT, TOTAL or an empty string
 	 * @return The token value.
 	 */
-	public static String getAttackInfo(PlayerCharacter pc, AttackType attackType,
-		String modifier)
+	public static String getAttackInfo(PlayerCharacter pc, AttackType attackType, String modifier)
 	{
 		if (modifier.equals("TOTAL"))
 		{
@@ -78,16 +76,13 @@ public class AttackInfo
 	public static int getTotalToken(PlayerCharacter pc, AttackType at)
 	{
 		final int tohitBonus =
-				(int) pc.getTotalBonusTo("TOHIT", "TOHIT")
-					+ (int) pc.getTotalBonusTo("TOHIT", "TYPE." + at);
+				(int) pc.getTotalBonusTo("TOHIT", "TOHIT") + (int) pc.getTotalBonusTo("TOHIT", "TYPE." + at);
 		final int totalBonus =
-				(int) pc.getTotalBonusTo("COMBAT", "TOHIT")
-					+ (int) pc.getTotalBonusTo("COMBAT", "TOHIT." + at);
+				(int) pc.getTotalBonusTo("COMBAT", "TOHIT") + (int) pc.getTotalBonusTo("COMBAT", "TOHIT." + at);
 		return tohitBonus + totalBonus;
 	}
 
-	public static String getSubToken(PlayerCharacter pc, AttackType attackType,
-		String modifier)
+	public static String getSubToken(PlayerCharacter pc, AttackType attackType, String modifier)
 	{
 		if (modifier.equals("BASE"))
 		{
@@ -150,14 +145,11 @@ public class AttackInfo
 	 */
 	public static int getMiscToken(PlayerCharacter pc, AttackType at)
 	{
-		int tohitBonus =
-				((int) pc.getTotalBonusTo("TOHIT", "TOHIT") 
-					+ (int) pc.getTotalBonusTo("TOHIT", "TYPE." + at))
-					- (int) pc.getDisplay().getStatBonusTo("TOHIT", "TYPE." + at)
-					- (int) pc.getSizeAdjustmentBonusTo("TOHIT", "TOHIT");
+		int tohitBonus = ((int) pc.getTotalBonusTo("TOHIT", "TOHIT") + (int) pc.getTotalBonusTo("TOHIT", "TYPE." + at))
+			- (int) pc.getDisplay().getStatBonusTo("TOHIT", "TYPE." + at)
+			- (int) pc.getSizeAdjustmentBonusTo("TOHIT", "TOHIT");
 		int miscBonus =
-				((int) pc.getTotalBonusTo("COMBAT", "TOHIT")
-					+ (int) pc.getTotalBonusTo("COMBAT", "TOHIT." + at))
+				((int) pc.getTotalBonusTo("COMBAT", "TOHIT") + (int) pc.getTotalBonusTo("COMBAT", "TOHIT." + at))
 					- (int) pc.getDisplay().getStatBonusTo("COMBAT", "TOHIT." + at)
 					- (int) pc.getSizeAdjustmentBonusTo("COMBAT", "TOHIT")
 					- (int) pc.getSizeAdjustmentBonusTo("COMBAT", "TOHIT." + at)
@@ -173,15 +165,11 @@ public class AttackInfo
 	 */
 	public static int getSizeToken(PlayerCharacter pc, AttackType aType)
 	{
-		int tohitBonus =
-				(int) pc.getSizeAdjustmentBonusTo("TOHIT", "TOHIT")
-					+ (int) pc.getSizeAdjustmentBonusTo("TOHIT", "TYPE."
-						+ aType);
-		int sizeBonus =
-				(int) pc.getSizeAdjustmentBonusTo("COMBAT", "TOHIT")
-					+ (int) pc.getSizeAdjustmentBonusTo("COMBAT", "TOHIT."
-						+ aType);
-	
+		int tohitBonus = (int) pc.getSizeAdjustmentBonusTo("TOHIT", "TOHIT")
+			+ (int) pc.getSizeAdjustmentBonusTo("TOHIT", "TYPE." + aType);
+		int sizeBonus = (int) pc.getSizeAdjustmentBonusTo("COMBAT", "TOHIT")
+			+ (int) pc.getSizeAdjustmentBonusTo("COMBAT", "TOHIT." + aType);
+
 		return sizeBonus + tohitBonus;
 	}
 
@@ -191,11 +179,9 @@ public class AttackInfo
 	 */
 	public static int getStatToken(CharacterDisplay display, AttackType at)
 	{
-		final int tohitBonus =
-				(int) display.getStatBonusTo("TOHIT", "TYPE." + at);
-		final int statBonus =
-				(int) display.getStatBonusTo("COMBAT", "TOHIT." + at);
-	
+		final int tohitBonus = (int) display.getStatBonusTo("TOHIT", "TYPE." + at);
+		final int statBonus = (int) display.getStatBonusTo("COMBAT", "TOHIT." + at);
+
 		return statBonus + tohitBonus;
 	}
 

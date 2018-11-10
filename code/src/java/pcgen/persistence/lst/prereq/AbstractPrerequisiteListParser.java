@@ -1,5 +1,4 @@
 /*
- * PreReqListParser.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  * Copyright 2003 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
@@ -37,9 +36,8 @@ import pcgen.util.Logging;
 /**
  * Abstract PRE parser, provides common parsing for many PRE tokens.
  */
-public abstract class AbstractPrerequisiteListParser
-	extends AbstractPrerequisiteParser
-	implements PrerequisiteParserInterface
+public abstract class AbstractPrerequisiteListParser extends AbstractPrerequisiteParser
+		implements PrerequisiteParserInterface
 {
 
 	protected void convertKeysToSubKeys(Prerequisite prereq, String kind)
@@ -84,11 +82,7 @@ public abstract class AbstractPrerequisiteListParser
 	 * @throws PersistenceLayerException 
 	 */
 	@Override
-	public Prerequisite parse(
-		String kind,
-		String formula,
-		boolean invertResult,
-		boolean overrideQualify)
+	public Prerequisite parse(String kind, String formula, boolean invertResult, boolean overrideQualify)
 		throws PersistenceLayerException
 	{
 
@@ -137,10 +131,8 @@ public abstract class AbstractPrerequisiteListParser
 	*   <prereq kind="stat" key="str" operator="gteq" op1="13" />
 	* </prereq>
 	*/
-	protected void parsePrereqListType(
-		Prerequisite prereq,
-		String kind,
-		String formula) throws PersistenceLayerException
+	protected void parsePrereqListType(Prerequisite prereq, String kind, String formula)
+		throws PersistenceLayerException
 	{
 		// Sanity checking
 		ParseResult parseResult = checkForIllegalSeparator(kind, ',', formula);
@@ -148,17 +140,15 @@ public abstract class AbstractPrerequisiteListParser
 		{
 			throw new PersistenceLayerException(parseResult.toString());
 		}
-		if (!allowsNegate() && (formula.indexOf("[") >= 0 || formula.indexOf("]") >= 0))
+		if (!allowsNegate() && (formula.indexOf('[') >= 0 || formula.indexOf(']') >= 0))
 		{
-			throw new PersistenceLayerException("Prerequisite " + kind
-				+ " can not contain []: " + formula);
+			throw new PersistenceLayerException("Prerequisite " + kind + " can not contain []: " + formula);
 		}
-		if (formula.indexOf("|") >= 0)
+		if (formula.indexOf('|') >= 0)
 		{
-			throw new PersistenceLayerException("Prerequisite " + kind
-				+ " can not contain |: " + formula);
+			throw new PersistenceLayerException("Prerequisite " + kind + " can not contain |: " + formula);
 		}
-		
+
 		String[] elements = formula.split(",");
 		int numRequired;
 		try
@@ -166,14 +156,12 @@ public abstract class AbstractPrerequisiteListParser
 			numRequired = Integer.parseInt(elements[0]);
 			if (elements.length == 1)
 			{
-				throw new PersistenceLayerException("Prerequisite " + kind
-						+ " can not have only a count: " + formula);
+				throw new PersistenceLayerException("Prerequisite " + kind + " can not have only a count: " + formula);
 			}
 		}
 		catch (NumberFormatException nfe)
 		{
-			throw new PersistenceLayerException("'" + elements[0]
-				+ "' is not a valid integer");
+			throw new PersistenceLayerException("'" + elements[0] + "' is not a valid integer");
 		}
 
 		// Examine the last element to see if it is of the form "foo=n"
@@ -218,7 +206,7 @@ public abstract class AbstractPrerequisiteListParser
 					String[] tokens = thisElement.split("=");
 					try
 					{
-						int valueIndx = tokens.length-1;
+						int valueIndx = tokens.length - 1;
 						min = Integer.parseInt(tokens[valueIndx]);
 						subreq.setOperand(Integer.toString(min));
 						String requirementKey = getRequirementKey(tokens);
@@ -255,9 +243,7 @@ public abstract class AbstractPrerequisiteListParser
 					if (requiresValue())
 					{
 						throw new PersistenceLayerException(
-								"Prerequisites of kind "
-										+ kind
-										+ " require a target value, e.g. Key=Value");
+							"Prerequisites of kind " + kind + " require a target value, e.g. Key=Value");
 					}
 					String assumed = getAssumedValue();
 					if (assumed == null)
@@ -266,10 +252,8 @@ public abstract class AbstractPrerequisiteListParser
 					}
 					else
 					{
-						Logging.deprecationPrint("Old syntax detected: "
-								+ "Prerequisites of kind " + kind
-								+ " now require a target value, "
-								+ "e.g. Key=Value.  Assuming Value=" + assumed);
+						Logging.deprecationPrint("Old syntax detected: " + "Prerequisites of kind " + kind
+							+ " now require a target value, " + "e.g. Key=Value.  Assuming Value=" + assumed);
 						subreq.setOperand(assumed);
 					}
 					if (!warnIgnored)
@@ -291,13 +275,9 @@ public abstract class AbstractPrerequisiteListParser
 			}
 			if (hasKeyOnly && hasKeyValue)
 			{
-				Logging
-					.deprecationPrint("You are using a deprecated syntax of PRE"
-						+ kind
-						+ ":"
-						+ formula
-						+ " ... Each item in the list should have a target value, e.g.: PRE"
-						+ kind + ":1,First=99,Second=5");
+				Logging.deprecationPrint("You are using a deprecated syntax of PRE" + kind + ":" + formula
+					+ " ... Each item in the list should have a target value, e.g.: PRE" + kind
+					+ ":1,First=99,Second=5");
 			}
 		}
 		else
@@ -319,7 +299,7 @@ public abstract class AbstractPrerequisiteListParser
 					{
 						// i.e. TYPE=ItemCreation or Reflex=7
 						String[] tokens = elements[i].split("=");
-						int valueIdx = tokens.length-1;
+						int valueIdx = tokens.length - 1;
 						try
 						{
 							// i.e. Reflex=7 or TYPE.Craft=5
@@ -331,8 +311,7 @@ public abstract class AbstractPrerequisiteListParser
 								// then make this a PREMULT
 								//
 								prereq.setOperator(PrerequisiteOperator.GTEQ);
-								prereq
-									.setOperand(Integer.toString(numRequired));
+								prereq.setOperand(Integer.toString(numRequired));
 								prereq.setKind(null);
 								subreq = new Prerequisite();
 								prereq.addPrerequisite(subreq);
@@ -354,8 +333,7 @@ public abstract class AbstractPrerequisiteListParser
 								else
 								{
 									throw new PersistenceLayerException(
-										"Prerequisites of kind " + kind
-											+ " do not support 'ANY'");
+										"Prerequisites of kind " + kind + " do not support 'ANY'");
 								}
 							}
 							else
@@ -371,9 +349,7 @@ public abstract class AbstractPrerequisiteListParser
 						if (requiresValue())
 						{
 							throw new PersistenceLayerException(
-									"Prerequisites of kind "
-											+ kind
-											+ " require a target value, e.g. Key=Value");
+								"Prerequisites of kind " + kind + " require a target value, e.g. Key=Value");
 						}
 						String assumed = getAssumedValue();
 						if (assumed == null)
@@ -382,15 +358,12 @@ public abstract class AbstractPrerequisiteListParser
 						}
 						else
 						{
-							Logging.deprecationPrint("Old syntax detected: "
-									+ "Prerequisites of kind " + kind
-									+ " now require a target value, "
-									+ "e.g. Key=Value.  Assuming Value=" + assumed);
+							Logging.deprecationPrint("Old syntax detected: " + "Prerequisites of kind " + kind
+								+ " now require a target value, " + "e.g. Key=Value.  Assuming Value=" + assumed);
 							subreq.setOperand(assumed);
 						}
 						subreq.setKey(elements[i]);
 					}
-					break;
 				}
 			}
 			else
@@ -413,7 +386,7 @@ public abstract class AbstractPrerequisiteListParser
 		{
 			List<String> parts = new ArrayList<>();
 			parts.addAll(Arrays.asList(tokens));
-			parts.remove(parts.size()-1);
+			parts.remove(parts.size() - 1);
 			reqKey = StringUtils.join(parts, "=");
 		}
 		return reqKey;
@@ -446,8 +419,6 @@ public abstract class AbstractPrerequisiteListParser
 	{
 		return false;
 	}
-	
-	
 
 	/**
 	 * Flag each Prerequisite created to indicate that no character is 
@@ -464,7 +435,7 @@ public abstract class AbstractPrerequisiteListParser
 			return;
 		}
 		prereq.setCharacterRequired(false);
-	
+
 		for (Prerequisite element : prereq.getPrerequisites())
 		{
 			setNoNeedForChar(element);

@@ -1,5 +1,4 @@
 /*
- * Token.java
  * Copyright 2003 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
  * This library is free software; you can redistribute it and/or
@@ -21,10 +20,10 @@
  */
 package pcgen.io.exporttoken;
 
+import java.util.StringTokenizer;
+
 import pcgen.core.PlayerCharacter;
 import pcgen.io.ExportHandler;
-
-import java.util.StringTokenizer;
 
 /**
  * The Abstract Token class for Export Tokens
@@ -58,8 +57,7 @@ public abstract class Token
 	 * 						(may be null for a once off conversion).
 	 * @return The value of the token.
 	 */
-	public abstract String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh);
+	public abstract String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh);
 
 	/**
 	 * This method takes a tokenizer and tries to return an integer value for

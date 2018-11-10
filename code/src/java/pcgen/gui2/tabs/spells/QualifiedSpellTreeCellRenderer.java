@@ -37,9 +37,6 @@ import pcgen.system.LanguageBundle;
  * The Class {@code QualifiedSpellTreeCellRenderer} renders a spell tree
  * cell with colouring indicating if the item can be known by the character. It
  * is heavily based on QualifiedTreeCellRenderer
- *
- * -0700 (Tue, 05 Jun 2012) $
- *
  */
 public class QualifiedSpellTreeCellRenderer extends CharacterTreeCellRenderer
 {
@@ -50,8 +47,8 @@ public class QualifiedSpellTreeCellRenderer extends CharacterTreeCellRenderer
 	private static final long serialVersionUID = -5763535370085434234L;
 
 	@Override
-	public Component getTreeCellRendererComponent(JTree tree, Object value,
-			boolean sel, boolean expanded, boolean leaf, int row, boolean focus)
+	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf,
+		int row, boolean focus)
 	{
 		Object obj = ((DefaultMutableTreeNode) value).getUserObject();
 		if ("".equals(obj)) //$NON-NLS-1$

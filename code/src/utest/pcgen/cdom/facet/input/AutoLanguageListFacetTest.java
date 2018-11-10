@@ -22,15 +22,10 @@ import pcgen.cdom.facet.base.AbstractSourcedListFacet;
 import pcgen.cdom.testsupport.AbstractSourcedListFacetTest;
 import pcgen.core.Language;
 
-public class AutoLanguageListFacetTest extends AbstractSourcedListFacetTest<Language> {
+public class AutoLanguageListFacetTest extends AbstractSourcedListFacetTest<Language>
+{
 
 	private AutoLanguageListFacet facet = new AutoLanguageListFacet();
-
-	@Override
-	public void setUp() throws Exception
-	{
-		super.setUp();
-	}
 
 	@Override
 	protected AbstractSourcedListFacet<CharID, Language> getFacet()

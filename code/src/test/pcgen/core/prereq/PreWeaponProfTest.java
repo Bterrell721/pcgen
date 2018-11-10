@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2007 (C) Koen Van Daele <kador@foeffighters.be>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -32,23 +29,22 @@ import pcgen.base.lang.UnreachableError;
 import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.enumeration.Type;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Campaign;
 import pcgen.core.Globals;
 import pcgen.core.PCTemplate;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.WeaponProf;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.CampaignSourceEntry;
 import pcgen.persistence.lst.FeatLoader;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 import pcgen.rules.context.LoadContext;
 import pcgen.util.TestHelper;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * <code>PreWeaponProfTest</code> tests that the PREWEAPONPROF tag is
  * working correctly.
- *
- *
  */
 public class PreWeaponProfTest extends AbstractCharacterTestCase
 {
@@ -67,10 +63,11 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 	}
 	
 	/**
-	 * Test with a simple weapon proficiency
-	 * @throws Exception
+	 * Test with a simple weapon proficiency.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testOneOption() throws Exception
+	public void testOneOption() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 
@@ -105,10 +102,11 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 
 
 	/**
-	 * Tests to see if a character has a certain number of weaponprofs from a list
-	 * @throws Exception
+	 * Tests to see if a character has a certain number of weaponprofs from a list.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testMultiple() throws Exception
+	public void testMultiple() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		PCTemplate pct = new PCTemplate();
@@ -142,10 +140,11 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 	}
 	
 	/**
-	 * Test a preweaponprof that checks for a number of profs of a certain type
-	 * @throws Exception
+	 * Test a preweaponprof that checks for a number of profs of a certain type.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testType() throws Exception
+	public void testType() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		PCTemplate pctls = new PCTemplate();
@@ -181,10 +180,11 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 	}
 	
 	/**
-	 * Test with negation
-	 * @throws Exception
+	 * Test with negation.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testInverse() throws Exception
+	public void testInverse() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		PCTemplate pct = new PCTemplate();
@@ -220,10 +220,11 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 	/**
 	 * Test the preweaponprof with weaponprofs added by a AUTO:WEAPONPROF tag
 	 * This is probably more an integration test than a unit test
-	 * This test was written to help find the source of bug 1699779
-	 * @throws Exception
+	 * This test was written to help find the source of bug 1699779.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testWeaponProfAddedWithAutoWeaponProf() throws Exception
+	public void testWeaponProfAddedWithAutoWeaponProf() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 
@@ -236,12 +237,12 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 			prereq, character, null));
 		
 		final Ability martialProf = 
-			TestHelper.makeAbility("Weapon Proficiency (Martial)", AbilityCategory.FEAT, "General");
+			TestHelper.makeAbility("Weapon Proficiency (Martial)", BuildUtilities.getFeatCat(), "General");
 		Globals.getContext().unconditionallyProcess(martialProf, "AUTO",
 				"WEAPONPROF|TYPE.Martial");
 		assertTrue(Globals.getContext().getReferenceContext().resolveReferences(null));
 		
-		AbstractCharacterTestCase.applyAbility(character, AbilityCategory.FEAT, martialProf, null);
+		AbstractCharacterTestCase.applyAbility(character, BuildUtilities.getFeatCat(), martialProf, null);
 
 		assertTrue("Character has the Longsword proficiency.", 
 					PrereqHandler.passes(prereq, character, null));
@@ -262,10 +263,11 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 	
 	/**
 	 * Test Preweaponprof with a feat that has a bonus tag
-	 * This test was written to help find the source of bug 1699779
-	 * @throws Exception
+	 * This test was written to help find the source of bug 1699779.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testWithFeatThatGrantsBonus() throws Exception
+	public void testWithFeatThatGrantsBonus() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		PCTemplate pctls = new PCTemplate();
@@ -292,7 +294,7 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 		final String barStr =
 			"Bar	TYPE:General	DESC:See Text	BONUS:HP|CURRENTMAX|50";
 		featLoader.parseLine(Globals.getContext(), bar, barStr, cse);
-		addAbility(AbilityCategory.FEAT, bar);
+		addAbility(BuildUtilities.getFeatCat(), bar);
 		
 		assertEquals("Character should have 50 bonus hp added.",
 					baseHp+50,
@@ -305,7 +307,7 @@ public class PreWeaponProfTest extends AbstractCharacterTestCase
 		final String fooStr =
 			"Foo	TYPE:General	DESC:See Text	BONUS:HP|CURRENTMAX|50|PREWEAPONPROF:1,Longsword";
 		featLoader.parseLine(Globals.getContext(), foo, fooStr, cse);
-		addAbility(AbilityCategory.FEAT, foo);
+		addAbility(BuildUtilities.getFeatCat(), foo);
 		
 		assertEquals("Character has the longsword proficiency so the bonus should be added",
 					baseHp+50+50,

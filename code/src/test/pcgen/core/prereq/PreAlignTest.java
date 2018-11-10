@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -28,13 +25,13 @@ import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.reference.CDOMDirectSingleRef;
 import pcgen.core.Deity;
 import pcgen.core.PlayerCharacter;
+import pcgen.output.channel.ChannelCompatibility;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreAlignTest</code> tests that the PREALIGN tag is
  * working correctly.
- *
- *
  */
 public class PreAlignTest extends AbstractCharacterTestCase
 {
@@ -55,12 +52,13 @@ public class PreAlignTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test that negative (!) alignment checks work correctly in Align tests.
-	 * @throws Exception
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testNegative() throws Exception
+	public void testNegative() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 
 		Prerequisite prereq;
 
@@ -78,12 +76,13 @@ public class PreAlignTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test that alignment abbreviation values work correctly in Align tests.
-	 * @throws Exception
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testAbbrev() throws Exception
+	public void testAbbrev() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 
 		Prerequisite prereq = new Prerequisite();
 		prereq.setKind("align");
@@ -113,12 +112,13 @@ public class PreAlignTest extends AbstractCharacterTestCase
 	/**
 	 * Tests that this only passes if the character's alignment matches his
 	 * diety's alignment.
-	 * @throws Exception
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testDeity() throws Exception
+	public void testDeity() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 		assertEquals("Deity should have been set for character.", deity,
 			character.getDeity());
@@ -129,7 +129,7 @@ public class PreAlignTest extends AbstractCharacterTestCase
 		assertTrue("Number 3 should match deity's alignment of NG",
 			PrereqHandler.passes(prereq, character, null));
 
-		character.setAlignment(cg);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), cg);
 
 		assertFalse("Number 6 should not match deity's alignment of NG",
 			PrereqHandler.passes(prereq, character, null));
@@ -138,7 +138,7 @@ public class PreAlignTest extends AbstractCharacterTestCase
 	public void testMulti() throws Exception
 	{
 		final PlayerCharacter character = getCharacter();
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 
 		final PreParserFactory factory = PreParserFactory.getInstance();
 		Prerequisite prereq = factory.parse("PREALIGN:LE,NG,NE");

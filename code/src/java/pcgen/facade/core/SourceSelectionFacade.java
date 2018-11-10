@@ -1,5 +1,4 @@
 /*
- * SourceSelectionFacade.java
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -19,14 +18,11 @@
  */
 package pcgen.facade.core;
 
-import pcgen.facade.util.ReferenceFacade;
-import pcgen.facade.util.ListFacade;
-
 import java.util.List;
 
-/**
- *
- */
+import pcgen.facade.util.ListFacade;
+import pcgen.facade.util.ReferenceFacade;
+
 public interface SourceSelectionFacade extends LoadableFacade
 {
 

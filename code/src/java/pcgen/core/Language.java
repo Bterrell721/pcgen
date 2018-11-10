@@ -1,5 +1,4 @@
 /*
- * Language.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.core;
 
@@ -36,10 +32,8 @@ import pcgen.facade.core.LanguageFacade;
 
 /**
  * {@code Language}.
- *
  */
-public final class Language extends PObject implements Comparable<Object>,
-		LanguageFacade, Ungranted
+public final class Language extends PObject implements Comparable<Object>, LanguageFacade, Ungranted, Cloneable
 {
 	public static final CDOMReference<LanguageList> STARTING_LIST;
 
@@ -112,7 +106,7 @@ public final class Language extends PObject implements Comparable<Object>,
 		return getKeyName().hashCode();
 	}
 
-    @Override
+	@Override
 	public List<String> getTypes()
 	{
 		List<String> list = new ArrayList<>();
@@ -131,7 +125,8 @@ public final class Language extends PObject implements Comparable<Object>,
 		try
 		{
 			l = (Language) super.clone();
-		} catch (CloneNotSupportedException e)
+		}
+		catch (CloneNotSupportedException e)
 		{
 			ShowMessageDelegate.showMessageDialog(e.getMessage(), Constants.APPLICATION_NAME, MessageType.ERROR);
 		}

@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.core.prereq;
 
@@ -22,6 +21,7 @@ import pcgen.AbstractCharacterTestCase;
 import pcgen.core.Deity;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 import pcgen.rules.context.LoadContext;
 import plugin.lsttokens.testsupport.BuildUtilities;
@@ -29,7 +29,6 @@ import plugin.lsttokens.testsupport.BuildUtilities;
 /**
  * <code>PreFactSetTest</code> tests that the PREFACTSET tag is
  * working correctly.
- *
  */
 public class PreFactSetTest extends AbstractCharacterTestCase
 {
@@ -43,10 +42,11 @@ public class PreFactSetTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the PREFACT code
-	 * @throws Exception
+	 * Test the PREFACT code.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testFact() throws Exception
+	public void testFact() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		Deity deity = new Deity();

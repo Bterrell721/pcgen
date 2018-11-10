@@ -42,6 +42,7 @@ COPYRIGHT:PCGen dataset conversion for "Guide to Pathfinder Society Organized Pl
 # Data files
 ABILITYCATEGORY:rgg_abilitycategories.lst
 ABILITY:rgg_abilities.lst
+ABILITY:rgg_abilities_um.lst|PRECAMPAIGN:1,Ultimate Combat
 KIT:rgg_kits.lst
 TEMPLATE:rgg_templates.lst
 
@@ -61,7 +62,7 @@ OPTION:gameMode.Pathfinder_PFS.xpTableName=PFS Rules
 # Tian characters receive the languages Tien and Common for free.
 
 # This is included in the multi-set Pathfinder Society Core Assumption
-# PCC:@/pathfinder/paizo/roleplaying_game/core_rulebook/core_rulebook.pcc
+PCC:@/pathfinder/paizo/roleplaying_game/core_rulebook/_pfs/_.pcc
 
 ########################
 # Blocked Resources    #
@@ -155,6 +156,7 @@ PCC:@/pathfinder/paizo/player_companion/halflings_of_golarion/_pfs/_.pcc
 PCC:@/pathfinder/paizo/player_companion/inner_sea_primer/_pfs/_.pcc
 PCC:@/pathfinder/paizo/player_companion/orcs_of_golarion/_pfs/_.pcc
 PCC:@/pathfinder/paizo/player_companion/people_of_the_stars/_pfs/_.pcc
+PCC:@/pathfinder/paizo/player_companion/people_of_the_north/_pfs/_.pcc
 PCC:@/pathfinder/paizo/player_companion/pirates_of_the_inner_sea/_pfs/_.pcc
 PCC:@/pathfinder/paizo/player_companion/qadira_gateway_to_the_east/_pfs/_.pcc
 PCC:@/pathfinder/paizo/player_companion/sargava_the_lost_colony/_pfs/_.pcc

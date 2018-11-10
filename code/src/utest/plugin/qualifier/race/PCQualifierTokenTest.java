@@ -32,7 +32,7 @@ public class PCQualifierTokenTest extends
 		AbstractPCQualifierTokenTestCase<Race>
 {
 
-	private static final CDOMSecondaryToken subtoken = new RaceToken();
+	private static final CDOMSecondaryToken SUBTOKEN = new RaceToken();
 
 	private static final LstToken PC_TOKEN =
 			new plugin.qualifier.race.PCToken();
@@ -47,19 +47,13 @@ public class PCQualifierTokenTest extends
 	@Override
 	public CDOMSecondaryToken<?> getSubToken()
 	{
-		return subtoken;
+		return SUBTOKEN;
 	}
 
 	@Override
 	public Class<Race> getTargetClass()
 	{
 		return Race.class;
-	}
-
-	@Override
-	protected boolean allowsNotQualifier()
-	{
-		return true;
 	}
 
 	@Override

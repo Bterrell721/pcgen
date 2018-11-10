@@ -26,20 +26,19 @@ import java.util.Observable;
 
 import javax.swing.JOptionPane;
 
-import pcgen.core.RollingMethods;
-import pcgen.util.Logging;
-
-import gmgen.GMGenSystem;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
+import gmgen.GMGenSystem;
+import pcgen.core.RollingMethods;
+import pcgen.util.Logging;
+
 /**
  * <p>The base data class of the DiceBag plugin.  This class maintains a single "Dice Bag," which
  * consists of an ordered list of dice expressions.</p>
- *
  */
 class DiceBagModel extends Observable
 {
@@ -186,7 +185,7 @@ class DiceBagModel extends Observable
 	}
 
 	/**
-	 * <p>Gets the count of dice in teh bag.</p>
+	 * <p>Gets the count of dice in the bag.</p>
 	 *
 	 * @return Count of dice in bag.
 	 */
@@ -262,8 +261,7 @@ class DiceBagModel extends Observable
 		}
 		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(GMGenSystem.inst, "File load error: "
-				+ file.getName());
+			JOptionPane.showMessageDialog(GMGenSystem.inst, "File load error: " + file.getName());
 			Logging.errorPrint("File Load Error" + file.getName());
 			Logging.errorPrint(e.getMessage(), e);
 		}
@@ -319,8 +317,7 @@ class DiceBagModel extends Observable
 		}
 		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(GMGenSystem.inst, "File load error: "
-				+ file.getName());
+			JOptionPane.showMessageDialog(GMGenSystem.inst, "File load error: " + file.getName());
 			Logging.errorPrint("File Load Error" + file.getName());
 			Logging.errorPrint(e.getMessage(), e);
 		}

@@ -50,18 +50,6 @@ public class SpellCasterTokenTest extends
 	}
 
 	@Override
-	public boolean isTypeLegal()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean allowsParenAsSub()
-	{
-		return false;
-	}
-
-	@Override
 	public boolean allowsFormula()
 	{
 		return true;
@@ -108,7 +96,7 @@ public class SpellCasterTokenTest extends
 	}
 
 	@Test
-	public void testInvalidInputAnySpellType() throws PersistenceLayerException
+	public void testInvalidInputAnySpellType()
 	{
 		if (isAllLegal())
 		{
@@ -119,7 +107,7 @@ public class SpellCasterTokenTest extends
 	}
 
 	@Test
-	public void testInvalidInputSpellTypeAny() throws PersistenceLayerException
+	public void testInvalidInputSpellTypeAny()
 	{
 		if (isAllLegal())
 		{

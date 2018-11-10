@@ -16,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 10-Aug-2008 00:06:33
- *
- *
  */
 
 package pcgen.core.term;
@@ -26,15 +24,14 @@ import pcgen.core.Globals;
 import pcgen.core.PCStat;
 import pcgen.core.display.CharacterDisplay;
 
-public class PCScoreTermEvaluator 
-		extends BasePCDTermEvaluator implements TermEvaluator
+public class PCScoreTermEvaluator extends BasePCDTermEvaluator implements TermEvaluator
 {
 	private final String stat;
 
 	public PCScoreTermEvaluator(String originalText, String stat)
 	{
 		this.originalText = originalText;
-		this.stat         = stat;
+		this.stat = stat;
 	}
 
 	@Override
@@ -44,8 +41,7 @@ public class PCScoreTermEvaluator
 		{
 			return 0.0f;
 		}
-		PCStat pcs = Globals.getContext().getReferenceContext().silentlyGetConstructedCDOMObject(
-				PCStat.class, stat);
+		PCStat pcs = Globals.getContext().getReferenceContext().silentlyGetConstructedCDOMObject(PCStat.class, stat);
 		return (float) display.getTotalStatFor(pcs);
 	}
 

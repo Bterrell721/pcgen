@@ -1,5 +1,4 @@
 /*
- * RequestFileOpenedMessageForCurrentlyOpenedPCsMessage.java
  * Copyright James Dempsey, 2014
  *
  * This library is free software; you can redistribute it and/or
@@ -31,16 +30,14 @@ import pcgen.pluginmgr.PCGenMessage;
  */
 
 @SuppressWarnings("serial")
-public class RequestFileOpenedMessageForCurrentlyOpenedPCsMessage extends
-		PCGenMessage
+public class RequestFileOpenedMessageForCurrentlyOpenedPCsMessage extends PCGenMessage
 {
 
 	/**
 	 * Create a new instance of RequestVirtualFileOpenedMessageForCurrentlyOpenedPCsMessage
 	 * @param source The source of the message.
 	 */
-	public RequestFileOpenedMessageForCurrentlyOpenedPCsMessage(
-		Object source)
+	public RequestFileOpenedMessageForCurrentlyOpenedPCsMessage(Object source)
 	{
 		super(source);
 	}

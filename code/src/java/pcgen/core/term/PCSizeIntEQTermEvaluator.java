@@ -16,34 +16,31 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 05-Oct-2008 20:57:45
- *
- *
  */
 
 package pcgen.core.term;
 
-import pcgen.core.PlayerCharacter;
-import pcgen.core.Equipment;
-import pcgen.core.WeaponProf;
-import pcgen.cdom.reference.CDOMSingleRef;
 import pcgen.cdom.enumeration.ObjectKey;
+import pcgen.cdom.reference.CDOMSingleRef;
+import pcgen.core.Equipment;
+import pcgen.core.PlayerCharacter;
+import pcgen.core.WeaponProf;
 
-public class PCSizeIntEQTermEvaluator
-		extends BasePCTermEvaluator implements TermEvaluator
+public class PCSizeIntEQTermEvaluator extends BasePCTermEvaluator implements TermEvaluator
 {
 	private final String source;
 
 	public PCSizeIntEQTermEvaluator(String expressionString, String source)
 	{
 		this.originalText = expressionString;
-		this.source       = source;
+		this.source = source;
 	}
 
 	@Override
 	public Float resolve(PlayerCharacter pc)
 	{
 		int modSize = 0;
-		
+
 		final Equipment eq = pc.getEquipmentNamed(source);
 
 		if (eq != null)
@@ -58,14 +55,15 @@ public class PCSizeIntEQTermEvaluator
 			}
 
 			// loops for each equipment type
-			for ( String eqType : eq.typeList() )
+			for (String eqType : eq.typeList())
 			{
 
 				// get the type bonus (ex TYPE.MARTIAL)
 				final int i = (int) pc.getTotalBonusTo("WEAPONPROF=TYPE." + eqType, "PCSIZE");
 
 				// get the highest bonus
-				if (modSize < i) {
+				if (modSize < i)
+				{
 					modSize = i;
 				}
 			}

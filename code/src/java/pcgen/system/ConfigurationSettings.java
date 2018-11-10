@@ -1,5 +1,4 @@
 /*
- * SystemPropertyManager.java
  * Copyright 2009 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -23,9 +22,6 @@ import java.io.File;
 
 import org.apache.commons.lang3.SystemUtils;
 
-/**
- *
- */
 public final class ConfigurationSettings extends PropertyContext
 {
 
@@ -110,9 +106,7 @@ public final class ConfigurationSettings extends PropertyContext
 	{
 		if (instance == null)
 		{
-			instance =
-					new ConfigurationSettings(configFileName == null
-						? "config.ini" : configFileName);
+			instance = new ConfigurationSettings(configFileName == null ? "config.ini" : configFileName);
 		}
 		return instance;
 	}

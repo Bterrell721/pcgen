@@ -60,11 +60,9 @@ import pcgen.util.enumeration.Tab;
 /**
  * This class is the tabbed pane that contains all of the CharacterInfoTabs and
  * manages the models for those tabs.
- *
  */
 @SuppressWarnings("serial")
-public final class InfoTabbedPane extends JTabbedPane
-		implements CharacterSelectionListener, ChangeListener
+public final class InfoTabbedPane extends JTabbedPane implements CharacterSelectionListener, ChangeListener
 {
 
 	public static final int SUMMARY_TAB = 0;
@@ -82,6 +80,8 @@ public final class InfoTabbedPane extends JTabbedPane
 	private final Map<CharacterFacade, Integer> tabSelectionMap;
 	private final TabModelService modelService;
 	private final List<CharacterInfoTab> fullTabList = new ArrayList<>();
+	private final DomainInfoTab domainInfoTab;
+	private int domainTabLocation;
 	private CharacterFacade currentCharacter = null;
 
 	public InfoTabbedPane()
@@ -89,6 +89,7 @@ public final class InfoTabbedPane extends JTabbedPane
 		this.stateMap = new DoubleKeyMap<>();
 		this.tabSelectionMap = new WeakHashMap<>();
 		this.modelService = new TabModelService();
+		this.domainInfoTab = new DomainInfoTab();
 		initComponent();
 	}
 
@@ -120,7 +121,8 @@ public final class InfoTabbedPane extends JTabbedPane
 		addTab(new ClassInfoTab());
 		addTab(new SkillInfoTab());
 		addTab(new AbilitiesInfoTab());
-		addTab(new DomainInfoTab());
+		domainTabLocation = getTabCount();
+		addTab(domainInfoTab);
 		addTab(new SpellsInfoTab());
 		addTab(new InventoryInfoTab());
 		addTab(new DescriptionInfoTab());
@@ -214,6 +216,21 @@ public final class InfoTabbedPane extends JTabbedPane
 
 			}
 		}
+		if (character != null)
+		{
+			if (character.getDataSet().hasDeityDomain())
+			{
+				TabTitle tabTitle = domainInfoTab.getTabTitle();
+				String title = (String) tabTitle.getValue(TabTitle.TITLE);
+				String tooltip = (String) tabTitle.getValue(TabTitle.TOOLTIP);
+				Icon icon = (Icon) tabTitle.getValue(TabTitle.ICON);
+				insertTab(title, icon, domainInfoTab, tooltip, domainTabLocation);
+			}
+			else
+			{
+				remove(domainInfoTab);
+			}
+		}
 	}
 
 	/**
@@ -254,7 +271,6 @@ public final class InfoTabbedPane extends JTabbedPane
 				if (dest[2].equals(tabPane.getTitleAt(i)))
 				{
 					tabPane.setSelectedIndex(i);
-					//selTab = tab.getComponent(i);
 					break;
 				}
 			}
@@ -267,9 +283,8 @@ public final class InfoTabbedPane extends JTabbedPane
 		else
 		{
 			String message = LanguageBundle.getFormattedString("in_todoUseField", dest[1]); //$NON-NLS-1$
-			JOptionPane.showMessageDialog(selTab, message,
-					LanguageBundle.getString("in_tipsString"), //$NON-NLS-1$
-					JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(selTab, message, LanguageBundle.getString("in_tipsString"), //$NON-NLS-1$
+				JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 

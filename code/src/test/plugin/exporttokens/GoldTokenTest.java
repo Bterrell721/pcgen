@@ -1,5 +1,4 @@
 /*
- * GoldTokenTest.java
  * Copyright James Dempsey, 2014
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package plugin.exporttokens;
 
@@ -42,7 +39,7 @@ public class GoldTokenTest extends AbstractCharacterTestCase
 
 	private GoldToken goldToken = new GoldToken();
 	/**
-	 * Test formatted output of {@link plugin.exporttokens.deprecated.GoldToken#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)}.
+	 * Test formatted output of {@link GoldToken#getToken(String, PlayerCharacter, pcgen.io.ExportHandler)}.
 	 */
 	@Test
 	public void testGetToken()

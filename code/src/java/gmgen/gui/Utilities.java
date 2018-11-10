@@ -18,8 +18,6 @@
  */
 package gmgen.gui;
 
-
-import java.awt.event.InputEvent;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -34,7 +32,6 @@ final class Utilities
 	{
 	}
 
-
 	private static final String RESOURE_PREFIX = "resources/";
 
 	/**
@@ -48,19 +45,6 @@ final class Utilities
 	static ImageIcon getImageIcon(final String location)
 	{
 		return getImageIcon(location, null);
-	}
-
-	/**
-	 * {@code isShiftLeftMouseButton} detects SHIFT-BUTTON1
-	 * events for flipping pane shortcuts.
-	 *
-	 * @param e {@code MouseEvent}, the event
-	 *
-	 * @return {@code boolean}, the condition
-	 */
-	static boolean isShiftLeftMouseButton(InputEvent e)
-	{
-		return ((e.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) && e.isShiftDown();
 	}
 
 	/**

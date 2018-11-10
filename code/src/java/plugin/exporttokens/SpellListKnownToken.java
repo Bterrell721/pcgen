@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens;
 
@@ -31,8 +28,6 @@ import pcgen.io.exporttoken.SpellListToken;
  * {@code SpellListKnownToken} outputs the number of spells you
  * can know for the specified spellcaster class and level. For Clerics 
  * with domains, this does not include domain spells.
- *
- *
  */
 
 public class SpellListKnownToken extends SpellListToken
@@ -41,34 +36,24 @@ public class SpellListKnownToken extends SpellListToken
 	/** Token name */
 	public static final String TOKENNAME = "SPELLLISTKNOWN";
 
-	/**
-	 * @see pcgen.io.exporttoken.Token#getTokenName()
-	 */
 	@Override
 	public String getTokenName()
 	{
 		return TOKENNAME;
 	}
 
-	/**
-	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
-	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		StringBuilder retValue = new StringBuilder();
 
-		SpellListTokenParams params =
-				new SpellListTokenParams(tokenSource,
-					SpellListToken.SPELLTAG_KNOWN);
+		SpellListTokenParams params = new SpellListTokenParams(tokenSource, SpellListToken.SPELLTAG_KNOWN);
 
 		final CDOMObject aObject = pc.getSpellClassAtIndex(params.getClassNum());
 
 		if (aObject != null)
 		{
-			retValue.append(Integer.toString(getKnownNum(aObject, params
-				.getLevel(), pc)));
+			retValue.append(Integer.toString(getKnownNum(aObject, params.getLevel(), pc)));
 		}
 
 		return retValue.toString();

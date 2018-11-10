@@ -1,5 +1,4 @@
 /*
- * PreArmourProfParser.java
  *
  * Copyright 2003 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
@@ -20,7 +19,6 @@
  *
  * 
  * 
- *
  */
 package plugin.pretokens.parser;
 
@@ -29,17 +27,15 @@ import pcgen.persistence.lst.prereq.PrerequisiteParserInterface;
 
 /**
  * A prerequisite parser class that handles the parsing of pre armourprof tokens.
- *
  */
-public class PreArmorProfParser extends AbstractPrerequisiteListParser
-		implements PrerequisiteParserInterface
+public class PreArmorProfParser extends AbstractPrerequisiteListParser implements PrerequisiteParserInterface
 {
 
 	/**
 	 * Get the type of prerequisite handled by this token.
 	 * @return the type of prerequisite handled by this token.
 	 */
-    @Override
+	@Override
 	public String[] kindsHandled()
 	{
 		return new String[]{"PROFWITHARMOR"};
@@ -50,6 +46,5 @@ public class PreArmorProfParser extends AbstractPrerequisiteListParser
 	{
 		return false;
 	}
-    
-    
+
 }

@@ -1,11 +1,5 @@
 #!/bin/sh
 set -e
-if command git rev-parse >/dev/null 2>&1
-then
-  cd "$(git rev-parse --show-toplevel)"
-else
-  cd "$(dirname $0)"
-fi
 
 available_memory="unknown"
 default_min_memory=256
@@ -31,7 +25,7 @@ else
 fi
 
 # Test if the value is numeric before performing arithmetic on it
-if [ $available_memory -eq $available_memory 2> /dev/null ]; then
+if [ $available_memory -eq $available_memory ]; then
 
 	# We go with the defaults if memory is too low
 	if [ $available_memory -gt 1048576 ]; then
@@ -47,7 +41,7 @@ if [ $available_memory -eq $available_memory 2> /dev/null ]; then
 fi
 
 # To load all sources takes more than the default 64MB.
-javaargs="-Xms${default_min_memory}m -Xmx${default_max_memory}m"
+javaargs="-Xms${default_min_memory}m -Xmx${default_max_memory}m -Dsun.java2d.dpiaware=false"
 
 while [ "x$1" != x ]
 do
@@ -82,4 +76,5 @@ done
 #     -Dpcgen.filter=/path/to/filter.ini
 #     -Dpcgen.options=/path/to/options.ini
 
+# shellcheck disable=SC2086
 exec java $javaargs -jar ./pcgen.jar -- "$@"

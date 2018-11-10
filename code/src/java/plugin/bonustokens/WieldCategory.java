@@ -14,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.bonustokens;
 
@@ -27,14 +24,13 @@ import pcgen.core.bonus.MultiTagBonusObj;
  */
 public final class WieldCategory extends MultiTagBonusObj
 {
-	private static final String[] BONUS_TAGS =
-			{"LIGHT", "ONEHANDED", "TWOHANDED"};
+	private static final String[] BONUS_TAGS = {"LIGHT", "ONEHANDED", "TWOHANDED"};
 
 	/**
 	 * Return the bonus tag handled by this class.
 	 * @return The bonus handled by this class.
 	 */
-		@Override
+	@Override
 	public String getBonusHandled()
 	{
 		return "WIELDCATEGORY";

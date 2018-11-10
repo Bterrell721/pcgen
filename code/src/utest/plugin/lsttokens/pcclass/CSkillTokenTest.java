@@ -24,10 +24,10 @@ import pcgen.core.Skill;
 import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.persistence.CDOMLoader;
 import pcgen.rules.persistence.token.CDOMPrimaryToken;
-import plugin.lsttokens.testsupport.AbstractListTokenTestCase;
+import plugin.lsttokens.testsupport.AbstractListInputTokenTestCase;
 import plugin.lsttokens.testsupport.CDOMTokenLoader;
 
-public class CSkillTokenTest extends AbstractListTokenTestCase<PCClass, Skill>
+public class CSkillTokenTest extends AbstractListInputTokenTestCase<PCClass, Skill>
 {
 
 	@Override
@@ -89,7 +89,7 @@ public class CSkillTokenTest extends AbstractListTokenTestCase<PCClass, Skill>
 	}
 
 	@Test
-	public void testRoundRobinList() throws PersistenceLayerException
+	public void testRoundRobinList()
 	{
 		boolean result = parse("LIST");
 		if (result)

@@ -1,5 +1,4 @@
 /*
- * PCGParseException.java
  * Copyright 2002 (C) Thomas Behr <ravenlock@gmx.de>
  *
  * This library is free software; you can redistribute it and/or
@@ -40,8 +39,8 @@ final class PCGParseException extends Exception
 	 */
 	PCGParseException(String errorMethod, String errorLine, String errorMessage)
 	{
-		super("Method: " + errorMethod + Constants.LINE_SEPARATOR + "Line: "
-			+ errorLine + Constants.LINE_SEPARATOR + "Message: " + errorMessage);
+		super("Method: " + errorMethod + Constants.LINE_SEPARATOR + "Line: " + errorLine + Constants.LINE_SEPARATOR
+			+ "Message: " + errorMessage);
 
 		this.errorMethod = errorMethod;
 		this.errorLine = errorLine;
@@ -59,7 +58,7 @@ final class PCGParseException extends Exception
 	/**
 	 * @return error message
 	 */
-    @Override
+	@Override
 	public String getMessage()
 	{
 		return errorMessage;

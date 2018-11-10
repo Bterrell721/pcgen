@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
 package pcgen.core.chooser;
 
@@ -32,8 +31,7 @@ public class SkillChooseController extends ChooseController<Ability>
 	{
 		if (sk == null)
 		{
-			throw new IllegalArgumentException(
-					"Skill cannot be null for SkillChooseController");
+			throw new IllegalArgumentException("Skill cannot be null for SkillChooseController");
 		}
 		skill = sk;
 		pc = aPC;
@@ -42,8 +40,7 @@ public class SkillChooseController extends ChooseController<Ability>
 	@Override
 	public int getPool()
 	{
-		return SkillRankControl.getTotalRank(pc, skill).intValue()
-			- pc.getAssociationList(skill).size();
+		return SkillRankControl.getTotalRank(pc, skill).intValue() - pc.getAssociationList(skill).size();
 	}
 
 	@Override

@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -33,13 +30,13 @@ import pcgen.core.Domain;
 import pcgen.core.Globals;
 import pcgen.core.PCClass;
 import pcgen.core.PlayerCharacter;
+import pcgen.output.channel.ChannelCompatibility;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreDomainTest</code> tests that the PREDOMAIN tag is
  * working correctly.
- *
- *
  */
 public class PreDomainTest extends AbstractCharacterTestCase
 {
@@ -59,10 +56,11 @@ public class PreDomainTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test to make sure it is not looking at deity domains
-	 * @throws Exception
+	 * Test to make sure it is not looking at deity domains.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testDeity() throws Exception
+	public void testDeity() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 
@@ -76,7 +74,7 @@ public class PreDomainTest extends AbstractCharacterTestCase
 		assertFalse("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 
 		assertFalse("Character's deity has Good domain", PrereqHandler.passes(
@@ -90,10 +88,10 @@ public class PreDomainTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test with multiple options
-	 * @throws Exception
+	 * Test with multiple options.
+	 * @throws PersistenceLayerException 
 	 */
-	public void testMultiple() throws Exception
+	public void testMultiple() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		PCClass cl = new PCClass();
@@ -107,7 +105,7 @@ public class PreDomainTest extends AbstractCharacterTestCase
 		assertFalse("Character has no deity selected", PrereqHandler.passes(
 			prereq, character, null));
 
-		character.setAlignment(ng);
+		ChannelCompatibility.setCurrentAlignment(character.getCharID(), ng);
 		character.setDeity(deity);
 
 		assertFalse("Character's deity has Good domain", PrereqHandler.passes(
@@ -135,10 +133,9 @@ public class PreDomainTest extends AbstractCharacterTestCase
 	
 	/**
 	 * Test for any domain.
-	 * 
-	 * @throws Exception
+	 * @throws PersistenceLayerException 
 	 */
-	public void testAny() throws Exception
+	public void testAny() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		PCClass cl = new PCClass();

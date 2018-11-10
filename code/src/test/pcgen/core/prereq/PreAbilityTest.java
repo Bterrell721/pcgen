@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package pcgen.core.prereq;
@@ -27,17 +25,15 @@ import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.reference.CDOMDirectSingleRef;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.PlayerCharacter;
 import pcgen.persistence.PersistenceLayerException;
 import pcgen.util.TestHelper;
+import plugin.lsttokens.testsupport.BuildUtilities;
 import plugin.pretokens.parser.PreAbilityParser;
 
 /**
  * <code>PreAbilityTest</code> verifies the function of the 
  * PreAbilityTester. 
- *
- *
  */
 public class PreAbilityTest extends AbstractCharacterTestCase
 {
@@ -51,8 +47,9 @@ public class PreAbilityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the function of the ANY key 
-	 * @throws PersistenceLayerException
+	 * Test the function of the ANY key.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testAnyMatch() throws PersistenceLayerException
 	{
@@ -77,8 +74,9 @@ public class PreAbilityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the function of the category matching 
-	 * @throws PersistenceLayerException
+	 * Test the function of the category matching.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testCategoryMatch() throws PersistenceLayerException
 	{
@@ -110,8 +108,9 @@ public class PreAbilityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the function of the catgeory matching 
-	 * @throws PersistenceLayerException
+	 * Test the function of the category matching.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testKeyMatch() throws PersistenceLayerException
 	{
@@ -150,8 +149,9 @@ public class PreAbilityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the function of the type matching 
-	 * @throws PersistenceLayerException
+	 * Test the function of the type matching.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testTypeMatch() throws PersistenceLayerException
 	{
@@ -187,12 +187,13 @@ public class PreAbilityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the function of the SERVESAS token with direct key matching 
-	 * @throws PersistenceLayerException
+	 * Test the function of the SERVESAS token with direct key matching.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testKeyMatchWithServesAs() throws PersistenceLayerException
 	{
-		Ability fd = TestHelper.makeAbility("Dancer", AbilityCategory.FEAT, "General");
+		Ability fd = TestHelper.makeAbility("Dancer", BuildUtilities.getFeatCat(), "General");
 		Ability ab2 =
 				TestHelper.makeAbility("Dancer", "BARDIC",
 						"General.Bardic");
@@ -233,12 +234,13 @@ public class PreAbilityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the function of the SERVESAS token with type matching 
-	 * @throws PersistenceLayerException
+	 * Test the function of the SERVESAS token with type matching .
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testTypeMatchWithServesAs() throws PersistenceLayerException
 	{
-		Ability pa = TestHelper.makeAbility("Power Attack", AbilityCategory.FEAT, "Fighter");
+		Ability pa = TestHelper.makeAbility("Power Attack", BuildUtilities.getFeatCat(), "Fighter");
 		Ability ab2 =
 				TestHelper.makeAbility("Dancer", "BARDIC", "General.Bardic");
 		ab2.put(ObjectKey.MULTIPLE_ALLOWED, Boolean.FALSE);
@@ -272,14 +274,15 @@ public class PreAbilityTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test the function of the category matching 
-	 * @throws PersistenceLayerException
+	 * Test the function of the category matching.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
 	public void testCategoryMatchWithServesAs() throws PersistenceLayerException
 	{
 		Ability fas = TestHelper.makeAbility("Fascinate", "BARDIC", "Normal");
 		Ability ab2 =
-				TestHelper.makeAbility("Dancer", AbilityCategory.FEAT,
+				TestHelper.makeAbility("Dancer", BuildUtilities.getFeatCat(),
 						"General.Bardic");
 		ab2.addToListFor(ListKey.SERVES_AS_ABILITY, CDOMDirectSingleRef.getRef(fas));
 		ab2.put(ObjectKey.MULTIPLE_ALLOWED, Boolean.FALSE);

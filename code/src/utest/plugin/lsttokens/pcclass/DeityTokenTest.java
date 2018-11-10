@@ -23,14 +23,13 @@ import pcgen.cdom.enumeration.ListKey;
 import pcgen.cdom.reference.CDOMDirectSingleRef;
 import pcgen.core.Deity;
 import pcgen.core.PCClass;
-import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.persistence.CDOMLoader;
 import pcgen.rules.persistence.token.CDOMPrimaryToken;
-import plugin.lsttokens.testsupport.AbstractListTokenTestCase;
+import plugin.lsttokens.testsupport.AbstractListInputTokenTestCase;
 import plugin.lsttokens.testsupport.CDOMTokenLoader;
 import plugin.lsttokens.testsupport.ConsolidationRule;
 
-public class DeityTokenTest extends AbstractListTokenTestCase<PCClass, Deity>
+public class DeityTokenTest extends AbstractListInputTokenTestCase<PCClass, Deity>
 {
 
 	static DeityToken token = new DeityToken();
@@ -103,14 +102,14 @@ public class DeityTokenTest extends AbstractListTokenTestCase<PCClass, Deity>
 	}
 
 	@Test
-	public void testUnparseNull() throws PersistenceLayerException
+	public void testUnparseNull()
 	{
 		primaryProf.removeListFor(ListKey.DEITY);
 		assertNull(getToken().unparse(primaryContext, primaryProf));
 	}
 
 	@Test
-	public void testUnparseSingle() throws PersistenceLayerException
+	public void testUnparseSingle()
 	{
 		Deity wp1 = construct(primaryContext, "TestWP1");
 		primaryProf.addToListFor(ListKey.DEITY, CDOMDirectSingleRef.getRef(wp1));
@@ -119,7 +118,7 @@ public class DeityTokenTest extends AbstractListTokenTestCase<PCClass, Deity>
 	}
 
 	@Test
-	public void testUnparseNullInList() throws PersistenceLayerException
+	public void testUnparseNullInList()
 	{
 		primaryProf.addToListFor(ListKey.DEITY, null);
 		try
@@ -134,7 +133,7 @@ public class DeityTokenTest extends AbstractListTokenTestCase<PCClass, Deity>
 	}
 
 	@Test
-	public void testUnparseMultiple() throws PersistenceLayerException
+	public void testUnparseMultiple()
 	{
 		Deity wp1 = construct(primaryContext, getLegalValue());
 		primaryProf.addToListFor(ListKey.DEITY, CDOMDirectSingleRef.getRef(wp1));
@@ -147,7 +146,7 @@ public class DeityTokenTest extends AbstractListTokenTestCase<PCClass, Deity>
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testUnparseGenericsFail() throws PersistenceLayerException
+	public void testUnparseGenericsFail()
 	{
 		ListKey objectKey = ListKey.DEITY;
 		primaryProf.addToListFor(objectKey, new Object());

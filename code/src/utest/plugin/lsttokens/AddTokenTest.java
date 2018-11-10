@@ -17,9 +17,6 @@
  */
 package plugin.lsttokens;
 
-import java.net.URISyntaxException;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import pcgen.cdom.base.CDOMObject;
@@ -27,7 +24,6 @@ import pcgen.cdom.base.Constants;
 import pcgen.cdom.enumeration.IntegerKey;
 import pcgen.cdom.inst.PCClassLevel;
 import pcgen.core.PCTemplate;
-import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.persistence.CDOMLoader;
 import pcgen.rules.persistence.token.CDOMPrimaryToken;
 import plugin.lsttokens.testsupport.AbstractGlobalTokenTestCase;
@@ -39,13 +35,6 @@ public class AddTokenTest extends AbstractGlobalTokenTestCase
 
 	static CDOMPrimaryToken<CDOMObject> token = new AddLst();
 	static CDOMTokenLoader<PCTemplate> loader = new CDOMTokenLoader<>();
-
-	@Override
-	@Before
-	public void setUp() throws PersistenceLayerException, URISyntaxException
-	{
-		super.setUp();
-	}
 
 	@Override
 	public CDOMLoader<PCTemplate> getLoader()
@@ -66,28 +55,27 @@ public class AddTokenTest extends AbstractGlobalTokenTestCase
 	}
 
 	@Test
-	public void testInvalidEmpty() throws PersistenceLayerException
+	public void testInvalidEmpty()
 	{
 		assertFalse(parse(""));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testInvalidClearLevel() throws PersistenceLayerException
+	public void testInvalidClearLevel()
 	{
 		assertFalse(parse(".CLEAR.LEVEL1"));
 		assertNoSideEffects();
 	}
 
 	@Test
-	public void testValidClear() throws PersistenceLayerException
+	public void testValidClear()
 	{
 		assertTrue(parse(Constants.LST_DOT_CLEAR));
 	}
 
 	@Test
 	public void testInvalidLevelNonClearLevel()
-			throws PersistenceLayerException
 	{
 		primaryProf = new PCClassLevel();
 		primaryProf.put(IntegerKey.LEVEL, 1);
@@ -99,7 +87,6 @@ public class AddTokenTest extends AbstractGlobalTokenTestCase
 
 	@Test
 	public void testInvalidLevelClearWrongLevel()
-			throws PersistenceLayerException
 	{
 		primaryProf = new PCClassLevel();
 		primaryProf.put(IntegerKey.LEVEL, 1);
@@ -111,7 +98,6 @@ public class AddTokenTest extends AbstractGlobalTokenTestCase
 
 	@Test
 	public void testInvalidLevelClearLevelNaN()
-			throws PersistenceLayerException
 	{
 		primaryProf = new PCClassLevel();
 		primaryProf.put(IntegerKey.LEVEL, 1);
@@ -122,7 +108,7 @@ public class AddTokenTest extends AbstractGlobalTokenTestCase
 	}
 
 	@Test
-	public void testValidClearLevel() throws PersistenceLayerException
+	public void testValidClearLevel()
 	{
 		primaryProf = new PCClassLevel();
 		primaryProf.put(IntegerKey.LEVEL, 1);
@@ -149,11 +135,11 @@ public class AddTokenTest extends AbstractGlobalTokenTestCase
 	protected String getLegalValue()
 	{
 		// Not worth it, nothing ever unparses
-		return null;
+		return Constants.LST_DOT_CLEAR;
 	}
 
 	@Override
-	public void testOverwrite() throws PersistenceLayerException
+	public void testOverwrite()
 	{
 		// Can't be done, nothing ever unparses
 	}

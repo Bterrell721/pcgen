@@ -28,9 +28,6 @@ import pcgen.facade.core.ClassFacade;
 import pcgen.gui2.tools.InfoPane;
 import pcgen.gui2.util.JTreeViewTable;
 
-/**
- *
- */
 class ClassInfoHandler implements ListSelectionListener
 {
 
@@ -41,7 +38,7 @@ class ClassInfoHandler implements ListSelectionListener
 	private String text;
 
 	public ClassInfoHandler(CharacterFacade character, JTreeViewTable<?> table1, JTreeViewTable<?> table2,
-							InfoPane classPane)
+		InfoPane classPane)
 	{
 		this.character = character;
 		this.classPane = classPane;

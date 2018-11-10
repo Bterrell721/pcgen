@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.prereq;
 
@@ -34,13 +31,12 @@ import pcgen.core.Globals;
 import pcgen.core.PCClass;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.Skill;
+import pcgen.persistence.PersistenceLayerException;
 import pcgen.persistence.lst.prereq.PreParserFactory;
 
 /**
  * <code>PreCSkillTest</code> tests that the PRECSKILL tag is
  * working correctly.
- *
- *
  */
 public class PreCSkillTest extends AbstractCharacterTestCase
 {
@@ -64,10 +60,11 @@ public class PreCSkillTest extends AbstractCharacterTestCase
 	}
 
 	/**
-	 * Test that CSkill works
-	 * @throws Exception
+	 * Test that CSkill works.
+	 *
+	 * @throws PersistenceLayerException the persistence layer exception
 	 */
-	public void testCSkill() throws Exception
+	public void testCSkill() throws PersistenceLayerException
 	{
 		final PlayerCharacter character = getCharacter();
 		character.incrementClassLevel(1, myClass, true);

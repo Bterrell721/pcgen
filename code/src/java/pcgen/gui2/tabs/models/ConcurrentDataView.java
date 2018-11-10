@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- * 
  */
 package pcgen.gui2.tabs.models;
 
@@ -28,13 +27,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadFactory;
+
 import javax.swing.SwingUtilities;
+
 import pcgen.gui2.util.treeview.DataView;
 import pcgen.util.Logging;
 
-/**
- *
- */
 public abstract class ConcurrentDataView<E> implements DataView<E>
 {
 
@@ -61,7 +59,7 @@ public abstract class ConcurrentDataView<E> implements DataView<E>
 		this.dataMap = Collections.synchronizedMap(new WeakHashMap<E, List<?>>());
 	}
 
-//	@Override
+	//	@Override
 	public final List<?> getData(final E obj)
 	{
 		Future<List<?>> future = executor.submit(new Callable<List<?>>()
@@ -71,9 +69,7 @@ public abstract class ConcurrentDataView<E> implements DataView<E>
 			public List<?> call() throws Exception
 			{
 				List<?> list = getDataList(obj);
-				if (!list.equals(dataMap.get(obj))
-					&& dataMap.put(obj, list) != null
-					&& installed)
+				if (!list.equals(dataMap.get(obj)) && dataMap.put(obj, list) != null && installed)
 				{
 					SwingUtilities.invokeLater(refreshRunnable);
 				}

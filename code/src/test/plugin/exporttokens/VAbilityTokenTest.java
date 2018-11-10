@@ -1,5 +1,4 @@
 /*
- * VAbilityTokenTest.java
  * Copyright 2013 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package plugin.exporttokens;
 
@@ -38,7 +35,6 @@ import pcgen.cdom.enumeration.SkillArmorCheck;
 import pcgen.cdom.helper.Aspect;
 import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.core.Ability;
-import pcgen.core.AbilityCategory;
 import pcgen.core.Globals;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.bonus.Bonus;
@@ -48,12 +44,11 @@ import pcgen.core.prereq.PrerequisiteOperator;
 import pcgen.io.ExportHandler;
 import pcgen.util.TestHelper;
 import pcgen.util.enumeration.Visibility;
+import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * <code>VAbilityTokenTest</code> tests the functioning of the VABILITY 
  * token processing code. 
- *
- *
  */
 public class VAbilityTokenTest extends AbstractCharacterTestCase
 {
@@ -79,7 +74,7 @@ public class VAbilityTokenTest extends AbstractCharacterTestCase
 		PlayerCharacter character = getCharacter();
 
 		// Make some ability categories and add them to the game mode
-		Ability ab1 = TestHelper.makeAbility("Perform (Dance)", AbilityCategory.FEAT, "General.Fighter");
+		Ability ab1 = TestHelper.makeAbility("Perform (Dance)", BuildUtilities.getFeatCat(), "General.Fighter");
 		ab1.put(ObjectKey.MULTIPLE_ALLOWED, Boolean.FALSE);
 		ab1.put(ObjectKey.VISIBILITY, Visibility.DEFAULT);
 		List<Aspect> colourList = new ArrayList<>();
@@ -104,7 +99,7 @@ public class VAbilityTokenTest extends AbstractCharacterTestCase
 		List<Aspect> ageList = new ArrayList<>();
 		ageList.add(new Aspect("Age In Years", "2000"));
 		ab1.addToMapFor(MapKey.ASPECT, AspectName.getConstant("Age In Years"), ageList);
-		CNAbility cna = CNAbilityFactory.getCNAbility(AbilityCategory.FEAT, Nature.VIRTUAL, ab1);
+		CNAbility cna = CNAbilityFactory.getCNAbility(BuildUtilities.getFeatCat(), Nature.VIRTUAL, ab1);
 		character.addAbility(new CNAbilitySelection(cna),
 			UserSelection.getInstance(), UserSelection.getInstance());
 
@@ -114,7 +109,7 @@ public class VAbilityTokenTest extends AbstractCharacterTestCase
 			SkillArmorCheck.NONE);
 
 		skillFocus =
-				TestHelper.makeAbility("Skill Focus", AbilityCategory.FEAT, "General");
+				TestHelper.makeAbility("Skill Focus", BuildUtilities.getFeatCat(), "General");
 		BonusObj aBonus = Bonus.newBonus(Globals.getContext(), "SKILL|LIST|3");
 		if (aBonus != null)
 		{
@@ -122,7 +117,7 @@ public class VAbilityTokenTest extends AbstractCharacterTestCase
 		}
 		skillFocus.put(ObjectKey.MULTIPLE_ALLOWED, true);
 		Globals.getContext().unconditionallyProcess(skillFocus, "CHOOSE", "SKILL|ALL");
-		cna = CNAbilityFactory.getCNAbility(AbilityCategory.FEAT, Nature.VIRTUAL, skillFocus);
+		cna = CNAbilityFactory.getCNAbility(BuildUtilities.getFeatCat(), Nature.VIRTUAL, skillFocus);
 		character.addAbility(new CNAbilitySelection(cna, "KEY_Bluff"),
 			UserSelection.getInstance(), UserSelection.getInstance());
 		character.addAbility(new CNAbilitySelection(cna, "KEY_Listen"),

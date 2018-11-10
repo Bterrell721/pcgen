@@ -1,5 +1,4 @@
 /*
- * DefaultSortableTreeTableModel.java
  * Copyright 2008 (C) Connor Petty <mistercpp2000@gmail.com>
  * 
  * This library is free software; you can redistribute it and/or
@@ -16,58 +15,40 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  * 
- * Created on Feb 22, 2008, 4:49:49 PM
  */
 package pcgen.gui2.util.treetable;
 
 import java.util.Comparator;
+
 import pcgen.gui2.util.table.Row;
 
 /**
  *
- * @author Connor Petty &lt;mistercpp2000@gmail.com&gt;
  */
-public class DefaultSortableTreeTableModel extends DefaultTreeTableModel
-        implements SortableTreeTableModel
+public class DefaultSortableTreeTableModel extends DefaultTreeTableModel implements SortableTreeTableModel
 {
 
-    protected DefaultSortableTreeTableModel()
-    {
-        super();
-    }
+	protected DefaultSortableTreeTableModel()
+	{
+		super();
+	}
 
-    protected DefaultSortableTreeTableModel(SortableTreeTableNode root)
-    {
-        super(root);
-    }
-
-//    public DefaultSortableTreeTableModel(TableModel model)
-//    {
-//        super(model);
-//    }
-//
-//    public DefaultSortableTreeTableModel(TreeTableModel model)
-//    {
-//        super(model);
-//    }
-
-    @Override
-    protected TreeTableNode createDefaultTreeTableNode()
-    {
-        return new DefaultSortableTreeTableNode();
-    }
-
-//    @Override
-//    protected TreeTableNode createDefaultTreeTableNode(TreeNode node)
-//    {
-//        return new DefaultSortableTreeTableNode(node);
-//    }
+	protected DefaultSortableTreeTableModel(SortableTreeTableNode root)
+	{
+		super(root);
+	}
 
 	@Override
-    public void sortModel(Comparator<Row> comparator)
-    {
-        ((SortableTreeTableNode) getRoot()).sortChildren(comparator);
-        reload();
-    }
+	protected TreeTableNode createDefaultTreeTableNode()
+	{
+		return new DefaultSortableTreeTableNode();
+	}
+
+	@Override
+	public void sortModel(Comparator<Row> comparator)
+	{
+		((SortableTreeTableNode) getRoot()).sortChildren(comparator);
+		reload();
+	}
 
 }

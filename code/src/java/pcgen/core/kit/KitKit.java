@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core.kit;
 
@@ -35,13 +33,11 @@ import pcgen.core.PlayerCharacter;
  */
 public class KitKit extends BaseKit
 {
-	private List<CDOMSingleRef<Kit>> availableKits =
-            new ArrayList<>();
+	private List<CDOMSingleRef<Kit>> availableKits = new ArrayList<>();
 
 	// These members store the state of an instance of this class.  They are
 	// not cloned.
-	private Map<Kit, List<BaseKit>> appliedKits =
-            new HashMap<>();
+	private Map<Kit, List<BaseKit>> appliedKits = new HashMap<>();
 
 	/**
 	 * Actually applies the kit to this PC.
@@ -65,8 +61,7 @@ public class KitKit extends BaseKit
 	 * @param warnings List The warign list to be populated if anything fails.
 	 */
 	@Override
-	public boolean testApply(Kit aKit, PlayerCharacter aPC,
-		List<String> warnings)
+	public boolean testApply(Kit aKit, PlayerCharacter aPC, List<String> warnings)
 	{
 		appliedKits = new HashMap<>();
 		for (CDOMSingleRef<Kit> ref : availableKits)

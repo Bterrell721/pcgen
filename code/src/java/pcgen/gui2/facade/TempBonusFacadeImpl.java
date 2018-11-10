@@ -1,5 +1,4 @@
 /*
- * TempBonusFacadeImpl.java
  * Copyright James Dempsey, 2012
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -39,8 +36,8 @@ import pcgen.core.Globals;
 import pcgen.core.PCClass;
 import pcgen.core.PCTemplate;
 import pcgen.core.Skill;
-import pcgen.facade.core.TempBonusFacade;
 import pcgen.core.spell.Spell;
+import pcgen.facade.core.TempBonusFacade;
 import pcgen.system.LanguageBundle;
 import pcgen.util.SortKeyAware;
 
@@ -51,10 +48,9 @@ import pcgen.util.SortKeyAware;
  * 
  */
 
-public class TempBonusFacadeImpl implements TempBonusFacade,
-		Comparable<TempBonusFacadeImpl>, SortKeyAware
+public class TempBonusFacadeImpl implements TempBonusFacade, Comparable<TempBonusFacadeImpl>, SortKeyAware
 {
-	
+
 	private final CDOMObject originObj;
 	private boolean active;
 	private final Object target;
@@ -71,7 +67,7 @@ public class TempBonusFacadeImpl implements TempBonusFacade,
 		this.target = null;
 		this.bonusName = null;
 	}
-	
+
 	/**
 	 * Create a new instance of TempBonusFacadeImpl for an applied bonus.
 	 * @param theOrigin The rules object that defines the bonus.  
@@ -94,19 +90,17 @@ public class TempBonusFacadeImpl implements TempBonusFacade,
 	{
 		active = newActive;
 	}
-	
+
 	@Override
 	public String getSource()
 	{
-		return SourceFormat.getFormattedString(getOriginObj(),
-			Globals.getSourceDisplay(), true);
+		return SourceFormat.getFormattedString(getOriginObj(), Globals.getSourceDisplay(), true);
 	}
 
 	@Override
 	public String getSourceForNodeDisplay()
 	{
-		return SourceFormat.getFormattedString(getOriginObj(),
-			SourceFormat.LONG, false);
+		return SourceFormat.getFormattedString(getOriginObj(), SourceFormat.LONG, false);
 	}
 
 	@Override
@@ -118,7 +112,7 @@ public class TempBonusFacadeImpl implements TempBonusFacade,
 	@Override
 	public boolean isNamePI()
 	{
-    	return getOriginObj().getSafe(ObjectKey.NAME_PI);
+		return getOriginObj().getSafe(ObjectKey.NAME_PI);
 	}
 
 	@Override
@@ -150,7 +144,7 @@ public class TempBonusFacadeImpl implements TempBonusFacade,
 		}
 		return LanguageBundle.getString("in_itmRemBonButUnkownBonusType"); //$NON-NLS-1$
 	}
-	
+
 	@Override
 	public boolean isActive()
 	{
@@ -185,8 +179,7 @@ public class TempBonusFacadeImpl implements TempBonusFacade,
 		{
 			return collator.compare(key1, key2);
 		}
-		return collator.compare(this.getOriginObj().getDisplayName(),
-			o.getOriginObj().getDisplayName());
+		return collator.compare(this.getOriginObj().getDisplayName(), o.getOriginObj().getDisplayName());
 	}
 
 	@Override
@@ -212,9 +205,7 @@ public class TempBonusFacadeImpl implements TempBonusFacade,
 	{
 		final int prime = 31;
 		int result = 1;
-		result =
-				prime * result
-					+ ((originObj == null) ? 0 : originObj.hashCode());
+		result = prime * result + ((originObj == null) ? 0 : originObj.hashCode());
 		result = prime * result + ((target == null) ? 0 : target.hashCode());
 		return result;
 	}
@@ -266,7 +257,7 @@ public class TempBonusFacadeImpl implements TempBonusFacade,
 		final List<Type> types = originObj.getSafeListFor(ListKey.TYPE);
 		return StringUtil.join(types, ".");
 	}
-	
+
 	@Override
 	public String getSortKey()
 	{

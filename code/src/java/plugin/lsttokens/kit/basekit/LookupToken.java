@@ -1,5 +1,4 @@
 /*
- * AbilityToken.java
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package plugin.lsttokens.kit.basekit;
@@ -38,8 +35,7 @@ import pcgen.rules.persistence.token.ParseResult;
 /**
  * LOOKUP token for base kits
  */
-public class LookupToken extends AbstractToken implements
-		CDOMPrimaryToken<KitGear>
+public class LookupToken extends AbstractToken implements CDOMPrimaryToken<KitGear>
 {
 	/**
 	 * Gets the name of the tag this class will parse.
@@ -68,18 +64,17 @@ public class LookupToken extends AbstractToken implements
 		String first = sep.next();
 		if (!sep.hasNext())
 		{
-			return new ParseResult.Fail("Token must contain separator ','", context);
+			return new ParseResult.Fail("Token must contain separator ','");
 		}
 		String second = sep.next();
 		if (sep.hasNext())
 		{
-			return new ParseResult.Fail("Token cannot have more than one separator ','", context);
+			return new ParseResult.Fail("Token cannot have more than one separator ','");
 		}
 		Formula formula = FormulaFactory.getFormulaFor(second);
 		if (!formula.isValid())
 		{
-			return new ParseResult.Fail("Formula in " + getTokenName()
-					+ " was not valid: " + formula.toString(), context);
+			return new ParseResult.Fail("Formula in " + getTokenName() + " was not valid: " + formula.toString());
 		}
 		kitGear.loadLookup(first, formula);
 		return ParseResult.SUCCESS;

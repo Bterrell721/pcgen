@@ -24,8 +24,12 @@ import pcgen.core.BonusManager;
 import pcgen.core.Equipment;
 import pcgen.core.PlayerCharacter;
 
-public class BonusDisplay
+public final class BonusDisplay
 {
+
+	private BonusDisplay()
+	{
+	}
 
 	/**
 	 * Returns a String which can be used to display in the GUI
@@ -35,12 +39,12 @@ public class BonusDisplay
 	public static String getBonusDisplayName(BonusManager.TempBonusInfo ti)
 	{
 		final StringBuilder buffer = new StringBuilder(50);
-	
-		buffer.append(ti.source.toString());
+
+		buffer.append(ti.source);
 		buffer.append(" [");
-	
+
 		Object targetObj = ti.target;
-	
+
 		if (targetObj instanceof PlayerCharacter)
 		{
 			buffer.append("PC");
@@ -53,9 +57,9 @@ public class BonusDisplay
 		{
 			buffer.append("NONE");
 		}
-	
+
 		buffer.append(']');
-	
+
 		return buffer.toString();
 	}
 

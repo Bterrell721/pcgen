@@ -1,5 +1,4 @@
 /*
- * StatFacade.java
  * Copyright 2008 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -19,21 +18,18 @@
  */
 package pcgen.facade.core;
 
-/**
- *
- */
 public interface StatFacade
 {
 
-    public String getName();
+	public String getName();
 
-    public String getKeyName();
+	public String getKeyName();
 
-    @Override
-    public String toString();
+	@Override
+	public String toString();
 
 	/**
-	 * @return
+	 * @return The minimum int value
 	 */
 	public int getMinValue();
 

@@ -1,5 +1,4 @@
 /*
- * AbstractJunit4CharacterTestCase.java
  * Copyright 2003 (C) frugal@purplewombat.co.uk
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
@@ -16,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen;
 
@@ -28,6 +25,8 @@ import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.Before;
 
+import pcgen.base.calculation.FormulaModifier;
+import pcgen.base.util.FormatManager;
 import pcgen.cdom.base.FormulaFactory;
 import pcgen.cdom.base.UserSelection;
 import pcgen.cdom.content.CNAbility;
@@ -37,6 +36,7 @@ import pcgen.cdom.enumeration.FormulaKey;
 import pcgen.cdom.enumeration.Nature;
 import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.cdom.enumeration.VariableKey;
+import pcgen.cdom.formula.local.ModifierDecoration;
 import pcgen.cdom.helper.CNAbilitySelection;
 import pcgen.core.Ability;
 import pcgen.core.AbilityCategory;
@@ -56,16 +56,17 @@ import pcgen.persistence.GameModeFileLoader;
 import pcgen.persistence.SourceFileLoader;
 import pcgen.rules.context.AbstractReferenceContext;
 import pcgen.rules.context.LoadContext;
+import pcgen.rules.persistence.TokenLibrary;
+import pcgen.rules.persistence.token.ModifierFactory;
 import pcgen.util.TestHelper;
 import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
  * This is an abstract TestClass designed to be able to create a PlayerCharacter
  * Object.
- *
  */
 @SuppressWarnings("nls")
-abstract public class AbstractJunit4CharacterTestCase
+public abstract class AbstractJunit4CharacterTestCase
 {
 	private PlayerCharacter character = null;
 	protected PCStat str;
@@ -95,7 +96,7 @@ abstract public class AbstractJunit4CharacterTestCase
 	/**
 	 * Sets up the absolute minimum amount of data to create a PlayerCharacter
 	 * Object.
-	 * @throws Exception
+	 * @throws Exception PersistenceLayerException
 	 */
 	@Before
 	public void setUp() throws Exception
@@ -122,7 +123,7 @@ abstract public class AbstractJunit4CharacterTestCase
 		Globals.setUseGUI(false);
 		Globals.emptyLists();
 		
-		str = BuildUtilities.createStat("Strength", "STR");
+		str = BuildUtilities.createStat("Strength", "STR", "A");
 		str.put(VariableKey.getConstant("LOADSCORE"),
 				FormulaFactory.getFormulaFor("STRSCORE"));
 		str.put(VariableKey.getConstant("OFFHANDLIGHTBONUS"),
@@ -131,27 +132,27 @@ abstract public class AbstractJunit4CharacterTestCase
 		str.put(VariableKey.getConstant("MAXLEVELSTAT=" + str.getKeyName()),
 				FormulaFactory.getFormulaFor(str.getKeyName() + "SCORE-10"));
 
-		dex = BuildUtilities.createStat("Dexterity", "DEX");
+		dex = BuildUtilities.createStat("Dexterity", "DEX", "B");
 		dex.put(FormulaKey.STAT_MOD, FormulaFactory.getFormulaFor("floor(SCORE/2)-5"));
 		dex.put(VariableKey.getConstant("MAXLEVELSTAT=" + dex.getKeyName()),
 				FormulaFactory.getFormulaFor(dex.getKeyName() + "SCORE-10"));
 
-		PCStat con = BuildUtilities.createStat("Constitution", "CON");
+		PCStat con = BuildUtilities.createStat("Constitution", "CON", "C");
 		con.put(FormulaKey.STAT_MOD, FormulaFactory.getFormulaFor("floor(SCORE/2)-5"));
 		con.put(VariableKey.getConstant("MAXLEVELSTAT=" + con.getKeyName()),
 				FormulaFactory.getFormulaFor(con.getKeyName() + "SCORE-10"));
 
-		intel = BuildUtilities.createStat("Intelligence", "INT");
+		intel = BuildUtilities.createStat("Intelligence", "INT", "D");
 		intel.put(FormulaKey.STAT_MOD, FormulaFactory.getFormulaFor("floor(SCORE/2)-5"));
 		intel.put(VariableKey.getConstant("MAXLEVELSTAT=" + intel.getKeyName()),
 				FormulaFactory.getFormulaFor(intel.getKeyName() + "SCORE-10"));
 
-		wis = BuildUtilities.createStat("Wisdom", "WIS");
+		wis = BuildUtilities.createStat("Wisdom", "WIS", "E");
 		wis.put(FormulaKey.STAT_MOD, FormulaFactory.getFormulaFor("floor(SCORE/2)-5"));
 		wis.put(VariableKey.getConstant("MAXLEVELSTAT=" + wis.getKeyName()),
 				FormulaFactory.getFormulaFor(wis.getKeyName() + "SCORE-10"));
 
-		cha = BuildUtilities.createStat("Charisma", "CHA");
+		cha = BuildUtilities.createStat("Charisma", "CHA", "F");
 		cha.put(FormulaKey.STAT_MOD, FormulaFactory.getFormulaFor("floor(SCORE/2)-5"));
 		cha.put(VariableKey.getConstant("MAXLEVELSTAT=" + cha.getKeyName()),
 				FormulaFactory.getFormulaFor(cha.getKeyName() + "SCORE-10"));
@@ -160,7 +161,9 @@ abstract public class AbstractJunit4CharacterTestCase
 		SettingsHandler.setGame("3.5");
 
 		LoadContext context = Globals.getContext();
+		BuildUtilities.buildUnselectedRace(context);
 		AbstractReferenceContext ref = context.getReferenceContext();
+		SourceFileLoader.defineBuiltinVariables(gamemode, context);
 		lg = BuildUtilities.createAlignment("Lawful Good", "LG");
 		ref.importObject(lg);
 		ln = BuildUtilities.createAlignment("Lawful Neutral", "LN");
@@ -210,9 +213,12 @@ abstract public class AbstractJunit4CharacterTestCase
 		colossal = BuildUtilities.createSize("Colossal", 8);
 
 		SourceFileLoader.createLangBonusObject(context);
+		FormatManager<?> fmtManager = ref.getFormatManager("ALIGNMENT");
+		proc(context, fmtManager);
+
 		GameModeFileLoader.addDefaultUnitSet(SettingsHandler.getGame());
 		SettingsHandler.getGame().selectDefaultUnitSet();
-		ref.importObject(AbilityCategory.FEAT);
+		ref.importObject(BuildUtilities.getFeatCat());
 		SourceFileLoader.processFactDefinitions(context);
 		additionalSetUp();
 		if (!ref.resolveReferences(null))
@@ -226,6 +232,15 @@ abstract public class AbstractJunit4CharacterTestCase
 		character = new PlayerCharacter();
 	}
 
+	private <T> void proc(LoadContext context, FormatManager<T> fmtManager)
+	{
+		Class<T> cl = fmtManager.getManagedClass();
+		ModifierFactory<T> m = TokenLibrary.getModifier(cl, "SET");
+		FormulaModifier<T> defaultModifier = m.getFixedModifier(fmtManager, "NONE");
+		context.getVariableContext().addDefault(cl,
+			new ModifierDecoration<>(defaultModifier));
+	}
+
 	protected void additionalSetUp() throws Exception
 	{
 		//override to provide info
@@ -234,7 +249,7 @@ abstract public class AbstractJunit4CharacterTestCase
 	/**
 	 * Constructs a new <code>AbstractCharacterTestCase</code>.
 	 *
-	 * @see PCGenTestCase#PCGenTestCase()
+	 * @see pcgen.PCGenTestCase#PCGenTestCase()
 	 */
 	public AbstractJunit4CharacterTestCase()
 	{
@@ -242,7 +257,8 @@ abstract public class AbstractJunit4CharacterTestCase
 	}
 
 	/**
-	 * @see junit.framework.TestCase#tearDown()
+	 * @throws Exception 
+	 * @see junit.framework.TestCase#tearDown
 	 */
 	@After
 	public void tearDown() throws Exception
@@ -270,7 +286,7 @@ abstract public class AbstractJunit4CharacterTestCase
 	 * Set the value of the stat for the character.
 	 *
 	 * @param pc The Player Character
-	 * @param statName The name of the stat to be set (eg DEX)
+	 * @param stat The name of the stat to be set (eg DEX)
 	 * @param value The value to be set (eg 18)
 	 */
 	public void setPCStat(final PlayerCharacter pc, final PCStat stat,

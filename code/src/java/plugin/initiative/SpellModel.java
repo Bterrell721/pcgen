@@ -19,7 +19,6 @@ package plugin.initiative;
 
 /**
  * <p>This class models a spell.</p>
- *
  */
 public class SpellModel extends PObjectModel
 {
@@ -68,8 +67,7 @@ public class SpellModel extends PObjectModel
 		super(objectString);
 		setDesc(getStringValue(outputTokens, SEGMENT_POSITION_DESC));
 		setRange(getStringValue(outputTokens, SEGMENT_POSITION_RANGE));
-		setCastingTime(getStringValue(outputTokens,
-			SEGMENT_POSITION_CASTINGTIME));
+		setCastingTime(getStringValue(outputTokens, SEGMENT_POSITION_CASTINGTIME));
 		setSaveInfo(getStringValue(outputTokens, SEGMENT_POSITION_SAVEINFO));
 		setDuration(getStringValue(outputTokens, SEGMENT_POSITION_DURATION));
 		setTarget(getStringValue(outputTokens, SEGMENT_POSITION_TARGET));

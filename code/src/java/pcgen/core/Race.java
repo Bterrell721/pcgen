@@ -1,5 +1,4 @@
 /*
- * Race.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core;
 
@@ -36,7 +33,6 @@ import pcgen.facade.core.RaceFacade;
 
 /**
  * {@code Race}.
- *
  */
 public final class Race extends PObject implements RaceFacade, ChooseDriver
 {
@@ -49,8 +45,7 @@ public final class Race extends PObject implements RaceFacade, ChooseDriver
 	public boolean isAdvancementUnlimited()
 	{
 		List<Integer> hda = getListFor(ListKey.HITDICE_ADVANCEMENT);
-		return hda == null
-				|| Integer.MAX_VALUE == hda.get(hda.size() - 1).intValue();
+		return hda == null || hda.get(hda.size() - 1).intValue() == Integer.MAX_VALUE;
 	}
 
 	/**
@@ -69,7 +64,7 @@ public final class Race extends PObject implements RaceFacade, ChooseDriver
 		return hda == null ? 0 : hda.get(hda.size() - 1);
 	}
 
-    @Override
+	@Override
 	public String getSize()
 	{
 		Formula formula = get(FormulaKey.SIZE);
@@ -79,14 +74,14 @@ public final class Race extends PObject implements RaceFacade, ChooseDriver
 		}
 		return null;
 	}
-	
+
 	@Override
 	public String getRaceType()
 	{
 		RaceType rt = getSafe(ObjectKey.RACETYPE);
 		return rt == null ? "" : rt.toString();
 	}
-	
+
 	@Override
 	public List<String> getRaceSubTypes()
 	{
@@ -94,10 +89,10 @@ public final class Race extends PObject implements RaceFacade, ChooseDriver
 		List<RaceSubType> rst = getListFor(ListKey.RACESUBTYPE);
 		if (rst != null)
 		{
-		    for (RaceSubType subtype : rst)
-		    {
-		    	subTypeNames.add(subtype.toString());
-		    }
+			for (RaceSubType subtype : rst)
+			{
+				subTypeNames.add(subtype.toString());
+			}
 		}
 		return subTypeNames;
 	}
@@ -130,5 +125,12 @@ public final class Race extends PObject implements RaceFacade, ChooseDriver
 	public Formula getNumChoices()
 	{
 		return getSafe(FormulaKey.NUMCHOICES);
+	}
+
+	@Override
+	public boolean isUnselected()
+	{
+		return getSafeListFor(ListKey.GROUP).stream().filter(s -> "Unselected".equalsIgnoreCase(s)).findFirst()
+			.isPresent();
 	}
 }

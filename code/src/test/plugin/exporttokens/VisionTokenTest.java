@@ -1,5 +1,4 @@
 /*
- * VisionTokenTest.java
  * Copyright 2009 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens;
 
@@ -42,8 +38,6 @@ import pcgen.rules.context.LoadContext;
 
 /**
  * <code>VisionTokenTest</code> tests the function of the VISION token.  
- *
- *
  */
 public class VisionTokenTest extends AbstractCharacterTestCase
 {
@@ -126,9 +120,8 @@ public class VisionTokenTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test the list output of the vision tag.
-	 * @throws Exception
 	 */
-	public void testList() throws Exception
+	public void testList()
 	{
 		PlayerCharacter pc = getCharacter();
 		assertEquals("no vision", "", new VisionToken().getToken(
@@ -147,9 +140,8 @@ public class VisionTokenTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test the output of individual vision entries.
-	 * @throws Exception
 	 */
-	public void testPositional() throws Exception
+	public void testPositional()
 	{
 		PlayerCharacter pc = getCharacter();
 		assertEquals("no vision", "", new VisionToken().getToken(
@@ -180,9 +172,8 @@ public class VisionTokenTest extends AbstractCharacterTestCase
 
 	/**
 	 * Test the list output of the vision tag with metric units.
-	 * @throws Exception
 	 */
-	public void testListMetric() throws Exception
+	public void testListMetric()
 	{
 		PlayerCharacter pc = getCharacter();
 		pc.addTemplate(darkvisionT);

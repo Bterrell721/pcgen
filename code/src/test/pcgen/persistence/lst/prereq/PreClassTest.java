@@ -1,5 +1,4 @@
 /*
- * PreClassTest.java
  *
  * Copyright 2004 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
@@ -20,7 +19,6 @@
  *
  * 
  * 
- *
  */
 package pcgen.persistence.lst.prereq;
 
@@ -34,9 +32,7 @@ import pcgen.core.prereq.Prerequisite;
 import pcgen.persistence.PersistenceLayerException;
 import plugin.pretokens.parser.PreClassParser;
 
-/**
- *
- */
+
 @SuppressWarnings("nls")
 public class PreClassTest extends EnUsLocaleDependentTestCase
 {
@@ -55,17 +51,14 @@ public class PreClassTest extends EnUsLocaleDependentTestCase
 	
 	/**
 	 * Test that an error is produced if separators are incorrect
-	 * @throws Exception
 	 */
 	@Test
-	public void testInvalidSeparators() throws Exception
+	public void testInvalidSeparators()
 	{
 		try
 		{
 			PreClassParser parser = new PreClassParser();
-			Prerequisite prereq =
-					parser.parse("class",
-						"1,,Monk=1", false, false);
+			parser.parse("class", "1,,Monk=1", false, false);
 			fail("Should have thrown a PersistenceLayerException.");
 		}
 		catch (PersistenceLayerException e)
@@ -75,18 +68,15 @@ public class PreClassTest extends EnUsLocaleDependentTestCase
 	}
 	
 	/**
-	 * Test that an error is produced if separators are incorrect
-	 * @throws Exception
+	 * Test that an error is produced if separators are incorrect.
 	 */
 	@Test
-	public void testInvalidCharacter() throws Exception
+	public void testInvalidCharacter()
 	{
 		try
 		{
 			PreClassParser parser = new PreClassParser();
-			Prerequisite prereq =
-					parser.parse("class",
-						"1,Monk=1|Cleric=1", false, false);
+			parser.parse("class", "1,Monk=1|Cleric=1", false, false);
 			fail("Should have thrown a PersistenceLayerException.");
 		}
 		catch (PersistenceLayerException e)
@@ -96,18 +86,15 @@ public class PreClassTest extends EnUsLocaleDependentTestCase
 	}
 	
 	/**
-	 * Test that an error is produced if separators are incorrect
-	 * @throws Exception
+	 * Test that an error is produced if separators are incorrect.
 	 */
 	@Test
-	public void testInvalidNegate() throws Exception
+	public void testInvalidNegate()
 	{
 		try
 		{
 			PreClassParser parser = new PreClassParser();
-			Prerequisite prereq =
-					parser.parse("class",
-						"1,Monk=1[Cleric=1]", false, false);
+			parser.parse("class", "1,Monk=1[Cleric=1]", false, false);
 			fail("Should have thrown a PersistenceLayerException.");
 		}
 		catch (PersistenceLayerException e)

@@ -16,8 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 09-Aug-2008 20:34:40
- *
- *
  */
 
 package pcgen.core.term;
@@ -27,8 +25,7 @@ import pcgen.core.PCTemplate;
 import pcgen.core.display.CharacterDisplay;
 import pcgen.util.enumeration.View;
 
-public class PCCountTemplatesTermEvaluator 
-		extends BasePCDTermEvaluator implements TermEvaluator
+public class PCCountTemplatesTermEvaluator extends BasePCDTermEvaluator implements TermEvaluator
 {
 	public PCCountTemplatesTermEvaluator(String originalText)
 	{

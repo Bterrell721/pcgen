@@ -1,5 +1,4 @@
 /*
- * DataTest.java
  * Copyright James Dempsey, 2013
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.persistence.lst;
 
@@ -134,7 +131,8 @@ public class DataLoadTest implements PCGenTaskListener
 	}
 
 	/**
-	 * Test the load of the current source. This will check for any load errors or warnings but ignores deprecation warnings.  
+	 * Test the load of the current source.
+	 * This will check for any load errors or warnings but ignores deprecation warnings.
 	 */
 	@Test
 	public void testLoadSources()
@@ -146,6 +144,10 @@ public class DataLoadTest implements PCGenTaskListener
 		errors = new ArrayList<>();
 		loader.addPCGenTaskListener(this);
 		loader.execute();
+		GameMode selectedGame = SystemCollections
+			.getGameModeNamed(sourceSelection.getGameMode().get().getName());
+		selectedGame.clearLoadContext();
+		loader = null;
 
 		List<String> errorList = new ArrayList<>();
 		List<String> warningList = new ArrayList<>();

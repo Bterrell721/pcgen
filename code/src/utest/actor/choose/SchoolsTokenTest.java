@@ -21,25 +21,18 @@ import pcgen.cdom.base.Chooser;
 import pcgen.cdom.identifier.SpellSchool;
 
 import actor.testsupport.AbstractPersistentChoiceActorTestCase;
-import org.junit.Test;
 import plugin.lsttokens.choose.SchoolsToken;
 
 public class SchoolsTokenTest extends
 		AbstractPersistentChoiceActorTestCase<SpellSchool>
 {
 
-	static final SchoolsToken pca = new SchoolsToken();
-
-	@Test
-	public void testEmpty()
-	{
-		// Just to get Eclipse to recognize this as a JUnit 4.0 Test Case
-	}
+	static final SchoolsToken PCA = new SchoolsToken();
 
 	@Override
 	public Chooser<SpellSchool> getActor()
 	{
-		return pca;
+		return PCA;
 	}
 
 	@Override

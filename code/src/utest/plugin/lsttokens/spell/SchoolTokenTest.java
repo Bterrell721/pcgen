@@ -17,17 +17,14 @@
  */
 package plugin.lsttokens.spell;
 
-import org.junit.Test;
-
 import pcgen.cdom.identifier.SpellSchool;
 import pcgen.core.spell.Spell;
 import pcgen.rules.persistence.CDOMLoader;
 import pcgen.rules.persistence.token.CDOMPrimaryToken;
-import plugin.lsttokens.testsupport.AbstractListTokenTestCase;
+import plugin.lsttokens.testsupport.AbstractListInputTokenTestCase;
 import plugin.lsttokens.testsupport.CDOMTokenLoader;
 
-public class SchoolTokenTest extends
-		AbstractListTokenTestCase<Spell, SpellSchool>
+public class SchoolTokenTest extends AbstractListInputTokenTestCase<Spell, SpellSchool>
 {
 
 	static SchoolToken token = new SchoolToken();

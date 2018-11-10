@@ -1,5 +1,4 @@
 /*
- * AbilityListToken.java
  * Copyright 2006 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -73,18 +72,16 @@ public class AbilityListToken extends Token
 	}
 
 	/**
-	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
+	 * @see Token#getToken(String, PlayerCharacter, ExportHandler)
 	 */
 	@Override
-	public String getToken(String tokenSource, PlayerCharacter pc,
-		ExportHandler eh)
+	public String getToken(String tokenSource, PlayerCharacter pc, ExportHandler eh)
 	{
 		final StringTokenizer aTok = new StringTokenizer(tokenSource, ".");
 		// Skip the ABILITYLIST token itself
 		final String tokenString = aTok.nextToken();
 		final String catString = aTok.nextToken();
-		final AbilityCategory aCategory =
-				SettingsHandler.getGame().getAbilityCategory(catString);
+		final AbilityCategory aCategory = SettingsHandler.getGame().getAbilityCategory(catString);
 
 		return getTokenForCategory(pc, aTok, tokenString, aCategory);
 	}
@@ -99,8 +96,7 @@ public class AbilityListToken extends Token
 	 * @param aCategory The ability category being output.
 	 * @return The token value.
 	 */
-	protected String getTokenForCategory(PlayerCharacter pc,
-		final StringTokenizer aTok, final String tokenString,
+	protected String getTokenForCategory(PlayerCharacter pc, final StringTokenizer aTok, final String tokenString,
 		final AbilityCategory aCategory)
 	{
 		if (aCategory == null)
@@ -111,8 +107,8 @@ public class AbilityListToken extends Token
 		// If we haven't cached some of the processign data, then do so, this is so that 
 		// if the Output Sheet loops over this token we don't process one-off stuff more than 
 		// once
-		if (lastPC != pc || !aCategory.equals(lastCategory)
-			|| lastPCSerial != pc.getSerial() || !tokenString.equals(lastType))
+		if ((lastPC != pc) || !aCategory.equals(lastCategory) || (lastPCSerial != pc.getSerial())
+			|| !tokenString.equals(lastType))
 		{
 			abilityMap = getAbilityList(pc, aCategory);
 			lastPC = pc;
@@ -131,7 +127,7 @@ public class AbilityListToken extends Token
 			final String typeStr = aTok.nextToken();
 
 			int typeInd = typeStr.indexOf("TYPE=");
-			if (typeInd != -1 && typeStr.length() > 5)
+			if ((typeInd != -1) && (typeStr.length() > 5))
 			{
 				if (typeInd > 0)
 				{
@@ -142,17 +138,16 @@ public class AbilityListToken extends Token
 					types.add(typeStr.substring(typeInd + 5));
 				}
 			}
-			
+
 			int aspectInd = typeStr.indexOf("ASPECT=");
-			if (aspectInd != -1 && typeStr.length() > 7)
+			if ((aspectInd != -1) && (typeStr.length() > 7))
 			{
 				aspect = typeStr.substring(aspectInd + 7);
 			}
 		}
 
 		MapToList<Ability, CNAbility> aList =
-				AbilityToken.buildAbilityList(types, negate, null,
-					View.VISIBLE_EXPORT, aspect, abilityMap);
+				AbilityToken.buildAbilityList(types, negate, null, View.VISIBLE_EXPORT, aspect, abilityMap);
 
 		boolean needComma = false;
 		for (Ability ability : aList.getKeySet())
@@ -178,12 +173,10 @@ public class AbilityListToken extends Token
 	 * @param aCategory The category of ability required.
 	 * @return List of feats.
 	 */
-	protected MapToList<Ability, CNAbility> getAbilityList(PlayerCharacter pc,
-		final AbilityCategory aCategory)
+	protected MapToList<Ability, CNAbility> getAbilityList(PlayerCharacter pc, final AbilityCategory aCategory)
 	{
 		final MapToList<Ability, CNAbility> listOfAbilities = new HashMapToList<>();
-		Collection<AbilityCategory> allCats =
-				SettingsHandler.getGame().getAllAbilityCategories();
+		Collection<AbilityCategory> allCats = SettingsHandler.getGame().getAllAbilityCategories();
 		for (AbilityCategory aCat : allCats)
 		{
 			if (AbilityCategory.ANY.equals(aCategory) || aCat.getParentCategory().equals(aCategory))

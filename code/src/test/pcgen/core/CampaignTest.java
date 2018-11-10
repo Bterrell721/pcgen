@@ -1,5 +1,4 @@
 /*
- * CampaignTest.java
  * Copyright 2007 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package pcgen.core;
@@ -52,7 +49,8 @@ public class CampaignTest extends TestCase
 	public void testURL() throws Exception
 	{
 		final String eCommerceName = "Barcommerce";
-		final String eCommerceURL = "http://www.barcommercesite.com/product_info.php?products_id=12345&affiliate_id=54321";
+		final String eCommerceURL =
+				"http://www.barcommercesite.com/product_info.php?products_id=12345&affiliate_id=54321";
 		final String eCommerceDesc = "Support PCGen by buying this source now!";
 
 		assertEquals("No URLs in the campaign to start", true, testCamp

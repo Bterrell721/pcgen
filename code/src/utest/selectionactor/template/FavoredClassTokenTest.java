@@ -20,19 +20,18 @@ package selectionactor.template;
 import pcgen.cdom.base.ChooseSelectionActor;
 import pcgen.core.PCClass;
 
-import org.junit.Test;
 import plugin.lsttokens.template.FavoredclassToken;
 import selectionactor.testsupport.AbstractSelectionActorTest;
 
 public class FavoredClassTokenTest extends AbstractSelectionActorTest<PCClass>
 {
 
-	private static final ChooseSelectionActor<PCClass> cra = new FavoredclassToken();
+	private static final ChooseSelectionActor<PCClass> CRA = new FavoredclassToken();
 
 	@Override
 	public ChooseSelectionActor<PCClass> getActor()
 	{
-		return cra;
+		return CRA;
 	}
 
 	@Override

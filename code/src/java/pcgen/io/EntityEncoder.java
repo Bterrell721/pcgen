@@ -1,5 +1,4 @@
 /*
- * EntityEncoder.java
  * Copyright 2002 (C) Thomas Behr <ravenlock@gmx.de>
  *
  * This library is free software; you can redistribute it and/or
@@ -148,7 +147,7 @@ public final class EntityEncoder
 		if (s != null)
 		{
 			final StringTokenizer tokens = new StringTokenizer(s, ENCODE, true);
-	
+
 			while (tokens.hasMoreTokens())
 			{
 				buffer.append(ENTITIES.get(tokens.nextToken()));
@@ -178,7 +177,7 @@ public final class EntityEncoder
 		if (s != null)
 		{
 			final StringTokenizer tokens = new StringTokenizer(s, ENCODE_LIGHT, true);
-	
+
 			while (tokens.hasMoreTokens())
 			{
 				buffer.append(ENTITIES_LIGHT.get(tokens.nextToken()));
@@ -199,9 +198,9 @@ final class EntityMap
 	 */
 	public String get(String key)
 	{
-		final Object value = map.get(key);
+		final String value = map.get(key);
 
-		return (value == null) ? key : (String) value;
+		return (value == null) ? key : value;
 	}
 
 	/**

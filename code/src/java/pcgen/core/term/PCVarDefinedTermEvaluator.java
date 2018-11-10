@@ -16,23 +16,20 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * Created 09-Aug-2008 13:40:31
- *
- *
  */
 
 package pcgen.core.term;
 
 import pcgen.core.PlayerCharacter;
 
-public class PCVarDefinedTermEvaluator
-		extends BasePCTermEvaluator implements TermEvaluator
+public class PCVarDefinedTermEvaluator extends BasePCTermEvaluator implements TermEvaluator
 {
 	private final String var;
 
 	public PCVarDefinedTermEvaluator(String originalText, String var)
 	{
 		this.originalText = originalText;
-		this.var          = var;
+		this.var = var;
 	}
 
 	@Override

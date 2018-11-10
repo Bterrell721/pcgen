@@ -1,5 +1,4 @@
 /*
- * RandomNameDialog.java
  * Copyright James Dempsey, 2010
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.dialog;
 
@@ -69,7 +66,7 @@ public class RandomNameDialog extends JDialog
 			Utility.setComponentRelativeLocation(frame, this);
 		}
 		cancelled = false;
-		
+
 		Utility.installEscapeCloseOperation(this);
 	}
 
@@ -95,8 +92,7 @@ public class RandomNameDialog extends JDialog
 			}
 		});
 
-		JButton cancelButton =
-				new JButton(LanguageBundle.getString("in_cancel")); //$NON-NLS-1$
+		JButton cancelButton = new JButton(LanguageBundle.getString("in_cancel")); //$NON-NLS-1$
 		cancelButton.setMnemonic(LanguageBundle.getMnemonic("in_mn_cancel")); //$NON-NLS-1$
 		controlPanel.add(cancelButton);
 		cancelButton.addActionListener(new ActionListener()
@@ -120,7 +116,7 @@ public class RandomNameDialog extends JDialog
 		cancelled = true;
 		setVisible(false);
 	}
-	
+
 	/**
 	 * @return The directory where the random name data is held
 	 */
@@ -130,7 +126,7 @@ public class RandomNameDialog extends JDialog
 
 		return pluginDirectory + File.separator + "Random Names";
 	}
-	
+
 	/**
 	 * @return The name the user generated.
 	 */

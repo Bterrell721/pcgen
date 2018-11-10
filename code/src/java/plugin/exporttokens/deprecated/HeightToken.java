@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.exporttokens.deprecated;
 
@@ -49,8 +46,7 @@ public class HeightToken extends AbstractExportToken
 	 * @see pcgen.io.exporttoken.Token#getToken(java.lang.String, pcgen.core.PlayerCharacter, pcgen.io.ExportHandler)
 	 */
 	@Override
-	public String getToken(String tokenSource, CharacterDisplay display,
-		ExportHandler eh)
+	public String getToken(String tokenSource, CharacterDisplay display, ExportHandler eh)
 	{
 		String retString = "";
 
@@ -69,7 +65,7 @@ public class HeightToken extends AbstractExportToken
 				retString = getHeightInchPart(display);
 			}
 		}
-		
+
 		return retString;
 	}
 
@@ -86,20 +82,18 @@ public class HeightToken extends AbstractExportToken
 	private String getHeightString(CharacterDisplay display)
 	{
 		String retString;
-		
+
 		if ("ftin".equals(Globals.getGameModeUnitSet().getHeightUnit()))
 		{
-			retString =
-					Integer.toString(display.getHeight() / 12) + "' " + Integer.toString(display.getHeight() % 12) + '"';
+			retString = Integer.toString(display.getHeight() / 12) + "' " + Integer.toString(display.getHeight() % 12)
+				+ '"';
 		}
 		else
 		{
-			retString =
-					Globals.getGameModeUnitSet().displayHeightInUnitSet(
-						display.getHeight())
-						+ ' ' + Globals.getGameModeUnitSet().getHeightUnit();
+			retString = Globals.getGameModeUnitSet().displayHeightInUnitSet(display.getHeight()) + ' '
+				+ Globals.getGameModeUnitSet().getHeightUnit();
 		}
-		
+
 		return retString;
 	}
 }

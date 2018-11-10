@@ -18,9 +18,6 @@
  */
 package pcgen.facade.core;
 
-/**
- *
- */
 public interface ClassFacade extends InfoFacade
 {
 

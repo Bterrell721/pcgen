@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package plugin.jepcommands;
@@ -30,12 +28,10 @@ import pcgen.util.AbstractCountCommand;
 import pcgen.util.JepCountType;
 import pcgen.util.Logging;
 
-
 /**
  * {@code CountCommand} deals with the count() JEP command. The first parameter will
  * be the type of object being counted and further parameters will specify the criteria.
  * 26 Oct 2007) $
- *
  */
 public class CountCommand extends AbstractCountCommand
 {
@@ -76,9 +72,7 @@ public class CountCommand extends AbstractCountCommand
 
 		if (pc == null)
 		{
-			throw new ParseException(
-				"Invalid parent (no PC): "
-					+ parent.getClass().getName());
+			throw new ParseException("Invalid parent (no PC): " + parent.getClass().getName());
 		}
 
 		// check the stack

@@ -17,7 +17,6 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  PreferencesTrackingPanel.java
- *
  */
 package plugin.initiative.gui;
 
@@ -34,14 +33,13 @@ import plugin.initiative.InitiativePlugin;
 
 /**
  * Panel that tracks the miscellaneous preferences.
- *
  */
 public class PreferencesInitiativePanel extends gmgen.gui.PreferencesPanel
 {
 	private static final long serialVersionUID = -2518295310535094440L;
 
 	private static final String SETTING_ROLL_PC_INITIATIVES = ".rollPCInitiatives"; //$NON-NLS-1$
-	
+
 	private JPanel performancePanel;
 	private JPanel mainPanel;
 	private JCheckBox rollPCInitiatives;
@@ -53,18 +51,17 @@ public class PreferencesInitiativePanel extends gmgen.gui.PreferencesPanel
 		initPreferences();
 	}
 
-    @Override
+	@Override
 	public void applyPreferences()
 	{
-		SettingsHandler.setGMGenOption(InitiativePlugin.LOG_NAME
-			+ SETTING_ROLL_PC_INITIATIVES, getRollPCInitiatives());
+		SettingsHandler.setGMGenOption(InitiativePlugin.LOG_NAME + SETTING_ROLL_PC_INITIATIVES, getRollPCInitiatives());
 	}
 
-    @Override
+	@Override
 	public void initPreferences()
 	{
-		setRollPCInitiatives(SettingsHandler.getGMGenOption(
-			InitiativePlugin.LOG_NAME + SETTING_ROLL_PC_INITIATIVES, true));
+		setRollPCInitiatives(
+			SettingsHandler.getGMGenOption(InitiativePlugin.LOG_NAME + SETTING_ROLL_PC_INITIATIVES, true));
 	}
 
 	/**
@@ -103,10 +100,8 @@ public class PreferencesInitiativePanel extends gmgen.gui.PreferencesPanel
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
 		performancePanel = new JPanel();
-		performancePanel.setLayout(new BoxLayout(performancePanel,
-			BoxLayout.Y_AXIS));
-		rollPCInitiatives
-			.setText(LanguageBundle.getString("in_plugin_initiative_rollPcInit")); //$NON-NLS-1$
+		performancePanel.setLayout(new BoxLayout(performancePanel, BoxLayout.Y_AXIS));
+		rollPCInitiatives.setText(LanguageBundle.getString("in_plugin_initiative_rollPcInit")); //$NON-NLS-1$
 		performancePanel.add(rollPCInitiatives);
 
 		mainPanel.add(performancePanel);

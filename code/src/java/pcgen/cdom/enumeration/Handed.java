@@ -20,17 +20,19 @@ package pcgen.cdom.enumeration;
 import pcgen.facade.core.HandedFacade;
 import pcgen.system.LanguageBundle;
 
+import java.util.Arrays;
+
 /**
  * Represents the handedness available in PCGen.
  * 
- * It is designed to hold Genders in a type-safe fashion, so that they can be
- * quickly compared and use less memory when identical Genders exist in two
+ * It is designed to hold Handedness in a type-safe fashion, so that they can be
+ * quickly compared and use less memory when identical Handedness exist in two
  * CDOMObjects.
- * 
  */
 public enum Handed implements HandedFacade
 {
-	Right {
+	Right
+	{
 		@Override
 		public String toString()
 		{
@@ -38,7 +40,8 @@ public enum Handed implements HandedFacade
 		}
 	},
 
-	Left {
+	Left
+	{
 		@Override
 		public String toString()
 		{
@@ -46,7 +49,8 @@ public enum Handed implements HandedFacade
 		}
 	},
 
-	Ambidextrous {
+	Ambidextrous
+	{
 		@Override
 		public String toString()
 		{
@@ -54,7 +58,8 @@ public enum Handed implements HandedFacade
 		}
 	},
 
-	None {
+	None
+	{
 		@Override
 		public String toString()
 		{
@@ -62,7 +67,8 @@ public enum Handed implements HandedFacade
 		}
 	},
 
-	Other {
+	Other
+	{
 		@Override
 		public String toString()
 		{
@@ -74,9 +80,9 @@ public enum Handed implements HandedFacade
 	{
 		return Right;
 	}
-	
+
 	/**
-	 * Retrieve a Gender object to match the name ({@link #name()}) or localized name
+	 * Retrieve a Handed object to match the name ({@link #name()}) or localized name
 	 * (output by {@link #toString()}). The localized lookup is kept for legacy purpose
 	 * when the localized name was saved in the character files (instead of the
 	 * {@link #name()}).
@@ -87,14 +93,9 @@ public enum Handed implements HandedFacade
 	 */
 	public static Handed getHandedByName(String name)
 	{
-		for (Handed hand : values())
-		{
-			if (hand.toString().equals(name))
-			{
-				return hand;
-			}
-		}
-
-		return valueOf(name);
+		return Arrays.stream(values())
+				.filter(hand -> hand.toString().equals(name))
+				.findFirst()
+				.orElse(valueOf(name));
 	}
 }

@@ -22,24 +22,22 @@ import plugin.overland.util.RBCost;
 
 /**
  * Interface for the room and board elements.
- *
- *
  */
 public interface RoomBoard
 {
 
 	/**
-	 * @return
+	 * @return Inns
 	 */
 	PairList<RBCost> getInns();
 
 	/**
-	 * @return
+	 * @return Foods
 	 */
 	PairList<RBCost> getFoods();
 
 	/**
-	 * @return
+	 * @return Animals
 	 */
 	PairList<RBCost> getAnimals();
 

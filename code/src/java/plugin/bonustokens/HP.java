@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.bonustokens;
 
@@ -32,8 +29,7 @@ import pcgen.util.Logging;
  */
 public final class HP extends MultiTagBonusObj
 {
-	private static final String[] BONUS_TAGS =
-			{"BONUS", "CURRENTMAX", "CURRENTMAXPERLEVEL", "ALTHP"};
+	private static final String[] BONUS_TAGS = {"BONUS", "CURRENTMAX", "CURRENTMAXPERLEVEL", "ALTHP"};
 
 	/**
 	 * Return the bonus tag handled by this class.
@@ -75,9 +71,7 @@ public final class HP extends MultiTagBonusObj
 		{
 			if ("ALTHP".equals(token))
 			{
-				Logging.errorPrint(
-					"BONUS:HP|ALTHP is disabled when ALTHP control is used: "
-						+ token, context);
+				Logging.errorPrint("BONUS:HP|ALTHP is disabled when ALTHP control is used: " + token, context);
 				return false;
 			}
 		}

@@ -1,5 +1,4 @@
 /*
- * LegacySettings.java
  * Copyright 2010(C) James Dempsey <jdempsey@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -32,8 +31,7 @@ import pcgen.core.SettingsHandler;
 final class LegacySettings extends PropertyContext
 {
 	/** Our singleton instance */
-	private static final LegacySettings instance = new LegacySettings();
-
+	private static final LegacySettings INSTANCE = new LegacySettings();
 
 	/**
 	 * Create a new LegacySettings instance. Private to avoid multiples.
@@ -48,12 +46,9 @@ final class LegacySettings extends PropertyContext
 	 */
 	public static LegacySettings getInstance()
 	{
-		return instance;
+		return INSTANCE;
 	}
 
-	/**
-	 * @see pcgen.system.PropertyContext#afterPropertiesLoaded()
-	 */
 	@Override
 	protected void afterPropertiesLoaded()
 	{
@@ -62,9 +57,6 @@ final class LegacySettings extends PropertyContext
 		super.afterPropertiesLoaded();
 	}
 
-	/**
-	 * @see pcgen.system.PropertyContext#beforePropertiesSaved()
-	 */
 	@Override
 	protected void beforePropertiesSaved()
 	{

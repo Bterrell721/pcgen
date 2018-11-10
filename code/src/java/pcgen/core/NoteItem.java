@@ -1,5 +1,4 @@
 /*
- * NoteItem.java
  * Copyright 2002 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,15 +14,12 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.core;
 
 import pcgen.facade.core.NoteFacade;
 import pcgen.io.FileAccess;
 import pcgen.util.Logging;
-
 
 /**
  * {@code NoteItem}.
@@ -56,9 +52,11 @@ public final class NoteItem implements NoteFacade, Cloneable
 	 * @param afterValue The markup to be included after the value.
 	 * @return The export string including markup, the name of the note and the note contents. 
 	 */
-	public String getExportString(final String beforeName, final String afterName, final String beforeValue, final String afterValue)
+	public String getExportString(final String beforeName, final String afterName, final String beforeValue,
+		final String afterValue)
 	{
-		return beforeName + FileAccess.filterString(name) + afterName + beforeValue + FileAccess.filterString(value) + afterValue;
+		return beforeName + FileAccess.filterString(name) + afterName + beforeValue + FileAccess.filterString(value)
+			+ afterValue;
 	}
 
 	public int getId()
@@ -76,7 +74,7 @@ public final class NoteItem implements NoteFacade, Cloneable
 		name = x;
 	}
 
-    @Override
+	@Override
 	public String getName()
 	{
 		return name;
@@ -92,13 +90,13 @@ public final class NoteItem implements NoteFacade, Cloneable
 		return id_parent;
 	}
 
-    @Override
+	@Override
 	public void setValue(final String x)
 	{
 		value = x;
 	}
 
-    @Override
+	@Override
 	public String getValue()
 	{
 		return value;
@@ -126,7 +124,7 @@ public final class NoteItem implements NoteFacade, Cloneable
 	}
 
 	@Override
-	protected NoteItem clone()
+	public NoteItem clone()
 	{
 		try
 		{
@@ -151,8 +149,7 @@ public final class NoteItem implements NoteFacade, Cloneable
 		if (o instanceof NoteItem)
 		{
 			NoteItem other = (NoteItem) o;
-			return (id_parent == other.id_parent)
-				&& (id_value == other.id_value) && (name.equals(other.name))
+			return (id_parent == other.id_parent) && (id_value == other.id_value) && (name.equals(other.name))
 				&& (value.equals(other.value)) && (required == other.required);
 		}
 		return false;

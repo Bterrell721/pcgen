@@ -1,5 +1,4 @@
 /*
- * CharacterTabs.java
  * Copyright 2009 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -44,12 +43,12 @@ import javax.swing.event.ChangeListener;
 import org.apache.commons.lang3.StringUtils;
 
 import pcgen.facade.core.CharacterFacade;
+import pcgen.facade.util.ListFacade;
 import pcgen.facade.util.ReferenceFacade;
 import pcgen.facade.util.event.ListEvent;
 import pcgen.facade.util.event.ListListener;
 import pcgen.facade.util.event.ReferenceEvent;
 import pcgen.facade.util.event.ReferenceListener;
-import pcgen.facade.util.ListFacade;
 import pcgen.gui2.tabs.InfoTabbedPane;
 import pcgen.gui2.tools.Icons;
 import pcgen.gui2.util.SharedTabPane;
@@ -292,8 +291,7 @@ public final class CharacterTabs extends SharedTabPane
 			if (e.isPopupTrigger())
 			{
 				popupMenu.setVisible(true);
-				popupMenu.show(e.getComponent(),
-						e.getX(), e.getY() - popupMenu.getHeight());
+				popupMenu.show(e.getComponent(), e.getX(), e.getY() - popupMenu.getHeight());
 			}
 		}
 

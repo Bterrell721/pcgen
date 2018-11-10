@@ -1,5 +1,4 @@
 /*
- * DataTest.java
  * Copyright James Dempsey, 2013
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.persistence.lst;
 
@@ -190,7 +187,7 @@ public class DataTest
 		for (Object[] missing : missingLstFiles)
 		{
 			report.append("Missing file ");
-			report.append(((File)missing[1]).getPath().substring(dataPathLen+1));
+			report.append(((File) missing[1]).getPath().substring(dataPathLen+1));
 			report.append(" used by ");
 			report.append((new File(((Campaign) missing[0]).getSourceURI())).getPath().substring(dataPathLen+1));
 			report.append("<br>\r\n");

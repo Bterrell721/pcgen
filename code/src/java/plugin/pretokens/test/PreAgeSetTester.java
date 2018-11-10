@@ -1,5 +1,4 @@
 /*
- *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -13,9 +12,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package plugin.pretokens.test;
 
@@ -27,21 +23,16 @@ import pcgen.core.prereq.PrerequisiteException;
 import pcgen.core.prereq.PrerequisiteTest;
 import pcgen.system.LanguageBundle;
 
-/**
- *
- */
 public class PreAgeSetTester extends AbstractDisplayPrereqTest implements PrerequisiteTest
 {
 
-	/**
-	 * @see pcgen.core.prereq.PrerequisiteTest#passes(pcgen.core.PlayerCharacter)
-	 */
 	@Override
-	public int passes(final Prerequisite prereq, final CharacterDisplay display, CDOMObject source) throws PrerequisiteException
+	public int passes(final Prerequisite prereq, final CharacterDisplay display, CDOMObject source)
+		throws PrerequisiteException
 	{
 		final int ageset = display.getAgeSetIndex();
 
-		int runningTotal=-1;
+		int runningTotal = -1;
 		int anInt;
 
 		try
@@ -54,12 +45,16 @@ public class PreAgeSetTester extends AbstractDisplayPrereqTest implements Prereq
 		}
 		catch (Exception e)
 		{
-			throw new PrerequisiteException(LanguageBundle.getFormattedString("PreAgeSet.error.badly_formed_attribute", prereq.getOperand())); //$NON-NLS-1$
+			throw new PrerequisiteException(
+				LanguageBundle.getFormattedString(
+					"PreAgeSet.error.badly_formed_attribute", prereq.getOperand())); //$NON-NLS-1$
 		}
-		
+
 		if (anInt == -1)
 		{ //String was not recognized
-			throw new PrerequisiteException(LanguageBundle.getFormattedString("PreAgeSet.error.badly_formed_attribute", prereq.getOperand())); //$NON-NLS-1$
+			throw new PrerequisiteException(
+				LanguageBundle.getFormattedString(
+					"PreAgeSet.error.badly_formed_attribute", prereq.getOperand())); //$NON-NLS-1$
 		}
 
 		runningTotal = prereq.getOperator().compare(ageset, anInt);
@@ -71,10 +66,10 @@ public class PreAgeSetTester extends AbstractDisplayPrereqTest implements Prereq
 	 * Get the type of prerequisite handled by this token.
 	 * @return the type of prerequisite handled by this token.
 	 */
-    @Override
-	public String kindHandled() 
+	@Override
+	public String kindHandled()
 	{
-		return "AGESET";//$NON-NLS-1$
+		return "AGESET"; //$NON-NLS-1$
 	}
 
 }

@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.prefs;
 
@@ -39,10 +37,10 @@ public abstract class PCGenPrefsPanel extends JPanel
 	public abstract String getTitle();
 
 	/**
-	 * Initialises the panel's values based on the current preferences.
+	 * Initializes the panel's values based on the current preferences.
 	 */
 	public abstract void applyOptionValuesToControls();
-	
+
 	/**
 	 * Updates the current preferences based on the panel's values.
 	 */
@@ -51,7 +49,7 @@ public abstract class PCGenPrefsPanel extends JPanel
 	public void resetOptionValues()
 	{
 	}
-	
+
 	/**
 	 * Identify of the actions the user has taken require a restart to take effect.
 	 * @return true if a restart is needed for the user's changes to take effect.

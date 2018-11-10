@@ -17,11 +17,8 @@
  */
 package plugin.lsttokens.campaign;
 
-import org.junit.Test;
-
 import pcgen.cdom.enumeration.ListKey;
 import pcgen.core.Campaign;
-import pcgen.persistence.PersistenceLayerException;
 import pcgen.rules.persistence.CDOMLoader;
 import pcgen.rules.persistence.token.CDOMPrimaryToken;
 import plugin.lsttokens.testsupport.AbstractTypeSafeListTestCase;
@@ -89,19 +86,19 @@ public class GamemodeTokenTest extends AbstractTypeSafeListTestCase<Campaign, St
 	}
 
 	@Override
-	public void testReplacementInputs() throws PersistenceLayerException
+	public void testReplacementInputs()
 	{
 		//Override because GameMode performs a .CLEAR
 	}
 
 	@Override
-	public void testReplacementInputsTwo() throws PersistenceLayerException
+	public void testReplacementInputsTwo()
 	{
 		//Override because GameMode performs a .CLEAR
 	}
 
 	@Override
-	public void testValidInputMultList() throws PersistenceLayerException
+	public void testValidInputMultList()
 	{
 		//Override because GameMode performs a .CLEAR
 	}

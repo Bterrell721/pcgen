@@ -1,5 +1,4 @@
 /*
- * PCVarFunction.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -21,9 +20,9 @@ package pcgen.io.freemarker;
 
 import java.util.List;
 
-import pcgen.core.PlayerCharacter;
 import freemarker.template.TemplateMethodModelEx;
 import freemarker.template.TemplateModelException;
+import pcgen.core.PlayerCharacter;
 
 /**
  * PCVarFunction allows character variable values to be exported to a 
@@ -50,8 +49,7 @@ public class PCVarFunction implements TemplateMethodModelEx
 	{
 		if (arg0.size() != 1)
 		{
-			throw new TemplateModelException(
-				"Wrong arguments. formula required");
+			throw new TemplateModelException("Wrong arguments. formula required");
 		}
 
 		String formula = arg0.get(0).toString();

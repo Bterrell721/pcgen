@@ -1,5 +1,4 @@
 /*
- * FileAccess.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -38,6 +37,10 @@ public final class FileAccess
 {
 	private static OutputFilter outputFilter = null;
 	private static int maxLength = -1;
+
+	private FileAccess()
+	{
+	}
 
 	/**
 	 * Filter the supplied string according to the current output filter. This
@@ -114,8 +117,8 @@ public final class FileAccess
 		}
 		catch (IOException exception)
 		{
-			ShowMessageDelegate.showMessageDialog(exception.getMessage(),
-				Constants.APPLICATION_NAME, MessageType.ERROR);
+			ShowMessageDelegate.showMessageDialog(exception.getMessage(), Constants.APPLICATION_NAME,
+				MessageType.ERROR);
 		}
 	}
 
@@ -147,8 +150,8 @@ public final class FileAccess
 		}
 		catch (IOException exception)
 		{
-			ShowMessageDelegate.showMessageDialog(exception.getMessage(),
-				Constants.APPLICATION_NAME, MessageType.ERROR);
+			ShowMessageDelegate.showMessageDialog(exception.getMessage(), Constants.APPLICATION_NAME,
+				MessageType.ERROR);
 		}
 	}
 }

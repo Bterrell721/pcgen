@@ -17,8 +17,6 @@
  */
 package plugin.lsttokens.add;
 
-import org.junit.Test;
-
 import pcgen.cdom.base.ChoiceActor;
 import pcgen.core.Skill;
 import pcgen.rules.persistence.token.CDOMSecondaryToken;
@@ -46,18 +44,6 @@ public class SkillTokenTest extends
 	public boolean isAllLegal()
 	{
 		return true;
-	}
-
-	@Override
-	public boolean isTypeLegal()
-	{
-		return true;
-	}
-
-	@Override
-	public boolean allowsParenAsSub()
-	{
-		return false;
 	}
 
 	@Override

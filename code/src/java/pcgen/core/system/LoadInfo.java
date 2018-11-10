@@ -1,5 +1,4 @@
 /*
- * LoadInfo.java
  * Copyright (c) Thomas Parker, 2010.
  * Copyright 2002 (C) James Dempsey
  *
@@ -16,9 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
  */
 package pcgen.core.system;
 
@@ -57,13 +53,13 @@ public class LoadInfo implements Loadable
 	private final Map<String, LoadInfo.LoadMapEntry> loadMultiplierMap = new HashMap<>();
 	private String modifyFormula;
 
-    @Override
+	@Override
 	public URI getSourceURI()
 	{
 		return sourceURI;
 	}
 
-    @Override
+	@Override
 	public void setSourceURI(URI source)
 	{
 		sourceURI = source;
@@ -120,16 +116,14 @@ public class LoadInfo implements Loadable
 				// TODO Isn't this a bug??
 				return getLoadScoreValue(minStrenghScoreWithLoad);
 			}
-			return loadScoreMultiplier.multiply(getLoadScoreValue(score
-					- loadMultStep));
+			return loadScoreMultiplier.multiply(getLoadScoreValue(score - loadMultStep));
 		}
 		else
 		{
 			BigDecimal loadScore = strengthLoadMap.get(score);
 			if (loadScore == null)
 			{
-				SortedMap<Integer, BigDecimal> headMap = strengthLoadMap
-						.headMap(score);
+				SortedMap<Integer, BigDecimal> headMap = strengthLoadMap.headMap(score);
 				/*
 				 * Assume headMap is populated, since minScore is tested, above -
 				 * thpr Mar 14, 2007
@@ -146,16 +140,14 @@ public class LoadInfo implements Loadable
 	 * @param size
 	 * @param multiplier
 	 */
-	public void addSizeAdjustment(CDOMSingleRef<SizeAdjustment> size,
-			BigDecimal multiplier)
+	public void addSizeAdjustment(CDOMSingleRef<SizeAdjustment> size, BigDecimal multiplier)
 	{
 		rawSizeMultiplierMap.put(size, multiplier);
 	}
 
 	public void resolveSizeAdjustmentMap()
 	{
-		for (Map.Entry<CDOMSingleRef<SizeAdjustment>, BigDecimal> me : rawSizeMultiplierMap
-				.entrySet())
+		for (Map.Entry<CDOMSingleRef<SizeAdjustment>, BigDecimal> me : rawSizeMultiplierMap.entrySet())
 		{
 			sizeMultiplierMap.put(me.getKey().get(), me.getValue());
 		}
@@ -175,8 +167,7 @@ public class LoadInfo implements Loadable
 		}
 		if (Logging.isDebugMode())
 		{
-			Logging.debugPrint("Unable to find Load Multiplier for Size: "
-				+ size.getKeyName());
+			Logging.debugPrint("Unable to find Load Multiplier for Size: " + size.getKeyName());
 		}
 		return BigDecimal.ONE;
 	}
@@ -188,8 +179,7 @@ public class LoadInfo implements Loadable
 	 * @param formula
 	 * @param checkPenalty
 	 */
-	public void addLoadMultiplier(String encumbranceType, Float value,
-			String formula, Integer checkPenalty)
+	public void addLoadMultiplier(String encumbranceType, Float value, String formula, Integer checkPenalty)
 	{
 		LoadMapEntry newEntry = new LoadMapEntry(value, formula, checkPenalty);
 		loadMultiplierMap.put(encumbranceType, newEntry);
@@ -276,8 +266,7 @@ public class LoadInfo implements Loadable
 		 * @param argFormula
 		 * @param argPenalty
 		 */
-		public LoadMapEntry(Float argMultiplier, String argFormula,
-				Integer argPenalty)
+		public LoadMapEntry(Float argMultiplier, String argFormula, Integer argPenalty)
 		{
 			multiplier = argMultiplier;
 			moveFormula = argFormula;
@@ -311,43 +300,37 @@ public class LoadInfo implements Loadable
 			return checkPenalty.intValue();
 		}
 	}
-	
+
 	public void setLoadMultStep(int step)
 	{
 		loadMultStep = step;
 	}
 
-    @Override
+	@Override
 	public String getDisplayName()
 	{
 		return loadInfoName;
 	}
 
-    @Override
+	@Override
 	public String getKeyName()
 	{
 		return getDisplayName();
 	}
 
-    @Override
-	public String getLSTformat()
-	{
-		return getDisplayName();
-	}
-
-    @Override
+	@Override
 	public boolean isInternal()
 	{
 		return false;
 	}
 
-    @Override
+	@Override
 	public boolean isType(String type)
 	{
 		return false;
 	}
 
-    @Override
+	@Override
 	public void setName(String name)
 	{
 		loadInfoName = name;

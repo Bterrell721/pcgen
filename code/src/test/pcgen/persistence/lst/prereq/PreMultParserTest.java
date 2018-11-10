@@ -1,5 +1,4 @@
 /*
- * PreMultParserTest.java
  *
  * Copyright 2003 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
@@ -16,11 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
- *
- *
- *
  */
 package pcgen.persistence.lst.prereq;
 
@@ -37,7 +31,6 @@ import pcgen.util.TestHelper;
 
 /*** Test
 	 * [PREARMORPROF:1,TYPE.Medium],[PREFEAT:1,Armor Proficiency (Medium)]
- *
  */
 @SuppressWarnings("nls")
 public class PreMultParserTest extends EnUsLocaleDependentTestCase
@@ -65,7 +58,8 @@ public class PreMultParserTest extends EnUsLocaleDependentTestCase
 			"<prereq operator=\"GTEQ\" operand=\"1\" >\n"
 				+ "<prereq kind=\"profwitharmor\" key=\"TYPE.Medium\" operator=\"GTEQ\" operand=\"1\" >\n"
 				+ "</prereq>\n"
-				+ "<prereq kind=\"ability\" category=\"FEAT\" key=\"Armor Proficiency\" sub-key=\"Medium\" operator=\"GTEQ\" operand=\"1\" >\n"
+				+ "<prereq kind=\"ability\" category=\"FEAT\" key=\"Armor Proficiency\" sub-key=\"Medium\" "
+				+ "operator=\"GTEQ\" operand=\"1\" >\n"
 				+ "</prereq>\n" + "</prereq>\n", prereq.toString());
 	}
 
@@ -76,12 +70,9 @@ public class PreMultParserTest extends EnUsLocaleDependentTestCase
 
 		try
 		{
-			Prerequisite prereq =
-					parser
-						.parse(
-							"mult",
-							"1,[PREPROFWITHARMOR:1,TYPE.Medium],[PREFEAT:1,Armor Proficiency (Medium)",
-							false, false);
+			parser.parse("mult",
+				"1,[PREPROFWITHARMOR:1,TYPE.Medium],[PREFEAT:1,Armor Proficiency (Medium)",
+				false, false);
 			fail("Expected unbalanced bracket to be detected.");
 		}
 		catch (PersistenceLayerException e)

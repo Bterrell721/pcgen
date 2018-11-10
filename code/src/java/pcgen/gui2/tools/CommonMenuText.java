@@ -31,8 +31,7 @@ import pcgen.system.LanguageBundle;
  */
 public class CommonMenuText
 {
-	private static final String MNEMONIC_SUFFIX = LanguageBundle.KEY_PREFIX
-		+ "mn_"; //$NON-NLS-1$
+	private static final String MNEMONIC_SUFFIX = LanguageBundle.KEY_PREFIX + "mn_"; //$NON-NLS-1$
 	private static final String TIP_SUFFIX = "Tip"; //$NON-NLS-1$
 
 	/**
@@ -45,7 +44,9 @@ public class CommonMenuText
 		a.putValue(Action.NAME, getName(prop, substitutes));
 		String shortDesc = getShortDesc(prop, substitutes);
 		if (shortDesc != null && !shortDesc.isEmpty())
+		{
 			a.putValue(Action.SHORT_DESCRIPTION, shortDesc);
+		}
 		a.putValue(Action.MNEMONIC_KEY, getMnemonic(prop));
 	}
 
@@ -56,14 +57,12 @@ public class CommonMenuText
 
 	private static String getShortDesc(String prop, Object... substitutes)
 	{
-		return LanguageBundle.getFormattedString(LanguageBundle.KEY_PREFIX
-			+ prop + TIP_SUFFIX, substitutes);
+		return LanguageBundle.getFormattedString(LanguageBundle.KEY_PREFIX + prop + TIP_SUFFIX, substitutes);
 	}
 
 	private static String getName(String prop, Object... substitutes)
 	{
-		return LanguageBundle.getFormattedString(LanguageBundle.KEY_PREFIX
-			+ prop, substitutes);
+		return LanguageBundle.getFormattedString(LanguageBundle.KEY_PREFIX + prop, substitutes);
 	}
 
 	/**
@@ -76,7 +75,9 @@ public class CommonMenuText
 		m.setText(getName(prop, substitutes));
 		String shortDesc = getShortDesc(prop, substitutes);
 		if (shortDesc != null && !shortDesc.isEmpty())
+		{
 			m.setToolTipText(shortDesc);
+		}
 		m.setMnemonic(getMnemonic(prop));
 	}
 
@@ -90,7 +91,9 @@ public class CommonMenuText
 		b.setText(getName(prop, substitutes));
 		String shortDesc = getShortDesc(prop, substitutes);
 		if (shortDesc != null && !shortDesc.isEmpty())
+		{
 			b.setToolTipText(shortDesc);
+		}
 		b.setMnemonic(getMnemonic(prop));
 	}
 

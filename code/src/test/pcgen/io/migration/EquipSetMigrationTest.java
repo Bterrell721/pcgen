@@ -1,5 +1,4 @@
 /*
- * EquipSetMigrationTest.java
  * Copyright James Dempsey, 2013
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.io.migration;
 
@@ -39,8 +36,8 @@ import pcgen.util.TestHelper;
 
 public class EquipSetMigrationTest extends AbstractCharacterTestCase
 {
-	private final int[] preOrderedVer = {6,0,1};
-	private final int[] postOrderedVer = {6,1,3};
+	private final int[] preOrderedVer = {6, 0, 1};
+	private final int[] postOrderedVer = {6, 1, 3};
 
 	@Override
 	protected void setUp() throws Exception
@@ -227,9 +224,9 @@ public class EquipSetMigrationTest extends AbstractCharacterTestCase
 	 * Add the equipment item to the equipset.
 	 * 
 	 * @param pc The character owning the set
-	 * @param es The set to add the item to
 	 * @param item The item of equipment
 	 * @param qty The number to be placed in the location.
+	 * @param id The set to add the item to
 	 * @return The new EquipSet object for the item.
 	 */
 	private EquipSet equipItem(PlayerCharacter pc, 
